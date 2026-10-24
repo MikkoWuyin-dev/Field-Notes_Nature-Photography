@@ -271,11 +271,15 @@ main{padding:clamp(13px,3.6vw,52px);padding-top:var(--stack-gap);border-right:4p
 .file-button input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
 .tool-status{min-height:1.5em;margin:12px 0 0!important;padding-top:10px;border-top:1px dashed var(--line);color:var(--muted)!important;font-size:.76rem!important}
 .site-footer{padding:21px clamp(20px,3.6vw,52px);border:4px solid var(--cyan);border-top:0;color:#fff;font-size:.77rem}
-/* The decorative pals live in an absolutely positioned 0x0 layer with visible
-   overflow, so a pal that drifts past the footer extends the document and leaves
-   blank space under it. Clipping the layer to a very large margin lets nothing
-   grow the page while still drawing every pal. */
-div[data-piixpal]{overflow:clip!important;overflow-clip-margin:200vmax}
+/* The decorative pals live in a 0x0 layer that the engine positions in document
+   coordinates. Left absolute, a pal that drifts past the footer extends the
+   document and leaves blank space under it. Fixed positioning removes that
+   entirely: a fixed layer is not part of the document's scrollable overflow, so
+   nothing inside it can lengthen the page. It is also why no clipping is used --
+   clipping hid every pal below the clip margin, which is most of the page.
+   The engine recomputes its origin every animation frame, so pals still track
+   the document and stay beside their headings while the page scrolls. */
+div[data-piixpal]{position:fixed!important}
 .footer-top{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px}
 .footer-brand{margin:0;color:#fff;font:900 .82rem/1.3 var(--font-mono);letter-spacing:.06em;text-transform:uppercase}
 .footer-links{display:flex;flex-wrap:wrap;gap:8px 18px}
@@ -884,7 +888,38 @@ let activeFilter = 'all';
 const reducedMotion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : {matches:false};
 const TOUR_STORAGE_KEY = 'fieldnotes-onboarding-v1';
 const PALS_STORAGE_KEY = 'fieldnotes-pals-v1';
-const PALS_COUNT = 8;
+/* The single source of truth for the decorative pals. PALS_COUNT is derived from
+   the list, so the number shown to the user cannot drift from what renders.
+
+   Two things to know before adding one:
+   - `pal` must be one of the eight sprites in the payload: bitbug, lurk, moss,
+     pip, capy, bumble, shel, frog. Reuse one with `hue` for variety; an unknown
+     name fails silently and the pal simply never appears.
+   - `at` is the horizontal fraction of the target the pal hangs from, so it is
+     also the lever for steering a pal off a control. A pal draws on a canvas with
+     pointer-events:auto and one parked on a button swallows the tap. The pals hang
+     about 30px above their target, so it is what sits *above* the target that
+     matters. */
+const SITE_PALS = [
+  /* Spread down the whole page rather than one per heading: the headings are not
+     evenly spaced, and one-per-heading left a 3,845px empty run through the stage
+     list. Largest gap now ~1,480px on a phone. */
+  {pal:'bitbug',target:'#hero-title',at:.9,edge:'text',speed:.72},
+  {pal:'pip',target:'#progress-heading',at:.88},
+  {pal:'lurk',target:'#guide-heading',at:.88},
+  {pal:'bumble',target:'#reminder-summary',at:.84,hue:215},
+  {pal:'capy',target:'#roadmap-heading',at:.88},
+  {pal:'lurk',target:'#stage-list > .category-group:nth-child(1)',at:.86,hue:205},
+  {pal:'moss',target:'#stage-1 .resource-grid > :nth-child(1)',at:.88,hue:320},
+  {pal:'shel',target:'#stage-1 .resource-grid > :nth-child(2)',at:.65,hue:120},
+  {pal:'frog',target:'#stage-1 .resource-grid > :nth-child(3)',at:.75,hue:60},
+  {pal:'moss',target:'#stage-6',at:.88,hue:320,scale:2},
+  {pal:'shel',target:'#practice-heading',at:.88,speed:.7},
+  {pal:'bumble',target:'#guardrails-heading',at:.5,edge:'text',scale:2},
+  {pal:'capy',target:'#notification-status',at:.5,hue:140},
+  {pal:'frog',target:'#footer-brand',at:.88}
+];
+const PALS_COUNT = SITE_PALS.length;
 const TOUR_STEPS = [
   {area:'Welcome',title:'A free route from first frame to purposeful work.',copy:'Fieldnotes is a free, location-neutral route from absolute beginner toward professional-ready nature photography. Its nine stages fit about five hours a week, and you can start with the camera or phone you already own. Check each Access note for terms; the route does not promise employment or income.',target:'#hero-title',dock:'bottom-right'},
   {area:'Field log',title:'Track real practice, not time on the page.',copy:'This panel shows completed learning cards, overall progress, your next checkpoint, today’s log, and your streak. Progress is stored in this browser. Only real roadmap checkboxes change it; the tour sample is separate.',target:'#progress-heading',dock:'bottom-right'},
@@ -1209,14 +1244,14 @@ function addFieldnotesPal(name,target,options={},scope='site'){
 function renderSitePals(){
   clearFieldnotesPals('site');
   if(!palsEnabled||!window.Piixpal)return;
-  addFieldnotesPal('bitbug','#hero-title',{edge:'text',speed:.72,at:.9},'site');
-  addFieldnotesPal('lurk','#guide-heading',{at:.88},'site');
-  addFieldnotesPal('moss','#practice-heading',{at:.88},'site');
-  addFieldnotesPal('pip','#progress-heading',{at:.88},'site');
-  addFieldnotesPal('capy','#roadmap-heading',{at:.88},'site');
-  addFieldnotesPal('bumble','#guardrails-heading',{at:.82},'site');
-  addFieldnotesPal('shel','#tools-heading',{at:.87,speed:.7},'site');
-  addFieldnotesPal('frog','#footer-brand',{at:.88},'site');
+  SITE_PALS.forEach(({pal,target,at,edge,speed,hue,scale})=>{
+    const options={at:at===undefined?.88:at};
+    if(edge)options.edge=edge;
+    if(speed)options.speed=speed;
+    if(hue)options.hue=hue;
+    if(scale)options.scale=scale;
+    addFieldnotesPal(pal,target,options,'site');
+  });
 }
 function renderTourPals(){
   clearFieldnotesPals('tour');

@@ -182,7 +182,13 @@ console.log('\nrender');
   eq('25 cards render', d.querySelectorAll('.resource-card').length, 25);
   eq('counts shown to the user', d.getElementById('roadmap-count').textContent, '9 stages · 25 learning cards');
   eq('no page-level errors', errors.length, 0);
-  eq('deferred pals engine renders all 8 pals', d.querySelectorAll('piix-pal[data-fieldnotes-pal="site"]').length, 8);
+  const sitePals = d.querySelectorAll('piix-pal[data-fieldnotes-pal="site"]');
+  eq('deferred pals engine renders every configured pal', sitePals.length, 14);
+  eq('every pal is anchored to something on the page',
+    [...sitePals].filter((pal) => !d.querySelector(pal.getAttribute('on'))).length, 0);
+  check('the count shown to the user matches what is rendered',
+    d.getElementById('pals-status').textContent.startsWith(`${sitePals.length} optional decorative pals`),
+    d.getElementById('pals-status').textContent);
 
   const headings = [...d.querySelectorAll('h1,h2,h3,h4,h5,h6')].map((h) => Number(h.tagName[1]));
   const skipped = headings.filter((level, i) => i > 0 && level > headings[i - 1] + 1);

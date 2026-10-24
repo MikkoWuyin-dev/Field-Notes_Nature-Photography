@@ -585,22 +585,23 @@ console.log('\nevery vertical gap between sections is the same');
 
 console.log('\nnothing can grow the page past the footer');
 {
-  /* The decorative pals are positioned in document coordinates inside an
-     absolutely positioned 0x0 layer whose overflow the engine sets to visible.
-     A pal drifting past the footer then adds that pal's height to the document
-     and leaves blank space under the footer. The page clips the layer to a very
-     large margin, which hides nothing but lets nothing grow the page.
+  /* The decorative pals are positioned in document coordinates inside a 0x0
+     layer. Left absolute, a pal drifting past the footer adds its height to the
+     document and leaves blank space under the footer. The page pins the layer
+     with position:fixed, which takes it out of the document's scrollable
+     overflow altogether - so nothing inside it can lengthen the page.
 
-     `overflow:clip` is the only value that does this: `hidden` would turn the
-     layer into a scroll container and clip the pals to a 0x0 box. */
+     Clipping was tried first and was wrong: it hid every pal below the clip
+     margin, which was five of the eight. So the guard here is specifically that
+     no clipping is applied to the layer. */
   const rule = rules.find((r) => r.selector === 'div[data-piixpal]' && !r.context);
-  check('the decoration layer is clipped by the page stylesheet', rule !== undefined);
+  check('the decoration layer is positioned by the page stylesheet', rule !== undefined);
   if (rule) {
-    check('the clip wins over the engine\'s inline overflow:visible',
-      /clip\s*!important/.test(rule.decls.overflow || ''), rule.decls.overflow);
-    const margin = rule.decls['overflow-clip-margin'] || '';
-    check('the clip margin keeps every pal visible', /^[2-9]\d*vmax$/.test(margin) || /^[2-9]\d*vh$/.test(margin), margin);
-    eq('the clip is not a scroll container', /hidden|auto|scroll/.test(rule.decls.overflow || ''), false);
+    check('the layer is pinned out of the document flow',
+      /fixed\s*!important/.test(rule.decls.position || ''), rule.decls.position);
+    check('the layer is not clipped (clipping hid most of the pals)',
+      !/clip|hidden/.test(`${rule.decls.overflow || ''} ${rule.decls['overflow-clip-margin'] || ''}`),
+      `${rule.decls.overflow || ''} ${rule.decls['overflow-clip-margin'] || ''}`);
   }
   /* The tour layer is the only thing after the footer, and it is fixed, so it takes
      no space. Anything else added there would land below the footer. Everything
@@ -616,6 +617,28 @@ console.log('\nnothing can grow the page past the footer');
     depth += 1;
     if (/\/>$/.test(tag)) depth -= 1;
     void name;
+  }
+  /* One list defines the pals, and the visible count is derived from it, so the
+     number shown to the user cannot drift from what is really rendered. */
+  const palList = html.match(/const SITE_PALS = \[([\s\S]*?)\n\];/);
+  check('the pals are defined in one list', palList !== null);
+  if (palList) {
+    const entries = [...palList[1].matchAll(/\{pal:'(\w+)',target:'([^']+)'/g)]
+      .map((m) => ({ pal: m[1], target: m[2] }));
+    eq('the list holds 14 pals', entries.length, 14);
+    check('the rendered count is derived from the list',
+      html.includes('const PALS_COUNT = SITE_PALS.length;'));
+    const sprites = new Set(entries.map((e) => e.pal));
+    const known = ['bitbug', 'lurk', 'moss', 'pip', 'capy', 'bumble', 'shel', 'frog'];
+    const unknown = [...sprites].filter((name) => !known.includes(name));
+    eq('every pal uses a sprite that exists in the payload', unknown.length, 0);
+    /* A pal sits on the canvas with pointer-events:auto, so placing one over a
+       button or a field would swallow the tap. Targets must be prose. */
+    const interactive = /#(resume-next|tour-replay|pals-toggle|enable-notifications|roadmap-search|search-clear|export-progress|import-progress|reset-progress|reminder-time|tour-next|tour-back|tour-skip|tour-close)$/;
+    const bad = entries.filter((e) => interactive.test(e.target));
+    eq('no pal is anchored to an interactive control', bad.length, 0);
+    const duplicated = entries.map((e) => e.target).filter((t, i, all) => all.indexOf(t) !== i);
+    eq('each pal has its own target', duplicated.length, 0);
   }
   check('the only top-level block after the footer is the fixed tour layer',
     topLevel.length === 1 && /class="tour-layer"/.test(topLevel[0]), JSON.stringify(topLevel));

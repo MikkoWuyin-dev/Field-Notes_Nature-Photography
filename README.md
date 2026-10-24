@@ -243,30 +243,87 @@ If you change the panel's height, padding or insets, run
 `npm run test:responsive` — it re-derives the band from the CSS and asserts the
 panel never covers the section.
 
-## Nothing may grow the page past the footer
+## The pals: one layer, one list
 
-The decorative pals are drawn by the Piixpal engine, which puts them in a
-`position:absolute` layer sized `0 × 0` with `overflow:visible` and positions each
-pal in *document* coordinates (`translate3d`). Because the layer's overflow is
-visible, a pal that drifts past the footer adds its own height to the document —
-the page grows, and blank space appears under the footer that isn't attached to
-anything. It is intermittent, because it depends on where a pal happens to wander.
+The decorative pixel creatures are drawn by the Piixpal engine, which puts them in
+a `0 × 0` layer and positions each one in *document* coordinates (`translate3d`).
 
-The page clips that layer:
+### The layer is pinned, never clipped
 
 ```css
+div[data-piixpal]{position:fixed!important}
+```
+
+Left `absolute`, a pal that drifts past the footer adds its own height to the
+document, so the page grows and blank space appears under the footer. `fixed`
+removes that entirely: a fixed layer is not part of the document's scrollable
+overflow, so nothing inside it can lengthen the page. The engine recomputes its
+origin every animation frame, so the pals still track the document and stay beside
+their headings as you scroll.
+
+**Do not clip this layer.** Clipping was the first attempt and it was wrong:
+
+```css
+/* what not to do */
 div[data-piixpal]{overflow:clip!important;overflow-clip-margin:200vmax}
 ```
 
-`overflow:clip` is the only value that fits here. `hidden` would make the layer a
-scroll container and clip every pal to a 0×0 box, making them vanish;
-`overflow-clip-margin:200vmax` keeps the clip region so large that nothing is
-actually hidden. The `!important` is deliberate: the engine sets
-`overflow:visible` inline on the element it creates.
+An `overflow:clip` region extends only so far, and every pal outside it is
+invisible while still having a bounding box — so it looked fine in a
+`getBoundingClientRect` check while five of the eight pals had silently vanished.
+`npm run test:browser` now compares real pixels with the layer hidden and visible,
+which is the only check that catches this.
 
-Verified in a real browser: with the rule removed, a pal drifting 60px below the
-footer grows the document by 73px; with it in place the growth is 0 and all nine
-pals still paint.
+### Where they sit, and why `at` exists
+
+`at` is the horizontal fraction of the target the pal hangs from: `.88` puts it
+near the right edge, `.5` in the middle. It is also the tool for steering a pal
+off a button or a link that happens to sit near the same spot — a pal draws on a
+canvas with `pointer-events:auto`, so one parked on a control swallows the tap.
+
+Pals are spread down the whole page, not clustered at the top. The first version
+anchored one per heading, which left a **3,845px** stretch of the stage list with
+no pal in it; the list now runs down the page with its largest gap around
+**1,480px** on a phone.
+
+Perfect placement is not possible in the collapsed stage run — every candidate
+there has a clickable summary or card link directly above it — so one pal grazes
+the top edge of a stage summary. `npm run test:browser` bounds that: no pal may
+cover a control by more than 1100px², and — the guarantee that actually matters —
+it hit-tests the centre of every control and asserts no pal covers it. If you move
+pals around, run it.
+
+### The three states
+
+Besides on, the pals have three states, and each is exercised in the browser suite:
+
+| state | expected |
+|---|---|
+| tour open | the 14 site pals are removed, two tour-only pals replace them, and closing the tour puts the 14 back |
+| paused by the visitor | no pal elements at all, and the status line says they are paused |
+| `prefers-reduced-motion: reduce` | no pal elements at all — the engine is never asked to create one |
+
+Fourteen pals cost nothing measurable: 60fps with zero long tasks at the top,
+middle and bottom of the page, identical to the page with the pals paused.
+
+### One list, and the count comes from it
+
+`SITE_PALS` near the top of the script is the single source of truth: 14 entries,
+each `{pal, target, at, hue?}`. `PALS_COUNT` is derived from its length, so the
+number shown in the status line cannot drift from what is actually rendered.
+
+Two rules for adding one:
+
+- **`pal` must be one of the eight sprites in the payload** — `bitbug`, `lurk`,
+  `moss`, `pip`, `capy`, `bumble`, `shel`, `frog`. There is no `duck`; that is an
+  animation clip name, and asking for it fails silently. Reuse a sprite with a
+  `hue` rotation for variety.
+- **The target must be prose, not a control.** A pal sits on a canvas with
+  `pointer-events:auto`, so one anchored to a button or a field would swallow the
+  tap. Target headings and paragraphs.
+
+Both rules are asserted by `npm run test:responsive`, along with the pal count and
+that no two pals share a target.
 
 ## Accessibility and privacy notes
 
@@ -278,7 +335,7 @@ pals still paint.
   the decorative pals off by default.
 - Contrast was audited against WCAG AA (see `AUDIT.md`); accent text uses
   `--blue-ink` rather than the surface blue for that reason.
-- The 8 decorative pixel creatures ("pals") are a vendored, MIT-licensed copy of
+- The 14 decorative pixel creatures ("pals") are a vendored, MIT-licensed copy of
   [Piixpal](https://github.com/diiviikk5/Piixpal) embedded as an inert `<template>`.
   They load on idle and can be paused from the Field kit panel. They are 83 KB of
   the file, by far its largest component.
@@ -346,7 +403,7 @@ dimensions), stage/card counts, the heading outline, a checkbox moving
 `progress-label`, stored keys staying stable, search and filter result counts, the
 tour opening/advancing/closing, legacy positional progress being migrated, a v1
 export still importing, unknown keys being rejected, the no-JS fallback staying in
-sync, and the deferred pals engine rendering all 8 pals.
+sync, and the deferred pals engine rendering all 14 pals.
 
 jsdom has no layout engine, so canvas, `matchMedia`, `ResizeObserver`,
 `IntersectionObserver`, `Range.getClientRects`, `Blob.text()` and `document.fonts`
