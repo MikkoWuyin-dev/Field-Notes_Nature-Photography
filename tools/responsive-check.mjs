@@ -261,6 +261,31 @@ console.log('\nspacing is tight on phones');
   check('text gets more than 75% of a 320px screen', budget > 0.75, `${Math.round(budget * 100)}%`);
 }
 
+console.log('\nhero decoration stays behind everything');
+{
+  const grid = resolve('.hero::after', 390);
+  const inner = resolve('.hero-inner', 390);
+  eq('the decoration is on layer 0', grid['z-index'], '0');
+  eq('the hero content is above it on layer 1', inner['z-index'], '1');
+  eq('the hero forms its own stacking context', resolve('.hero', 390).isolation, 'isolate');
+  check('the decoration cannot be clicked or focused', grid['pointer-events'] === 'none');
+  check('the decoration fades out toward the text',
+    (grid['mask-image'] || grid['-webkit-mask-image'] || '').includes('linear-gradient'),
+    String(grid['mask-image'] || grid['-webkit-mask-image']));
+  for (const width of [320, 390]) {
+    const size = clampPx(grid.width, width);
+    check(`the decoration is capped at phone size (${width}px → ${Math.round(size)}px)`, size <= 130, `${size}px`);
+  }
+}
+{
+  // A translucent chip lets the pattern read through it, which looks like the
+  // decoration is in front. Keep the chip opaque enough to sit clearly above it.
+  const chip = resolve('.hero-meta span', 390);
+  const alpha = /rgba?\([^)]*?([\d.]+)\s*\)$/.exec(chip.background || '');
+  const value = alpha ? Number(alpha[1]) : 1;
+  check('hero chips are opaque enough to hide the pattern behind them', value >= 0.5, `alpha ${value}`);
+}
+
 console.log('\nstage header corners');
 for (const width of [320, 390, 768]) {
   const number = resolve('.stage-summary .number', width);

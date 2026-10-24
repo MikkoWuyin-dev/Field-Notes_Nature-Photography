@@ -158,6 +158,28 @@ sums fixed grid tracks against the space a phone actually has, and fails if a
 `max-width` layout breakpoint, a non-shrinking text container, a mid-word-breaking
 short label, an oversized gutter or a sub-44px tap target reappears.
 
+## The hero decoration
+
+The banded square in the bottom-right of the hero is `.hero::after`, and it must
+always read as the deepest layer there. The rule is layered deliberately:
+
+- `.hero` sets `isolation:isolate`, forming its own stacking context;
+- `.hero::after` sits at `z-index:0` and `pointer-events:none`;
+- `.hero-inner` (all the text) sits at `z-index:1`.
+
+Because the grid is anchored to the corner at a fixed size, the risk is never that
+it climbs *over* the text — it is that it slides *underneath* the translucent
+`.hero-meta` chips, which then look as though the decoration is in front. Two
+guards prevent that:
+
+- the grid scales with the viewport (`clamp(118px,30vw,190px)`) and fades out
+  toward the text with a `mask-image`, so the part nearest the copy disappears;
+- the chips are more opaque (62% instead of 26%) so nothing shows through them.
+
+If you change the hero padding, headline size or chip styling, re-run
+`npm run test:responsive` — it asserts the layer order, the mask, the phone size
+cap and the chip opacity.
+
 ## Accessibility and privacy notes
 
 - Zero third-party requests: no analytics, cookies, webfonts, CDN or images. The
