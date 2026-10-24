@@ -15,7 +15,9 @@ and **no network request at runtime**.
 |---|---|
 | `index.html` | The entire product — markup, CSS, DATA, app logic, pals payload, no-JS fallback |
 | `tools/gen-noscript.py` | Regenerates the plain-text catalogue for visitors without JavaScript |
-| `tools/smoke-test.mjs` | Headless checks: rendering, progress, search, tour, migration, fallback |
+| `tools/smoke-test.mjs` | Headless checks: rendering, progress, search, tour, migration, fallback, head tags |
+| `tools/gen-og-image.sh` | Renders `assets/og-image.png`, the 1200×630 social preview |
+| `assets/og-image.png` | Link-preview image referenced by the OG/Twitter tags |
 | `AUDIT.md` | Codebase audit: findings, evidence, priorities (2026-10-24) |
 | `skills-lock.json` / `.agents/skills/` | Agent skills installed for this repo (see Skills below) |
 
@@ -70,11 +72,26 @@ writes format version 2; import accepts both v2 and pre-migration v1 files.
 
 ## Deploying
 
-Any static host works — GitHub Pages, Netlify, S3, a folder on a server. No build.
+Live at **https://nature-photography-roadmap.vercel.app/** (Vercel, static, no build).
 
-Worth adding when the domain is known: `rel="canonical"` and `og:url`. Both are
-intentionally absent today rather than guessed. An Open Graph image would also help
-link previews; the current tags produce a text card.
+Any other static host works too — GitHub Pages, Netlify, S3, a folder on a server.
+
+The absolute URL appears in four places and must be updated together if the site
+ever moves:
+
+1. `<link rel="canonical">`
+2. `<meta property="og:url">`
+3. `og:image` / `twitter:image` (absolute, because crawlers fetch them directly)
+4. `url` and `image` in the JSON-LD block
+
+`npm test` fails if the canonical or `og:url` drift from the constant in the test,
+so the four can't silently disagree.
+
+Regenerate the preview image after changing the headline copy:
+
+```bash
+./tools/gen-og-image.sh   # needs ImageMagick + DejaVu fonts
+```
 
 ---
 
@@ -100,6 +117,8 @@ link previews; the current tags produce a text card.
 - `file://` usage has no service worker and no reliable notification support.
 - No licence file is declared for this repository. The embedded Piixpal components
   keep their MIT notice in `index.html`.
+- Social previews need the deployed URL to be reachable; the image is served from
+  `/assets/og-image.png` and is not inlined.
 
 ## Skills
 
@@ -119,11 +138,12 @@ Installed: `ui-ux-pro-max`, `ui-styling`, `design`, `design-system`, `brand`,
 
 ```bash
 npm install     # jsdom only; nothing ships to the browser
-npm test        # 38 checks, ~4s
+npm test        # 48 checks, ~5s
 ```
 
 `tools/smoke-test.mjs` loads the real page in jsdom and drives the real handlers.
-It covers: stage/card counts, the heading outline, a checkbox moving
+It covers: the head tags and social image (canonical, `og:url`, image size and
+dimensions), stage/card counts, the heading outline, a checkbox moving
 `progress-label`, stored keys staying stable, search and filter result counts, the
 tour opening/advancing/closing, legacy positional progress being migrated, a v1
 export still importing, unknown keys being rejected, the no-JS fallback staying in

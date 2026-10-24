@@ -187,7 +187,7 @@ point-in-time record; this section is the current state.
 | F5 heading outline skipped a level | **Fixed** | Stage titles are real `<h4>`s; outline is now h3 → h4 → h5 with no gaps |
 | F6 two sub-AA contrast pairs | **Fixed** | `--blue-ink` (#2C55DA, 5.8:1) for text; hero lead is solid white (4.58:1) |
 | F7 38px tap targets | **Fixed** | `.done-control`, `.filter-button`, `.pals-controls button` at 44px |
-| F8 missing share metadata | **Fixed** | Inline SVG favicon, `color-scheme`, OG + Twitter tags, Course JSON-LD. `canonical`/`og:url` deliberately omitted until the domain is known |
+| F8 missing share metadata | **Fixed** | Inline SVG favicon, `color-scheme`, OG + Twitter tags with a generated 1200×630 preview image, `canonical`, `og:url`, and Course JSON-LD with `url`/`image` pointed at https://nature-photography-roadmap.vercel.app/ |
 | F9 export omitted some state | **Accepted** | Export is a progress backup by design; documented in README |
 | F10 dead code | **Fixed** | Both `'Done':'Done'` ternaries and the two shadowed CSS declarations removed |
 | F11 storage key namespace | **Accepted** | Renaming would orphan every existing visitor's progress; left as-is and documented in README |
@@ -202,5 +202,6 @@ point-in-time record; this section is the current state.
 The 6 KB gzip increase buys a readable catalogue for every visitor without
 JavaScript, and the 83 KB pals payload no longer executes before the content.
 
-**Still open:** CI wiring, a licence decision, `canonical`/`og:url` once the domain
-exists, an Open Graph image, and the `agent/skills` duplicate in the working tree.
+**Still open:** CI wiring, a licence decision, and the `agent/skills` duplicate in the
+working tree. (The canonical URL and Open Graph image landed on 2026-10-24 once the live
+URL was known; the checks in `npm test` pin them.)

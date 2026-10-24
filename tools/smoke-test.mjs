@@ -13,7 +13,7 @@
  * stubs are test scaffolding, not app behaviour.
  */
 
-import { readFileSync } from 'node:fs';
+import { readFileSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { JSDOM, VirtualConsole } from 'jsdom';
@@ -107,9 +107,33 @@ check('pals payload sits inside the template, not the document flow',
   page.indexOf('<template id="pals-payload">') < page.indexOf('<script>/*! Piixpal v0.4.0 | tiny pixel') &&
   page.indexOf('</template>') > page.indexOf('<script>/*! Piixpal v0.4.0 | tiny pixel'));
 check('favicon is inline (no extra request)', page.includes('rel="icon" href="data:image/svg+xml'));
+const SITE = 'https://nature-photography-roadmap.vercel.app/';
+eq('canonical points at the live URL', (page.match(/<link rel="canonical" href="([^"]+)"/) || [])[1], SITE);
+eq('og:url is absolute', (page.match(/<meta property="og:url" content="([^"]+)"/) || [])[1], SITE);
+const ogImage = (page.match(/<meta property="og:image" content="([^"]+)"/) || [])[1] || '';
+check('og:image is an absolute URL on the same host', ogImage.startsWith(SITE) && ogImage.endsWith('/assets/og-image.png'), ogImage);
+eq('og:image declares the real size', `${(page.match(/og:image:width" content="(\d+)"/) || [])[1]}x${(page.match(/og:image:height" content="(\d+)"/) || [])[1]}`, '1200x630');
+eq('twitter card is a large image card', (page.match(/<meta name="twitter:card" content="([^"]+)"/) || [])[1], 'summary_large_image');
+check('every twitter image matches the og image',
+  (page.match(/<meta name="twitter:image" content="([^"]+)"/) || [])[1] === ogImage);
+check('social images have alt text', /og:image:alt" content="[^"]{10,}"/.test(page) && /twitter:image:alt" content="[^"]{10,}"/.test(page));
+{
+  const imagePath = join(root, 'assets', 'og-image.png');
+  const bytes = statSync(imagePath).size;
+  const header = readFileSync(imagePath).subarray(0, 24);
+  const isPng = header.subarray(1, 4).toString() === 'PNG';
+  const width = header.readUInt32BE(16);
+  const height = header.readUInt32BE(20);
+  check('og-image.png is a real PNG', isPng);
+  eq('og-image.png is 1200x630', `${width}x${height}`, '1200x630');
+  check('og-image.png is under the 5 MB crawler limit', bytes < 5 * 1024 * 1024, `${bytes} bytes`);
+}
 check('JSON-LD parses', (() => {
   const raw = (page.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/) || [])[1];
-  try { return JSON.parse(raw)['@type'] === 'Course'; } catch { return false; }
+  try {
+    const ld = JSON.parse(raw);
+    return ld['@type'] === 'Course' && ld.url === SITE && typeof ld.image === 'string';
+  } catch { return false; }
 })());
 
 // ---------------------------------------------------------------- app behaviour
