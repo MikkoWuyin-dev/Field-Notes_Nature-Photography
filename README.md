@@ -243,6 +243,31 @@ If you change the panel's height, padding or insets, run
 `npm run test:responsive` — it re-derives the band from the CSS and asserts the
 panel never covers the section.
 
+## Nothing may grow the page past the footer
+
+The decorative pals are drawn by the Piixpal engine, which puts them in a
+`position:absolute` layer sized `0 × 0` with `overflow:visible` and positions each
+pal in *document* coordinates (`translate3d`). Because the layer's overflow is
+visible, a pal that drifts past the footer adds its own height to the document —
+the page grows, and blank space appears under the footer that isn't attached to
+anything. It is intermittent, because it depends on where a pal happens to wander.
+
+The page clips that layer:
+
+```css
+div[data-piixpal]{overflow:clip!important;overflow-clip-margin:200vmax}
+```
+
+`overflow:clip` is the only value that fits here. `hidden` would make the layer a
+scroll container and clip every pal to a 0×0 box, making them vanish;
+`overflow-clip-margin:200vmax` keeps the clip region so large that nothing is
+actually hidden. The `!important` is deliberate: the engine sets
+`overflow:visible` inline on the element it creates.
+
+Verified in a real browser: with the rule removed, a pal drifting 60px below the
+footer grows the document by 73px; with it in place the growth is 0 and all nine
+pals still paint.
+
 ## Accessibility and privacy notes
 
 - Zero third-party requests: no analytics, cookies, webfonts, CDN or images. The
@@ -283,6 +308,27 @@ Installed: `ui-ux-pro-max`, `ui-styling`, `design`, `design-system`, `brand`,
 `agent/skills/` is the installer's duplicate copy and is git-ignored.
 
 ## Testing
+
+Three suites:
+
+| command | what it does | needs |
+|---|---|---|
+| `npm test` | the jsdom behaviour suite plus the static CSS checks | node only |
+| `npm run test:responsive` | the static CSS checks alone | node only |
+| `npm run test:browser` | drives a real Chromium and measures layout | a Chrome binary |
+
+The browser check is not part of `npm test`, because CI has no browser. Point it at
+one to run it:
+
+```bash
+CHROME_PATH=/path/to/chrome npm run test:browser
+```
+
+Without `CHROME_PATH` it prints a skip note and exits 0. Use it whenever you change
+anything positioning-related: it is the only suite that can see where things
+actually land, and it caught the decorative-pal overflow that the other two
+couldn't.
+
 
 ```bash
 npm install     # jsdom only; nothing ships to the browser

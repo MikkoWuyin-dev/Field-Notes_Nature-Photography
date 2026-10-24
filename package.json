@@ -8,7 +8,8 @@
     "noscript": "python3 tools/gen-noscript.py",
     "noscript:check": "python3 tools/gen-noscript.py --check",
     "serve": "python3 -m http.server 8000",
-    "test:responsive": "node tools/responsive-check.mjs"
+    "test:responsive": "node tools/responsive-check.mjs",
+    "test:browser": "node tools/browser-check.mjs"
   },
   "devDependencies": {
     "jsdom": "^24.1.3"
