@@ -193,7 +193,7 @@ point-in-time record; this section is the current state.
 | F14 single breakpoint | **Deferred** | Fluid `clamp()` layout holds at every width; container queries would restructure working CSS for no measured gain. Revisit if the card grid grows |
 | F15 no print stylesheet | **Fixed** | `@media print` (ink on white, panels flattened, printed URLs) + `beforeprint`/`afterprint` open and restore stages |
 | F16 no CSP | **Deliberately skipped** | The page needs `'unsafe-inline'` for its inline script/style, so a meta CSP buys little and risks breaking the blob-download export. Better as an HTTP header, tested, at deploy time |
-| Repo hygiene | **Partly fixed** | README, `package.json`, 40-check smoke test, `tools/`; CI and a licence decision are still open |
+| Repo hygiene | **Partly fixed** | README, `package.json`, 38-check smoke test, `tools/`; CI and a licence decision are still open |
 
 **Metrics after remediation:** 212 KB raw / 66.3 KB gzipped (was 179 KB / 57.9 KB).
 The 6 KB gzip increase buys a readable catalogue for every visitor without
