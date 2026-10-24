@@ -206,16 +206,17 @@ main{padding:clamp(13px,3.6vw,52px);border-right:4px solid var(--cyan);border-le
 .resource-card{display:flex;min-width:0;min-height:0;flex-direction:column;padding:clamp(13px,3.6vw,18px);border:3px solid var(--line);background:var(--cream);box-shadow:6px 6px 0 var(--line);transition:transform .14s ease,box-shadow .14s ease}
 .resource-card:hover{transform:translate(-3px,-3px);box-shadow:10px 10px 0 var(--pink)}
 .card-top{display:grid;grid-template-columns:29px minmax(0,1fr);align-items:start;gap:8px 10px}
-.card-top .done-control{grid-column:2;justify-self:start}
 .resource-card h5{min-width:0;margin:2px 0 0;font-size:1.2rem;line-height:1.1;letter-spacing:-.045em;overflow-wrap:anywhere}
 .resource-card h5 a{text-decoration:none}
 .resource-provider{margin:6px 0 0;color:var(--muted);font:.8rem/1.4 var(--font-prose)}
-.done-control{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:64px;min-height:44px;padding:4px 6px;border:2px solid var(--line);background:#fff;color:var(--muted);font-size:.67rem;font-weight:800;cursor:pointer}
+.done-control{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:64px;padding:6px;border:2px solid var(--line);background:#fff;color:var(--muted);font-size:.67rem;font-weight:800;cursor:pointer}
 .done-control input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
 .checkmark{position:relative;display:block;width:16px;height:16px;border:1px solid var(--line);background:var(--cream)}
 .done-control input:checked+.checkmark{border-color:var(--line);background:var(--green)}
 .done-control input:checked+.checkmark::after{position:absolute;top:1px;left:4px;width:5px;height:9px;transform:rotate(45deg);border:solid var(--ink);border-width:0 2px 2px 0;content:""}
 .done-control input:focus-visible+.checkmark{outline:3px solid var(--blue);outline-offset:2px}
+/* The box itself is compact; this keeps a 44px touch target around it. */
+.done-control::after{position:absolute;inset:-6px;content:""}
 .resource-status{margin:13px 0 10px}
 .resource-tags{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 13px}
 .resource-tags .tag{font-size:.68rem}
@@ -232,6 +233,8 @@ main{padding:clamp(13px,3.6vw,52px);border-right:4px solid var(--cyan);border-le
 .access-details p{margin:7px 0 0;color:var(--muted);font:.82rem/1.5 var(--font-prose)}
 .borrow{margin:auto 0 0;padding-top:12px;border-top:2px dashed var(--line);color:var(--ink);font:.88rem/1.5 var(--font-prose)}
 .borrow strong{font-family:var(--font-mono)}
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px}
+.card-foot .source{min-width:0;margin-top:0}
 .source{display:inline-block;align-self:flex-start;min-height:44px;margin-top:8px;font-size:.76rem;font-weight:900}
 .source:hover{text-decoration-thickness:3px}
 .stage-empty{display:flex;align-items:center;gap:10px;padding:14px;border:3px solid var(--line);background:#fff;font:.9rem/1.4 var(--font-prose)}
@@ -288,8 +291,6 @@ main{padding:clamp(13px,3.6vw,52px);border-right:4px solid var(--cyan);border-le
   .tour-panel-bottom-left{bottom:16px;left:16px}
   .tour-panel-bottom-right{right:16px;bottom:16px}
   .field-kit-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .card-top{grid-template-columns:29px minmax(0,1fr) auto}
-  .card-top .done-control{grid-column:auto;justify-self:auto}
   .stage-summary{min-height:72px}
   .hero h1{letter-spacing:-.06em}
 }
@@ -994,11 +995,12 @@ function renderResource(stage,stageIndex,resource,resourceIndex){
   }else heading.textContent=parsed.title;
   const main=el('div','resource-main');main.append(heading);
   if(resource.provider)main.append(el('p','resource-provider',resource.provider));
+  const foot=el('div','card-foot');
   const doneLabel=el('label','done-control');
   const checkbox=el('input');checkbox.type='checkbox';checkbox.checked=completion;checkbox.dataset.key=key;checkbox.setAttribute('aria-label',`Mark ${parsed.title} complete`);
   const checkmark=el('span','checkmark');checkmark.setAttribute('aria-hidden','true');
   doneLabel.append(checkbox,checkmark,el('span','','Done'));
-  top.append(number,main,doneLabel);card.append(top);
+  top.append(number,main);card.append(top);
   const status=el('p','status resource-status '+(url?'status-live':'status-caveat'),statusText);card.append(status);
   const tags=el('div','resource-tags');
   appendTag(tags,resource.modality||resource.type||'Practice','tag-default');
@@ -1016,8 +1018,9 @@ function renderResource(stage,stageIndex,resource,resourceIndex){
     const borrow=el('p','borrow');borrow.append(el('strong','','Try next: '),document.createTextNode(resource.action));card.append(borrow);
   }
   if(url){
-    const source=el('a','source',resource.link_label||'Open resource');source.href=url;source.target='_blank';source.rel='noopener noreferrer';card.append(source);
-  }else card.append(el('p','source','Practice checkpoint · no external resource'));
+    const source=el('a','source',resource.link_label||'Open resource');source.href=url;source.target='_blank';source.rel='noopener noreferrer';foot.append(source);
+  }else foot.append(el('p','source','Practice checkpoint · no external resource'));
+  foot.append(doneLabel);card.append(foot);
   checkbox.addEventListener('change',()=>{
     if(checkbox.checked){state.done[key]=true;markActivity();}
     else delete state.done[key];

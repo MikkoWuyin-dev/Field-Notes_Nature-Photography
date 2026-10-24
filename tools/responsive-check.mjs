@@ -135,6 +135,29 @@ function sideSum(decls, boxProps, width) {
   return total;
 }
 
+/** Visual box height plus any pseudo-element that extends the hit area. */
+function effectiveTarget(selector, width) {
+  const decls = resolve(selector, width);
+  const content = clampPx((resolve('.checkmark', width)['height'] || resolve('.checkmark', width)['width'] || '0'), width);
+  const minHeight = clampPx(decls['min-height'] || decls['height'] || '0', width);
+  const box = Math.max(content, minHeight) + horizontalChrome(selector, width) - 0;
+  const padV = (() => {
+    const parts = (decls.padding || '0').split(/\s+/);
+    const val = parts.length === 1 ? parts[0] : parts[0];
+    return 2 * (clampPx(val, width) || 0);
+  })();
+  const borderV = (() => {
+    const b = decls.border || '0';
+    const m = /(-?[\d.]+)(px|rem)/.exec(b);
+    return m ? 2 * clampPx(m[1] + m[2], width) : 0;
+  })();
+  const raw = Math.max(content, minHeight) + padV + borderV;
+  const after = resolve(`${selector}::after`, width);
+  const inset = /(-?[\d.]+)px/.exec(after.inset || '');
+  const expand = inset ? Math.abs(Number(inset[1])) * 2 : 0;
+  return { box: raw, effective: Math.max(raw, raw + expand), expand };
+}
+
 const horizontalChrome = (selector, width) => {
   const decls = resolve(selector, width);
   return sideSum(decls, ['padding', 'padding-left', 'padding-right', 'border', 'border-left', 'border-right', 'border-left-width', 'border-right-width', 'border-width'], width);
@@ -268,10 +291,32 @@ check('.stage-number selector is gone (element has class "number")',
   !rules.some((r) => r.selector.includes('.stage-number')));
 
 console.log('\ntap targets at least 44px');
-for (const selector of ['.filter-button', '.done-control', '.tour-close', '.search-clear', '.tour-skip', '.source', '.access-details summary', '.pals-controls button']) {
+for (const selector of ['.filter-button', '.tour-close', '.search-clear', '.tour-skip', '.source', '.access-details summary', '.pals-controls button']) {
   const decls = resolve(selector, 320);
   const height = clampPx(decls['min-height'] || decls['height'] || '0', 320);
   check(`${selector} ≥ 44px`, height >= 44, `${height}px`);
+}
+{
+  // The Done control is deliberately shorter than 44px so it does not look like a
+  // slab, with an invisible ::after restoring the full touch target around it.
+  const target = effectiveTarget('.done-control', 320);
+  check('Done box is compact (under 40px tall)', target.box < 40, `${target.box}px`);
+  check('Done touch target still ≥ 44px once the hit area counts', target.effective >= 44,
+    `${target.effective}px = ${target.box}px box + ${target.expand}px expansion`);
+  const padding = resolve('.done-control', 320).padding;
+  const parts = padding.split(/\s+/);
+  eq('Done padding is equal on all four sides', new Set(parts).size, 1);
+}
+
+console.log('\ncard footer row');
+for (const width of [320, 768, 1200]) {
+  const foot = resolve('.card-foot', width);
+  eq(`source link and Done share the bottom row at ${width}px`, foot['justify-content'], 'space-between');
+  eq(`the row is a single flex line at ${width}px`, foot.display, 'flex');
+}
+for (const width of [320, 1200]) {
+  eq(`card header is number + text only at ${width}px`,
+    resolve('.card-top', width)['grid-template-columns'], '29px minmax(0,1fr)');
 }
 
 console.log('\ndesktop is unchanged');
@@ -280,7 +325,7 @@ console.log('\ndesktop is unchanged');
   eq('.brief returns to two columns', at('.brief', 'grid-template-columns'), '1.2fr .8fr');
   eq('.stage-summary returns to five columns', at('.stage-summary', 'grid-template-columns')?.split(' ').length >= 5, true);
   eq('.resource-card regains its min-height', at('.resource-card', 'min-height'), '360px');
-  eq('.card-top returns to three columns', at('.card-top', 'grid-template-columns'), '29px minmax(0,1fr) auto');
+  eq('.card-top stays two columns (Done moved to the footer)', at('.card-top', 'grid-template-columns'), '29px minmax(0,1fr)');
   eq('.filters returns to search + buttons in one row', at('.filters', 'grid-template-columns'), 'minmax(0,1fr) auto');
 }
 

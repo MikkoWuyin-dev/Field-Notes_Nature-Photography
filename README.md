@@ -141,7 +141,11 @@ Rules that keep text inside its box:
   TIME, ACCESS) never get squeezed by the label beside them, while tags inside a
   card can still shrink and wrap;
 - tap targets are ≥44px, including the search clear button, the access-note
-  disclosure and the source links.
+  disclosure and the source links. The Done control is the one exception to the
+  box height: it is a compact ~32px box with an invisible `::after` adding 6px on
+  every side, so it looks tight but still gives a 44px touch target;
+- each learning card ends with a `.card-foot` row: the resource link on the left,
+  the Done control on the right.
 
 Run the checks:
 

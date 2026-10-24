@@ -152,6 +152,25 @@ console.log('\nrender');
   const skipped = headings.filter((level, i) => i > 0 && level > headings[i - 1] + 1);
   eq('heading outline never skips a level', skipped.length, 0);
 
+  console.log('\ncard layout');
+  {
+    const card = d.querySelector('.resource-card');
+    const foot = card.lastElementChild;
+    eq('card ends with the footer row', foot.className, 'card-foot');
+    check('Done control is the last thing in the card',
+      foot.lastElementChild.classList.contains('done-control'));
+    check('the resource link opens the footer row',
+      foot.firstElementChild.classList.contains('source'),
+      foot.firstElementChild.className);
+    check('Done control is no longer in the card header',
+      !card.querySelector('.card-top').querySelector('.done-control'));
+    const practiceCard = [...d.querySelectorAll('.resource-card')]
+      .find((node) => node.querySelector('.source') && node.querySelector('.source').tagName === 'P');
+    check('practice cards get the same footer row',
+      practiceCard.lastElementChild.className === 'card-foot' &&
+      practiceCard.lastElementChild.lastElementChild.classList.contains('done-control'));
+  }
+
   console.log('\nprogress');
   const box = d.querySelector('.resource-card input[type=checkbox]');
   box.checked = true;
