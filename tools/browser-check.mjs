@@ -176,6 +176,53 @@ for (const [width, height] of [[320, 568], [390, 844], [768, 1024], [1440, 900]]
     check(`no pal covers a control by more than 1100px² (worst ${graze.worst}px² ${graze.who})`,
       graze.worst <= 1100, `${graze.worst}px² ${graze.who}`);
 
+    /* The area bound above is generous on purpose. What actually matters to a
+       user is whether the point they aim at is reachable, so this finds every
+       control whose centre falls inside a pal and hit-tests exactly those.
+
+       Nothing is expanded or mutated here on purpose: an earlier version opened
+       all nine stages, which tripled the page height and silently broke every
+       check that ran afterwards. Collapsed summaries have centres too, and they
+       are the controls most at risk. */
+    const centres = await page.evaluate(() => {
+      const layer = document.querySelector('div[data-piixpal]');
+      const pals = [...layer.shadowRoot.querySelectorAll('.a')].map((a) => {
+        const r = a.getBoundingClientRect();
+        return { left: r.left, right: r.right, top: r.top, bottom: r.bottom };
+      });
+      let n = 0;
+      const covered = [];
+      for (const c of document.querySelectorAll('button, input, a[href], summary, select')) {
+        const r = c.getBoundingClientRect();
+        if (!r.width || !r.height) continue;
+        const x = r.left + r.width / 2;
+        const y = r.top + r.height / 2;
+        const inside = pals.some((p) => x > p.left && x < p.right && y > p.top && y < p.bottom);
+        c.setAttribute('data-hitcheck', String(n));
+        if (inside) covered.push({ key: String(n), name: c.tagName.toLowerCase() + (c.id ? '#' + c.id : ''),
+          centreY: y + window.scrollY });
+        n += 1;
+      }
+      return { total: n, covered };
+    });
+    let blocked = 0;
+    const blockedNames = [];
+    for (const target of centres.covered) {
+      await page.evaluate((y) => window.scrollTo(0, Math.max(0, y - window.innerHeight / 2)), target.centreY);
+      await new Promise((r) => setTimeout(r, 200));
+      const reachable = await page.evaluate((key) => {
+        const c = document.querySelector(`[data-hitcheck="${key}"]`);
+        if (!c) return true;
+        const r = c.getBoundingClientRect();
+        const hit = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+        return !!hit && (hit === c || c.contains(hit) || hit.contains(c));
+      }, target.key);
+      if (!reachable) { blocked += 1; blockedNames.push(target.name); }
+    }
+    await page.evaluate(() => document.querySelectorAll('[data-hitcheck]').forEach((c) => c.removeAttribute('data-hitcheck')));
+    check(`no pal covers the centre of a control (${centres.total} controls, ${centres.covered.length} overlapped, ${blocked} blocked)`,
+      blocked === 0, `${blocked} blocked: ${blockedNames.join(', ')}`);
+
     /* Pick pals spread through the document - first, a middle one, the last -
        and scroll to each. Asserting at fixed scroll offsets would be wrong: the
        page has stretches with no pal nearby, so a zero there means nothing. */
@@ -213,6 +260,59 @@ for (const [width, height] of [[320, 568], [390, 844], [768, 1024], [1440, 900]]
       check(`the pal at document y=${palTop} is actually painted`, painted > 100, `${painted} pixels changed`);
     }
   }
+
+  await page.close();
+}
+
+// The pals have three states beyond "on": during the tour, paused, and when the
+// visitor asked for reduced motion. Each has its own way of going wrong.
+console.log('\npal states');
+{
+  const page = await browser.newPage();
+  await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 1 });
+
+  await page.goto(pageUrl, { waitUntil: 'networkidle0' });
+  await new Promise((r) => setTimeout(r, 2500));
+  await page.evaluate(() => document.getElementById('tour-replay').click());
+  await new Promise((r) => setTimeout(r, 2000));
+  const during = await page.evaluate(() => ({
+    site: document.querySelectorAll('piix-pal[data-fieldnotes-pal="site"]').length,
+    tour: document.querySelectorAll('piix-pal[data-fieldnotes-pal="tour"]').length,
+    page: document.documentElement.scrollHeight,
+    viewport: window.innerHeight,
+  }));
+  check('the tour replaces the site pals with its own two', during.site === 0 && during.tour === 2,
+    `site ${during.site}, tour ${during.tour}`);
+  check('opening the tour does not lengthen the page', during.page <= 9115 + 40, `${during.page}px`);
+  await page.evaluate(() => document.getElementById('tour-skip').click());
+  await new Promise((r) => setTimeout(r, 800));
+  const after = await page.evaluate(() => ({
+    site: document.querySelectorAll('piix-pal[data-fieldnotes-pal="site"]').length,
+    tour: document.querySelectorAll('piix-pal[data-fieldnotes-pal="tour"]').length,
+  }));
+  check('the two tour pals are removed when the tour ends', after.tour === 0, `${after.tour} left`);
+  check('the site pals come back afterwards', after.site === 14, `${after.site}`);
+
+  await page.evaluate(() => localStorage.setItem('fieldnotes-pals-v1', 'off'));
+  await page.reload({ waitUntil: 'networkidle0' });
+  await new Promise((r) => setTimeout(r, 2000));
+  const paused = await page.evaluate(() => ({
+    pals: document.querySelectorAll('piix-pal').length,
+    status: document.getElementById('pals-status').textContent,
+  }));
+  check('a paused visitor gets no pals at all', paused.pals === 0, `${paused.pals}`);
+  check('the status line says they are paused', /paused/i.test(paused.status), paused.status);
+
+  await page.evaluate(() => localStorage.removeItem('fieldnotes-pals-v1'));
+  await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
+  await page.reload({ waitUntil: 'networkidle0' });
+  await new Promise((r) => setTimeout(r, 2000));
+  const reduced = await page.evaluate(() => ({
+    pals: document.querySelectorAll('piix-pal').length,
+    status: document.getElementById('pals-status').textContent,
+  }));
+  check('reduced motion means no pals are created', reduced.pals === 0, `${reduced.pals}`);
+  check('and the status line explains why', /reduced-motion/i.test(reduced.status), reduced.status);
 
   await page.close();
 }

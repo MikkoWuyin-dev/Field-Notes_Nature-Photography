@@ -289,7 +289,22 @@ no pal in it; the list now runs down the page with its largest gap around
 Perfect placement is not possible in the collapsed stage run — every candidate
 there has a clickable summary or card link directly above it — so one pal grazes
 the top edge of a stage summary. `npm run test:browser` bounds that: no pal may
-cover a control by more than 1100px². If you move pals around, run it.
+cover a control by more than 1100px², and — the guarantee that actually matters —
+it hit-tests the centre of every control and asserts no pal covers it. If you move
+pals around, run it.
+
+### The three states
+
+Besides on, the pals have three states, and each is exercised in the browser suite:
+
+| state | expected |
+|---|---|
+| tour open | the 14 site pals are removed, two tour-only pals replace them, and closing the tour puts the 14 back |
+| paused by the visitor | no pal elements at all, and the status line says they are paused |
+| `prefers-reduced-motion: reduce` | no pal elements at all — the engine is never asked to create one |
+
+Fourteen pals cost nothing measurable: 60fps with zero long tasks at the top,
+middle and bottom of the page, identical to the page with the pals paused.
 
 ### One list, and the count comes from it
 

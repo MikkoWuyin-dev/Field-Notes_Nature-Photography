@@ -888,15 +888,22 @@ let activeFilter = 'all';
 const reducedMotion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : {matches:false};
 const TOUR_STORAGE_KEY = 'fieldnotes-onboarding-v1';
 const PALS_STORAGE_KEY = 'fieldnotes-pals-v1';
-/* One list, and the count is derived from it, so the on-screen number cannot
-   drift from what is actually rendered. Eight designs are reused with a hue
-   rotation for the extra six; every target is a static, non-interactive element
-   (a pal placed over a button would swallow the tap). */
+/* The single source of truth for the decorative pals. PALS_COUNT is derived from
+   the list, so the number shown to the user cannot drift from what renders.
+
+   Two things to know before adding one:
+   - `pal` must be one of the eight sprites in the payload: bitbug, lurk, moss,
+     pip, capy, bumble, shel, frog. Reuse one with `hue` for variety; an unknown
+     name fails silently and the pal simply never appears.
+   - `at` is the horizontal fraction of the target the pal hangs from, so it is
+     also the lever for steering a pal off a control. A pal draws on a canvas with
+     pointer-events:auto and one parked on a button swallows the tap. The pals hang
+     about 30px above their target, so it is what sits *above* the target that
+     matters. */
 const SITE_PALS = [
-  /* `at` is the horizontal fraction of the target the pal hangs from, so it is
-     also how a pal is steered clear of a button or a link sitting near the same
-     spot. Twenty-eight values are spread down the page rather than clustered at
-     the top: the stage list alone is over 2,000px tall on a phone. */
+  /* Spread down the whole page rather than one per heading: the headings are not
+     evenly spaced, and one-per-heading left a 3,845px empty run through the stage
+     list. Largest gap now ~1,480px on a phone. */
   {pal:'bitbug',target:'#hero-title',at:.9,edge:'text',speed:.72},
   {pal:'pip',target:'#progress-heading',at:.88},
   {pal:'lurk',target:'#guide-heading',at:.88},
