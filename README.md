@@ -110,31 +110,49 @@ progressive enhancement. There is no desktop-first `max-width` layout rule left.
 | `min-width:1000px` | outcomes go three across | wide desktop |
 
 Horizontal spacing is fluid rather than fixed: `shell`, `main`, panels, cards and
-stage bodies all use a `clamp()` with a much smaller floor than before. At 320px the
-text column used to be 174px (≈21 characters per line); it is now 224px (≈28), and
-at 390px it goes from 244px to 290px.
+stage bodies all use a `clamp()` with a much smaller floor than before. The side
+gutter (`.shell`) is now 8px on phones and 14px on desktop, down from 12px and 22px;
+every other padding was trimmed by roughly 10%.
+
+Text column width, before the responsive work → now:
+
+| Viewport | Before | Now | Characters per line |
+|---|---|---|---|
+| 320px | 174px | **238px** | 21 → 29 |
+| 390px | 244px | 303px | 30 → 37 |
+| 430px | 275px | 335px | 34 → 41 |
+| 768px | 543px | 631px | 67 → 78 |
+
+That is a 37% wider text column at 320px compared with the original layout.
 
 Rules that keep text inside its box:
 
 - every prose block uses `--font-prose`, never the monospace face;
-- `body` sets `overflow-wrap:break-word`, and long-token elements (`.tag`,
-  `.resource-card h5`, `.status`, `.category h3`, `.hero-meta span`) add
-  `max-width:100%` + `overflow-wrap:anywhere`;
-- flex/grid items that hold text can shrink — `.tag` used to be `flex:none`, which
-  is why long tags pushed past the card edge;
+- `body` sets `overflow-wrap:break-word`;
+- short labels (`.tag`, `.status`, `.hero-meta span`, `.category h3`) use
+  `overflow-wrap:break-word` plus `max-width:100%`. **Not `anywhere`** — that value
+  also shrinks an element's intrinsic minimum width, which lets a flex parent
+  squeeze a one-word chip until the word splits in half (`LEA/RN`). `break-word`
+  only breaks a word that genuinely cannot fit on its own line, while still
+  wrapping multi-word tags at their spaces;
+- only text that is expected to contain unbreakable tokens (`.resource-card h5`
+  titles, the result-count line, the no-JS block) uses `anywhere`;
+- `.tag-key .tag` is `flex:none` so the four single-word key chips (LEARN, FIELD,
+  TIME, ACCESS) never get squeezed by the label beside them, while tags inside a
+  card can still shrink and wrap;
 - tap targets are ≥44px, including the search clear button, the access-note
   disclosure and the source links.
 
 Run the checks:
 
 ```bash
-npm run test:responsive   # 38 layout assertions, no browser required
+npm run test:responsive   # 47 layout assertions, no browser required
 ```
 
 It resolves the cascade at 320/390/1200px, measures the horizontal chrome budget,
 sums fixed grid tracks against the space a phone actually has, and fails if a
-`max-width` layout breakpoint, a non-shrinking text container or a sub-44px tap
-target reappears.
+`max-width` layout breakpoint, a non-shrinking text container, a mid-word-breaking
+short label, an oversized gutter or a sub-44px tap target reappears.
 
 ## Accessibility and privacy notes
 
@@ -179,7 +197,7 @@ Installed: `ui-ux-pro-max`, `ui-styling`, `design`, `design-system`, `brand`,
 
 ```bash
 npm install     # jsdom only; nothing ships to the browser
-npm test        # 86 checks, ~6s (48 functional + 38 layout)
+npm test        # 95 checks, ~9s (48 functional + 47 layout)
 ```
 
 `tools/smoke-test.mjs` loads the real page in jsdom and drives the real handlers.

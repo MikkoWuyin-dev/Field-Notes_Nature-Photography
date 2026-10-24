@@ -212,6 +212,32 @@ for (const [selector, props] of shrinkGuards) {
 }
 eq('body breaks long words rather than overflowing', resolve('body', 320)['overflow-wrap'], 'break-word');
 
+console.log('\nshort labels never split mid-word');
+// `overflow-wrap:anywhere` also shrinks an element's intrinsic minimum width, so a
+// flex parent can squeeze a one-word chip until the word breaks in half ("LEA/RN").
+// `break-word` only breaks a word that genuinely cannot fit on its own line.
+for (const selector of ['.tag', '.status', '.hero-meta span', '.category h3']) {
+  const decls = resolve(selector, 390);
+  check(`${selector} uses break-word, not anywhere`, decls['overflow-wrap'] === 'break-word',
+    String(decls['overflow-wrap']));
+}
+{
+  const item = resolve('.tag-key .tag', 390);
+  eq('chips in the tag key never shrink', item['flex'], 'none');
+}
+check('long-token text still breaks when it truly cannot fit',
+  resolve('.resource-card h5', 390)['overflow-wrap'] === 'anywhere');
+
+console.log('\nspacing is tight on phones');
+{
+  const shellAt320 = horizontalChrome('.shell', 320);
+  const shellAt1200 = horizontalChrome('.shell', 1200);
+  check('side gutter is at most 8px per side at 320px', shellAt320 <= 16, `${shellAt320}px total`);
+  check('side gutter is at most 14px per side on desktop', shellAt1200 <= 28, `${shellAt1200}px total`);
+  const budget = (320 - horizontalChrome('.shell', 320) - horizontalChrome('main', 320) - horizontalChrome('.panel', 320)) / 320;
+  check('text gets more than 75% of a 320px screen', budget > 0.75, `${Math.round(budget * 100)}%`);
+}
+
 console.log('\nfixed bugs stay fixed');
 check('.card-top has a standalone rule (was a doubled selector that never matched)',
   rules.some((r) => r.selector === '.card-top' && !r.context));
