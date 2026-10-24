@@ -6,6 +6,26 @@
 <meta name="theme-color" content="#11142B">
 <meta name="description" content="A free, location-neutral nature photography roadmap with nine stages, free learning resources, field practice, and browser-local progress tracking.">
 <title>Fieldnotes — Nature Photography Roadmap</title>
+<meta name="color-scheme" content="light">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2311142B'/%3E%3Crect x='4' y='7' width='24' height='4' fill='%23FFE168'/%3E%3Crect x='4' y='14' width='16' height='4' fill='%2365E8FF'/%3E%3Crect x='4' y='21' width='20' height='4' fill='%23FF4E91'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Fieldnotes">
+<meta property="og:title" content="Fieldnotes — Nature Photography Roadmap">
+<meta property="og:description" content="A free, location-neutral nature photography roadmap: nine stages, 25 learning cards, verified free resources, field practice and browser-local progress tracking.">
+<meta property="og:locale" content="en">
+<meta property="og:url" content="https://nature-photography-roadmap.vercel.app/">
+<meta property="og:image" content="https://nature-photography-roadmap.vercel.app/assets/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fieldnotes banner: From first frame to a portfolio with purpose. 9 stages, 25 learning cards, 32 weeks, free.">
+<link rel="canonical" href="https://nature-photography-roadmap.vercel.app/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fieldnotes — Nature Photography Roadmap">
+<meta name="twitter:description" content="A free, location-neutral nature photography roadmap: nine stages, 25 learning cards, verified free resources, field practice and browser-local progress tracking.">
+<meta name="twitter:image" content="https://nature-photography-roadmap.vercel.app/assets/og-image.png">
+<meta name="twitter:image:alt" content="Fieldnotes banner: From first frame to a portfolio with purpose. 9 stages, 25 learning cards, 32 weeks, free.">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Course","name":"Fieldnotes — Nature Photography Roadmap","description":"A free, location-neutral nature photography roadmap: nine stages, 25 learning cards, verified free resources, field practice and browser-local progress tracking.","url":"https://nature-photography-roadmap.vercel.app/","image":"https://nature-photography-roadmap.vercel.app/assets/og-image.png","inLanguage":"en","isAccessibleForFree":true,"provider":{"@type":"Organization","name":"Fieldnotes"},"teaches":["Camera foundations","Focus, sharpness, composition, and light","Ethics and fieldcraft","Sample landscape, wildlife, and close-up photography","Build a repeatable field project","Edit, caption, back up, and deliver","Build a small, defensible portfolio","Rights, licensing, and professional practice","Choose a measured next step"],"hasCourseInstance":{"@type":"CourseInstance","courseMode":"online","courseWorkload":"PT5H","isAccessibleForFree":true}}</script>
 <style>
 :root {
   --ink:#11142B;
@@ -15,6 +35,7 @@
   --muted:#565C73;
   --shade:#D8D9EA;
   --blue:#3768FF;
+  --blue-ink:#2C55DA;
   --cyan:#65E8FF;
   --pink:#FF4E91;
   --yellow:#FFE168;
@@ -41,7 +62,7 @@ body{margin:0;background:var(--ink);color:var(--ink);font:16px/1.55 var(--font-m
 button,input{font:inherit}
 button{cursor:pointer}
 a{color:inherit;text-decoration-thickness:2px;text-underline-offset:3px}
-a:hover{color:var(--blue)}
+a:hover{color:var(--blue-ink)}
 [hidden]{display:none!important}
 :where(a,button,input,summary):focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 .shell{max-width:1320px;margin:0 auto;padding:22px}
@@ -53,7 +74,7 @@ a:hover{color:var(--blue)}
 .hero-inner{position:relative;z-index:1;max-width:1040px}
 .hero-eyebrow{display:inline-block;margin:0 0 16px;padding:5px 8px;background:var(--yellow);color:var(--ink);font-size:.77rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
 .hero h1{max-width:18ch;margin:0 0 18px;font-size:clamp(2.1rem,5.4vw,4.75rem);line-height:.98;letter-spacing:-.065em}
-.hero-lead{max-width:66ch;margin:0;color:rgba(255,255,255,.94);font:clamp(1rem,2vw,1.27rem)/1.55 var(--font-prose)}
+.hero-lead{max-width:66ch;margin:0;color:#fff;font:clamp(1rem,2vw,1.27rem)/1.55 var(--font-prose)}
 .hero-meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:26px}
 .hero-meta span{padding:6px 9px;border:2px solid rgba(255,255,255,.76);background:rgba(17,20,43,.26);font-size:.76rem}
 main{padding:clamp(22px,4vw,58px);border-right:4px solid var(--cyan);border-left:4px solid var(--cyan);background:var(--paper)}
@@ -63,7 +84,7 @@ main{padding:clamp(22px,4vw,58px);border-right:4px solid var(--cyan);border-left
 .panel h2,.panel h3{margin:0 0 10px;font-size:1rem;letter-spacing:.04em;text-transform:uppercase}
 .panel p:last-child{margin-bottom:0}
 .panel-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:10px}
-.panel-heading .eyebrow{color:var(--blue)}
+.panel-heading .eyebrow{color:var(--blue-ink)}
 .local-label{color:var(--muted);font-size:.68rem;font-weight:800;letter-spacing:.05em;text-align:right}
 .progress-panel h2{max-width:34ch;margin-bottom:14px;font-size:1.22rem;line-height:1.25;letter-spacing:-.025em;text-transform:none}
 .progress-number{display:flex;align-items:baseline;gap:14px;margin:12px 0}
@@ -79,7 +100,7 @@ main{padding:clamp(22px,4vw,58px);border-right:4px solid var(--cyan);border-left
 .button-quiet{border-color:transparent;background:transparent;color:var(--muted)}
 .streak-row{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;margin-top:18px;padding-top:14px;border-top:2px dashed var(--line)}
 .streak-number{display:flex;align-items:baseline;gap:7px}
-.streak-number strong{color:var(--blue);font-size:1.55rem;line-height:1}
+.streak-number strong{color:var(--blue-ink);font-size:1.55rem;line-height:1}
 .streak-number span,.today-status{color:var(--muted);font-size:.76rem;font-weight:700}
 .today-status{display:inline-flex;align-items:center;gap:7px}
 .today-status::before{width:10px;height:10px;border:1px solid var(--line);background:#fff;content:""}
@@ -94,10 +115,10 @@ main{padding:clamp(22px,4vw,58px);border-right:4px solid var(--cyan);border-left
 .tag.m{background:var(--tag-mobile)}
 .panel-note{margin:16px 0 0;padding-top:12px;border-top:2px dashed var(--line);color:var(--muted);font:.88rem/1.5 var(--font-prose)}
 .pals-controls{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;margin-top:12px}
-.pals-controls button{min-height:38px}
+.pals-controls button{min-height:44px}
 .pals-status{margin:0;color:var(--muted);font:.72rem/1.4 var(--font-prose)}
 .tour-invite{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:18px;margin:0 0 28px;padding:18px 20px;border:3px solid var(--line);background:#DFE7FF;box-shadow:6px 6px 0 var(--line)}
-.tour-invite .eyebrow{margin-bottom:6px;color:var(--blue)}
+.tour-invite .eyebrow{margin-bottom:6px;color:var(--blue-ink)}
 .tour-invite h2{margin:0 0 6px;font-size:1.08rem;line-height:1.2;letter-spacing:-.025em}
 .tour-invite p:last-child{margin:0;color:var(--muted);font:.88rem/1.45 var(--font-prose)}
 .tour-invite-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px}
@@ -109,7 +130,7 @@ main{padding:clamp(22px,4vw,58px);border-right:4px solid var(--cyan);border-left
 .tour-panel-bottom-right{right:16px;bottom:16px}
 .tour-panel:focus-visible{outline:4px solid var(--blue);outline-offset:4px}
 .tour-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px}
-.tour-eyebrow{margin:0;color:var(--blue);font-size:.75rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+.tour-eyebrow{margin:0;color:var(--blue-ink);font-size:.75rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
 .tour-close{display:grid;place-items:center;width:42px;height:42px;border:2px solid var(--line);background:var(--cream);color:var(--ink);font:900 1.2rem/1 var(--font-mono)}
 .tour-step-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px;color:var(--muted);font-size:.72rem;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
 .tour-progress-track{height:9px;margin-bottom:14px;border:2px solid var(--line);background:#fff}
@@ -126,13 +147,13 @@ main{padding:clamp(22px,4vw,58px);border-right:4px solid var(--cyan);border-left
 .tour-controls{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding-top:12px;border-top:3px solid var(--line)}
 .tour-control-end{display:flex;flex-wrap:wrap;gap:8px}
 .tour-skip{min-height:44px;padding:8px 10px;border:0;background:transparent;color:var(--muted);font:700 .75rem/1.3 var(--font-mono);text-decoration:underline;text-underline-offset:3px}
-.tour-skip:hover{color:var(--blue)}
+.tour-skip:hover{color:var(--blue-ink)}
 .tour-announcement{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .tour-highlight{outline:4px solid var(--pink);outline-offset:6px;box-shadow:0 0 0 2px var(--cyan);border-radius:2px}
 .section-block{margin-top:52px}
 .section-head{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px;margin:0 0 22px;padding-bottom:16px;border-bottom:4px solid var(--ink)}
 .section-head h2{margin:0;font-size:clamp(1.55rem,3vw,2.45rem);line-height:1;letter-spacing:-.055em}
-.section-head .eyebrow{margin-bottom:9px;color:var(--blue)}
+.section-head .eyebrow{margin-bottom:9px;color:var(--blue-ink)}
 .section-head-copy{max-width:54ch;margin:0;color:var(--muted);font:.9rem/1.5 var(--font-prose)}
 .count{margin:0;color:var(--muted);font-size:.8rem;font-weight:700}
 .filters{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:14px;margin-bottom:12px}
@@ -141,7 +162,7 @@ main{padding:clamp(22px,4vw,58px);border-right:4px solid var(--cyan);border-left
 .search::placeholder{color:var(--muted);opacity:1}
 .search-clear{position:absolute;top:50%;right:8px;display:grid;place-items:center;width:34px;height:34px;transform:translateY(-50%);border:2px solid var(--line);background:var(--cream);color:var(--ink);font:900 1rem/1 var(--font-mono)}
 .filter-set{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:7px}
-.filter-button{min-height:38px;padding:7px 10px;border:2px solid var(--line);background:var(--cream);color:var(--ink);font:700 .76rem/1.3 var(--font-mono)}
+.filter-button{min-height:44px;padding:7px 10px;border:2px solid var(--line);background:var(--cream);color:var(--ink);font:700 .76rem/1.3 var(--font-mono)}
 .filter-button:hover,.filter-button[aria-pressed="true"]{transform:translate(-1px,-1px);background:var(--yellow);box-shadow:3px 3px 0 var(--line)}
 .filter-button:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 .result-row{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:28px;margin-bottom:4px}
@@ -157,7 +178,7 @@ main{padding:clamp(22px,4vw,58px);border-right:4px solid var(--cyan);border-left
 .stage-summary::-webkit-details-marker{display:none}
 .number{display:inline-grid;place-items:center;width:29px;height:29px;border:2px solid var(--line);background:var(--pink);color:#fff;font-size:.72rem;font-weight:900;line-height:1}
 .stage-heading{min-width:0}
-.stage-title{display:block;font-size:1rem;font-weight:700;line-height:1.2;letter-spacing:-.025em}
+.stage-title{display:block;margin:0;font-size:1rem;font-weight:700;line-height:1.2;letter-spacing:-.025em}
 .stage-heading small{display:block;margin-top:5px;color:var(--muted);font:.72rem/1.35 var(--font-prose)}
 .status{display:inline-block;max-width:145px;margin:0;padding:4px 7px;border:1px solid var(--line);font-size:.67rem;font-weight:800;line-height:1.25;text-transform:uppercase}
 .status-live{background:var(--status-live-bg);color:var(--status-live-ink)}
@@ -168,24 +189,22 @@ main{padding:clamp(22px,4vw,58px);border-right:4px solid var(--cyan);border-left
 .stage-meter-label{display:block;color:var(--muted);font:700 .67rem/1.25 var(--font-mono)}
 .stage-meter-track{display:block;height:5px;margin-top:5px;overflow:hidden;border:1px solid var(--line);background:#fff}
 .stage-meter-track i{display:block;width:0;height:100%;background:var(--blue);transition:width .18s ease}
-.stage-chevron{color:var(--blue);font:900 1.3rem/1 var(--font-mono);text-align:center}
+.stage-chevron{color:var(--blue-ink);font:900 1.3rem/1 var(--font-mono);text-align:center}
 .stage-chevron::before{content:"+"}
 .stage[open] .stage-chevron::before{content:"−"}
 .stage-body{padding:18px;border-top:3px solid var(--line);background:var(--paper)}
 .stage-description{max-width:78ch;margin:0 0 14px;color:var(--ink);font:.94rem/1.55 var(--font-prose)}
 .outcomes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 18px;padding:0;list-style:none}
 .outcomes li{position:relative;padding:8px 10px 8px 28px;border:2px solid var(--line);background:#fff;color:var(--ink);font:.84rem/1.4 var(--font-prose)}
-.outcomes li::before{position:absolute;top:8px;left:9px;color:var(--blue);content:"/";font:900 .9rem/1.4 var(--font-mono)}
+.outcomes li::before{position:absolute;top:8px;left:9px;color:var(--blue-ink);content:"/";font:900 .9rem/1.4 var(--font-mono)}
 .resource-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 .resource-card{display:flex;min-width:0;min-height:360px;flex-direction:column;padding:20px;border:3px solid var(--line);background:var(--cream);box-shadow:6px 6px 0 var(--line);transition:transform .14s ease,box-shadow .14s ease}
 .resource-card:hover{transform:translate(-3px,-3px);box-shadow:10px 10px 0 var(--pink)}
-.resource-card.is-complete .done-control{color:var(--status-live-ink)}
-.resource-card.is-complete .checkmark{border-color:var(--status-live-ink);background:var(--green)}
-.card-top{display:grid;grid-template-columns:29px minmax(0,1fr) auto;align-items:start;gap:10px}
+.resource-card.is-complete .resource-card.is-complete .card-top{display:grid;grid-template-columns:29px minmax(0,1fr) auto;align-items:start;gap:10px}
 .resource-card h5{min-width:0;margin:2px 0 0;font-size:1.2rem;line-height:1.1;letter-spacing:-.045em;overflow-wrap:anywhere}
 .resource-card h5 a{text-decoration:none}
 .resource-provider{margin:6px 0 0;color:var(--muted);font:.8rem/1.4 var(--font-prose)}
-.done-control{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:58px;min-height:38px;padding:4px 6px;border:2px solid var(--line);background:#fff;color:var(--muted);font-size:.67rem;font-weight:800;cursor:pointer}
+.done-control{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:58px;min-height:44px;padding:4px 6px;border:2px solid var(--line);background:#fff;color:var(--muted);font-size:.67rem;font-weight:800;cursor:pointer}
 .done-control input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
 .checkmark{position:relative;display:block;width:16px;height:16px;border:1px solid var(--line);background:var(--cream)}
 .done-control input:checked+.checkmark{border-color:var(--line);background:var(--green)}
@@ -202,7 +221,7 @@ main{padding:clamp(22px,4vw,58px);border-right:4px solid var(--cyan);border-left
 .access-details{margin:0 0 12px;padding:8px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .access-details summary{display:flex;align-items:center;min-height:30px;font-size:.72rem;font-weight:800;cursor:pointer;list-style:none}
 .access-details summary::-webkit-details-marker{display:none}
-.access-details summary::after{margin-left:auto;color:var(--blue);content:"+";font:900 1rem/1 var(--font-mono)}
+.access-details summary::after{margin-left:auto;color:var(--blue-ink);content:"+";font:900 1rem/1 var(--font-mono)}
 .access-details[open] summary::after{content:"−"}
 .access-details p{margin:7px 0 0;color:var(--muted);font:.82rem/1.5 var(--font-prose)}
 .borrow{margin:auto 0 0;padding-top:12px;border-top:2px dashed var(--line);color:var(--ink);font:.88rem/1.5 var(--font-prose)}
@@ -270,6 +289,41 @@ main{padding:clamp(22px,4vw,58px);border-right:4px solid var(--cyan);border-left
   .button,.button:hover,.filter-button,.filter-button:hover,.filter-button[aria-pressed="true"]{transform:none;transition:none}
   .progress-fill,.stage-meter-track i,.tour-progress-fill{transition:none}
 }
+.nojs{padding:clamp(18px,3vw,32px);margin-bottom:30px;border:3px solid var(--line);background:var(--cream);box-shadow:6px 6px 0 var(--line)}
+.nojs h2{margin:6px 0 10px;font-size:clamp(1.25rem,3vw,1.6rem);line-height:1.15;letter-spacing:-.03em}
+.nojs-stage{margin-top:22px;padding-top:18px;border-top:2px dashed var(--line)}
+.nojs-stage h3{margin:0 0 6px;font-size:1.05rem;line-height:1.25;letter-spacing:-.02em}
+.nojs-card{margin:12px 0;padding:12px;border:2px solid var(--line);background:#fff}
+.nojs-card h4{margin:0 0 6px;font-size:.98rem;line-height:1.25;letter-spacing:-.02em}
+.nojs-meta{margin:0 0 6px;color:var(--muted);font:.78rem/1.45 var(--font-mono)}
+.nojs-label{margin:14px 0 4px;color:var(--muted);font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.nojs-note{margin:0 0 10px;font:1rem/1.55 var(--font-prose)}
+.nojs-access{margin:0;color:var(--muted);font:.8rem/1.5 var(--font-prose)}
+.nojs ul{margin:6px 0 0;padding-left:20px;font:.92rem/1.5 var(--font-prose)}
+.nojs p{margin:0 0 8px}
+.nojs p:last-child{margin-bottom:0}
+
+@media print{
+  html,body{background:#fff;color:#111}
+  body{font-size:11pt}
+  .shell{max-width:none;padding:0}
+  main{padding:0;border:0;background:#fff}
+  .hero{overflow:visible;border:2px solid #111;background:#fff;color:#111;box-shadow:none;padding:14pt}
+  .hero h1,.hero-lead{color:#111}
+  .hero-eyebrow,.hero-meta span{border:1px solid #111;background:#fff;color:#111}
+  .hero::after{display:none}
+  .panel,.resource-card,.rec,.stage,.nojs,.tool-panel{border:1px solid #111;background:#fff;box-shadow:none}
+  .tour-invite,.tour-layer,.skip-link,.filters,.pals-controls,#pals-controls,.search-clear,
+  .done-control,.tool-panel:not(:first-of-type){display:none!important}
+  .status{background:#fff;color:#111;border:1px solid #111}
+  .stage-body,.resource-grid{display:block}
+  .stage{break-inside:avoid}
+  .resource-card{break-inside:avoid;page-break-inside:avoid;margin-bottom:8pt}
+  a{text-decoration:none}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.75em;word-break:break-all;color:#333}
+  .tag{background:#fff!important;border:1px solid #111}
+  @page{margin:14mm}
+}
 </style>
 </head>
 <body>
@@ -286,6 +340,256 @@ main{padding:clamp(22px,4vw,58px);border-right:4px solid var(--cyan);border-left
     </div>
   </header>
   <main id="main" tabindex="-1">
+<!-- nojs:start | generated from DATA by tools/gen-noscript.py -->
+<noscript>
+<div class="nojs" id="nojs-catalogue">
+  <div class="nojs-intro">
+    <p class="nojs-label">Plain-text version</p>
+    <h2>The full learning catalogue without JavaScript</h2>
+    <p class="nojs-note">Your browser is not running JavaScript, so the interactive catalogue, progress tracking, reminders and guided tour are unavailable. The complete route is below, and every free resource links straight out. Enable JavaScript to track progress in this browser.</p>
+    <p class="nojs-meta">9 stages · 25 learning cards · 160 practice hours · 32 weeks at about 5 hours a week</p>
+  </div>
+  <section class="nojs-stage">
+  <h3>01 · Stage 1 - Camera foundations</h3>
+  <p class="nojs-meta">Weeks 1-2 · 10 practice hours</p>
+  <p>Start with your current camera or capable phone. Learn basic exposure, file review, and how one control changes an image. No gear upgrade is required.</p>
+  <p class="nojs-label">Outcomes</p>
+  <ul><li>Make intentional exposures in common light</li><li>Explain how one setting change affected an image</li><li>Keep a short practice log</li></ul>
+  <p class="nojs-label">Learning cards</p>
+  <article class="nojs-card">
+    <h4><a href="https://chrisbrayphotography.com/courses/online/" rel="noopener noreferrer">R1 - Chris Bray&#x27;s 10-part Photography Course Videos</a></h4>
+    <p class="nojs-meta">Chris Bray Photography / YouTube · 10 free videos · Free videos · 10 episodes; total runtime not stated</p>
+    <p>Weeks 1-2: watch Episodes 1-2 and 4-7; continue Episode 3 and Episodes 8-10 in Stage 2. Test one setting change during each outing.</p>
+    <p class="nojs-access"><strong>Access:</strong> Provider lists the complete ten-episode course as free; no course account or card is listed. A linked YouTube lesson was marked Public. The companion booklet, summary cards, app, tours, and workshops are separate products and are not needed.</p>
+    <p><a class="nojs-link" href="https://chrisbrayphotography.com/courses/online/" rel="noopener noreferrer">Open the free course →</a></p>
+    </article>
+  <article class="nojs-card">
+    <h4><a href="https://photographylife.com/photography-basics" rel="noopener noreferrer">R2 - Photography Life: Photography Basics online guide</a></h4>
+    <p class="nojs-meta">Photography Life · 13-chapter written guide · Free online chapters · Plan 4-6 study hours</p>
+    <p>Read the exposure chapters in Stage 1 and carry focus, sharpness, and composition chapters into Stage 2.</p>
+    <p class="nojs-access"><strong>Access:</strong> The online chapters are free and open without sign-in. The downloadable ebook is a separate paid membership benefit listed at US$5/month; it is not included.</p>
+    <p><a class="nojs-link" href="https://photographylife.com/photography-basics" rel="noopener noreferrer">Open the free online guide →</a></p>
+    </article>
+  <article class="nojs-card">
+    <h4>Milestone - Make a 12-image baseline contact sheet</h4>
+    <p class="nojs-meta">Self-directed practice · Practice milestone · No resource fee · About 2 hours</p>
+    <p>Photograph one familiar subject in different light, select 12 frames, and write a short note about what you notice.</p>
+    <p class="nojs-access"><strong>Access:</strong> Use existing gear and a permitted local place. No paid course or subscription is needed; data, transport, and equipment costs are outside the resource plan.</p>
+    </article>
+  </section>
+  <section class="nojs-stage">
+  <h3>02 · Stage 2 - Focus, sharpness, composition, and light</h3>
+  <p class="nojs-meta">Weeks 3-5 · 15 practice hours</p>
+  <p>Carry R1 and R2 forward; do not add another course. Practise focus, camera stability, subject movement, light, backgrounds, and framing. Phone users can use touch focus and exposure lock.</p>
+  <p class="nojs-label">Outcomes</p>
+  <ul><li>Choose focus deliberately and diagnose common blur</li><li>Compose a clear subject with a useful background</li><li>Compare the same place in different light</li></ul>
+  <p class="nojs-label">Learning cards</p>
+  <article class="nojs-card">
+    <h4>Milestone - Complete a 10-frame focus and composition study</h4>
+    <p class="nojs-meta">Self-directed practice · Practice milestone · No resource fee · About 3 hours</p>
+    <p>Repeat one local walk at two different times, select 10 frames, and identify one sharp image and one frame to improve.</p>
+    <p class="nojs-access"><strong>Access:</strong> Use your current camera or phone and a permitted location. No paid software, course, or certificate is required.</p>
+    </article>
+  </section>
+  <section class="nojs-stage">
+  <h3>03 · Stage 3 - Ethics and fieldcraft</h3>
+  <p class="nojs-meta">Weeks 6-8 · 15 practice hours</p>
+  <p>Learn to observe before shooting. Follow local access, species, safety, and weather rules. If your presence changes an animal&#x27;s behaviour, back away; never publish precise locations for vulnerable species.</p>
+  <p class="nojs-label">Outcomes</p>
+  <ul><li>Plan a safe, low-impact outing</li><li>Recognize when to stop or increase distance</li><li>Keep field notes without exposing sensitive locations</li></ul>
+  <p class="nojs-label">Learning cards</p>
+  <article class="nojs-card">
+    <h4><a href="https://naturefirst.org/en/principles/" rel="noopener noreferrer">R3 - Nature First photography principles</a></h4>
+    <p class="nojs-meta">Nature First · Open ethics reference · Free to read · Plan about 30 minutes</p>
+    <p>Turn the principles into a one-page field checklist; use the linked Leave No Trace principles for outdoor basics.</p>
+    <p class="nojs-access"><strong>Access:</strong> The principles page is public; pledging or joining is optional. No account, card, paid course, or assessment is needed to read it.</p>
+    <p><a class="nojs-link" href="https://naturefirst.org/en/principles/" rel="noopener noreferrer">Read the principles →</a></p>
+    </article>
+  <article class="nojs-card">
+    <h4><a href="https://www.audubon.org/photography/awards/audubons-guide-ethical-bird-photography-and-videography" rel="noopener noreferrer">R4 - Audubon: Ethical Bird Photography and Videography</a></h4>
+    <p class="nojs-meta">Audubon · Open written guide · Free to read · Plan about 30-45 minutes</p>
+    <p>Choose three rules that apply to your local birds and add them to your field checklist.</p>
+    <p class="nojs-access"><strong>Access:</strong> The guide is publicly readable without a course fee or account. Some outbound links are optional; local rules still take priority.</p>
+    <p><a class="nojs-link" href="https://www.audubon.org/photography/awards/audubons-guide-ethical-bird-photography-and-videography" rel="noopener noreferrer">Read Audubon&#x27;s guide →</a></p>
+    </article>
+  <article class="nojs-card">
+    <h4><a href="https://nanpa.org/wp-content/uploads/sites/48/Files/Handbooks/NANPA%20handbook%20conservation%20final.pdf" rel="noopener noreferrer">R5 - NANPA Conservation Photography Handbook</a></h4>
+    <p class="nojs-meta">North American Nature Photography Association · PDF handbook · Free PDF; personal use only · Plan about 1-2 hours</p>
+    <p>Read the project, collaboration, storytelling, ethics, and safety sections before planning the Stage 5 series.</p>
+    <p class="nojs-access"><strong>Access:</strong> The direct PDF is listed by NANPA as a free handbook and opened without an account or payment. Copyright is personal-use-only; do not redistribute it. Published in 2018 with some North American examples.</p>
+    <p><a class="nojs-link" href="https://nanpa.org/wp-content/uploads/sites/48/Files/Handbooks/NANPA%20handbook%20conservation%20final.pdf" rel="noopener noreferrer">Open the free PDF handbook →</a></p>
+    </article>
+  <article class="nojs-card">
+    <h4><a href="https://backcountrygallery.com/Secrets_To_Spotting_And_Approaching_Wildlife-v102.pdf" rel="noopener noreferrer">R6 - Backcountry Gallery: Secrets to Spotting and Approaching Wildlife</a></h4>
+    <p class="nojs-meta">Backcountry Gallery / Steve Perry · Fieldcraft PDF · Free PDF · Plan about 1-2 hours</p>
+    <p>Use the spotting ideas from a permitted place; stop or increase distance if an animal reacts.</p>
+    <p class="nojs-access"><strong>Access:</strong> Direct download opened without a sign-up; the newsletter is optional. The guide includes a liability disclaimer and is not a substitute for local safety or ethics guidance.</p>
+    <p><a class="nojs-link" href="https://backcountrygallery.com/Secrets_To_Spotting_And_Approaching_Wildlife-v102.pdf" rel="noopener noreferrer">Open the free 41-page PDF →</a></p>
+    </article>
+  <article class="nojs-card">
+    <h4>Milestone - Use an ethical field checklist on two outings</h4>
+    <p class="nojs-meta">Self-directed practice · Practice milestone · No resource fee · Two short outings</p>
+    <p>Write a one-page checklist for access, weather, wildlife distance, location privacy, and stop conditions; use it twice.</p>
+    <p class="nojs-access"><strong>Access:</strong> Follow current local laws and land-manager advice. Do not bait, disturb nests, or approach wildlife to overcome equipment limits.</p>
+    </article>
+  </section>
+  <section class="nojs-stage">
+  <h3>04 · Stage 4 - Sample landscape, wildlife, and close-up photography</h3>
+  <p class="nojs-meta">Weeks 9-12 · 20 practice hours</p>
+  <p>Try landscape, wildlife/bird, and close-up/macro work before choosing a first project direction. A specialty choice is not permanent.</p>
+  <p class="nojs-label">Outcomes</p>
+  <ul><li>Make a six-image sampler across three subject types</li><li>Compare the different timing, focus, and fieldcraft each needs</li><li>Choose a first project track or continue broadly</li></ul>
+  <p class="nojs-label">Learning cards</p>
+  <article class="nojs-card">
+    <h4><a href="https://photographylife.com/landscape-photography-video-course" rel="noopener noreferrer">R7 - Photography Life Landscape Photography video course</a></h4>
+    <p class="nojs-meta">Photography Life · Video course · Free course · Provider states 8+ hours; select 2-3 hours</p>
+    <p>Select visualization, light/colour, composition, exposure, and focus chapters. Treat gear sections as optional context.</p>
+    <p class="nojs-access"><strong>Access:</strong> The provider offers the complete course free; no course account or card is listed. A linked lesson checked for this review is marked Public on YouTube. Ads and regional availability may vary.</p>
+    <p><a class="nojs-link" href="https://photographylife.com/landscape-photography-video-course" rel="noopener noreferrer">Open the free course and chapter list →</a></p>
+    </article>
+  <article class="nojs-card">
+    <h4><a href="https://www.youtube.com/watch?v=kdE78ImoGMQ" rel="noopener noreferrer">R8 - BBC Earth: How to Take Stunning Wildlife Photographs</a></h4>
+    <p class="nojs-meta">BBC Earth / YouTube · Wildlife case-study video · Free public video · 46 minutes 37 seconds</p>
+    <p>Watch once for field process; replay a segment and note subject, light, settings, ethical choices, and editing.</p>
+    <p class="nojs-access"><strong>Access:</strong> BBC Earth&#x27;s official YouTube page marks the video Public. No course fee, card, trial, or certificate is required. Ads and regional availability may vary.</p>
+    <p><a class="nojs-link" href="https://www.youtube.com/watch?v=kdE78ImoGMQ" rel="noopener noreferrer">Watch the public video →</a></p>
+    </article>
+  <article class="nojs-card">
+    <h4><a href="https://www.naturettl.com/start-here/" rel="noopener noreferrer">R9 - Nature TTL free nature photography tutorials</a></h4>
+    <p class="nojs-meta">Nature TTL · Free written tutorial library · Free tutorial articles · Choose one article per sampler</p>
+    <p>Choose one tutorial in each category for Weeks 9-11 and make one practice image per topic.</p>
+    <p class="nojs-access"><strong>Access:</strong> Selected tutorial pages opened without account or payment. Nature TTL also sells eBooks and courses; those are separate and are not included.</p>
+    <p><a class="nojs-link" href="https://www.naturettl.com/start-here/" rel="noopener noreferrer">Open the tutorial index →</a></p>
+    </article>
+  <article class="nojs-card">
+    <h4><a href="https://nanpa.org/wp-content/uploads/sites/48/Files/Handbooks/BirdPhotography-NANPAhandbook.pdf" rel="noopener noreferrer">R10 - NANPA Bird Photography Handbook</a></h4>
+    <p class="nojs-meta">North American Nature Photography Association · PDF handbook · Free PDF; personal use only · Plan about 1-2 hours</p>
+    <p>Before a bird outing, choose one behaviour to observe and one habitat/context frame to attempt from a respectful distance.</p>
+    <p class="nojs-access"><strong>Access:</strong> NANPA lists the direct PDF as a free handbook; it opened without login or payment. Copyright is personal-use-only; do not redistribute it.</p>
+    <p><a class="nojs-link" href="https://nanpa.org/wp-content/uploads/sites/48/Files/Handbooks/BirdPhotography-NANPAhandbook.pdf" rel="noopener noreferrer">Open the free PDF handbook →</a></p>
+    </article>
+  <article class="nojs-card">
+    <h4>Milestone - Complete the six-image specialty sampler</h4>
+    <p class="nojs-meta">Self-directed practice · Practice milestone · No resource fee · About 4 hours</p>
+    <p>Select two landscape, two animal/bird, and two close-up/detail images; write what you want to revisit.</p>
+    <p class="nojs-access"><strong>Access:</strong> Use accessible local subjects and existing gear. Do not approach sensitive wildlife to fill a category.</p>
+    </article>
+  </section>
+  <section class="nojs-stage">
+  <h3>05 · Stage 5 - Build a repeatable field project</h3>
+  <p class="nojs-meta">Weeks 13-16 · 20 practice hours</p>
+  <p>Write a short project brief, revisit one accessible place or theme, and make a coherent story instead of relying on isolated lucky shots.</p>
+  <p class="nojs-label">Outcomes</p>
+  <ul><li>Plan a subject, visual question, access/ethics plan, and realistic shot list</li><li>Keep field notes and record useful context</li><li>Edit a varied 12-15 frame story</li></ul>
+  <p class="nojs-label">Learning cards</p>
+  <article class="nojs-card">
+    <h4>Milestone - Deliver a 12-15 frame visual story</h4>
+    <p class="nojs-meta">Self-directed project · Portfolio milestone · No resource fee · Weeks 13-16</p>
+    <p>Write a brief, make several visits, keep field notes, and select a sequence with variety in scale, moment, and habitat.</p>
+    <p class="nojs-access"><strong>Access:</strong> Use the ethics and fieldcraft resources from Stage 3. No new paid course or gear is required.</p>
+    </article>
+  </section>
+  <section class="nojs-stage">
+  <h3>06 · Stage 6 - Edit, caption, back up, and deliver</h3>
+  <p class="nojs-meta">Weeks 17-20 · 20 practice hours</p>
+  <p>Build a repeatable file and editing workflow. Preserve originals, edit non-destructively where possible, and describe images accurately.</p>
+  <p class="nojs-label">Outcomes</p>
+  <ul><li>Cull, name, and back up image files</li><li>Edit consistently and export for web or print</li><li>Deliver five edited images with accurate captions</li></ul>
+  <p class="nojs-label">Learning cards</p>
+  <article class="nojs-card">
+    <h4><a href="https://www.cambridgeincolour.com/tutorials/digital-photo-editing-workflow.htm" rel="noopener noreferrer">R11 - Cambridge in Colour: Digital Photo Editing Workflow</a></h4>
+    <p class="nojs-meta">Cambridge in Colour · Written workflow reference · Free article · Plan about 30-45 minutes</p>
+    <p>Use its sequence as a checklist for five images; keep edits restrained and truthful.</p>
+    <p class="nojs-access"><strong>Access:</strong> The full article was retrieved as a public tutorial with no account or payment prompt observed. It is a reference article, not a certificate course.</p>
+    <p><a class="nojs-link" href="https://www.cambridgeincolour.com/tutorials/digital-photo-editing-workflow.htm" rel="noopener noreferrer">Read the workflow article →</a></p>
+    </article>
+  <article class="nojs-card">
+    <h4><a href="https://docs.darktable.org/usermanual/5.6/en/" rel="noopener noreferrer">R12 - darktable free RAW workflow and user manual</a></h4>
+    <p class="nojs-meta">darktable project · Open-source software and manual · Free; GPL 3.0 · Plan 3-5 hours on selected sections</p>
+    <p>If your OS and camera files are supported, read import, lighttable, darkroom basics, export, and backup sections; phone users can apply the same workflow in their current editor.</p>
+    <p class="nojs-access"><strong>Access:</strong> The software and PDF/ePub manual are free under GPL 3.0; no account, card, subscription, or trial is listed. Check OS and hardware compatibility before installing.</p>
+    <p><a class="nojs-link" href="https://docs.darktable.org/usermanual/5.6/en/" rel="noopener noreferrer">Open the manual and downloads →</a></p>
+    </article>
+  <article class="nojs-card">
+    <h4>Milestone - Deliver five edited, captioned, backed-up images</h4>
+    <p class="nojs-meta">Self-directed workflow · Delivery milestone · No resource fee · About 5 hours</p>
+    <p>Export five images, write accurate captions and filenames, keep originals, make a second copy, and verify the files open.</p>
+    <p class="nojs-access"><strong>Access:</strong> Use free software if needed, or your existing editor. Storage hardware and internet/data costs are not included.</p>
+    </article>
+  </section>
+  <section class="nojs-stage">
+  <h3>07 · Stage 7 - Build a small, defensible portfolio</h3>
+  <p class="nojs-meta">Weeks 21-26 · 30 practice hours</p>
+  <p>Select a focused theme, sequence 10-15 strong images, ask for specific critique, and publish a draft on a free platform or as a local PDF.</p>
+  <p class="nojs-label">Outcomes</p>
+  <ul><li>Present a coherent body of work with captions</li><li>Identify gaps in subject, light, season, or storytelling</li><li>Revise the portfolio after critique</li></ul>
+  <p class="nojs-label">Learning cards</p>
+  <article class="nojs-card">
+    <h4><a href="https://nanpa.org/wp-content/uploads/sites/48/Files/Handbooks/ContestSecrets-Handbook.pdf" rel="noopener noreferrer">R13 - NANPA Contest Secrets handbook</a></h4>
+    <p class="nojs-meta">North American Nature Photography Association · PDF selection and critique guide · Free PDF; personal use only · Plan about 1 hour</p>
+    <p>Apply its image-selection questions to your own portfolio; entering a contest is not required.</p>
+    <p class="nojs-access"><strong>Access:</strong> The direct PDF is listed by NANPA as a free download and opened without login or payment. Copyright is personal-use-only; contest entry may involve a fee or rights terms.</p>
+    <p><a class="nojs-link" href="https://nanpa.org/wp-content/uploads/sites/48/Files/Handbooks/ContestSecrets-Handbook.pdf" rel="noopener noreferrer">Open the free PDF handbook →</a></p>
+    </article>
+  <article class="nojs-card">
+    <h4><a href="https://help.behance.net/hc/en-us/articles/204483894-What-is-Behance" rel="noopener noreferrer">R14 - Behance optional free portfolio platform</a></h4>
+    <p class="nojs-meta">Behance / Adobe · Online portfolio platform · Basic use free; account required to publish · Plan 1-2 hours for one project</p>
+    <p>Publish only after captions are ready and you have checked client and location terms; do not use Pro features.</p>
+    <p class="nojs-access"><strong>Access:</strong> Basic participation is free with no project or media-count limit. Publishing requires an Adobe ID and email verification. The optional 7-day Pro trial auto-converts to the selected paid plan and charges the payment method unless cancelled; do not start it.</p>
+    <p><a class="nojs-link" href="https://help.behance.net/hc/en-us/articles/204483894-What-is-Behance" rel="noopener noreferrer">Read about the free platform →</a></p>
+    </article>
+  <article class="nojs-card">
+    <h4>Milestone - Finish a 10-15 image portfolio and request critique</h4>
+    <p class="nojs-meta">Self-directed portfolio project · Portfolio milestone · No resource fee · Weeks 21-26</p>
+    <p>Sequence 10-15 images, add captions and a one-page statement, ask one trusted peer or mentor for specific feedback, then revise.</p>
+    <p class="nojs-access"><strong>Access:</strong> Use a local PDF if you do not want an online account. Do not upload client work or sensitive locations without permission.</p>
+    </article>
+  </section>
+  <section class="nojs-stage">
+  <h3>08 · Stage 8 - Rights, licensing, and professional practice</h3>
+  <p class="nojs-meta">Weeks 27-30 · 20 practice hours</p>
+  <p>Learn the difference between selling a physical print and licensing image use. Compare business routes and prepare a clearly labelled learning brief, delivery checklist, and licence outline.</p>
+  <p class="nojs-label">Outcomes</p>
+  <ul><li>Explain assignment versus licence in plain language</li><li>Clarify use, territory, duration, exclusivity, credit, fee, and delivery</li><li>Identify five relevant organizations or publications and their submission rules</li></ul>
+  <p class="nojs-label">Learning cards</p>
+  <article class="nojs-card">
+    <h4><a href="https://goclip.org/en/visualarts/rights-transfer-and-licensing/rights-transfer" rel="noopener noreferrer">R15 - WIPO CLIP Visual Arts rights and agreements</a></h4>
+    <p class="nojs-meta">Creators Learn Intellectual Property / WIPO for Creators · Public rights and agreement topic pages · Free to read · Plan 30-60 minutes for selected pages</p>
+    <p>Read the Photography and Rights Transfer pages, then Representation Agreement and Communication; draft a hypothetical use checklist.</p>
+    <p class="nojs-access"><strong>Access:</strong> The English topic pages are public without payment, card, or trial. An account to track learning is optional. General information only; laws vary by country, so use local legal advice for real agreements.</p>
+    <p><a class="nojs-link" href="https://goclip.org/en/visualarts/rights-transfer-and-licensing/rights-transfer" rel="noopener noreferrer">Start with Rights Transfer →</a></p>
+    </article>
+  <article class="nojs-card">
+    <h4><a href="https://nanpa.org/wp-content/uploads/sites/48/Files/Handbooks/MakeItWork-HandbookSeries.pdf" rel="noopener noreferrer">R16 - NANPA Make It Work: The Business of Nature Photography</a></h4>
+    <p class="nojs-meta">North American Nature Photography Association · PDF business handbook · Free PDF; personal use only · Plan about 1-2 hours</p>
+    <p>Compare two possible work routes and note the portfolio, relationships, deliverables, and ongoing work each would need.</p>
+    <p class="nojs-access"><strong>Access:</strong> The direct PDF is listed by NANPA as a free handbook and opened without login or payment. Copyright is personal-use-only. It is a 2020 North American snapshot; do not use old prices or market claims as current advice.</p>
+    <p><a class="nojs-link" href="https://nanpa.org/wp-content/uploads/sites/48/Files/Handbooks/MakeItWork-HandbookSeries.pdf" rel="noopener noreferrer">Open the free PDF handbook →</a></p>
+    </article>
+  <article class="nojs-card">
+    <h4>Milestone - Draft a mock client brief and usage outline</h4>
+    <p class="nojs-meta">Self-directed professional-practice exercise · Business milestone · No resource fee · About 4 hours</p>
+    <p>Create a hypothetical brief, delivery list, and licence outline; research five relevant outlets or organizations; label everything as a learning exercise, not legal advice.</p>
+    <p class="nojs-access"><strong>Access:</strong> Use local professional/legal guidance for real contracts, permits, tax, or pricing. This roadmap promises no paid assignment or income.</p>
+    </article>
+  </section>
+  <section class="nojs-stage">
+  <h3>09 · Stage 9 - Choose a measured next step</h3>
+  <p class="nojs-meta">Weeks 31-32 · 10 practice hours</p>
+  <p>Review progress, choose a low-risk professional experiment, and set the next 8-12 week project. The 32-week plan is a first pass, not a promise of employment or income.</p>
+  <p class="nojs-label">Outcomes</p>
+  <ul><li>Show a coherent, ethical, technically sound starter portfolio</li><li>Deliver organized files and accurate captions</li><li>Choose what skill or seasonal subject to practise next</li></ul>
+  <p class="nojs-label">Learning cards</p>
+  <article class="nojs-card">
+    <h4>Milestone - Define one next professional experiment</h4>
+    <p class="nojs-meta">Self-directed planning · Next-step milestone · No resource fee · About 2 hours</p>
+    <p>Choose one route, such as a tailored editorial pitch, a small print series, a conservation collaboration, or a portfolio review; set a next 8-12 week goal.</p>
+    <p class="nojs-access"><strong>Access:</strong> Check submission rules, local law, access permissions, and any costs before acting.</p>
+    </article>
+  </section>
+</div>
+</noscript>
+<!-- nojs:end -->
     <section class="tour-invite" id="tour-invite" aria-labelledby="tour-invite-heading" hidden>
       <div><p class="eyebrow">FULL SITE WALKTHROUGH / ABOUT 3 MINUTES</p><h2 id="tour-invite-heading">New to Fieldnotes?</h2><p>Get a guided look at every section, try the search and filters, and test a safe demo checkpoint.</p></div>
       <div class="tour-invite-actions"><button class="button button-primary" id="tour-start" type="button">Take the full-site tour →</button><button class="button button-quiet" id="tour-dismiss" type="button">Skip for now</button></div>
@@ -433,6 +737,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.-->
+<template id="pals-payload">
 <script>/*! Piixpal v0.4.0 | tiny pixel creatures that live on your website | MIT
  *  https://github.com/diiviikk5/Piixpal
  */(()=>{"use strict";const Tt="0.4.0";if(window.Piixpal&&window.Piixpal._k)return;(function(){const It=matchMedia("(prefers-reduced-motion: reduce)"),L=()=>It.matches,b=(i,t,e)=>Math.min(e,Math.max(t,i)),w=(i,t)=>i+Math.random()*(t-i),Z=i=>Math.random()<i,fe=i=>i[Math.random()*i.length|0],R=(i,t,e)=>i+(t-i)*e,E=()=>performance.now(),P=i=>{i=i.replace("#",""),i.length<=4&&(i=[...i].map(e=>e+e).join(""));const t=parseInt(i.padEnd(8,"f"),16);return[t>>>24&255,t>>>16&255,t>>>8&255,t&255]},x={cx:-1e5,cy:-1e5,seen:!1,last:0,down:!1,vx:0,vy:0,get x(){return this.cx+scrollX},get y(){return this.cy+scrollY}};addEventListener("pointermove",i=>{if(i.pointerType==="touch"&&!x.down)return;const t=E(),e=Math.max(8,t-x.last);x.seen&&(x.vx=R(x.vx,(i.clientX-x.cx)/e*1e3,.35),x.vy=R(x.vy,(i.clientY-x.cy)/e*1e3,.35)),x.cx=i.clientX,x.cy=i.clientY,x.seen=!0,x.last=t},{passive:!0}),addEventListener("pointerdown",i=>{x.down=!0,x.cx=i.clientX,x.cy=i.clientY,x.seen=!0,x.last=E()},{passive:!0}),addEventListener("pointerup",()=>{x.down=!1},{passive:!0}),document.addEventListener("pointerleave",()=>{x.cx=x.cy=-1e5},{passive:!0});const pe=(i,t)=>Math.hypot(x.x-i,x.y-t),B={y:scrollY,v:0},U=new Set;let ot=0,q=0;const xt=i=>{const t=Math.min(.05,q?(i-q)/1e3:.016666666666666666);q=i,B.v=R(B.v,(scrollY-B.y)/Math.max(t,.001),.25),B.y=scrollY,at(),U.forEach(e=>e(t,i)),ot=U.size?requestAnimationFrame(xt):q=0},tt=i=>{U.add(i),ot||(ot=requestAnimationFrame(xt))},G=i=>U.delete(i),rt=i=>{const t=i.getBoundingClientRect();return{l:t.left+scrollX,t:t.top+scrollY,r:t.right+scrollX,b:t.bottom+scrollY,w:t.width,h:t.height}},W=()=>document.documentElement.clientWidth,bt=i=>{const t=i.getAttribute("box");if(!t)return null;try{return i.closest(t)||document.querySelector(t)}catch{return null}},zt=i=>(i.node.style.position="fixed",i.pinned=!0,i),ke=(i,t)=>{const e=bt(i);return!e&&t&&zt(t),()=>e?rt(e):{l:M.x,t:M.y,r:M.x+W(),b:M.y+innerHeight,w:W(),h:innerHeight,fixed:!0}},ge=(i,t=200)=>i.b>scrollY-t&&i.t<scrollY+innerHeight+t&&i.r>-t&&i.l<W()+t,_e=(i,t,e=rt(i))=>typeof i.piixSurface=="function"?i.piixSurface(t):t>=e.l&&t<=e.r?e.t:null,Pt=`
@@ -502,11 +807,32 @@ canvas{display:block;pointer-events:none;image-rendering:pixelated}
 <script>/*! Piixpal bumble v0.4.0 | MIT | https://github.com/diiviikk5/Piixpal */(()=>{"use strict";const h=document.currentScript,P=d=>{const{reduceMQ:I,reduced:u,clamp:x,rnd:z,chance:M,pick:B,lerp:A,now:S,hexRGBA:D,ptr:n,ptrDist:C,scroll:Y,subs:H,raf:F,frame:G,sub:X,unsub:j,rectOf:L,docW:W,boxOf:Q,pin:V,areaOf:$,onScreen:q,surfaceAt:J,LAYER_CSS:K,layer:Z,origin:ee,getLayer:te,layerOrigin:ie,SPRITES:ke,bake:ye,defineSprite:N,baked:oe,ACTORS:re,shout:ne,Actor:se,recruit:ce,BEHAVIORS:le,defineBehavior:v,Piixpal:pe,art:ue,lastT:fe,layerRoot:we,ICON_PAL:ae,ICONS:he,DIGITS:de,numberIcon:xe,iconCache:Se,iconPal:Ee,bakeIcon:me,UI_INK:Pe,UI_PAPER:Ie,UI_FONT:Ae,UI_MONO:Ce,UI_CSS:be,uiHost:_e,uiRoot:Re,uiStyles:Oe,uiStyle:Te,uiEl:ge,uiIcon:Me,uiCard:Le,uiPlace:Ne,uiAt:ve,uiClose:Ue,uiAnnounce:ze,uiShadow:Be,uiLive:De,measureCtx:Ye,glyphTop:He,textProfile:Fe,segAt:Ge,LAND:Xe,platCache:je,TEXTY:We,surfaceOf:Qe,platforms:Ve,drag:$e,BLIP:qe,CROWD_COLORS:Je,PiixCrowdElement:Ke,FIGURES:Ze,defineFigure:et,mixHex:tt,figurePalette:it,bakeFigure:kt,HEAD:yt,PiixSpriteElement:ot,RENDERS:rt,lum:nt,BAYER:st,ASCII:ct,TEXTURES:lt,BIG:pt,PiixTypeElement:ut,CELL_SHAPES:ft,PiixPalElement:wt,define:at,ELEMENTS:ht,add:dt,autoAttach:xt,SCRIPT:St,start:Et}=d;v("follow",(e,[o],E)=>{const r=e.s/3,y=E.getAttribute("at")!=null?x(+E.getAttribute("at"),0,1):.5,s=760*r;let i="home",c=0,w=0,a=0,b=-1,_=S(),R=!1;const U=()=>{var f;const t=L(o);return{x:t.l+e.w/2+(t.w-e.w)*y,y:typeof o.piixSurface=="function"&&(f=o.piixSurface(t.l+t.w*y))!=null?f:t.t}},O=(t,f,k,l,p)=>{const m=t-e.x,T=f-e.y;return c=A(c,x(m*l,-p,p),1-Math.exp(-5*k)),w=A(w,x(T*l,-p,p),1-Math.exp(-5*k)),e.x+=c*k,e.y+=w*k,Math.hypot(m,T)};return{tick(t,f){const k=U();if(R||(e.x=k.x,e.y=k.y,R=!0,e.play("sleep"),e.say("zz",0)),u()){e.x=k.x,e.y=k.y,e.play("perch");return}S()-n.last<120&&(_=S());const l=S()-_;if(i==="home"){e.x=k.x,e.y=k.y,e.rot=0,e.play(l>6e3?"sleep":"perch"),n.seen&&l<400&&C(e.x,e.y-e.h/2)<220*r&&(i="follow",e.hush(),e.say(M(.5)?"heart":"!",700),w=-200*r);return}if(i==="follow"){Math.abs(n.vx)>60&&(b=n.vx>0?-1:1);const p=n.x+b*46*r,m=n.y-18*r+Math.sin(f/160)*6*r;O(p,m,t,6,s),(l>4500||!n.seen||n.cx<-1e4)&&(i="return",e.say("zz",900))}else i==="return"&&(O(k.x,k.y-2*r,t,3.2,s*.55)<3*r&&(i="home",c=w=0,e.say("zz",0)),l<200&&C(e.x,e.y)<260*r&&(i="follow"));a>0?(a=Math.max(0,a-t/.6),e.rot=(1-a)*360*(e.face||1),e.play("happy")):(e.rot=x(c/s*18,-18,18),e.play("fly")),Math.abs(c)>25&&(e.face=c>0?1:-1)},poke(){i==="home"&&(i="follow",e.hush()),a=1,e.say("heart",800)},hear(t){t==="thud"&&i==="home"&&(i="follow",e.hush(),e.say("!",600))}}}),(()=>{const e=[".kk........kk.","kwwk......kwwk","kwwwk....kwwwk",".kwwkkkkkkwwk."],o=["..............","..............",".kkk......kkk.","kwwwkkkkkkwwwk"],E=s=>["...kyyyyyyk...","..kyY"+"yyyyyyk..".slice(0,9),...s,"..kkkkkkkkkk..","..kyyyyyyyyk..","..kkkkkkkkkk..","...kyyyyyyk...","....kkkkkk....","......kk......"],r={open:["..kywwyywwyk..","..kywkyywkyk.."],shut:["..kyyyyyyyyk..","..kykkyykkyk.."],happy:["..kykkyykkyk..","..kkyykkyyk...".slice(0,14).padEnd(14,".")]},y=(s,i="open")=>s.concat(E(r[i]));N("bumble",{w:14,h:15,scale:3,does:"follow",palette:{k:"#17121f",y:"#ffd23f",Y:"#fff2a8",w:"#e4f6ff"},frames:{fly:[y(e),y(o)],happy:[y(e,"happy"),y(o,"happy")],sleep:[y(o,"shut")],perch:[y(o),y(o),y(o),y(o,"shut")]},fps:{fly:20,happy:22,sleep:1,perch:3}})})(),d.start(h)};if(window.Piixpal&&window.Piixpal._k)return P(window.Piixpal._k);})();</script>
 <script>/*! Piixpal shel v0.4.0 | MIT | https://github.com/diiviikk5/Piixpal */(()=>{"use strict";const x=document.currentScript,P=h=>{const{reduceMQ:A,reduced:a,clamp:L,rnd:t,chance:I,pick:N,lerp:X,now:j,hexRGBA:W,ptr:B,ptrDist:U,scroll:Q,subs:V,raf:q,frame:z,sub:J,unsub:K,rectOf:C,docW:Z,boxOf:ee,pin:ke,areaOf:se,onScreen:te,surfaceAt:re,LAYER_CSS:ie,layer:ne,origin:_,getLayer:oe,layerOrigin:ce,SPRITES:ae,bake:le,defineSprite:v,baked:be,ACTORS:ue,shout:pe,Actor:de,recruit:fe,BEHAVIORS:xe,defineBehavior:D,Piixpal:he,art:y,lastT:we,layerRoot:Se,ICON_PAL:ye,ICONS:me,DIGITS:ge,numberIcon:Ee,iconCache:Pe,iconPal:Ae,bakeIcon:Ie,UI_INK:Ce,UI_PAPER:_e,UI_FONT:Oe,UI_MONO:Re,UI_CSS:Te,uiHost:Me,uiRoot:Le,uiStyles:Ne,uiStyle:Be,uiEl:Ue,uiIcon:ve,uiCard:De,uiPlace:He,uiAt:$e,uiClose:Fe,uiAnnounce:Ge,uiShadow:Ye,uiLive:Xe,measureCtx:je,glyphTop:We,textProfile:H,segAt:$,LAND:Qe,platCache:Ve,TEXTY:qe,surfaceOf:ze,platforms:Je,drag:Ke,BLIP:Ze,CROWD_COLORS:ek,PiixCrowdElement:kk,FIGURES:sk,defineFigure:tk,mixHex:rk,figurePalette:ik,bakeFigure:nk,HEAD:ok,PiixSpriteElement:ck,RENDERS:ak,lum:lk,BAYER:bk,ASCII:uk,TEXTURES:pk,BIG:dk,PiixTypeElement:fk,CELL_SHAPES:xk,PiixPalElement:hk,define:wk,ELEMENTS:Sk,add:yk,autoAttach:mk,SCRIPT:gk,start:Ek}=h;D("creep",(e,[n],b)=>{const l=e.s/3,w=9*l*(+b.getAttribute("speed")||1),u=b.getAttribute("edge")||(typeof n.piixSurface=="function"?"surface":"text"),F={};let r=null,o="walk",s=t(4,8),O=!1,p=0,m=0;const c=document.createElement("div");c.style.cssText=`position:absolute;left:0;top:0;height:${Math.max(2,Math.round(e.s*.7))}px;pointer-events:none;border-radius:2px;background:linear-gradient(90deg,rgba(150,225,255,0),rgba(150,225,255,.55) 70%,rgba(255,255,255,.85));transform-origin:100% 50%`,e.node.parentNode.insertBefore(c,e.node);const G=()=>{if(u==="surface"){const i=C(n);return{l:i.l,r:i.r,t:i.t}}if(u==="text"){const i=H(n,F);if(i)return i}const k=C(n);return{l:k.l,r:k.r,t:k.t}},g=k=>k<r.l+e.w*.35||k>r.r-e.w*.35?null:u==="surface"?n.piixSurface(k):r.segs?$(r.segs,k):r.t,d=k=>{o="hide",s=k,e.play("hide")};return{tick(k){var T;if(r=G(),!O){const f=b.getAttribute("at");e.x=r.l+(r.r-r.l)*(f!=null?L(+f,0,1):t(.2,.8)),e.y=(T=g(e.x))!=null?T:r.t,m=e.y,e.face=I(.5)?1:-1,O=!0}const i=g(e.x);if(i!=null&&(e.y=i),a()){e.play("idle"),c.style.width="0px";return}const S=B.seen&&U(e.x,e.y-e.h/2)<60*l+e.w/2;switch(s-=k,o){case"walk":{if(e.play("walk"),S){d(t(2.5,4)),e.say("sweat",700);break}const f=e.x+e.face*w*k,E=g(f);if(E==null||Math.abs(E-e.y)>e.h*.9){e.face=-e.face,p=0,o="rest",s=t(1,2),e.play("idle");break}e.x=f,e.y=E,p=Math.abs(e.y-m)>1?0:Math.min(p+w*k,170*l),m=e.y,s<=0&&(o="rest",s=t(1.5,3),e.play("idle"));break}case"rest":if(S){d(t(2.5,4));break}s<=0&&(o="walk",s=t(5,10),I(.25)&&(e.face=-e.face,p=0));break;case"hide":e.play("hide"),S&&(s=Math.max(s,1.2)),s<=0&&(o="peek",s=t(.8,1.4),e.play("peek"));break;case"peek":if(S){d(t(2,3));break}s<=0&&(o="walk",s=t(4,8));break}const R=Math.round(p),Y=e.face>0?e.x-e.w*.25-R:e.x+e.w*.25;c.style.width=R+"px",c.style.transform=`translate3d(${Math.round(Y-_.x)}px,${Math.round(e.y-2-_.y)}px,0) scaleX(${e.face>0?1:-1})`,c.style.transformOrigin=e.face>0?"100% 50%":"0 50%"},poke(){d(t(3,4.5)),e.say(N(["!","eep"]),700)},hear(k){k==="thud"&&d(t(2.5,4))},destroy(){c.remove()}}}),(()=>{const e=["...kkkkkk.......","..kSSssssk...k.k",".kSskkkkssk..b.b",".kskSsssksk..b.b",".kskskksksk.kbbk",".kskssskssk.kbbk",".kskkkkkssk.kbpk","kbkkkkkkkkkkkbbk","kbbbbbbbbbbbbbbk",".kkkkkkkkkkkkkk."],n=y.compose(e,[0,8,["kbbbbbbbbbbbbbk."]],[0,9,[".kkkkkkkkkkkkk.."]]),b=y.put(e,12,1,[".k.k",".b.b"]),l=["...kkkkkk...","..kSSssssk..",".kSskkkkssk.",".kskSsssksk.",".kskskksksk.",".kskssskssk.",".kskkkkkssk.",".kssssssssk.","..kkkkkkkk.."].map(u=>u.padEnd(16,".")),w=y.compose(l,[11,3,["..k."]],[11,4,[".kbk"]],[11,5,["kbbk"]],[11,6,["kbbk"]],[10,7,["kkkkk"]]);v("shel",{w:16,h:10,scale:3,does:"creep",palette:{k:"#17121f",S:"#ffe2bd",s:"#ef9a4b",b:"#9fe3c9",p:"#ff9cc2"},frames:{walk:[e,e,n,n],idle:[e,e,b,e],hide:[l],peek:[w]},fps:{walk:3,idle:2}})})(),h.start(x)};if(window.Piixpal&&window.Piixpal._k)return P(window.Piixpal._k);})();</script>
 <script>/*! Piixpal frog v0.4.0 | MIT | https://github.com/diiviikk5/Piixpal */(()=>{"use strict";const g=document.currentScript,I=f=>{const{reduceMQ:A,reduced:c,clamp:x,rnd:T,chance:L,pick:v,lerp:S,now:D,hexRGBA:$,ptr:o,ptrDist:j,scroll:H,subs:F,raf:Y,frame:W,sub:X,unsub:q,rectOf:C,docW:Q,boxOf:V,pin:z,areaOf:J,onScreen:K,surfaceAt:Z,LAYER_CSS:tt,layer:et,origin:_,getLayer:it,layerOrigin:ot,SPRITES:nt,bake:st,defineSprite:N,baked:rt,ACTORS:at,shout:pt,Actor:ct,recruit:lt,BEHAVIORS:kt,defineBehavior:G,Piixpal:ut,art:d,lastT:gt,layerRoot:ft,ICON_PAL:xt,ICONS:dt,DIGITS:yt,numberIcon:ht,iconCache:mt,iconPal:wt,bakeIcon:St,UI_INK:Et,UI_PAPER:bt,UI_FONT:Pt,UI_MONO:It,UI_CSS:At,uiHost:Ct,uiRoot:_t,uiStyles:Rt,uiStyle:Mt,uiEl:Ot,uiIcon:Tt,uiCard:Lt,uiPlace:Nt,uiAt:Gt,uiClose:Bt,uiAnnounce:Ut,uiShadow:vt,uiLive:Dt,measureCtx:$t,glyphTop:jt,textProfile:Ht,segAt:Ft,LAND:Yt,platCache:Wt,TEXTY:Xt,surfaceOf:qt,platforms:Qt,drag:Vt,BLIP:zt,CROWD_COLORS:Jt,PiixCrowdElement:Kt,FIGURES:Zt,defineFigure:te,mixHex:ee,figurePalette:ie,bakeFigure:oe,HEAD:ne,PiixSpriteElement:se,RENDERS:re,lum:ae,BAYER:pe,ASCII:ce,TEXTURES:le,BIG:ke,PiixTypeElement:ue,CELL_SHAPES:ge,PiixPalElement:fe,define:xe,ELEMENTS:de,add:ye,autoAttach:he,SCRIPT:me,start:we}=f;G("snap",(t,[u],y)=>{const l=t.s/4;let R=y.getAttribute("at")!=null?x(+y.getAttribute("at"),0,1):.5,e="sit",k=0,E=1,h=0,m=0,i=null,b=0;const s=document.createElement("div");s.style.cssText=`position:absolute;left:0;top:0;height:${Math.max(3,Math.round(t.s*1.2))}px;border-radius:999px;background:#ff7aa8;box-shadow:0 0 0 ${Math.max(1,t.s>>2)}px #17121f;transform-origin:0 50%;pointer-events:none;opacity:0`,t.node.parentNode.insertBefore(s,t.node);const B=150*l;return{tick(r){const n=C(u);if(i){i.p=Math.min(1,i.p+r/.45);const a=i.p,P=1-a;R=(S(i.x0,i.x1,a)-n.l-t.w/2)/Math.max(1,n.w-t.w),t.oy=-(4*a*P)*46*l,t.play("jump"),a>=1&&(i=null,t.oy=0,t.sy=.8,t.sx=1.2)}if(t.x=n.l+t.w/2+(n.w-t.w)*x(R,0,1),t.y=n.t,t.sx=S(t.sx,1,.2),t.sy=S(t.sy,1,.2),c()||i){s.style.opacity="0",i||t.play("sit");return}const p=t.x+t.face*t.w*.1,w=t.y-t.h*.45;E-=r,b-=r;const U=o.seen?Math.hypot(o.x-p,o.y-w):1e9;if(e==="sit"?(Math.abs(o.x-t.x)>6&&(t.face=o.x>t.x?1:-1),t.play(b>0?"happy":"sit"),U<B&&E<=0&&(e="aim",k=.22)):e==="aim"&&(k-=r,k<=0&&(e="out",k=0,h=o.x,m=o.y,t.play("snap"))),e==="out"||e==="back"){k+=r/.14*(e==="out"?1:-1);const a=x(k,0,1),P=Math.hypot(h-p,m-w)*a,M=Math.atan2(m-w,h-p);s.style.opacity="1",s.style.width=Math.round(P)+"px",s.style.transform=`translate3d(${Math.round(p-_.x)}px,${Math.round(w-_.y)}px,0) rotate(${M}rad)`,e==="out"&&a>=1&&(e="back",Math.hypot(o.x-h,o.y-m)<14*l&&(b=1.6,t.say("heart",900))),e==="back"&&a<=0&&(e="sit",E=1.1,s.style.opacity="0")}},poke(){if(i)return;const r=C(u),n=t.x,p=x(n+(L(.5)?1:-1)*T(60,140)*l,r.l+t.w/2,r.r-t.w/2);t.face=p>n?1:-1,i={x0:n,x1:p,p:0}},destroy(){s.remove()}}}),(()=>{const t=["..kk....kk..",".kwwk..kwwk.",".kwkkkkkwkk.".slice(0,12),"kgggggggggggk".slice(0,12),"kgGgggggggGk","kgggkkkkgggk","kgggggggggk.".padEnd(12,"."),".kgg.kk.ggk.","kkgk....kgkk"],u=d.compose(t,[2,1,["kk"]],[8,1,["kk"]]),y=d.put(t,4,5,["kppk"]),l=d.put(t,0,8,[".kk......kk."]);N("frog",{w:12,h:9,scale:4,does:"snap",palette:{k:"#17121f",g:"#7bd63a",G:"#c8f58a",w:"#ffffff",p:"#ff7aa8"},frames:{sit:[t,t,t,u],snap:[y],jump:[l],happy:[d.compose(u,[4,5,["kggk"]])]},fps:{sit:1.4}})})(),f.start(g)};if(window.Piixpal&&window.Piixpal._k)return I(window.Piixpal._k);})();</script>
+</template>
 <script>
 'use strict';
-const DATA = {"title":"Nature Photography Roadmap","subtitle":"Absolute beginner to a first professional-ready portfolio | 32 weeks | About 5 hours/week | Free resources checked 23 Oct 2026","storage_id":"nature-photography-beginner-2026","reminder_time":"19:00","stages":[{"title":"Stage 1 - Camera foundations","duration":"Weeks 1-2","estimated_hours":10,"description":"Start with your current camera or capable phone. Learn basic exposure, file review, and how one control changes an image. No gear upgrade is required.","outcomes":["Make intentional exposures in common light","Explain how one setting change affected an image","Keep a short practice log"],"resources":[{"title":"R1 - Chris Bray's 10-part Photography Course Videos","provider":"Chris Bray Photography / YouTube","url":"https://chrisbrayphotography.com/courses/online/","link_label":"Open the free course","modality":"10 free videos","cost":"Free videos","duration":"10 episodes; total runtime not stated","why":"Gear-agnostic introduction to camera setup, exposure, aperture, shutter speed, ISO, composition, light, lenses, and practical shooting.","action":"Weeks 1-2: watch Episodes 1-2 and 4-7; continue Episode 3 and Episodes 8-10 in Stage 2. Test one setting change during each outing.","access_note":"Provider lists the complete ten-episode course as free; no course account or card is listed. A linked YouTube lesson was marked Public. The companion booklet, summary cards, app, tours, and workshops are separate products and are not needed.","verification_date":"2026-10-23"},{"title":"R2 - Photography Life: Photography Basics online guide","provider":"Photography Life","url":"https://photographylife.com/photography-basics","link_label":"Open the free online guide","modality":"13-chapter written guide","cost":"Free online chapters","duration":"Plan 4-6 study hours","why":"A structured, book-like beginner reference for exposure, camera modes, focus, sharpness, and composition.","action":"Read the exposure chapters in Stage 1 and carry focus, sharpness, and composition chapters into Stage 2.","access_note":"The online chapters are free and open without sign-in. The downloadable ebook is a separate paid membership benefit listed at US$5/month; it is not included.","verification_date":"2026-10-23"},{"title":"Milestone - Make a 12-image baseline contact sheet","provider":"Self-directed practice","modality":"Practice milestone","cost":"No resource fee","duration":"About 2 hours","why":"A simple baseline makes later progress visible and turns lessons into deliberate choices.","action":"Photograph one familiar subject in different light, select 12 frames, and write a short note about what you notice.","access_note":"Use existing gear and a permitted local place. No paid course or subscription is needed; data, transport, and equipment costs are outside the resource plan."}]},{"title":"Stage 2 - Focus, sharpness, composition, and light","duration":"Weeks 3-5","estimated_hours":15,"description":"Carry R1 and R2 forward; do not add another course. Practise focus, camera stability, subject movement, light, backgrounds, and framing. Phone users can use touch focus and exposure lock.","outcomes":["Choose focus deliberately and diagnose common blur","Compose a clear subject with a useful background","Compare the same place in different light"],"resources":[{"title":"Milestone - Complete a 10-frame focus and composition study","provider":"Self-directed practice","modality":"Practice milestone","cost":"No resource fee","duration":"About 3 hours","why":"A small repeated study helps separate focus, movement, light, and composition decisions.","action":"Repeat one local walk at two different times, select 10 frames, and identify one sharp image and one frame to improve.","access_note":"Use your current camera or phone and a permitted location. No paid software, course, or certificate is required."}]},{"title":"Stage 3 - Ethics and fieldcraft","duration":"Weeks 6-8","estimated_hours":15,"description":"Learn to observe before shooting. Follow local access, species, safety, and weather rules. If your presence changes an animal's behaviour, back away; never publish precise locations for vulnerable species.","outcomes":["Plan a safe, low-impact outing","Recognize when to stop or increase distance","Keep field notes without exposing sensitive locations"],"resources":[{"title":"R3 - Nature First photography principles","provider":"Nature First","url":"https://naturefirst.org/en/principles/","link_label":"Read the principles","modality":"Open ethics reference","cost":"Free to read","duration":"Plan about 30 minutes","why":"A global, nature-first framework for reducing harm and sharing locations responsibly.","action":"Turn the principles into a one-page field checklist; use the linked Leave No Trace principles for outdoor basics.","access_note":"The principles page is public; pledging or joining is optional. No account, card, paid course, or assessment is needed to read it.","verification_date":"2026-10-23"},{"title":"R4 - Audubon: Ethical Bird Photography and Videography","provider":"Audubon","url":"https://www.audubon.org/photography/awards/audubons-guide-ethical-bird-photography-and-videography","link_label":"Read Audubon's guide","modality":"Open written guide","cost":"Free to read","duration":"Plan about 30-45 minutes","why":"Bird-specific guidance on distance, stress cues, nests, baiting, playback, drones, sensitive locations, and accurate captions.","action":"Choose three rules that apply to your local birds and add them to your field checklist.","access_note":"The guide is publicly readable without a course fee or account. Some outbound links are optional; local rules still take priority.","verification_date":"2026-10-23"},{"title":"R5 - NANPA Conservation Photography Handbook","provider":"North American Nature Photography Association","url":"https://nanpa.org/wp-content/uploads/sites/48/Files/Handbooks/NANPA%20handbook%20conservation%20final.pdf","link_label":"Open the free PDF handbook","modality":"PDF handbook","cost":"Free PDF; personal use only","duration":"Plan about 1-2 hours","why":"Conservation storytelling, collaboration with scientists and practitioners, ethics, safety, and project goals.","action":"Read the project, collaboration, storytelling, ethics, and safety sections before planning the Stage 5 series.","access_note":"The direct PDF is listed by NANPA as a free handbook and opened without an account or payment. Copyright is personal-use-only; do not redistribute it. Published in 2018 with some North American examples.","verification_date":"2026-10-23"},{"title":"R6 - Backcountry Gallery: Secrets to Spotting and Approaching Wildlife","provider":"Backcountry Gallery / Steve Perry","url":"https://backcountrygallery.com/Secrets_To_Spotting_And_Approaching_Wildlife-v102.pdf","link_label":"Open the free 41-page PDF","modality":"Fieldcraft PDF","cost":"Free PDF","duration":"Plan about 1-2 hours","why":"Optional tips for spotting and patient observation, always subordinate to wildlife welfare and site rules.","action":"Use the spotting ideas from a permitted place; stop or increase distance if an animal reacts.","access_note":"Direct download opened without a sign-up; the newsletter is optional. The guide includes a liability disclaimer and is not a substitute for local safety or ethics guidance.","verification_date":"2026-10-23"},{"title":"Milestone - Use an ethical field checklist on two outings","provider":"Self-directed practice","modality":"Practice milestone","cost":"No resource fee","duration":"Two short outings","why":"Ethical decisions should be practised in the field, not only read about.","action":"Write a one-page checklist for access, weather, wildlife distance, location privacy, and stop conditions; use it twice.","access_note":"Follow current local laws and land-manager advice. Do not bait, disturb nests, or approach wildlife to overcome equipment limits."}]},{"title":"Stage 4 - Sample landscape, wildlife, and close-up photography","duration":"Weeks 9-12","estimated_hours":20,"description":"Try landscape, wildlife/bird, and close-up/macro work before choosing a first project direction. A specialty choice is not permanent.","outcomes":["Make a six-image sampler across three subject types","Compare the different timing, focus, and fieldcraft each needs","Choose a first project track or continue broadly"],"resources":[{"title":"R7 - Photography Life Landscape Photography video course","provider":"Photography Life","url":"https://photographylife.com/landscape-photography-video-course","link_label":"Open the free course and chapter list","modality":"Video course","cost":"Free course","duration":"Provider states 8+ hours; select 2-3 hours","why":"A substantial landscape sampler covering light, framing, exposure, focus, and post-processing.","action":"Select visualization, light/colour, composition, exposure, and focus chapters. Treat gear sections as optional context.","access_note":"The provider offers the complete course free; no course account or card is listed. A linked lesson checked for this review is marked Public on YouTube. Ads and regional availability may vary.","verification_date":"2026-10-23"},{"title":"R8 - BBC Earth: How to Take Stunning Wildlife Photographs","provider":"BBC Earth / YouTube","url":"https://www.youtube.com/watch?v=kdE78ImoGMQ","link_label":"Watch the public video","modality":"Wildlife case-study video","cost":"Free public video","duration":"46 minutes 37 seconds","why":"Field case studies across birds, mammals, macro, and underwater photography; learn from decisions, not gear lists.","action":"Watch once for field process; replay a segment and note subject, light, settings, ethical choices, and editing.","access_note":"BBC Earth's official YouTube page marks the video Public. No course fee, card, trial, or certificate is required. Ads and regional availability may vary.","verification_date":"2026-10-23"},{"title":"R9 - Nature TTL free nature photography tutorials","provider":"Nature TTL","url":"https://www.naturettl.com/start-here/","link_label":"Open the tutorial index","modality":"Free written tutorial library","cost":"Free tutorial articles","duration":"Choose one article per sampler","why":"Use one focused article for each landscape, wildlife, and macro trial instead of browsing the whole archive.","action":"Choose one tutorial in each category for Weeks 9-11 and make one practice image per topic.","access_note":"Selected tutorial pages opened without account or payment. Nature TTL also sells eBooks and courses; those are separate and are not included.","verification_date":"2026-10-23"},{"title":"R10 - NANPA Bird Photography Handbook","provider":"North American Nature Photography Association","url":"https://nanpa.org/wp-content/uploads/sites/48/Files/Handbooks/BirdPhotography-NANPAhandbook.pdf","link_label":"Open the free PDF handbook","modality":"PDF handbook","cost":"Free PDF; personal use only","duration":"Plan about 1-2 hours","why":"Bird behaviour, habitat, and field practice; adapt examples to the species and rules where you live.","action":"Before a bird outing, choose one behaviour to observe and one habitat/context frame to attempt from a respectful distance.","access_note":"NANPA lists the direct PDF as a free handbook; it opened without login or payment. Copyright is personal-use-only; do not redistribute it.","verification_date":"2026-10-23"},{"title":"Milestone - Complete the six-image specialty sampler","provider":"Self-directed practice","modality":"Practice milestone","cost":"No resource fee","duration":"About 4 hours","why":"Trying three subject types side by side helps you choose from experience rather than assumptions.","action":"Select two landscape, two animal/bird, and two close-up/detail images; write what you want to revisit.","access_note":"Use accessible local subjects and existing gear. Do not approach sensitive wildlife to fill a category."}]},{"title":"Stage 5 - Build a repeatable field project","duration":"Weeks 13-16","estimated_hours":20,"description":"Write a short project brief, revisit one accessible place or theme, and make a coherent story instead of relying on isolated lucky shots.","outcomes":["Plan a subject, visual question, access/ethics plan, and realistic shot list","Keep field notes and record useful context","Edit a varied 12-15 frame story"],"resources":[{"title":"Milestone - Deliver a 12-15 frame visual story","provider":"Self-directed project","modality":"Portfolio milestone","cost":"No resource fee","duration":"Weeks 13-16","why":"Returning to one subject or place builds consistency, observation, and visual storytelling.","action":"Write a brief, make several visits, keep field notes, and select a sequence with variety in scale, moment, and habitat.","access_note":"Use the ethics and fieldcraft resources from Stage 3. No new paid course or gear is required."}]},{"title":"Stage 6 - Edit, caption, back up, and deliver","duration":"Weeks 17-20","estimated_hours":20,"description":"Build a repeatable file and editing workflow. Preserve originals, edit non-destructively where possible, and describe images accurately.","outcomes":["Cull, name, and back up image files","Edit consistently and export for web or print","Deliver five edited images with accurate captions"],"resources":[{"title":"R11 - Cambridge in Colour: Digital Photo Editing Workflow","provider":"Cambridge in Colour","url":"https://www.cambridgeincolour.com/tutorials/digital-photo-editing-workflow.htm","link_label":"Read the workflow article","modality":"Written workflow reference","cost":"Free article","duration":"Plan about 30-45 minutes","why":"A software-neutral sequence for white balance, exposure, noise, lens corrections, detail, crop, resizing, and output sharpening.","action":"Use its sequence as a checklist for five images; keep edits restrained and truthful.","access_note":"The full article was retrieved as a public tutorial with no account or payment prompt observed. It is a reference article, not a certificate course.","verification_date":"2026-10-23"},{"title":"R12 - darktable free RAW workflow and user manual","provider":"darktable project","url":"https://docs.darktable.org/usermanual/5.6/en/","link_label":"Open the manual and downloads","modality":"Open-source software and manual","cost":"Free; GPL 3.0","duration":"Plan 3-5 hours on selected sections","why":"An optional desktop RAW workflow for importing, organizing, editing non-destructively, and exporting.","action":"If your OS and camera files are supported, read import, lighttable, darkroom basics, export, and backup sections; phone users can apply the same workflow in their current editor.","access_note":"The software and PDF/ePub manual are free under GPL 3.0; no account, card, subscription, or trial is listed. Check OS and hardware compatibility before installing.","verification_date":"2026-10-23"},{"title":"Milestone - Deliver five edited, captioned, backed-up images","provider":"Self-directed workflow","modality":"Delivery milestone","cost":"No resource fee","duration":"About 5 hours","why":"A complete delivery tests the whole workflow, not just the appearance of an edit.","action":"Export five images, write accurate captions and filenames, keep originals, make a second copy, and verify the files open.","access_note":"Use free software if needed, or your existing editor. Storage hardware and internet/data costs are not included."}]},{"title":"Stage 7 - Build a small, defensible portfolio","duration":"Weeks 21-26","estimated_hours":30,"description":"Select a focused theme, sequence 10-15 strong images, ask for specific critique, and publish a draft on a free platform or as a local PDF.","outcomes":["Present a coherent body of work with captions","Identify gaps in subject, light, season, or storytelling","Revise the portfolio after critique"],"resources":[{"title":"R13 - NANPA Contest Secrets handbook","provider":"North American Nature Photography Association","url":"https://nanpa.org/wp-content/uploads/sites/48/Files/Handbooks/ContestSecrets-Handbook.pdf","link_label":"Open the free PDF handbook","modality":"PDF selection and critique guide","cost":"Free PDF; personal use only","duration":"Plan about 1 hour","why":"Judge comments and selection advice can help you find technical faults and ask better critique questions.","action":"Apply its image-selection questions to your own portfolio; entering a contest is not required.","access_note":"The direct PDF is listed by NANPA as a free download and opened without login or payment. Copyright is personal-use-only; contest entry may involve a fee or rights terms.","verification_date":"2026-10-23"},{"title":"R14 - Behance optional free portfolio platform","provider":"Behance / Adobe","url":"https://help.behance.net/hc/en-us/articles/204483894-What-is-Behance","link_label":"Read about the free platform","modality":"Online portfolio platform","cost":"Basic use free; account required to publish","duration":"Plan 1-2 hours for one project","why":"An optional way to present one coherent image series with a short description and captions; a local PDF is an account-free alternative.","action":"Publish only after captions are ready and you have checked client and location terms; do not use Pro features.","access_note":"Basic participation is free with no project or media-count limit. Publishing requires an Adobe ID and email verification. The optional 7-day Pro trial auto-converts to the selected paid plan and charges the payment method unless cancelled; do not start it.","verification_date":"2026-10-23"},{"title":"Milestone - Finish a 10-15 image portfolio and request critique","provider":"Self-directed portfolio project","modality":"Portfolio milestone","cost":"No resource fee","duration":"Weeks 21-26","why":"A focused set and informed critique are stronger evidence than a large unedited feed.","action":"Sequence 10-15 images, add captions and a one-page statement, ask one trusted peer or mentor for specific feedback, then revise.","access_note":"Use a local PDF if you do not want an online account. Do not upload client work or sensitive locations without permission."}]},{"title":"Stage 8 - Rights, licensing, and professional practice","duration":"Weeks 27-30","estimated_hours":20,"description":"Learn the difference between selling a physical print and licensing image use. Compare business routes and prepare a clearly labelled learning brief, delivery checklist, and licence outline.","outcomes":["Explain assignment versus licence in plain language","Clarify use, territory, duration, exclusivity, credit, fee, and delivery","Identify five relevant organizations or publications and their submission rules"],"resources":[{"title":"R15 - WIPO CLIP Visual Arts rights and agreements","provider":"Creators Learn Intellectual Property / WIPO for Creators","url":"https://goclip.org/en/visualarts/rights-transfer-and-licensing/rights-transfer","link_label":"Start with Rights Transfer","modality":"Public rights and agreement topic pages","cost":"Free to read","duration":"Plan 30-60 minutes for selected pages","why":"Public guidance on photographic authorship, copyright, assignment versus licence, representation, and communication.","action":"Read the Photography and Rights Transfer pages, then Representation Agreement and Communication; draft a hypothetical use checklist.","access_note":"The English topic pages are public without payment, card, or trial. An account to track learning is optional. General information only; laws vary by country, so use local legal advice for real agreements.","verification_date":"2026-10-23"},{"title":"R16 - NANPA Make It Work: The Business of Nature Photography","provider":"North American Nature Photography Association","url":"https://nanpa.org/wp-content/uploads/sites/48/Files/Handbooks/MakeItWork-HandbookSeries.pdf","link_label":"Open the free PDF handbook","modality":"PDF business handbook","cost":"Free PDF; personal use only","duration":"Plan about 1-2 hours","why":"Practitioner examples of publishing, tours/workshops, prints, stock, and diversified nature-photography work.","action":"Compare two possible work routes and note the portfolio, relationships, deliverables, and ongoing work each would need.","access_note":"The direct PDF is listed by NANPA as a free handbook and opened without login or payment. Copyright is personal-use-only. It is a 2020 North American snapshot; do not use old prices or market claims as current advice.","verification_date":"2026-10-23"},{"title":"Milestone - Draft a mock client brief and usage outline","provider":"Self-directed professional-practice exercise","modality":"Business milestone","cost":"No resource fee","duration":"About 4 hours","why":"Writing down expectations helps you recognize questions to settle before an actual assignment.","action":"Create a hypothetical brief, delivery list, and licence outline; research five relevant outlets or organizations; label everything as a learning exercise, not legal advice.","access_note":"Use local professional/legal guidance for real contracts, permits, tax, or pricing. This roadmap promises no paid assignment or income."}]},{"title":"Stage 9 - Choose a measured next step","duration":"Weeks 31-32","estimated_hours":10,"description":"Review progress, choose a low-risk professional experiment, and set the next 8-12 week project. The 32-week plan is a first pass, not a promise of employment or income.","outcomes":["Show a coherent, ethical, technically sound starter portfolio","Deliver organized files and accurate captions","Choose what skill or seasonal subject to practise next"],"resources":[{"title":"Milestone - Define one next professional experiment","provider":"Self-directed planning","modality":"Next-step milestone","cost":"No resource fee","duration":"About 2 hours","why":"A small test makes progress measurable without assuming that a portfolio guarantees work.","action":"Choose one route, such as a tailored editorial pitch, a small print series, a conservation collaboration, or a portfolio review; set a next 8-12 week goal.","access_note":"Check submission rules, local law, access permissions, and any costs before acting."}]}]};
+const DATA = {"title":"Nature Photography Roadmap","subtitle":"Absolute beginner to a first professional-ready portfolio | 32 weeks | About 5 hours/week | Free resources checked 23 Oct 2026","storage_id":"nature-photography-beginner-2026","reminder_time":"19:00","stages":[{"id":"stage-camera-foundations","title":"Stage 1 - Camera foundations","duration":"Weeks 1-2","estimated_hours":10,"description":"Start with your current camera or capable phone. Learn basic exposure, file review, and how one control changes an image. No gear upgrade is required.","outcomes":["Make intentional exposures in common light","Explain how one setting change affected an image","Keep a short practice log"],"resources":[{"id":"chris-brays-10-part-photography-course-videos","title":"R1 - Chris Bray's 10-part Photography Course Videos","provider":"Chris Bray Photography / YouTube","url":"https://chrisbrayphotography.com/courses/online/","link_label":"Open the free course","modality":"10 free videos","cost":"Free videos","duration":"10 episodes; total runtime not stated","why":"Gear-agnostic introduction to camera setup, exposure, aperture, shutter speed, ISO, composition, light, lenses, and practical shooting.","action":"Weeks 1-2: watch Episodes 1-2 and 4-7; continue Episode 3 and Episodes 8-10 in Stage 2. Test one setting change during each outing.","access_note":"Provider lists the complete ten-episode course as free; no course account or card is listed. A linked YouTube lesson was marked Public. The companion booklet, summary cards, app, tours, and workshops are separate products and are not needed.","verification_date":"2026-10-23"},{"id":"photography-life-photography-basics-online-guide","title":"R2 - Photography Life: Photography Basics online guide","provider":"Photography Life","url":"https://photographylife.com/photography-basics","link_label":"Open the free online guide","modality":"13-chapter written guide","cost":"Free online chapters","duration":"Plan 4-6 study hours","why":"A structured, book-like beginner reference for exposure, camera modes, focus, sharpness, and composition.","action":"Read the exposure chapters in Stage 1 and carry focus, sharpness, and composition chapters into Stage 2.","access_note":"The online chapters are free and open without sign-in. The downloadable ebook is a separate paid membership benefit listed at US$5/month; it is not included.","verification_date":"2026-10-23"},{"id":"make-a-12-image-baseline-contact-sheet","title":"Milestone - Make a 12-image baseline contact sheet","provider":"Self-directed practice","modality":"Practice milestone","cost":"No resource fee","duration":"About 2 hours","why":"A simple baseline makes later progress visible and turns lessons into deliberate choices.","action":"Photograph one familiar subject in different light, select 12 frames, and write a short note about what you notice.","access_note":"Use existing gear and a permitted local place. No paid course or subscription is needed; data, transport, and equipment costs are outside the resource plan."}]},{"id":"stage-focus-sharpness-composition-and-light","title":"Stage 2 - Focus, sharpness, composition, and light","duration":"Weeks 3-5","estimated_hours":15,"description":"Carry R1 and R2 forward; do not add another course. Practise focus, camera stability, subject movement, light, backgrounds, and framing. Phone users can use touch focus and exposure lock.","outcomes":["Choose focus deliberately and diagnose common blur","Compose a clear subject with a useful background","Compare the same place in different light"],"resources":[{"id":"complete-a-10-frame-focus-and-composition-study","title":"Milestone - Complete a 10-frame focus and composition study","provider":"Self-directed practice","modality":"Practice milestone","cost":"No resource fee","duration":"About 3 hours","why":"A small repeated study helps separate focus, movement, light, and composition decisions.","action":"Repeat one local walk at two different times, select 10 frames, and identify one sharp image and one frame to improve.","access_note":"Use your current camera or phone and a permitted location. No paid software, course, or certificate is required."}]},{"id":"stage-ethics-and-fieldcraft","title":"Stage 3 - Ethics and fieldcraft","duration":"Weeks 6-8","estimated_hours":15,"description":"Learn to observe before shooting. Follow local access, species, safety, and weather rules. If your presence changes an animal's behaviour, back away; never publish precise locations for vulnerable species.","outcomes":["Plan a safe, low-impact outing","Recognize when to stop or increase distance","Keep field notes without exposing sensitive locations"],"resources":[{"id":"nature-first-photography-principles","title":"R3 - Nature First photography principles","provider":"Nature First","url":"https://naturefirst.org/en/principles/","link_label":"Read the principles","modality":"Open ethics reference","cost":"Free to read","duration":"Plan about 30 minutes","why":"A global, nature-first framework for reducing harm and sharing locations responsibly.","action":"Turn the principles into a one-page field checklist; use the linked Leave No Trace principles for outdoor basics.","access_note":"The principles page is public; pledging or joining is optional. No account, card, paid course, or assessment is needed to read it.","verification_date":"2026-10-23"},{"id":"audubon-ethical-bird-photography-and-videography","title":"R4 - Audubon: Ethical Bird Photography and Videography","provider":"Audubon","url":"https://www.audubon.org/photography/awards/audubons-guide-ethical-bird-photography-and-videography","link_label":"Read Audubon's guide","modality":"Open written guide","cost":"Free to read","duration":"Plan about 30-45 minutes","why":"Bird-specific guidance on distance, stress cues, nests, baiting, playback, drones, sensitive locations, and accurate captions.","action":"Choose three rules that apply to your local birds and add them to your field checklist.","access_note":"The guide is publicly readable without a course fee or account. Some outbound links are optional; local rules still take priority.","verification_date":"2026-10-23"},{"id":"nanpa-conservation-photography-handbook","title":"R5 - NANPA Conservation Photography Handbook","provider":"North American Nature Photography Association","url":"https://nanpa.org/wp-content/uploads/sites/48/Files/Handbooks/NANPA%20handbook%20conservation%20final.pdf","link_label":"Open the free PDF handbook","modality":"PDF handbook","cost":"Free PDF; personal use only","duration":"Plan about 1-2 hours","why":"Conservation storytelling, collaboration with scientists and practitioners, ethics, safety, and project goals.","action":"Read the project, collaboration, storytelling, ethics, and safety sections before planning the Stage 5 series.","access_note":"The direct PDF is listed by NANPA as a free handbook and opened without an account or payment. Copyright is personal-use-only; do not redistribute it. Published in 2018 with some North American examples.","verification_date":"2026-10-23"},{"id":"backcountry-gallery-secrets-to-spotting-and-approaching","title":"R6 - Backcountry Gallery: Secrets to Spotting and Approaching Wildlife","provider":"Backcountry Gallery / Steve Perry","url":"https://backcountrygallery.com/Secrets_To_Spotting_And_Approaching_Wildlife-v102.pdf","link_label":"Open the free 41-page PDF","modality":"Fieldcraft PDF","cost":"Free PDF","duration":"Plan about 1-2 hours","why":"Optional tips for spotting and patient observation, always subordinate to wildlife welfare and site rules.","action":"Use the spotting ideas from a permitted place; stop or increase distance if an animal reacts.","access_note":"Direct download opened without a sign-up; the newsletter is optional. The guide includes a liability disclaimer and is not a substitute for local safety or ethics guidance.","verification_date":"2026-10-23"},{"id":"use-an-ethical-field-checklist-on-two-outings","title":"Milestone - Use an ethical field checklist on two outings","provider":"Self-directed practice","modality":"Practice milestone","cost":"No resource fee","duration":"Two short outings","why":"Ethical decisions should be practised in the field, not only read about.","action":"Write a one-page checklist for access, weather, wildlife distance, location privacy, and stop conditions; use it twice.","access_note":"Follow current local laws and land-manager advice. Do not bait, disturb nests, or approach wildlife to overcome equipment limits."}]},{"id":"stage-sample-landscape-wildlife-and-close-up","title":"Stage 4 - Sample landscape, wildlife, and close-up photography","duration":"Weeks 9-12","estimated_hours":20,"description":"Try landscape, wildlife/bird, and close-up/macro work before choosing a first project direction. A specialty choice is not permanent.","outcomes":["Make a six-image sampler across three subject types","Compare the different timing, focus, and fieldcraft each needs","Choose a first project track or continue broadly"],"resources":[{"id":"photography-life-landscape-photography-video-course","title":"R7 - Photography Life Landscape Photography video course","provider":"Photography Life","url":"https://photographylife.com/landscape-photography-video-course","link_label":"Open the free course and chapter list","modality":"Video course","cost":"Free course","duration":"Provider states 8+ hours; select 2-3 hours","why":"A substantial landscape sampler covering light, framing, exposure, focus, and post-processing.","action":"Select visualization, light/colour, composition, exposure, and focus chapters. Treat gear sections as optional context.","access_note":"The provider offers the complete course free; no course account or card is listed. A linked lesson checked for this review is marked Public on YouTube. Ads and regional availability may vary.","verification_date":"2026-10-23"},{"id":"bbc-earth-how-to-take-stunning-wildlife-photographs","title":"R8 - BBC Earth: How to Take Stunning Wildlife Photographs","provider":"BBC Earth / YouTube","url":"https://www.youtube.com/watch?v=kdE78ImoGMQ","link_label":"Watch the public video","modality":"Wildlife case-study video","cost":"Free public video","duration":"46 minutes 37 seconds","why":"Field case studies across birds, mammals, macro, and underwater photography; learn from decisions, not gear lists.","action":"Watch once for field process; replay a segment and note subject, light, settings, ethical choices, and editing.","access_note":"BBC Earth's official YouTube page marks the video Public. No course fee, card, trial, or certificate is required. Ads and regional availability may vary.","verification_date":"2026-10-23"},{"id":"nature-ttl-free-nature-photography-tutorials","title":"R9 - Nature TTL free nature photography tutorials","provider":"Nature TTL","url":"https://www.naturettl.com/start-here/","link_label":"Open the tutorial index","modality":"Free written tutorial library","cost":"Free tutorial articles","duration":"Choose one article per sampler","why":"Use one focused article for each landscape, wildlife, and macro trial instead of browsing the whole archive.","action":"Choose one tutorial in each category for Weeks 9-11 and make one practice image per topic.","access_note":"Selected tutorial pages opened without account or payment. Nature TTL also sells eBooks and courses; those are separate and are not included.","verification_date":"2026-10-23"},{"id":"nanpa-bird-photography-handbook","title":"R10 - NANPA Bird Photography Handbook","provider":"North American Nature Photography Association","url":"https://nanpa.org/wp-content/uploads/sites/48/Files/Handbooks/BirdPhotography-NANPAhandbook.pdf","link_label":"Open the free PDF handbook","modality":"PDF handbook","cost":"Free PDF; personal use only","duration":"Plan about 1-2 hours","why":"Bird behaviour, habitat, and field practice; adapt examples to the species and rules where you live.","action":"Before a bird outing, choose one behaviour to observe and one habitat/context frame to attempt from a respectful distance.","access_note":"NANPA lists the direct PDF as a free handbook; it opened without login or payment. Copyright is personal-use-only; do not redistribute it.","verification_date":"2026-10-23"},{"id":"complete-the-six-image-specialty-sampler","title":"Milestone - Complete the six-image specialty sampler","provider":"Self-directed practice","modality":"Practice milestone","cost":"No resource fee","duration":"About 4 hours","why":"Trying three subject types side by side helps you choose from experience rather than assumptions.","action":"Select two landscape, two animal/bird, and two close-up/detail images; write what you want to revisit.","access_note":"Use accessible local subjects and existing gear. Do not approach sensitive wildlife to fill a category."}]},{"id":"stage-build-a-repeatable-field-project","title":"Stage 5 - Build a repeatable field project","duration":"Weeks 13-16","estimated_hours":20,"description":"Write a short project brief, revisit one accessible place or theme, and make a coherent story instead of relying on isolated lucky shots.","outcomes":["Plan a subject, visual question, access/ethics plan, and realistic shot list","Keep field notes and record useful context","Edit a varied 12-15 frame story"],"resources":[{"id":"deliver-a-12-15-frame-visual-story","title":"Milestone - Deliver a 12-15 frame visual story","provider":"Self-directed project","modality":"Portfolio milestone","cost":"No resource fee","duration":"Weeks 13-16","why":"Returning to one subject or place builds consistency, observation, and visual storytelling.","action":"Write a brief, make several visits, keep field notes, and select a sequence with variety in scale, moment, and habitat.","access_note":"Use the ethics and fieldcraft resources from Stage 3. No new paid course or gear is required."}]},{"id":"stage-edit-caption-back-up-and-deliver","title":"Stage 6 - Edit, caption, back up, and deliver","duration":"Weeks 17-20","estimated_hours":20,"description":"Build a repeatable file and editing workflow. Preserve originals, edit non-destructively where possible, and describe images accurately.","outcomes":["Cull, name, and back up image files","Edit consistently and export for web or print","Deliver five edited images with accurate captions"],"resources":[{"id":"cambridge-in-colour-digital-photo-editing-workflow","title":"R11 - Cambridge in Colour: Digital Photo Editing Workflow","provider":"Cambridge in Colour","url":"https://www.cambridgeincolour.com/tutorials/digital-photo-editing-workflow.htm","link_label":"Read the workflow article","modality":"Written workflow reference","cost":"Free article","duration":"Plan about 30-45 minutes","why":"A software-neutral sequence for white balance, exposure, noise, lens corrections, detail, crop, resizing, and output sharpening.","action":"Use its sequence as a checklist for five images; keep edits restrained and truthful.","access_note":"The full article was retrieved as a public tutorial with no account or payment prompt observed. It is a reference article, not a certificate course.","verification_date":"2026-10-23"},{"id":"darktable-free-raw-workflow-and-user-manual","title":"R12 - darktable free RAW workflow and user manual","provider":"darktable project","url":"https://docs.darktable.org/usermanual/5.6/en/","link_label":"Open the manual and downloads","modality":"Open-source software and manual","cost":"Free; GPL 3.0","duration":"Plan 3-5 hours on selected sections","why":"An optional desktop RAW workflow for importing, organizing, editing non-destructively, and exporting.","action":"If your OS and camera files are supported, read import, lighttable, darkroom basics, export, and backup sections; phone users can apply the same workflow in their current editor.","access_note":"The software and PDF/ePub manual are free under GPL 3.0; no account, card, subscription, or trial is listed. Check OS and hardware compatibility before installing.","verification_date":"2026-10-23"},{"id":"deliver-five-edited-captioned-backed-up-images","title":"Milestone - Deliver five edited, captioned, backed-up images","provider":"Self-directed workflow","modality":"Delivery milestone","cost":"No resource fee","duration":"About 5 hours","why":"A complete delivery tests the whole workflow, not just the appearance of an edit.","action":"Export five images, write accurate captions and filenames, keep originals, make a second copy, and verify the files open.","access_note":"Use free software if needed, or your existing editor. Storage hardware and internet/data costs are not included."}]},{"id":"stage-build-a-small-defensible-portfolio","title":"Stage 7 - Build a small, defensible portfolio","duration":"Weeks 21-26","estimated_hours":30,"description":"Select a focused theme, sequence 10-15 strong images, ask for specific critique, and publish a draft on a free platform or as a local PDF.","outcomes":["Present a coherent body of work with captions","Identify gaps in subject, light, season, or storytelling","Revise the portfolio after critique"],"resources":[{"id":"nanpa-contest-secrets-handbook","title":"R13 - NANPA Contest Secrets handbook","provider":"North American Nature Photography Association","url":"https://nanpa.org/wp-content/uploads/sites/48/Files/Handbooks/ContestSecrets-Handbook.pdf","link_label":"Open the free PDF handbook","modality":"PDF selection and critique guide","cost":"Free PDF; personal use only","duration":"Plan about 1 hour","why":"Judge comments and selection advice can help you find technical faults and ask better critique questions.","action":"Apply its image-selection questions to your own portfolio; entering a contest is not required.","access_note":"The direct PDF is listed by NANPA as a free download and opened without login or payment. Copyright is personal-use-only; contest entry may involve a fee or rights terms.","verification_date":"2026-10-23"},{"id":"behance-optional-free-portfolio-platform","title":"R14 - Behance optional free portfolio platform","provider":"Behance / Adobe","url":"https://help.behance.net/hc/en-us/articles/204483894-What-is-Behance","link_label":"Read about the free platform","modality":"Online portfolio platform","cost":"Basic use free; account required to publish","duration":"Plan 1-2 hours for one project","why":"An optional way to present one coherent image series with a short description and captions; a local PDF is an account-free alternative.","action":"Publish only after captions are ready and you have checked client and location terms; do not use Pro features.","access_note":"Basic participation is free with no project or media-count limit. Publishing requires an Adobe ID and email verification. The optional 7-day Pro trial auto-converts to the selected paid plan and charges the payment method unless cancelled; do not start it.","verification_date":"2026-10-23"},{"id":"finish-a-10-15-image-portfolio-and-request-critique","title":"Milestone - Finish a 10-15 image portfolio and request critique","provider":"Self-directed portfolio project","modality":"Portfolio milestone","cost":"No resource fee","duration":"Weeks 21-26","why":"A focused set and informed critique are stronger evidence than a large unedited feed.","action":"Sequence 10-15 images, add captions and a one-page statement, ask one trusted peer or mentor for specific feedback, then revise.","access_note":"Use a local PDF if you do not want an online account. Do not upload client work or sensitive locations without permission."}]},{"id":"stage-rights-licensing-and-professional","title":"Stage 8 - Rights, licensing, and professional practice","duration":"Weeks 27-30","estimated_hours":20,"description":"Learn the difference between selling a physical print and licensing image use. Compare business routes and prepare a clearly labelled learning brief, delivery checklist, and licence outline.","outcomes":["Explain assignment versus licence in plain language","Clarify use, territory, duration, exclusivity, credit, fee, and delivery","Identify five relevant organizations or publications and their submission rules"],"resources":[{"id":"wipo-clip-visual-arts-rights-and-agreements","title":"R15 - WIPO CLIP Visual Arts rights and agreements","provider":"Creators Learn Intellectual Property / WIPO for Creators","url":"https://goclip.org/en/visualarts/rights-transfer-and-licensing/rights-transfer","link_label":"Start with Rights Transfer","modality":"Public rights and agreement topic pages","cost":"Free to read","duration":"Plan 30-60 minutes for selected pages","why":"Public guidance on photographic authorship, copyright, assignment versus licence, representation, and communication.","action":"Read the Photography and Rights Transfer pages, then Representation Agreement and Communication; draft a hypothetical use checklist.","access_note":"The English topic pages are public without payment, card, or trial. An account to track learning is optional. General information only; laws vary by country, so use local legal advice for real agreements.","verification_date":"2026-10-23"},{"id":"nanpa-make-it-work-the-business-of-nature-photography","title":"R16 - NANPA Make It Work: The Business of Nature Photography","provider":"North American Nature Photography Association","url":"https://nanpa.org/wp-content/uploads/sites/48/Files/Handbooks/MakeItWork-HandbookSeries.pdf","link_label":"Open the free PDF handbook","modality":"PDF business handbook","cost":"Free PDF; personal use only","duration":"Plan about 1-2 hours","why":"Practitioner examples of publishing, tours/workshops, prints, stock, and diversified nature-photography work.","action":"Compare two possible work routes and note the portfolio, relationships, deliverables, and ongoing work each would need.","access_note":"The direct PDF is listed by NANPA as a free handbook and opened without login or payment. Copyright is personal-use-only. It is a 2020 North American snapshot; do not use old prices or market claims as current advice.","verification_date":"2026-10-23"},{"id":"draft-a-mock-client-brief-and-usage-outline","title":"Milestone - Draft a mock client brief and usage outline","provider":"Self-directed professional-practice exercise","modality":"Business milestone","cost":"No resource fee","duration":"About 4 hours","why":"Writing down expectations helps you recognize questions to settle before an actual assignment.","action":"Create a hypothetical brief, delivery list, and licence outline; research five relevant outlets or organizations; label everything as a learning exercise, not legal advice.","access_note":"Use local professional/legal guidance for real contracts, permits, tax, or pricing. This roadmap promises no paid assignment or income."}]},{"id":"stage-choose-a-measured-next-step","title":"Stage 9 - Choose a measured next step","duration":"Weeks 31-32","estimated_hours":10,"description":"Review progress, choose a low-risk professional experiment, and set the next 8-12 week project. The 32-week plan is a first pass, not a promise of employment or income.","outcomes":["Show a coherent, ethical, technically sound starter portfolio","Deliver organized files and accurate captions","Choose what skill or seasonal subject to practise next"],"resources":[{"id":"define-one-next-professional-experiment","title":"Milestone - Define one next professional experiment","provider":"Self-directed planning","modality":"Next-step milestone","cost":"No resource fee","duration":"About 2 hours","why":"A small test makes progress measurable without assuming that a portfolio guarantees work.","action":"Choose one route, such as a tailored editorial pitch, a small print series, a conservation collaboration, or a portfolio review; set a next 8-12 week goal.","access_note":"Check submission rules, local law, access permissions, and any costs before acting."}]}]};
+const LEGACY_KEY_INDEX = (()=>{
+  const map={};
+  (DATA.stages||[]).forEach((stage,stageIndex)=>{
+    const resources=Array.isArray(stage.resources)?stage.resources:[];
+    if(resources.length)resources.forEach((resource,resourceIndex)=>{
+      if(resource.id)map[`s${stageIndex}-r${resourceIndex}`]=resource.id;
+    });
+    else if(stage.id)map[`s${stageIndex}-complete`]=`stage:${stage.id}`;
+  });
+  return map;
+})();
+function migrateKey(key){return LEGACY_KEY_INDEX[key]||key;}
+function migrateDone(done){
+  const out={};
+  Object.keys(done||{}).forEach(key=>{if(done[key])out[migrateKey(key)]=true;});
+  return out;
+}
 const STORAGE_KEY = 'rll-roadmap-progress-v1:' + (DATA.storage_id || DATA.title || 'roadmap').toLowerCase().replace(/[^a-z0-9]+/g,'-');
 const RESOURCE_ITEMS = [];
+const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
+const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+const ACTIVITY_WINDOW_DAYS = 730;
 let state = loadState();
 let activeFilter = 'all';
 const reducedMotion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : {matches:false};
@@ -518,13 +844,14 @@ const TOUR_STEPS = [
   {area:'Field log',title:'Track real practice, not time on the page.',copy:'This panel shows completed learning cards, overall progress, your next checkpoint, today’s log, and your streak. Progress is stored in this browser. Only real roadmap checkboxes change it; the tour sample is separate.',target:'#progress-heading',dock:'bottom-right'},
   {area:'How to use the route',title:'Read the tags and explore before choosing a specialty.',copy:'LEARN means study, FIELD is a practical checkpoint, TIME is a planning estimate, and ACCESS opens conditions to check. Try landscape, wildlife, and close-up work before specialising. Tiny pals are optional; pause them here and replay this tour any time.',target:'#guide-heading',dock:'bottom-left'},
   {area:'Learning catalogue',title:'Search, filter, and open stages.',copy:'The catalogue contains nine stages and 25 learning cards. Search for a skill, subject, or resource; then narrow by camera and field or editing and portfolio. Try the controls now. These change the view, not your progress, and your original view returns when the tour ends.',target:'#roadmap-controls',dock:'top-right',hint:'Try the real search or filter controls now. This tour will restore your original search and filter when you finish.'},
-  {area:'Inside a stage',title:'Open a stage to see outcomes and learning cards.',copy:'Stage 1 is open as an example. A card names the resource or practice, explains why it matters, lists access conditions, and offers a next action. Real card checkboxes save progress. Use the separate tour-only sample below to rehearse safely.',target:'#resource-s0-r0',stage:1,demo:true,dock:'top-right',hint:'The checkbox below is tour-only; checking it never changes the saved roadmap, percentage, or streak.'},
+  {area:'Inside a stage',title:'Open a stage to see outcomes and learning cards.',copy:'Stage 1 is open as an example. A card names the resource or practice, explains why it matters, lists access conditions, and offers a next action. Real card checkboxes save progress. Use the separate tour-only sample below to rehearse safely.',target:'#resource-'+resourceKey(0,0),stage:1,demo:true,dock:'top-right',hint:'The checkbox below is tour-only; checking it never changes the saved roadmap, percentage, or streak.'},
   {area:'Practice plan',title:'Turn one lesson into a repeatable field loop.',copy:'Study one technique, take that question on a short permitted outing, review a small set of frames, and note one observation. Repeat at a steady pace; sample different subjects before choosing your first project direction.',target:'#practice-heading',dock:'bottom-right'},
   {area:'Field guardrails',title:'Good nature photography starts with care.',copy:'Give wildlife space; never bait or disturb nests. Check access, weather, safety, and local rules, and protect sensitive species locations when sharing work. The subject and place matter more than getting a frame.',target:'#guardrails-heading',dock:'top-right'},
   {area:'Field kit',title:'Keep progress portable and reminders realistic.',copy:'Export a JSON backup to move progress between browsers; importing replaces the current checklist and dates. Reminders need permission, a secure page, and this page left open—they stop when the app closes. Nothing is sent to a server.',target:'#tools-heading',dock:'top-right',hint:'The tour will not request notification permission, export a file, or change your reminder settings.'},
   {area:'Footer',title:'You have seen the whole route.',copy:'The footer repeats the local-safety and employment caveats. Start with the next checkpoint, work at your own pace, and replay this walkthrough from the route guide whenever you need a refresher.',target:'#footer-brand',dock:'top-right'}
 ];
 let palsEnabled = readPalsPreference();
+let palsPayloadLoaded = false;
 let tourIndex = 0;
 let tourReturnFocus = null;
 let tourSnapshot = null;
@@ -549,13 +876,30 @@ function localDateKey(date=new Date()){
 }
 function dateFromKey(key){const [y,m,d]=key.split('-').map(Number);return new Date(y,m-1,d,12,0,0,0);}
 function previousDay(key){const date=dateFromKey(key);date.setDate(date.getDate()-1);return localDateKey(date);}
+function isRealDate(key){
+  if(!DATE_RE.test(key))return false;
+  const [y,m,d]=key.split('-').map(Number);
+  const date=dateFromKey(key);
+  return date.getFullYear()===y&&date.getMonth()===m-1&&date.getDate()===d;
+}
+function normaliseDates(list){
+  const today=localDateKey();
+  const cutoff=localDateKey(new Date(Date.now()-ACTIVITY_WINDOW_DAYS*86400000));
+  const seen=new Set();
+  (Array.isArray(list)?list:[]).forEach(value=>{
+    if(typeof value!=='string'||!isRealDate(value))return;
+    if(value>today||value<cutoff)return;
+    seen.add(value);
+  });
+  return Array.from(seen).sort();
+}
 function loadState(){
   try{
     const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');
     return{
-      done:saved.done&&typeof saved.done==='object'?saved.done:{},
-      activityDates:Array.isArray(saved.activityDates)?saved.activityDates.filter(value=>/^\d{4}-\d{2}-\d{2}$/.test(value)):[],
-      reminderTime:/^\d\d:\d\d$/.test(saved.reminderTime||'')?saved.reminderTime:(DATA.reminder_time||'19:00'),
+      done:migrateDone(saved.done&&typeof saved.done==='object'?saved.done:{}),
+      activityDates:normaliseDates(saved.activityDates),
+      reminderTime:TIME_RE.test(saved.reminderTime||'')?saved.reminderTime:(DATA.reminder_time||'19:00'),
       notificationsEnabled:saved.notificationsEnabled===true,
       lastNotificationDate:saved.lastNotificationDate||''
     };
@@ -576,8 +920,15 @@ function streakLength(){
   while(dates.has(cursor)){length++;cursor=previousDay(cursor);}
   return length;
 }
-function resourceKey(stageIndex,resourceIndex){return `s${stageIndex}-r${resourceIndex}`;}
-function stageKey(stageIndex){return `s${stageIndex}-complete`;}
+function resourceKey(stageIndex,resourceIndex){
+  const stage=(DATA.stages||[])[stageIndex]||{};
+  const resource=(Array.isArray(stage.resources)?stage.resources:[])[resourceIndex]||{};
+  return resource.id||`s${stageIndex}-r${resourceIndex}`;
+}
+function stageKey(stageIndex){
+  const stage=(DATA.stages||[])[stageIndex]||{};
+  return stage.id?`stage:${stage.id}`:`s${stageIndex}-complete`;
+}
 function allTrackableItems(){
   const keys=[];
   (DATA.stages||[]).forEach((stage,stageIndex)=>{
@@ -618,7 +969,7 @@ function renderResource(stage,stageIndex,resource,resourceIndex){
   const doneLabel=el('label','done-control');
   const checkbox=el('input');checkbox.type='checkbox';checkbox.checked=completion;checkbox.dataset.key=key;checkbox.setAttribute('aria-label',`Mark ${parsed.title} complete`);
   const checkmark=el('span','checkmark');checkmark.setAttribute('aria-hidden','true');
-  doneLabel.append(checkbox,checkmark,el('span','',completion?'Done':'Done'));
+  doneLabel.append(checkbox,checkmark,el('span','','Done'));
   top.append(number,main,doneLabel);card.append(top);
   const status=el('p','status resource-status '+(url?'status-live':'status-caveat'),statusText);card.append(status);
   const tags=el('div','resource-tags');
@@ -643,7 +994,6 @@ function renderResource(stage,stageIndex,resource,resourceIndex){
     if(checkbox.checked){state.done[key]=true;markActivity();}
     else delete state.done[key];
     card.classList.toggle('is-complete',checkbox.checked);
-    doneLabel.lastElementChild.textContent=checkbox.checked?'Done':'Done';
     saveState();updateDashboard();updateStageMeters();applyFilters();
   });
   RESOURCE_ITEMS.push({key,title:parsed.title,stageIndex,resourceIndex,group,card,searchText});
@@ -672,8 +1022,8 @@ function renderRoadmap(){
     else if(!firstIncompleteOpened&&keys.some(key=>!state.done[key])){details.open=true;firstIncompleteOpened=true;}
     const summary=el('summary','stage-summary');
     const number=el('span','number',String(stageIndex+1).padStart(2,'0'));number.setAttribute('aria-hidden','true');
-    const heading=el('span','stage-heading');
-    const titleRow=el('span','stage-title',stage.title||`Stage ${stageIndex+1}`);titleRow.setAttribute('role','heading');titleRow.setAttribute('aria-level','4');
+    const heading=el('div','stage-heading');
+    const titleRow=el('h4','stage-title',stage.title||`Stage ${stageIndex+1}`);
     const meta=[stage.duration,stage.estimated_hours?`${stage.estimated_hours} practice hours`:''].filter(Boolean).join(' · ');
     heading.append(titleRow);if(meta)heading.append(el('small','',meta));
     const status=el('span','status stage-status status-archive','Not started');status.dataset.stageStatus=String(stageIndex);
@@ -834,16 +1184,42 @@ function updatePalsControl(){
   const status=document.getElementById('pals-status');
   status.textContent=palsEnabled?`${PALS_COUNT} optional decorative pals are on; the roadmap works without them.`:reducedMotion.matches?'Pals are paused; your reduced-motion preference is respected.':'Pals are paused. Your roadmap, filters, and progress still work normally.';
 }
+function palsEngineReady(){return !!(window.Piixpal&&typeof window.Piixpal.add==='function');}
+function loadPalsPayload(){
+  if(palsPayloadLoaded)return palsEngineReady();
+  palsPayloadLoaded=true;
+  const template=document.getElementById('pals-payload');
+  if(!template||!template.content)return false;
+  Array.from(template.content.querySelectorAll('script')).forEach(source=>{
+    const script=document.createElement('script');
+    script.textContent=source.textContent;
+    document.body.appendChild(script);
+  });
+  return palsEngineReady();
+}
+function showSitePals(){
+  if(!palsEnabled)return;
+  loadPalsPayload();
+  if(!palsEnabled)return;
+  if(document.getElementById('tour-layer').hidden)renderSitePals();
+  else{clearFieldnotesPals('site');renderTourPals();}
+}
+function schedulePals(){
+  const start=()=>showSitePals();
+  if(typeof window.requestIdleCallback==='function')window.requestIdleCallback(start,{timeout:2500});
+  else window.setTimeout(start,1500);
+}
 function setupPals(){
   const control=document.getElementById('pals-controls');
-  if(!window.Piixpal||typeof window.Piixpal.add!=='function'){control.hidden=true;return;}
-  control.hidden=false;
-  document.getElementById('pals-toggle').addEventListener('click',()=>{
+  if(control)control.hidden=false;
+  const toggle=document.getElementById('pals-toggle');
+  if(toggle)toggle.addEventListener('click',()=>{
     palsEnabled=!palsEnabled;savePalsPreference();
-    if(palsEnabled){if(document.getElementById('tour-layer').hidden)renderSitePals();else{clearFieldnotesPals('site');renderTourPals();}}else clearFieldnotesPals();
+    if(palsEnabled)showSitePals();else clearFieldnotesPals();
     updatePalsControl();
   });
-  renderSitePals();updatePalsControl();
+  updatePalsControl();
+  if(palsEnabled)schedulePals();
 }
 function tourSeen(){try{return localStorage.getItem(TOUR_STORAGE_KEY)==='seen';}catch(_){return false;}}
 function markTourSeen(reason){try{localStorage.setItem(TOUR_STORAGE_KEY,'seen');}catch(_){};return reason;}
@@ -923,7 +1299,7 @@ function startTour(returnFocus){
   if(!document.getElementById('tour-layer').hidden)return;
   tourReturnFocus=returnFocus||document.activeElement;tourSnapshot=captureTourView();tourIndex=0;
   clearTourHighlight();document.getElementById('tour-invite').hidden=true;
-  document.getElementById('tour-layer').hidden=false;document.body.classList.add('tour-open');clearFieldnotesPals('site');
+  document.getElementById('tour-layer').hidden=false;document.body.classList.add('tour-open');clearFieldnotesPals('site');if(palsEnabled)loadPalsPayload();
   renderTourStep();
 }
 function moveTour(direction){
@@ -955,7 +1331,7 @@ function setupOnboarding(){
 function setupReminderControls(){
 
   const time=document.getElementById('reminder-time');time.value=state.reminderTime;
-  time.addEventListener('change',()=>{state.reminderTime=time.value||'19:00';saveState();setNotice(`Reminder time saved as ${state.reminderTime}. Keep this page open for alerts.`);});
+  time.addEventListener('change',()=>{state.reminderTime=TIME_RE.test(time.value||'')?time.value:(DATA.reminder_time||'19:00');time.value=state.reminderTime;saveState();setNotice(`Reminder time saved as ${state.reminderTime}. Keep this page open for alerts.`);});
   document.getElementById('enable-notifications').addEventListener('click',async()=>{
     if(!('Notification'in window)){setNotice('This browser does not support system notifications. Your progress log is still available.');return;}
     if(!window.isSecureContext){setNotice('Browser notifications need a secure HTTPS page or localhost. Your progress log is still available.');return;}
@@ -966,7 +1342,7 @@ function setupReminderControls(){
     }catch(_){setNotice('Could not request permission. Your progress log is still available.');}
   });
   document.getElementById('export-progress').addEventListener('click',()=>{
-    const blob=new Blob([JSON.stringify({version:1,title:DATA.title,done:state.done,activityDates:state.activityDates,reminderTime:state.reminderTime},null,2)],{type:'application/json'});
+    const blob=new Blob([JSON.stringify({version:2,title:DATA.title,done:state.done,activityDates:state.activityDates,reminderTime:state.reminderTime},null,2)],{type:'application/json'});
     const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download='fieldnotes-progress.json';link.click();window.setTimeout(()=>URL.revokeObjectURL(url),1000);
     setNotice('Progress exported to fieldnotes-progress.json.','data-status');
   });
@@ -976,9 +1352,15 @@ function setupReminderControls(){
       const incoming=JSON.parse(await file.text());
       if(!incoming||!incoming.done||typeof incoming.done!=='object'||!Array.isArray(incoming.activityDates))throw new Error('invalid');
       const valid=new Set(allTrackableItems());
-      state.done=Object.fromEntries(Object.entries(incoming.done).filter(([key,value])=>valid.has(key)&&!!value));
-      state.activityDates=incoming.activityDates.filter(value=>/^\d{4}-\d{2}-\d{2}$/.test(value));
-      if(/^\d\d:\d\d$/.test(incoming.reminderTime||''))state.reminderTime=incoming.reminderTime;
+      const restored={};
+      Object.entries(incoming.done).forEach(([key,value])=>{
+        if(!value)return;
+        const next=migrateKey(key);
+        if(valid.has(next))restored[next]=true;
+      });
+      state.done=restored;
+      state.activityDates=normaliseDates(incoming.activityDates);
+      if(TIME_RE.test(incoming.reminderTime||''))state.reminderTime=incoming.reminderTime;
       saveState();renderRoadmap();time.value=state.reminderTime;setNotice('Progress imported into this browser.','data-status');
     }catch(_){setNotice('That file is not a valid Fieldnotes progress export.','data-status');}
     event.target.value='';
@@ -1002,8 +1384,18 @@ function init(){
   renderRoadmap();setupSearchAndFilters();setupPals();setupOnboarding();setupReminderControls();
   if(state.notificationsEnabled&&'Notification'in window&&Notification.permission==='granted')setNotice('Browser reminders are enabled while this page stays open.');
   checkReminder();window.setInterval(checkReminder,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkReminder();});
+  let printOpenStages=null;
+  window.addEventListener('beforeprint',()=>{
+    printOpenStages=Array.from(document.querySelectorAll('.stage[open]')).map(node=>node.id);
+    document.querySelectorAll('.stage').forEach(node=>{node.open=true;});
+  });
+  window.addEventListener('afterprint',()=>{
+    if(!printOpenStages)return;
+    document.querySelectorAll('.stage').forEach(node=>{node.open=printOpenStages.includes(node.id);});
+    printOpenStages=null;
+  });
 }
 init();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4f8be37084a63df',t:'MTc5Mjg0MjQwNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
