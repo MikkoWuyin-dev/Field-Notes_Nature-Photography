@@ -102,7 +102,10 @@ function boot({ storage, layout } = {}) {
               width: layout.viewportWidth - 24, x: 12, y: top };
           }
           if (this.id === layout.targetId) {
-            const { top, height } = layout.targetRect;
+            // The element lives at a fixed spot in the document; where it appears on
+            // screen is that position minus however far the page has been scrolled.
+            const height = layout.targetHeight;
+            const top = layout.targetAbsoluteTop - scroll.y;
             return { top, bottom: top + height, height, left: 12, right: layout.viewportWidth - 12,
               width: layout.viewportWidth - 24, x: 12, y: top };
           }
@@ -244,7 +247,7 @@ console.log('\ntour placement');
   const { dom, wait } = boot({
     layout: {
       viewportWidth: 390, viewportHeight: 844, documentHeight: 6000, panelHeight: 338, scrollY: 2000,
-      targetId: 'hero-title', targetRect: { top: 422, height: 120 },
+      targetId: 'hero-title', targetAbsoluteTop: 2422, targetHeight: 120,
     },
   });
   await wait(400);
@@ -255,10 +258,11 @@ console.log('\ntour placement');
     panel.className);
   eq('the section is scrolled clear of the panel', w.__scrolls.length, 1);
   const moved = w.__scrolls[0].top;
-  eq('it is scrolled up by the measured amount', moved, 1934);
+  eq('the page is scrolled down to bring the section up the screen', moved, 2066);
   const bandBottom = 844 - 12 - 338 - 18;
-  check('the section now ends above the panel gap', 422 + 120 + (moved - 2000) <= bandBottom + 0.5,
-    `${422 + 120 + (moved - 2000)} vs ${bandBottom}`);
+  const landedTop = 2422 - w.scrollY;
+  check('the section now sits above the panel gap', landedTop >= 10 && landedTop + 120 <= bandBottom + 0.5,
+    `top ${landedTop}, bottom ${landedTop + 120}, band bottom ${bandBottom}`);
   eq('the panel keeps its header, body and controls', d.querySelectorAll('.tour-panel .tour-body').length, 1);
   eq('the buttons live outside the scrolling area', d.querySelectorAll('.tour-body #tour-next').length, 0);
   eq('the next button is still inside the panel', d.querySelectorAll('.tour-panel #tour-next').length, 1);
@@ -271,7 +275,7 @@ console.log('\ntour placement');
   const { dom, wait } = boot({
     layout: {
       viewportWidth: 390, viewportHeight: 844, documentHeight: 6000, panelHeight: 338, scrollY: 5000,
-      targetId: 'hero-title', targetRect: { top: 700, height: 120 },
+      targetId: 'hero-title', targetAbsoluteTop: 5700, targetHeight: 120,
     },
   });
   await wait(400);

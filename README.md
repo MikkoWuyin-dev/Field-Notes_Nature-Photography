@@ -202,6 +202,13 @@ Three rules now keep them apart:
    exactly the difference. The maths lives in the marked
    `@tour-placement` block and is deliberately free of DOM calls so it can be
    tested headlessly.
+
+   The sign here is easy to get backwards, so it is worth stating plainly:
+   `rect.top = absoluteTop - scrollY`. Moving an element *up the screen* therefore
+   means scrolling *down* the page, and the correction to add to `scrollY` is
+   `targetTop - desiredTop`. The checks do not trust the returned delta — they
+   apply it to a scroll position and recompute where the element would land, which
+   is what caught this being inverted in the first place.
 3. **The dock side is chosen per step.** On phones the panel goes to whichever
    half of the screen the section is *not* in, with the opposite side as a fallback
    for sections pinned to a page end. At ≥700px the authored corner is kept and

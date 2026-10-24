@@ -1323,11 +1323,14 @@ function tourPlacement(o){
   } else {
     desiredTop = bandTop;
   }
-  const wanted = desiredTop - targetTop;
+  /* rect.top = absoluteTop - scrollY, so moving the element *up the screen* means
+     scrolling *down*: the correction to add to scrollY is the distance the element
+     has to travel upwards, i.e. targetTop - desiredTop. */
+  const wanted = targetTop - desiredTop;
   const minDelta = -Math.min(scrollY, maxScroll);
   const maxDelta = Math.max(0, maxScroll - scrollY);
   const delta = Math.min(Math.max(wanted, minDelta), maxDelta);
-  const projectedTop = targetTop + delta;
+  const projectedTop = targetTop - delta;
   const projectedBottom = projectedTop + targetHeight;
   const contained = projectedTop >= bandTop - 0.5 && projectedBottom <= bandBottom + 0.5;
   return {
@@ -1402,6 +1405,12 @@ function placeTourTarget(target, step){
   dockTourPanel(chosen.side, step);
   if (chosen.result.delta !== 0) {
     window.scrollTo(0, window.scrollY + chosen.result.delta);
+    /* The browser may clamp the scroll or reflow on the way. Measure once more
+       and take up any remainder, so the section lands where it was aimed. */
+    const after = measure(chosen.side);
+    if (Math.abs(after.result.delta) > 1) {
+      window.scrollTo(0, window.scrollY + after.result.delta);
+    }
   }
   root.style.scrollBehavior = previousBehaviour;
 }
