@@ -180,6 +180,40 @@ If you change the hero padding, headline size or chip styling, re-run
 `npm run test:responsive` — it asserts the layer order, the mask, the phone size
 cap and the chip opacity.
 
+## The guided tour
+
+The tour panel is a `position:fixed` card that docks to an edge of the screen, and
+the section it is explaining is scrolled into the space that is left. Those two
+have to be measured together, because a panel anchored to an edge will happily sit
+on top of whatever sits in the middle of the screen.
+
+That was the original bug: `scrollIntoView({block:'center'})` parked the section at
+y≈422 on a 390×844 phone while a 48%-tall panel started at y≈423, so the panel
+covered almost the whole section it was describing.
+
+Three rules now keep them apart:
+
+1. **The panel is a column with one scrolling zone.** `.tour-head` and
+   `.tour-controls` are `flex:none`; only `.tour-body` scrolls. Next/Back can never
+   scroll out of reach, and the panel is capped at 40% of the screen
+   (`min(40dvh, 360px)`) instead of 48%.
+2. **Placement is measured, not guessed.** `placeTourTarget()` reads the real
+   rectangles of the panel and the section, works out the free band, and scrolls by
+   exactly the difference. The maths lives in the marked
+   `@tour-placement` block and is deliberately free of DOM calls so it can be
+   tested headlessly.
+3. **The dock side is chosen per step.** On phones the panel goes to whichever
+   half of the screen the section is *not* in, with the opposite side as a fallback
+   for sections pinned to a page end. At ≥700px the authored corner is kept and
+   only the scroll correction runs.
+
+Placement re-runs on step change, window resize, orientation change and
+`visualViewport` resize, so a phone's URL bar sliding away cannot desync it.
+
+If you change the panel's height, padding or insets, run
+`npm run test:responsive` — it re-derives the band from the CSS and asserts the
+panel never covers the section.
+
 ## Accessibility and privacy notes
 
 - Zero third-party requests: no analytics, cookies, webfonts, CDN or images. The

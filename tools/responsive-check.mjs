@@ -354,5 +354,114 @@ console.log('\ndesktop is unchanged');
   eq('.filters returns to search + buttons in one row', at('.filters', 'grid-template-columns'), 'minmax(0,1fr) auto');
 }
 
+console.log('\nthe guided tour never covers the section it is explaining');
+{
+  /* The placement maths ships inside index.html (the app is one file), so pull
+     the marked block out and exercise it directly. No browser needed. */
+  const marked = html.match(/\/\* @tour-placement:start[\s\S]*?@tour-placement:end \*\//);
+  check('the tour placement block is still present in index.html', marked !== null);
+  const tourPlacement = new Function(`${marked[0]}; return tourPlacement;`)();
+
+  const panelHeight = (height) => Math.min(height * 0.4, 360);
+  const layout = (options) => {
+    const { viewportHeight, scrollY = 1200, maxScroll = 6000 } = options;
+    const height = options.panelHeight ?? panelHeight(viewportHeight);
+    const panelTop = options.side === 'top' ? 12 : viewportHeight - 12 - height;
+    return tourPlacement({
+      side: options.side, targetTop: options.targetTop, targetHeight: options.targetHeight,
+      panelTop, panelHeight: height, viewportHeight, scrollY, maxScroll,
+      edge: options.edge, gap: options.gap,
+    });
+  };
+
+  /* A phone, panel docked at the bottom, section scrolled to the dead centre of
+     the screen. This is the reported bug: the centre of a 390x844 screen is
+     y=422, and the panel starts at y=494, so half the section used to sit under it. */
+  const phone = { viewportHeight: 844, side: 'bottom' };
+  const centred = layout({ ...phone, targetTop: 422, targetHeight: 120 });
+  check('a centred section is pulled clear of a bottom panel', centred.contained, JSON.stringify(centred));
+  check('it is pulled upwards, not downwards', centred.delta < 0, `${centred.delta}px`);
+  check('the section ends above the panel gap',
+    centred.bandBottom <= 844 - 12 - panelHeight(844) - 18 + 0.5, `${centred.bandBottom}`);
+
+  /* Same screen, panel docked at the top: the band moves below it. */
+  const topDocked = layout({ viewportHeight: 844, side: 'top', targetTop: 190, targetHeight: 120 });
+  check('a section above a top panel is pulled down below it', topDocked.contained && topDocked.delta > 0,
+    JSON.stringify(topDocked));
+  check('a top-docked band starts below the panel plus the gap',
+    Math.abs(topDocked.bandTop - (12 + panelHeight(844) + 18)) < 0.5, `${topDocked.bandTop}`);
+
+  /* Also the 320x568 case, the smallest phone we target. */
+  const small = layout({ viewportHeight: 568, side: 'bottom', targetTop: 400, targetHeight: 96 });
+  check('a 320x568 phone also keeps the section clear', small.contained, JSON.stringify(small));
+
+  /* A section taller than the free band cannot fit. It must still show its top,
+     not hang off the bottom of the screen. */
+  const tall = layout({ viewportHeight: 844, side: 'bottom', targetTop: 300, targetHeight: 900 });
+  check('an oversized section starts at the top of the band', Math.abs(tall.desiredTop - tall.bandTop) < 0.5,
+    `${tall.desiredTop} vs ${tall.bandTop}`);
+
+  /* When a page is too short to scroll at all, only the dock side can save the
+     section. The caller must see the failure and try the other side. */
+  const shortPage = { viewportHeight: 844, targetTop: 600, targetHeight: 60, scrollY: 0, maxScroll: 0 };
+  const stuck = layout({ ...shortPage, side: 'bottom' });
+  check('a bottom panel on a page with no scroll room reports the section as covered', !stuck.contained,
+    JSON.stringify(stuck));
+  const flipped = layout({ ...shortPage, side: 'top' });
+  check('flipping to the top clears the same section', flipped.contained, JSON.stringify(flipped));
+
+  /* Scroll limits are respected in both directions. */
+  const noRoom = layout({ viewportHeight: 844, side: 'bottom', targetTop: 800, targetHeight: 60, scrollY: 0, maxScroll: 6000 });
+  eq('never scrolls above the top of the document', noRoom.delta, 0);
+  const roomDown = layout({ viewportHeight: 844, side: 'top', targetTop: 100, targetHeight: 60, scrollY: 0, maxScroll: 6000 });
+  check('a section above a top panel is scrolled down, not up', roomDown.delta > 0, `${roomDown.delta}`);
+  const noRoomDown = layout({ viewportHeight: 844, side: 'bottom', targetTop: -400, targetHeight: 60, scrollY: 6000, maxScroll: 6000 });
+  eq('never scrolls past the end of the document', noRoomDown.delta, 0);
+
+  /* An already-visible section must not be moved at all. */
+  const alreadyClear = layout({ viewportHeight: 844, side: 'bottom', targetTop: 120, targetHeight: 100 });
+  eq('a section already in the clear is left alone', alreadyClear.delta, 0);
+
+  /* The highlight outline needs room: edge + gap customisation still honoured. */
+  const custom = layout({ viewportHeight: 844, side: 'bottom', targetTop: 422, targetHeight: 120, edge: 4, gap: 30 });
+  check('custom edge and gap are respected', Math.abs(custom.bandBottom - (844 - 12 - panelHeight(844) - 30)) < 0.5,
+    `${custom.bandBottom}`);
+}
+{
+  /* Panel budget on phones and the fact that the buttons cannot scroll away. */
+  for (const [viewport, height] of [[320, 568], [390, 844], [430, 932]]) {
+    const panel = resolve('.tour-panel', viewport);
+    const cap = /min\(\s*([\d.]+)dvh\s*,\s*(\d+)px\s*\)/.exec(panel['max-height'] || '');
+    check(`the panel has a dvh cap at ${viewport}px`, cap !== null, String(panel['max-height']));
+    const share = Math.min(Number(cap[1]) / 100 * height, Number(cap[2])) / height;
+    check(`the panel takes at most 42% of a ${height}px screen (${Math.round(share * 100)}%)`, share <= 0.42,
+      `${share}`);
+    eq(`the panel cannot scroll as one block at ${viewport}px`, panel.overflow, 'hidden');
+    eq(`the panel is a column at ${viewport}px`, panel['flex-direction'], 'column');
+  }
+  eq('the scrolling middle can shrink', resolve('.tour-body', 390)['min-height'], '0');
+  eq('the scrolling middle is the only scrolling part', resolve('.tour-body', 390).overflow, 'auto');
+  eq('the button row is fixed in place', resolve('.tour-controls', 390).flex, 'none');
+  eq('the header row is fixed in place', resolve('.tour-head', 390).flex, 'none');
+  for (const side of ['left', 'right']) {
+    eq(`the panel inset matches on the ${side}`, resolve(`.tour-panel-bottom-${side}`, 390)[side], '12px');
+  }
+  eq('the panel inset matches at the bottom', resolve('.tour-panel-bottom-right', 390).bottom, '12px');
+  eq('the desktop frame is restored at 1200px', resolve('.tour-panel', 1200)['border-width'], '4px');
+}
+{
+  /* The markup must keep the three zones in order, and the old blind centring
+     must be gone for good. */
+  const panelStart = html.indexOf('class="tour-panel');
+  const panel = html.slice(panelStart, html.indexOf('</section>', panelStart));
+  const order = ['tour-head', 'tour-body', 'tour-controls'].map((name) => panel.indexOf(`class="${name}"`));
+  check('the panel keeps header, body, controls in that order', order.every((v, i) => v > -1 && (i === 0 || v > order[i - 1])),
+    JSON.stringify(order));
+  check('the panel no longer scrolls the section to the centre of the screen',
+    !/scrollIntoView\(\{[^}]*block:'center'[^}]*\}\);\s*target\.focus/.test(html));
+  check('the tour calls the measured placement instead', html.includes('placeTourTarget(target,step)'));
+  check('placement re-runs when the visible area changes', html.includes("window.visualViewport.addEventListener('resize',reflowTour)"));
+}
+
 console.log(`\n${failures === 0 ? 'all checks passed' : `${failures} check(s) failed`}\n`);
 process.exit(failures === 0 ? 0 : 1);
