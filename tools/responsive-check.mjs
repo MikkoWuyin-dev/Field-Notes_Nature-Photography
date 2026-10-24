@@ -85,6 +85,21 @@ function contextMatches(context, width) {
 }
 
 /** Cascade a single selector at a width; later rules win, media rules sit inline. */
+/**
+ * Resolve `var(--custom)` against :root, so checks can compare real values even
+ * though the spacing is now expressed through one token.
+ */
+function resolvedValue(selector, property, width = 0) {
+  let value = resolve(selector, width)[property];
+  if (value === undefined) return undefined;
+  const props = resolve(':root', width);
+  for (let pass = 0; pass < 5 && value.includes('var('); pass += 1) {
+    value = value.replace(/var\(\s*(--[\w-]+)\s*(?:,([^)]*))?\)/g, (match, name, fallback) =>
+      (props[name] !== undefined ? props[name] : (fallback !== undefined ? fallback.trim() : match)));
+  }
+  return value;
+}
+
 function resolve(selector, width = 0) {
   const out = {};
   for (const rule of rules) {
@@ -505,6 +520,67 @@ console.log('\nthe reminder button and time field sit level');
      keep centring rather than inherit the new alignment. */
   eq('the progress file row still centres its controls',
     resolve('.progress-data-controls', 390)['align-items'], 'center');
+}
+
+console.log('\nevery vertical gap between sections is the same');
+{
+  /* The page used to run 14px, 12px, 12px, then 52px for everything else at phone
+     width: the hero's paper gap was main's fluid top padding, and the stacked cards
+     used a tight grid gap. All of them now read from one token. */
+  eq('the rhythm token is the 52px the sections already used', resolve(':root', 390)['--stack-gap'], '52px');
+
+  /* The four gaps the eye measures, top to bottom of the page. */
+  const gapsAt = (width) => ({
+    'after the hero': resolvedValue('main', 'padding-top', width),
+    'Field log to "Read the learning cards"': resolvedValue('.brief', 'row-gap', width),
+    'between the Field kit cards': resolvedValue('.field-kit-grid', 'row-gap', width),
+    'between sections': resolvedValue('.section-block', 'margin-top', width),
+  });
+
+  for (const width of [320, 390, 430, 620, 768, 900, 1200]) {
+    const gaps = gapsAt(width);
+    const unique = [...new Set(Object.values(gaps))];
+    check(`every gap is identical at ${width}px`, unique.length === 1, JSON.stringify(gaps));
+    eq(`the gap is 52px at ${width}px`, unique[0], '52px');
+  }
+
+  /* Regression guards for the two specific tight spots. */
+  const phone = gapsAt(390);
+  eq('the paper gap after the hero is no longer ~14px', phone['after the hero'], '52px');
+  eq('the Field log pair is no longer ~12px apart',
+    phone['Field log to "Read the learning cards"'], '52px');
+  eq('the Field kit pair is no longer ~12px apart', phone['between the Field kit cards'], '52px');
+
+  /* The invitation card that appears once, for new visitors. The margin is a
+     shorthand, so read the bottom value out of it. */
+  for (const width of [320, 390, 1200]) {
+    const margin = resolvedValue('.tour-invite', 'margin', width) || '';
+    eq(`the tour invite is part of the rhythm at ${width}px`,
+      margin.trim().split(/\s+/).pop(), '52px');
+  }
+
+  /* Column gaps must NOT have been swept up with the row gaps: at >=900px the two
+     brief panels sit side by side, where a 52px gap would look wrong. */
+  eq('the side-by-side column gap is untouched at 900px',
+    resolvedValue('.brief', 'column-gap', 900) ?? 'clamp(12px,3vw,18px)', 'clamp(12px,3vw,18px)');
+  eq('the Field kit column gap is untouched at 900px',
+    resolvedValue('.field-kit-grid', 'column-gap', 900) ?? 'clamp(12px,3vw,18px)', 'clamp(12px,3vw,18px)');
+
+  /* One token, so the rhythm cannot drift one rule at a time. Each gap must be
+     written as var(--stack-gap) rather than a bare 52px. main is the exception in
+     form only: its top padding comes from the token while the other three sides
+     keep their fluid clamp(), which legitimately ends at 52px. */
+  eq('main takes its top padding from the token',
+    resolve('main', 390)['padding-top'], 'var(--stack-gap)');
+  for (const [selector, property] of [['.brief', 'row-gap'], ['.section-block', 'margin-top'],
+    ['.field-kit-grid', 'row-gap']]) {
+    eq(`${selector} takes its ${property} from the token`,
+      resolve(selector, 390)[property], 'var(--stack-gap)');
+  }
+  check('the tour invite takes its bottom margin from the token',
+    String(resolve('.tour-invite', 390).margin || '').includes('var(--stack-gap)'),
+    String(resolve('.tour-invite', 390).margin));
+  eq('only one place defines the number', (css.match(/--stack-gap\s*:/g) || []).length, 1);
 }
 
 console.log(`\n${failures === 0 ? 'all checks passed' : `${failures} check(s) failed`}\n`);
