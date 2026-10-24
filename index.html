@@ -1,0 +1,1009 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#11142B">
+<meta name="description" content="A free, location-neutral nature photography roadmap with nine stages, free learning resources, field practice, and browser-local progress tracking.">
+<title>Fieldnotes — Nature Photography Roadmap</title>
+<style>
+:root {
+  --ink:#11142B;
+  --paper:#FFF8E7;
+  --cream:#FFFDF6;
+  --line:#1E2553;
+  --muted:#565C73;
+  --shade:#D8D9EA;
+  --blue:#3768FF;
+  --cyan:#65E8FF;
+  --pink:#FF4E91;
+  --yellow:#FFE168;
+  --green:#5EE780;
+  --orange:#FF9958;
+  --status-live-bg:#E9FFEF;
+  --status-live-ink:#164D2D;
+  --status-archive-bg:#FFE9F2;
+  --status-archive-ink:#822444;
+  --status-caveat-bg:#FFF1BD;
+  --status-caveat-ink:#6E4A00;
+  --tag-default:#65E8FF;
+  --tag-playful:#FFC3DE;
+  --tag-pixel:#FFE168;
+  --tag-action:#5EE780;
+  --tag-mobile:#DCD0FF;
+  --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --font-prose:system-ui,sans-serif;
+  --piix-z:1205;
+}
+*{box-sizing:border-box}
+html{background:var(--ink);scroll-behavior:smooth;scroll-padding-top:20px}
+body{margin:0;background:var(--ink);color:var(--ink);font:16px/1.55 var(--font-mono)}
+button,input{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration-thickness:2px;text-underline-offset:3px}
+a:hover{color:var(--blue)}
+[hidden]{display:none!important}
+:where(a,button,input,summary):focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.shell{max-width:1320px;margin:0 auto;padding:22px}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip-link{position:fixed;z-index:1000;top:10px;left:-999px;padding:10px 14px;border:2px solid var(--line);background:var(--yellow);color:var(--ink);font-weight:900}
+.skip-link:focus{left:10px}
+.hero{position:relative;isolation:isolate;overflow:hidden;padding:clamp(28px,7vw,86px) clamp(22px,6vw,78px) 40px;border:4px solid var(--cyan);background:var(--blue);color:#fff;box-shadow:10px 10px 0 var(--pink)}
+.hero::after{content:"";position:absolute;z-index:0;right:-25px;bottom:-25px;width:190px;height:190px;opacity:.4;background:linear-gradient(90deg,transparent 45%,var(--yellow) 45% 55%,transparent 55%),linear-gradient(transparent 45%,var(--yellow) 45% 55%,transparent 55%);background-size:32px 32px;transform:rotate(12deg);pointer-events:none}
+.hero-inner{position:relative;z-index:1;max-width:1040px}
+.hero-eyebrow{display:inline-block;margin:0 0 16px;padding:5px 8px;background:var(--yellow);color:var(--ink);font-size:.77rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.hero h1{max-width:18ch;margin:0 0 18px;font-size:clamp(2.1rem,5.4vw,4.75rem);line-height:.98;letter-spacing:-.065em}
+.hero-lead{max-width:66ch;margin:0;color:rgba(255,255,255,.94);font:clamp(1rem,2vw,1.27rem)/1.55 var(--font-prose)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:26px}
+.hero-meta span{padding:6px 9px;border:2px solid rgba(255,255,255,.76);background:rgba(17,20,43,.26);font-size:.76rem}
+main{padding:clamp(22px,4vw,58px);border-right:4px solid var(--cyan);border-left:4px solid var(--cyan);background:var(--paper)}
+.eyebrow,.micro-label{margin:0;color:var(--muted);font-size:.77rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.brief{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-bottom:46px}
+.panel{min-width:0;padding:22px;border:3px solid var(--line);background:var(--cream);box-shadow:6px 6px 0 var(--line)}
+.panel h2,.panel h3{margin:0 0 10px;font-size:1rem;letter-spacing:.04em;text-transform:uppercase}
+.panel p:last-child{margin-bottom:0}
+.panel-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:10px}
+.panel-heading .eyebrow{color:var(--blue)}
+.local-label{color:var(--muted);font-size:.68rem;font-weight:800;letter-spacing:.05em;text-align:right}
+.progress-panel h2{max-width:34ch;margin-bottom:14px;font-size:1.22rem;line-height:1.25;letter-spacing:-.025em;text-transform:none}
+.progress-number{display:flex;align-items:baseline;gap:14px;margin:12px 0}
+.progress-number strong{font-size:2.75rem;line-height:1;letter-spacing:-.06em}
+.progress-number span{color:var(--muted);font:700 .78rem/1.4 var(--font-mono)}
+.progress-track{height:13px;overflow:hidden;border:2px solid var(--line);background:#fff}
+.progress-fill{display:block;width:0;height:100%;background:var(--blue);transition:width .2s ease}
+.progress-caption{margin:12px 0 16px;color:var(--muted);font:.9rem/1.5 var(--font-prose)}
+.button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:8px 12px;border:2px solid var(--line);background:var(--cream);color:var(--ink);font:700 .76rem/1.3 var(--font-mono);text-align:center;text-decoration:none;transition:transform .14s ease,box-shadow .14s ease,background-color .14s ease}
+.button:hover,.button:focus-visible{transform:translate(-1px,-1px);background:var(--yellow);box-shadow:3px 3px 0 var(--line);color:var(--ink)}
+.button-primary{background:var(--yellow)}
+.button-secondary{background:var(--cream)}
+.button-quiet{border-color:transparent;background:transparent;color:var(--muted)}
+.streak-row{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;margin-top:18px;padding-top:14px;border-top:2px dashed var(--line)}
+.streak-number{display:flex;align-items:baseline;gap:7px}
+.streak-number strong{color:var(--blue);font-size:1.55rem;line-height:1}
+.streak-number span,.today-status{color:var(--muted);font-size:.76rem;font-weight:700}
+.today-status{display:inline-flex;align-items:center;gap:7px}
+.today-status::before{width:10px;height:10px;border:1px solid var(--line);background:#fff;content:""}
+.today-status.is-logged::before{background:var(--green)}
+.guide-panel h2{margin-bottom:14px}
+.tag-key{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px;margin:0;padding:0;list-style:none;font:.9rem/1.45 var(--font-prose)}
+.tag-key li{display:flex;align-items:flex-start;gap:7px;min-width:0}
+.tag{display:inline-flex;align-items:center;justify-content:center;flex:none;min-width:35px;padding:2px 5px;border:2px solid var(--line);background:var(--tag-default);color:var(--ink);font:900 .73rem/1.25 var(--font-mono);text-align:center}
+.tag.p{background:var(--tag-playful)}
+.tag.px{background:var(--tag-pixel)}
+.tag.i{background:var(--tag-action)}
+.tag.m{background:var(--tag-mobile)}
+.panel-note{margin:16px 0 0;padding-top:12px;border-top:2px dashed var(--line);color:var(--muted);font:.88rem/1.5 var(--font-prose)}
+.pals-controls{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;margin-top:12px}
+.pals-controls button{min-height:38px}
+.pals-status{margin:0;color:var(--muted);font:.72rem/1.4 var(--font-prose)}
+.tour-invite{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:18px;margin:0 0 28px;padding:18px 20px;border:3px solid var(--line);background:#DFE7FF;box-shadow:6px 6px 0 var(--line)}
+.tour-invite .eyebrow{margin-bottom:6px;color:var(--blue)}
+.tour-invite h2{margin:0 0 6px;font-size:1.08rem;line-height:1.2;letter-spacing:-.025em}
+.tour-invite p:last-child{margin:0;color:var(--muted);font:.88rem/1.45 var(--font-prose)}
+.tour-invite-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px}
+.tour-layer{position:fixed;z-index:1200;inset:0;pointer-events:none}
+.tour-panel{position:absolute;z-index:1202;width:min(420px,calc(100vw - 32px));max-height:min(56dvh,520px);overflow:auto;padding:22px;border:4px solid var(--cyan);background:var(--paper);color:var(--ink);box-shadow:8px 8px 0 var(--pink);pointer-events:auto}
+.tour-panel-top-left{top:16px;left:16px}
+.tour-panel-top-right{top:16px;right:16px}
+.tour-panel-bottom-left{bottom:16px;left:16px}
+.tour-panel-bottom-right{right:16px;bottom:16px}
+.tour-panel:focus-visible{outline:4px solid var(--blue);outline-offset:4px}
+.tour-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px}
+.tour-eyebrow{margin:0;color:var(--blue);font-size:.75rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+.tour-close{display:grid;place-items:center;width:42px;height:42px;border:2px solid var(--line);background:var(--cream);color:var(--ink);font:900 1.2rem/1 var(--font-mono)}
+.tour-step-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px;color:var(--muted);font-size:.72rem;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
+.tour-progress-track{height:9px;margin-bottom:14px;border:2px solid var(--line);background:#fff}
+.tour-progress-fill{display:block;width:11.11%;height:100%;background:var(--blue);transition:width .18s ease}
+.tour-title{max-width:24ch;margin:0 0 9px;font-size:clamp(1.25rem,2.7vw,1.7rem);line-height:1.05;letter-spacing:-.05em}
+.tour-copy{max-width:62ch;margin:0;color:var(--ink);font:.9rem/1.5 var(--font-prose)}
+.tour-hint{margin:10px 0 0;padding-left:10px;border-left:3px solid var(--pink);color:var(--muted);font:.75rem/1.4 var(--font-prose)}
+.tour-demo{margin-top:14px;padding:13px;border:3px solid var(--line);background:var(--cream)}
+.tour-demo-label{display:flex;align-items:flex-start;gap:10px;font:.86rem/1.4 var(--font-prose);cursor:pointer}
+.tour-demo-label input{width:20px;height:20px;flex:none;margin:1px 0 0;accent-color:var(--blue)}
+.tour-demo-status{margin:9px 0 0;color:var(--muted);font:.72rem/1.4 var(--font-prose)}
+.tour-demo.is-complete{background:var(--status-live-bg)}
+.button:disabled{opacity:.55;cursor:not-allowed}
+.tour-controls{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding-top:12px;border-top:3px solid var(--line)}
+.tour-control-end{display:flex;flex-wrap:wrap;gap:8px}
+.tour-skip{min-height:44px;padding:8px 10px;border:0;background:transparent;color:var(--muted);font:700 .75rem/1.3 var(--font-mono);text-decoration:underline;text-underline-offset:3px}
+.tour-skip:hover{color:var(--blue)}
+.tour-announcement{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.tour-highlight{outline:4px solid var(--pink);outline-offset:6px;box-shadow:0 0 0 2px var(--cyan);border-radius:2px}
+.section-block{margin-top:52px}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px;margin:0 0 22px;padding-bottom:16px;border-bottom:4px solid var(--ink)}
+.section-head h2{margin:0;font-size:clamp(1.55rem,3vw,2.45rem);line-height:1;letter-spacing:-.055em}
+.section-head .eyebrow{margin-bottom:9px;color:var(--blue)}
+.section-head-copy{max-width:54ch;margin:0;color:var(--muted);font:.9rem/1.5 var(--font-prose)}
+.count{margin:0;color:var(--muted);font-size:.8rem;font-weight:700}
+.filters{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:14px;margin-bottom:12px}
+.search-wrap{position:relative;min-width:0}
+.search{display:block;width:100%;min-height:50px;padding:12px 52px 12px 14px;border:3px solid var(--line);background:#fff;color:var(--ink);font:inherit;box-shadow:4px 4px 0 var(--shade);appearance:none}
+.search::placeholder{color:var(--muted);opacity:1}
+.search-clear{position:absolute;top:50%;right:8px;display:grid;place-items:center;width:34px;height:34px;transform:translateY(-50%);border:2px solid var(--line);background:var(--cream);color:var(--ink);font:900 1rem/1 var(--font-mono)}
+.filter-set{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:7px}
+.filter-button{min-height:38px;padding:7px 10px;border:2px solid var(--line);background:var(--cream);color:var(--ink);font:700 .76rem/1.3 var(--font-mono)}
+.filter-button:hover,.filter-button[aria-pressed="true"]{transform:translate(-1px,-1px);background:var(--yellow);box-shadow:3px 3px 0 var(--line)}
+.filter-button:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.result-row{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:28px;margin-bottom:4px}
+.result-row p{margin:0;color:var(--muted);font-size:.75rem}
+.result-row [role="status"]{font-weight:800;text-align:right}
+.category-group{margin-top:30px}
+.category{display:flex;align-items:center;gap:12px;margin:41px 0 17px}
+.category h3{flex:none;margin:0;font-size:1.35rem;line-height:1;letter-spacing:-.035em}
+.category::after{height:3px;flex:1;background:var(--line);content:""}
+.stage-stack{display:grid;gap:18px}
+.stage{min-width:0;overflow:visible;border:3px solid var(--line);background:var(--paper);scroll-margin-top:18px}
+.stage-summary{display:grid;grid-template-columns:29px minmax(0,1fr) auto minmax(92px,130px) 24px;align-items:center;gap:12px;min-height:76px;padding:14px 16px;background:var(--cream);cursor:pointer;list-style:none}
+.stage-summary::-webkit-details-marker{display:none}
+.number{display:inline-grid;place-items:center;width:29px;height:29px;border:2px solid var(--line);background:var(--pink);color:#fff;font-size:.72rem;font-weight:900;line-height:1}
+.stage-heading{min-width:0}
+.stage-title{display:block;font-size:1rem;font-weight:700;line-height:1.2;letter-spacing:-.025em}
+.stage-heading small{display:block;margin-top:5px;color:var(--muted);font:.72rem/1.35 var(--font-prose)}
+.status{display:inline-block;max-width:145px;margin:0;padding:4px 7px;border:1px solid var(--line);font-size:.67rem;font-weight:800;line-height:1.25;text-transform:uppercase}
+.status-live{background:var(--status-live-bg);color:var(--status-live-ink)}
+.status-archive{background:var(--status-archive-bg);color:var(--status-archive-ink)}
+.status-caveat{background:var(--status-caveat-bg);color:var(--status-caveat-ink)}
+.status-progress{background:#DFE7FF;color:var(--ink)}
+.stage-meter{min-width:0;text-align:right}
+.stage-meter-label{display:block;color:var(--muted);font:700 .67rem/1.25 var(--font-mono)}
+.stage-meter-track{display:block;height:5px;margin-top:5px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.stage-meter-track i{display:block;width:0;height:100%;background:var(--blue);transition:width .18s ease}
+.stage-chevron{color:var(--blue);font:900 1.3rem/1 var(--font-mono);text-align:center}
+.stage-chevron::before{content:"+"}
+.stage[open] .stage-chevron::before{content:"−"}
+.stage-body{padding:18px;border-top:3px solid var(--line);background:var(--paper)}
+.stage-description{max-width:78ch;margin:0 0 14px;color:var(--ink);font:.94rem/1.55 var(--font-prose)}
+.outcomes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 18px;padding:0;list-style:none}
+.outcomes li{position:relative;padding:8px 10px 8px 28px;border:2px solid var(--line);background:#fff;color:var(--ink);font:.84rem/1.4 var(--font-prose)}
+.outcomes li::before{position:absolute;top:8px;left:9px;color:var(--blue);content:"/";font:900 .9rem/1.4 var(--font-mono)}
+.resource-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.resource-card{display:flex;min-width:0;min-height:360px;flex-direction:column;padding:20px;border:3px solid var(--line);background:var(--cream);box-shadow:6px 6px 0 var(--line);transition:transform .14s ease,box-shadow .14s ease}
+.resource-card:hover{transform:translate(-3px,-3px);box-shadow:10px 10px 0 var(--pink)}
+.resource-card.is-complete .done-control{color:var(--status-live-ink)}
+.resource-card.is-complete .checkmark{border-color:var(--status-live-ink);background:var(--green)}
+.card-top{display:grid;grid-template-columns:29px minmax(0,1fr) auto;align-items:start;gap:10px}
+.resource-card h5{min-width:0;margin:2px 0 0;font-size:1.2rem;line-height:1.1;letter-spacing:-.045em;overflow-wrap:anywhere}
+.resource-card h5 a{text-decoration:none}
+.resource-provider{margin:6px 0 0;color:var(--muted);font:.8rem/1.4 var(--font-prose)}
+.done-control{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:58px;min-height:38px;padding:4px 6px;border:2px solid var(--line);background:#fff;color:var(--muted);font-size:.67rem;font-weight:800;cursor:pointer}
+.done-control input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.checkmark{position:relative;display:block;width:16px;height:16px;border:1px solid var(--line);background:var(--cream)}
+.done-control input:checked+.checkmark{border-color:var(--line);background:var(--green)}
+.done-control input:checked+.checkmark::after{position:absolute;top:1px;left:4px;width:5px;height:9px;transform:rotate(45deg);border:solid var(--ink);border-width:0 2px 2px 0;content:""}
+.done-control input:focus-visible+.checkmark{outline:3px solid var(--blue);outline-offset:2px}
+.resource-status{margin:13px 0 10px}
+.resource-tags{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 13px}
+.resource-tags .tag{font-size:.68rem}
+.resource-tags .tag-default{background:var(--tag-default)}
+.resource-tags .tag-playful{background:var(--tag-playful)}
+.resource-tags .tag-pixel{background:var(--tag-pixel)}
+.resource-tags .tag-action{background:var(--tag-action)}
+.resource-why{margin:0 0 12px;color:var(--ink);font:.94rem/1.5 var(--font-prose)}
+.access-details{margin:0 0 12px;padding:8px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.access-details summary{display:flex;align-items:center;min-height:30px;font-size:.72rem;font-weight:800;cursor:pointer;list-style:none}
+.access-details summary::-webkit-details-marker{display:none}
+.access-details summary::after{margin-left:auto;color:var(--blue);content:"+";font:900 1rem/1 var(--font-mono)}
+.access-details[open] summary::after{content:"−"}
+.access-details p{margin:7px 0 0;color:var(--muted);font:.82rem/1.5 var(--font-prose)}
+.borrow{margin:auto 0 0;padding-top:12px;border-top:2px dashed var(--line);color:var(--ink);font:.88rem/1.5 var(--font-prose)}
+.borrow strong{font-family:var(--font-mono)}
+.source{display:inline-block;align-self:flex-start;min-height:36px;margin-top:8px;font-size:.76rem;font-weight:900}
+.source:hover{text-decoration-thickness:3px}
+.stage-empty{display:flex;align-items:center;gap:10px;padding:14px;border:3px solid var(--line);background:#fff;font:.9rem/1.4 var(--font-prose)}
+.stage-empty input{width:20px;height:20px;accent-color:var(--blue)}
+.empty-state{margin:20px 0 0;padding:25px;border:3px dashed var(--line);background:#fff;color:var(--muted);font:.95rem/1.5 var(--font-prose);text-align:center}
+.rec-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.rec{padding:20px;border:3px solid var(--line);background:var(--cream)}
+.rec h3{margin:0 0 10px;font-size:1rem;line-height:1.3;letter-spacing:.015em}
+.rec p,.rec ul{margin:0;color:var(--ink);font:.93rem/1.5 var(--font-prose)}
+.rec ul{padding-left:20px}
+.rec li+li{margin-top:8px}
+.guardrails{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:0;padding:0;list-style:none;counter-reset:guardrails}
+.guardrails li{position:relative;min-height:116px;padding:18px 17px 17px 58px;border:3px solid var(--line);background:#fff;color:var(--ink);font:.92rem/1.5 var(--font-prose);counter-increment:guardrails}
+.guardrails li::before{position:absolute;top:16px;left:15px;display:grid;place-items:center;width:28px;height:28px;border:2px solid var(--line);background:var(--blue);color:#fff;content:counter(guardrails);font:900 .75rem/1 var(--font-mono)}
+.guardrails strong{display:block;margin-bottom:4px;font-family:var(--font-mono);font-size:.82rem}
+.availability-note{margin-top:16px;padding:16px;border-left:5px solid var(--blue);background:#DFE7FF;color:var(--ink);font:.88rem/1.5 var(--font-prose)}
+.field-kit-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.tool-panel{box-shadow:none}
+.tool-panel h3{margin-bottom:8px}
+.tool-panel>p{margin:0 0 14px;color:var(--muted);font:.88rem/1.5 var(--font-prose)}
+.reminder-controls,.progress-data-controls{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.reminder-controls label{display:grid;gap:4px;color:var(--muted);font-size:.72rem;font-weight:800}
+.reminder-controls input[type="time"]{min-height:42px;padding:6px 8px;border:2px solid var(--line);background:#fff;color:var(--ink);font:700 .8rem/1.2 var(--font-mono)}
+.file-button{position:relative;overflow:hidden;cursor:pointer}
+.file-button:focus-within{outline:3px solid var(--blue);outline-offset:3px}
+.file-button input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.tool-status{min-height:1.5em;margin:12px 0 0!important;padding-top:10px;border-top:1px dashed var(--line);color:var(--muted)!important;font-size:.76rem!important}
+.site-footer{padding:23px clamp(22px,4vw,58px);border:4px solid var(--cyan);border-top:0;color:#fff;font-size:.77rem}
+.footer-top{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-brand{margin:0;color:#fff;font:900 .82rem/1.3 var(--font-mono);letter-spacing:.06em;text-transform:uppercase}
+.footer-links{display:flex;flex-wrap:wrap;gap:8px 18px}
+.footer-links a{color:rgba(255,255,255,.82);font:700 .72rem/1.5 var(--font-mono)}
+.footer-links a:hover{color:var(--yellow)}
+.footer-note{max-width:100ch;margin:14px 0 0;padding-top:12px;border-top:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.78);font:.76rem/1.55 var(--font-prose)}
+.footer-credit{margin:12px 0 0;color:var(--yellow);font:700 .74rem/1.4 var(--font-prose)}
+@media(max-width:850px){
+  .brief,.resource-grid,.rec-grid,.guardrails,.field-kit-grid{grid-template-columns:1fr}
+  .tour-invite{grid-template-columns:1fr}
+  .tour-invite-actions{justify-content:flex-start}
+  .tour-panel{left:12px;right:12px;width:auto;max-height:min(48dvh,420px);padding:18px}
+  .tour-panel-top-left,.tour-panel-top-right{top:12px;bottom:auto}
+  .tour-panel-bottom-left,.tour-panel-bottom-right{top:auto;bottom:12px}
+  .filters{grid-template-columns:1fr}
+  .filter-set{justify-content:flex-start}
+  .tag-key{grid-template-columns:1fr}
+  .resource-card{min-height:0}
+  .stage-summary{grid-template-columns:29px minmax(0,1fr) 24px;gap:10px;padding:12px}
+  .stage-number{grid-column:1;grid-row:1/span 3}
+  .stage-heading{grid-column:2;grid-row:1}
+  .stage-status{grid-column:2;grid-row:2;justify-self:start}
+  .stage-meter{display:flex;grid-column:2;grid-row:3;align-items:center;gap:10px;min-width:0;text-align:left}
+  .stage-meter-label{flex:none}
+  .stage-meter-track{flex:1;margin-top:0}
+  .stage-chevron{grid-column:3;grid-row:1/span 3}
+  .stage-body{padding:14px}
+  .outcomes{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .resource-card,.resource-card:hover{transform:none;transition:none;box-shadow:6px 6px 0 var(--line)}
+  .button,.button:hover,.filter-button,.filter-button:hover,.filter-button[aria-pressed="true"]{transform:none;transition:none}
+  .progress-fill,.stage-meter-track i,.tour-progress-fill{transition:none}
+}
+</style>
+</head>
+<body>
+<div class="shell" id="site-content">
+  <a class="skip-link" href="#main">Skip to roadmap</a>
+  <header class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">FIELDNOTES / OPEN LEARNING ROUTE</p>
+      <h1 id="hero-title">From first frame to a portfolio with purpose.</h1>
+      <p class="hero-lead">A free, location-neutral route from absolute beginner to professional-ready work. Plan about five hours a week; begin with the camera or phone you already own.</p>
+      <div class="hero-meta" aria-label="Roadmap overview">
+        <span>09 STAGES</span><span>32 WEEKS · 160 PRACTICE HOURS</span><span>ABOUT 5 HOURS / WEEK</span><span>FREE · GEAR-AGNOSTIC</span>
+      </div>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <section class="tour-invite" id="tour-invite" aria-labelledby="tour-invite-heading" hidden>
+      <div><p class="eyebrow">FULL SITE WALKTHROUGH / ABOUT 3 MINUTES</p><h2 id="tour-invite-heading">New to Fieldnotes?</h2><p>Get a guided look at every section, try the search and filters, and test a safe demo checkpoint.</p></div>
+      <div class="tour-invite-actions"><button class="button button-primary" id="tour-start" type="button">Take the full-site tour →</button><button class="button button-quiet" id="tour-dismiss" type="button">Skip for now</button></div>
+    </section>
+    <section class="brief" id="progress" aria-label="Your field log and roadmap guide">
+      <article class="panel progress-panel" aria-labelledby="progress-heading">
+        <div class="panel-heading"><p class="eyebrow">FIELD LOG / 01</p><span class="local-label">SAVED IN THIS BROWSER</span></div>
+        <h2 id="progress-heading">Small studies add up to considered work.</h2>
+        <div class="progress-number"><strong id="overall-percent">0%</strong><span id="progress-label">0 of 25 practice cards complete</span></div>
+        <div class="progress-track" role="progressbar" aria-label="Overall roadmap progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="progress-fill" id="progress-fill"></span></div>
+        <p class="progress-caption" id="next-step">Begin with the first learning card in the route.</p>
+        <button class="button button-primary" id="resume-next" type="button">Go to your next checkpoint →</button>
+        <div class="streak-row">
+          <span class="streak-number"><strong id="streak-count">0</strong><span>day practice streak</span></span>
+          <span class="today-status" id="today-status" role="status">Not logged today</span>
+        </div>
+      </article>
+      <article class="panel guide-panel" aria-labelledby="guide-heading">
+        <div class="panel-heading"><p class="eyebrow">HOW TO USE THIS ROUTE / 02</p><span class="local-label">START BROAD</span></div>
+        <h2 id="guide-heading">Read the learning cards</h2>
+        <ul class="tag-key">
+          <li><span class="tag">LEARN</span><span>Free videos, guides, or books to study.</span></li>
+          <li><span class="tag p">FIELD</span><span>A practice checkpoint to try.</span></li>
+          <li><span class="tag px">TIME</span><span>A planning estimate, not a deadline.</span></li>
+          <li><span class="tag i">ACCESS</span><span>Open the note for terms and conditions.</span></li>
+        </ul>
+        <p class="panel-note" id="reminder-summary">Try landscape, wildlife, and close-up work before choosing a first project. Your streak updates when you complete a learning card.</p>
+        <div class="pals-controls" id="pals-controls" hidden>
+          <button class="button button-secondary" id="pals-toggle" type="button" aria-pressed="true">Pause tiny pals</button>
+          <p class="pals-status" id="pals-status" role="status" aria-live="polite">Decorative pals are on; the roadmap works without them.</p>
+        </div>
+        <button class="button button-quiet" id="tour-replay" type="button">Replay the full-site tour ↗</button>
+      </article>
+    </section>
+
+    <section class="section-block" id="roadmap" aria-labelledby="roadmap-heading">
+      <div class="section-head">
+        <div><p class="eyebrow">32 WEEKS / 09 STAGES</p><h2 id="roadmap-heading">The learning catalogue</h2></div>
+        <p class="count" id="roadmap-count">9 stages · 25 learning cards</p>
+      </div>
+      <div class="filters" id="roadmap-controls" role="group" aria-label="Search and filter the learning catalogue">
+        <div class="search-wrap">
+          <label class="sr-only" for="roadmap-search">Search stages, resources, and practice tasks</label>
+          <input class="search" id="roadmap-search" type="search" autocomplete="off" placeholder="Search skills, subjects, or resources…">
+          <button class="search-clear" id="search-clear" type="button" aria-label="Clear search" hidden>×</button>
+        </div>
+        <div class="filter-set" id="filter-set" role="group" aria-label="Filter roadmap stages">
+          <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All stages</button>
+          <button class="filter-button" type="button" data-filter="field" aria-pressed="false">Camera &amp; field</button>
+          <button class="filter-button" type="button" data-filter="portfolio" aria-pressed="false">Edit &amp; portfolio</button>
+        </div>
+      </div>
+      <div class="result-row"><p>Search and stage filters combine; empty categories disappear.</p><p id="result-count" role="status" aria-live="polite">25 learning cards across 9 stages</p></div>
+      <div id="stage-list"></div>
+      <p class="empty-state" id="search-empty" hidden>No matches in this view. Try a different word or choose all stages.</p>
+    </section>
+
+    <section class="section-block" id="practice-plan" aria-labelledby="practice-heading">
+      <div class="section-head">
+        <div><p class="eyebrow">A PRACTICAL MIX / 03</p><h2 id="practice-heading">Turn study into field time</h2></div>
+        <p class="section-head-copy">The roadmap is designed around roughly five hours a week. Keep the rhythm simple, repeatable, and fitted to the place where you live.</p>
+      </div>
+      <div class="rec-grid">
+        <article class="rec"><h3>A steady practice loop</h3><ul><li>Study one technique from a free resource.</li><li>Take that single question on a short, permitted outing.</li><li>Review a small set of frames and write one observation before the next session.</li></ul></article>
+        <article class="rec"><h3>Explore before you specialize</h3><ul><li>Sample landscape, wildlife, and close-up work in Stage 4.</li><li>Notice which subjects and field conditions you want to revisit.</li><li>Choose a first project direction after trying more than one kind of nature photography.</li></ul></article>
+      </div>
+    </section>
+
+    <section class="section-block" id="field-ethics" aria-labelledby="guardrails-heading">
+      <div class="section-head">
+        <div><p class="eyebrow">FIELD GUARDRAILS / 04</p><h2 id="guardrails-heading">Skill includes knowing when to step back.</h2></div>
+        <p class="section-head-copy">Make careful choices for the subject, the site, and the people who share it. Local law and land-manager advice take priority.</p>
+      </div>
+      <ol class="guardrails">
+        <li><strong>Use what you have.</strong>Start with your current camera or capable phone; no equipment upgrade is required to learn the fundamentals.</li>
+        <li><strong>Keep a respectful distance.</strong>If your presence changes wildlife behaviour, stop or move back. Never bait, disturb nests, or use gear to justify closer access.</li>
+        <li><strong>Protect the place.</strong>Check access, weather, safety, and local rules before an outing; leave sensitive sites as you found them.</li>
+        <li><strong>Share locations carefully.</strong>Do not publish precise locations for vulnerable species. A professional-ready portfolio is a learning goal, not an employment or income guarantee.</li>
+      </ol>
+      <aside class="availability-note">The roadmap is free to follow in the formats listed. Some resources have separate paid products, personal-use limits, or other conditions; open each access note before relying on it.</aside>
+    </section>
+
+    <section class="section-block" id="field-tools" aria-labelledby="tools-heading">
+      <div class="section-head">
+        <div><p class="eyebrow">FIELD KIT / 05</p><h2 id="tools-heading">Keep your practice portable</h2></div>
+        <p class="section-head-copy">Your progress is stored in this browser, not on a server. Export a backup to move it between browsers or site addresses.</p>
+      </div>
+      <div class="field-kit-grid">
+        <section class="panel tool-panel" aria-labelledby="reminders-heading">
+          <h3 id="reminders-heading">Browser reminders</h3>
+          <p>Reminders need your permission and this page must stay open. They will not run after the app is closed.</p>
+          <div class="reminder-controls"><button class="button button-primary" id="enable-notifications" type="button">Enable browser reminders</button><label for="reminder-time">Local time<input id="reminder-time" type="time" value="19:00"></label></div>
+          <p class="tool-status" id="notification-status" role="status" aria-live="polite">Browser reminders need permission and an open page.</p>
+        </section>
+        <section class="panel tool-panel" aria-labelledby="data-heading">
+          <h3 id="data-heading">Progress file</h3>
+          <p>Save a JSON backup or restore one in this browser. Importing replaces the current checklist and activity dates.</p>
+          <div class="progress-data-controls"><button class="button button-secondary" id="export-progress" type="button">Export progress</button><label class="button button-secondary file-button" for="import-progress">Import progress<input id="import-progress" type="file" accept="application/json,.json"></label><button class="button button-quiet" id="reset-progress" type="button">Reset</button></div>
+          <p class="tool-status" id="data-status" role="status" aria-live="polite">Your progress file stays on your device unless you choose to move it.</p>
+        </section>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-top"><p class="footer-brand" id="footer-brand">Fieldnotes / Nature Photography</p><nav class="footer-links" aria-label="Footer navigation"><a href="#roadmap">Learning catalogue</a><a href="#progress">Field log</a><a href="#field-tools">Reminder and data tools</a><a href="#top">Back to top ↑</a></nav></div>
+    <p class="footer-note">Progress and streak dates are stored in this browser and do not sync automatically. Browser notifications require permission and the page to remain open. This roadmap is educational guidance, not a promise of employment or income. Follow current local laws, access rules, and wildlife guidance.</p>
+    <p class="footer-credit">Made with 🩶 and fried plantain, by Moyinoluwa.</p>
+  </footer>
+</div>
+<div class="tour-layer" id="tour-layer" hidden>
+  <section class="tour-panel tour-panel-bottom-right" id="tour-panel" role="dialog" aria-modal="false" aria-labelledby="tour-title" aria-describedby="tour-copy tour-hint" tabindex="-1">
+    <div class="tour-top"><p class="tour-eyebrow">FIELDNOTES / FULL SITE TOUR</p><button class="tour-close" id="tour-close" type="button" aria-label="Close tour">×</button></div>
+    <div class="tour-step-row"><span id="tour-step-count">STEP 01 / 09</span><span id="tour-step-area">START HERE</span></div>
+    <div class="tour-progress-track" id="tour-progress" role="progressbar" aria-label="Tour progress" aria-valuemin="0" aria-valuemax="9" aria-valuenow="1"><span class="tour-progress-fill" id="tour-progress-fill"></span></div>
+    <h2 class="tour-title" id="tour-title" tabindex="-1">Welcome to Fieldnotes.</h2>
+    <p class="tour-copy" id="tour-copy">A guided look at each section of the roadmap.</p>
+    <p class="tour-hint" id="tour-hint">The highlighted area belongs to the live page. Explore it, then use Next.</p>
+    <div class="tour-demo" id="tour-demo" hidden>
+      <label class="tour-demo-label" for="tour-demo-check"><input id="tour-demo-check" type="checkbox"><span>Try this tour-only sample checkbox</span></label>
+      <p class="tour-demo-status" id="tour-demo-status" role="status" aria-live="polite">Tour-only demo. It does not change your actual roadmap progress.</p>
+    </div>
+    <p class="tour-announcement" id="tour-announcement" role="status" aria-live="polite"></p>
+    <div class="tour-controls"><button class="tour-skip" id="tour-skip" type="button">Skip tour</button><div class="tour-control-end"><button class="button button-secondary" id="tour-back" type="button">Back</button><button class="button button-primary" id="tour-next" type="button">Next →</button></div></div>
+  </section>
+</div>
+<!-- Piixpal v0.4.0 MIT license text is included here for the self-hosted components. -->
+<!--MIT License
+
+Copyright (c) 2026 Piixpal contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.-->
+<script>/*! Piixpal v0.4.0 | tiny pixel creatures that live on your website | MIT
+ *  https://github.com/diiviikk5/Piixpal
+ */(()=>{"use strict";const Tt="0.4.0";if(window.Piixpal&&window.Piixpal._k)return;(function(){const It=matchMedia("(prefers-reduced-motion: reduce)"),L=()=>It.matches,b=(i,t,e)=>Math.min(e,Math.max(t,i)),w=(i,t)=>i+Math.random()*(t-i),Z=i=>Math.random()<i,fe=i=>i[Math.random()*i.length|0],R=(i,t,e)=>i+(t-i)*e,E=()=>performance.now(),P=i=>{i=i.replace("#",""),i.length<=4&&(i=[...i].map(e=>e+e).join(""));const t=parseInt(i.padEnd(8,"f"),16);return[t>>>24&255,t>>>16&255,t>>>8&255,t&255]},x={cx:-1e5,cy:-1e5,seen:!1,last:0,down:!1,vx:0,vy:0,get x(){return this.cx+scrollX},get y(){return this.cy+scrollY}};addEventListener("pointermove",i=>{if(i.pointerType==="touch"&&!x.down)return;const t=E(),e=Math.max(8,t-x.last);x.seen&&(x.vx=R(x.vx,(i.clientX-x.cx)/e*1e3,.35),x.vy=R(x.vy,(i.clientY-x.cy)/e*1e3,.35)),x.cx=i.clientX,x.cy=i.clientY,x.seen=!0,x.last=t},{passive:!0}),addEventListener("pointerdown",i=>{x.down=!0,x.cx=i.clientX,x.cy=i.clientY,x.seen=!0,x.last=E()},{passive:!0}),addEventListener("pointerup",()=>{x.down=!1},{passive:!0}),document.addEventListener("pointerleave",()=>{x.cx=x.cy=-1e5},{passive:!0});const pe=(i,t)=>Math.hypot(x.x-i,x.y-t),B={y:scrollY,v:0},U=new Set;let ot=0,q=0;const xt=i=>{const t=Math.min(.05,q?(i-q)/1e3:.016666666666666666);q=i,B.v=R(B.v,(scrollY-B.y)/Math.max(t,.001),.25),B.y=scrollY,at(),U.forEach(e=>e(t,i)),ot=U.size?requestAnimationFrame(xt):q=0},tt=i=>{U.add(i),ot||(ot=requestAnimationFrame(xt))},G=i=>U.delete(i),rt=i=>{const t=i.getBoundingClientRect();return{l:t.left+scrollX,t:t.top+scrollY,r:t.right+scrollX,b:t.bottom+scrollY,w:t.width,h:t.height}},W=()=>document.documentElement.clientWidth,bt=i=>{const t=i.getAttribute("box");if(!t)return null;try{return i.closest(t)||document.querySelector(t)}catch{return null}},zt=i=>(i.node.style.position="fixed",i.pinned=!0,i),ke=(i,t)=>{const e=bt(i);return!e&&t&&zt(t),()=>e?rt(e):{l:M.x,t:M.y,r:M.x+W(),b:M.y+innerHeight,w:W(),h:innerHeight,fixed:!0}},ge=(i,t=200)=>i.b>scrollY-t&&i.t<scrollY+innerHeight+t&&i.r>-t&&i.l<W()+t,_e=(i,t,e=rt(i))=>typeof i.piixSurface=="function"?i.piixSurface(t):t>=e.l&&t<=e.r?e.t:null,Pt=`
+:host{all:initial}
+.a{position:absolute;left:0;top:0;pointer-events:none;will-change:transform;contain:layout style}
+.a canvas{display:block;image-rendering:pixelated;image-rendering:crisp-edges;pointer-events:auto;cursor:grab;transform-origin:50% 100%;touch-action:none;-webkit-user-drag:none;user-select:none}
+.a.held canvas{cursor:grabbing}
+.a.nograb canvas{cursor:pointer}
+.a.ghost canvas{pointer-events:none}
+.bub{position:absolute;left:50%;bottom:100%;margin-bottom:var(--g);transform:translateX(-50%) scale(0);transform-origin:50% 100%;
+  background:#fffdf5;padding:var(--p);line-height:0;pointer-events:none;
+  box-shadow:0 calc(var(--u)*-1) 0 0 #1b1226,0 var(--u) 0 0 #1b1226,calc(var(--u)*-1) 0 0 0 #1b1226,var(--u) 0 0 0 #1b1226;
+  transition:transform .14s steps(3)}
+.bub::after{content:"";position:absolute;left:50%;top:100%;width:var(--u);height:var(--u);margin-left:calc(var(--u)*-.5);
+  background:#fffdf5;box-shadow:0 var(--u) 0 0 #1b1226,calc(var(--u)*-1) 0 0 0 #1b1226,var(--u) 0 0 0 #1b1226}
+.bub.on{transform:translateX(-50%) scale(1)}
+.bub canvas{pointer-events:none;cursor:default;image-rendering:pixelated}
+.thread{position:absolute;left:0;top:0;transform-origin:50% 0;pointer-events:none;background:currentColor;opacity:.75}
+`;let O=null,K=null;const M={x:0,y:0},Bt=()=>{if(K)return K;O=document.createElement("div"),O.setAttribute("data-piixpal",Tt),O.setAttribute("aria-hidden","true"),O.style.cssText="position:absolute;left:0;top:0;width:0;height:0;overflow:visible;z-index:var(--piix-z,2147482000);pointer-events:none;margin:0;padding:0;border:0",K=O.attachShadow({mode:"open"});const i=document.createElement("style");return i.textContent=Pt,K.appendChild(i),document.body.appendChild(O),at(),K};function at(){if(!O)return;const i=O.getBoundingClientRect();M.x=i.left+scrollX,M.y=i.top+scrollY}const T={},et=(i,t,e,s)=>{const n=document.createElement("canvas");n.width=e,n.height=s;const l=n.getContext("2d"),r=l.createImageData(e,s),a=s-i.length;return i.forEach((h,k)=>{for(let g=0;g<h.length&&g<e;g++){const c=t[h[g]];if(!c)continue;const[o,p,d,_]=c,u=((k+a)*e+g)*4;r.data[u]=o,r.data[u+1]=p,r.data[u+2]=d,r.data[u+3]=_}}),l.putImageData(r,0,0),n},Ot=(i,t)=>(T[i]=t,t.name=i,t._baked=null,t),Ht=i=>{if(i._baked)return i._baked;const t={};for(const s in i.palette)t[s]=P(i.palette[s]);const e={};for(const s in i.frames)e[s]=i.frames[s].map(n=>et(n,t,i.w,i.h));return i._baked=e},ht=new Set,me=(i,t,e)=>{ht.forEach(s=>{if(s===i||!s.ctl||!s.ctl.hear)return;const n=Math.hypot(s.x-i.x,s.y-s.h/2-(i.y-i.h/2));n<e&&s.ctl.hear(t,i,n)})};class yt{constructor(t,e={}){const s=Bt();this.spec=t,this.frames=Ht(t);const n=e.scale||t.scale||4;this.s=Math.max(1,Math.round(innerWidth>0&&innerWidth<640&&!e.fixed?Math.max(2,n*.75):n)),this.x=0,this.y=0,this.face=1,this.sx=1,this.sy=1,this.rot=0,this.ox=0,this.oy=0,this.clip=null,this.fi=0,this.ft=0,this.fps=6,this.loop=!0,this.done=!1,this._drawn=null,this._tf="",this._ctf="",this.pinned=!1;const l=this.node=document.createElement("div");l.className="a",l.style.setProperty("--u",Math.max(2,this.s>>1)+"px"),l.style.setProperty("--p",Math.max(3,this.s)+"px"),l.style.setProperty("--g",Math.max(6,this.s*2)+"px");const r=this.cv=document.createElement("canvas");r.width=t.w,r.height=t.h,r.style.width=t.w*this.s+"px",r.style.height=t.h*this.s+"px",e.hue&&(r.style.filter=`hue-rotate(${+e.hue}deg)`),this.g=r.getContext("2d"),this.bub=document.createElement("div"),this.bub.className="bub",l.append(this.bub,r),s.appendChild(l),this.play(t.start||Object.keys(t.frames)[0]),ht.add(this)}get w(){return this.spec.w*this.s}get h(){return this.spec.h*this.s}has(t){return!!this.frames[t]}play(t,{fps:e,loop:s=!0,reset:n=!1}={}){return this.frames[t]?((t!==this.clip||n)&&(this.clip=t,this.fi=0,this.ft=0,this.done=!1),this.fps=e||this.spec.fps&&this.spec.fps[t]||6,this.loop=s,this):this}step(t){const e=this.frames[this.clip];if(!e||L())return;this.ft+=t;const s=1/this.fps;for(;this.ft>=s;)if(this.ft-=s,this.fi+1<e.length)this.fi++;else if(this.loop)this.fi=0;else{this.done=!0;break}}render(){const t=this.frames[this.clip][this.fi];t!==this._drawn&&(this._drawn=t,this.g.clearRect(0,0,this.spec.w,this.spec.h),this.g.drawImage(t,0,0));const e=this.w,s=this.h;let n=this.x-e/2+this.ox-M.x;const l=this.y-s+this.oy-M.y;n=b(n,-M.x,W()-e-M.x);const r=`translate3d(${Math.round(n)}px,${Math.round(l)}px,0)`;r!==this._tf&&(this._tf=r,this.node.style.transform=r);const a=`scale(${(this.face*this.sx).toFixed(3)},${this.sy.toFixed(3)})`+(this.rot?` rotate(${this.rot.toFixed(2)}deg)`:"");a!==this._ctf&&(this._ctf=a,this.cv.style.transform=a)}say(t,e=1200){const s=F[t]||typeof t=="string"&&t[0]==="#"&&vt(t);if(clearTimeout(this._bt),!s){this.bub.classList.remove("on");return}const n=Math.max(2,Math.round(this.s*.75)),l=wt(t);l.style.width=l.width*n+"px",l.style.height=l.height*n+"px",this.bub.replaceChildren(l),this.bub.classList.add("on"),e&&(this._bt=setTimeout(()=>this.bub.classList.remove("on"),e))}hush(){clearTimeout(this._bt),this.bub.classList.remove("on")}get mx(){return this.pinned?x.cx+M.x:x.x}get my(){return this.pinned?x.cy+M.y:x.y}near(t=0){const e=this.x+this.ox,s=this.y-this.h/2+this.oy;return Math.abs(this.mx-e)<this.w/2+t&&Math.abs(this.my-s)<this.h/2+t}destroy(){clearTimeout(this._bt),this.node.remove(),ht.delete(this)}}const xe=(i,t,e={})=>new yt(T[t]||i.spec,{scale:e.scale||i.s,hue:e.hue,fixed:!0}),V={},Yt=(i,t)=>{V[i]=t},H=window.Piixpal={version:Tt,sprites:T,behaviors:V,sprite:Ot,behavior:Yt,get reducedMotion(){return L()}},Y={put(i,t,e,s){const n=i.slice();return s.forEach((l,r)=>{const a=e+r;if(a<0)return;for(;n.length<=a;)n.push("");let h=n[a].padEnd(t+l.length,".");for(let k=0;k<l.length;k++)l[k]==="_"||t+k<0||(h=h.slice(0,t+k)+l[k]+h.slice(t+k+1));n[a]=h}),n},compose(i,...t){return t.reduce((e,[s,n,l])=>Y.put(e,s,n,l),i)},flipV(i){return i.slice().reverse()},flipH(i){const t=Math.max(...i.map(e=>e.length));return i.map(e=>[...e.padEnd(t,".")].reverse().join(""))},trim(i){const t=i.slice();for(;t.length&&!/[^.]/.test(t[t.length-1]);)t.pop();return t},shift(i,t){return i.map(e=>t>=0?".".repeat(t)+e:e.slice(-t))},swap(i,t){return i.map(e=>[...e].map(s=>t[s]||s).join(""))}};H.art=Y,H.advance=(i=1,t=60)=>{const e=1/t;let s=q||E();for(let n=0,l=Math.round(i*t);n<l;n++)s+=e*1e3,B.v=R(B.v,(scrollY-B.y)/e,.25),B.y=scrollY,at(),U.forEach(r=>r(e,s));q=0},Object.assign(Y,{paint(i,t,e){return Array.from({length:t},(s,n)=>Array.from({length:i},(l,r)=>e(r,n)||".").join(""))},ellipse(i,t,e,s,n,l){const r=(i+.5-e)/n,a=(t+.5-s)/l;return r*r+a*a<=1},rrect(i,t,e,s,n,l,r){if(i<e||i>n||t<s||t>l)return!1;const a=i<e+r?e+r:i>n-r?n-r:i,h=t<s+r?s+r:t>l-r?l-r:t;return(i-a)**2+(t-h)**2<=r*r+.5},volume(i,t="b",e="d",s="B"){const n=(l,r)=>(i[r]||"")[l]||".";return i.map((l,r)=>[...l].map((a,h)=>a!==t?a:n(h+1,r)==="."||n(h,r+1)==="."?e:(n(h-1,r)==="."||n(h,r-1)===".")&&r<i.length*.55&&h<l.length*.6?s:a).join(""))}}),Y.outline=(i,t="k")=>i.map((e,s)=>[...e].map((n,l)=>{if(n!==".")return n;const r=(a,h)=>((i[h]||"")[a]||".")!==".";return r(l+1,s)||r(l-1,s)||r(l,s+1)||r(l,s-1)?t:"."}).join(""));const Xt={k:"#1b1226",r:"#ff4d6d",b:"#3fc8ff",y:"#ffc93f",g:"#7bd63a"},F={"!":["kk","kk","kk","kk","..","kk"],"?":[".kkkk.","kk..kk","....kk","..kkk.","......","..kk.."],"!?":["kk..kkkk.","kk.kk..kk","kk....kk.","kk...kk..",".........","kk...kk.."],"...":["kk.kk.kk","kk.kk.kk"],heart:[".rr.rr.","rrrrrrr","rrrrrrr",".rrrrr.","..rrr..","...r..."],zz:["kkkk.....","..k......",".k..kkk..","kkkk..k..",".....k...","....kkk.."],grr:[".k.k..kkk..k","kkkkk.k.k..k",".k.k..k.kk.k","kkkkk.k.....",".k.k..kkk..k"],note:["...kkk","...k.k","...k..",".kkk..","kkkk..",".kk..."],sweat:["..b..",".bbb.","bbbbb","bbbbb",".bbb."],star:["...y...","..yyy..","yyyyyyy",".yyyyy.",".yy.yy.","y.....y"],vein:[".r...r.","rr...rr",".......","rr...rr",".r...r."],hi:["k..k.kk","k..k...","kkkk.kk","k..k.kk","k..k.kk"],eep:["kkk.kkk.kkk.","k...k...k.k.","kk..kk..kkk.","k...k...k...","kkk.kkk.k..."],leaf:["....gg","..gggg",".gggg.","gggg..","g....."],copy:[".kkkk..",".k..kkk",".k..k.k",".k..k.k",".kkkk.k","...k..k","...kkkk"],check:["......g",".....gg","g...gg.","gg.gg..",".ggg...","..g...."],x:["r...r",".r.r.","..r..",".r.r.","r...r"],up:["..k..",".kkk.","kkkkk","..k..","..k.."]},Ft=["kkk|k.k|k.k|k.k|kkk",".k.|kk.|.k.|.k.|kkk","kkk|..k|kkk|k..|kkk","kkk|..k|.kk|..k|kkk","k.k|k.k|kkk|..k|..k","kkk|k..|kkk|..k|kkk","kkk|k..|kkk|k.k|kkk","kkk|..k|.k.|.k.|.k.","kkk|k.k|kkk|k.k|kkk","kkk|k.k|kkk|..k|kkk"].map(i=>i.split("|")),vt=i=>{if(!F[i]&&/^#\d+$/.test(i)){const t=i.slice(1).split("").map(Number);F[i]=[0,1,2,3,4].map(e=>t.map(s=>Ft[s][e]).join("."))}return F[i]},lt={},Nt=Object.fromEntries(Object.entries(Xt).map(([i,t])=>[i,P(t)])),wt=i=>{if(!lt[i]){const s=F[i],n=Math.max(...s.map(l=>l.length));lt[i]=et(s,Nt,n,s.length)}const t=lt[i],e=document.createElement("canvas");return e.width=t.width,e.height=t.height,e.getContext("2d").drawImage(t,0,0),e};H.icons=F;const C="#1b1226",ct="#fffdf5",dt='system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif',Mt="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace",jt=`
+:host{all:initial}
+.card{position:absolute;left:0;top:0;box-sizing:border-box;width:max-content;max-width:min(var(--w,300px),calc(100vw - 24px));
+  padding:12px 14px;font:500 14px/1.45 ${dt};color:${C};background:${ct};text-align:left;
+  box-shadow:0 -3px 0 ${C},0 3px 0 ${C},-3px 0 0 ${C},3px 0 0 ${C},6px 9px 0 rgba(27,18,38,.18);
+  pointer-events:auto;transform-origin:var(--tx,50%) 100%;animation:piix-in .22s steps(4) both}
+.card.below{transform-origin:var(--tx,50%) 0}
+.card.fixed{position:fixed}
+.card.tip::after{content:"";position:absolute;left:var(--tx,50%);top:100%;width:6px;height:6px;margin:3px 0 0 -3px;background:${ct};
+  box-shadow:0 3px 0 ${C},-3px 0 0 ${C},3px 0 0 ${C}}
+.card.tip.below::after{top:auto;bottom:100%;margin:0 0 3px -3px;box-shadow:0 -3px 0 ${C},-3px 0 0 ${C},3px 0 0 ${C}}
+.card h4{margin:0 0 5px;font:800 11px/1.2 ${Mt};letter-spacing:.07em;text-transform:uppercase;color:#6c6477;display:flex;align-items:center;gap:7px}
+.card p{margin:0}
+.card ul{margin:2px 0 0;padding-left:18px}
+.card li{margin:4px 0}
+.card .row{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;align-items:center;margin-top:12px}
+.card .row .n{margin-right:auto;font:700 12px/1 ${Mt};color:#6c6477}
+.card button,.card a.b{font:700 13px/1 ${dt};padding:9px 12px;border:0;border-radius:0;background:${C};color:${ct};cursor:pointer;
+  text-decoration:none;box-shadow:0 3px 0 rgba(27,18,38,.32);transition:transform .08s}
+.card button:active,.card a.b:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(27,18,38,.32)}
+.card button.ghost{background:transparent;color:${C};box-shadow:inset 0 0 0 2px ${C}}
+.card button.x{position:absolute;right:4px;top:4px;width:24px;height:24px;padding:0;background:transparent;color:${C};box-shadow:none;font:700 17px/1 ${dt}}
+.card button:focus-visible,.card a:focus-visible{outline:3px solid #6b4cff;outline-offset:2px}
+.card a{color:inherit}
+.card canvas{image-rendering:pixelated;flex:none}
+.card .ic{display:flex;gap:10px;align-items:flex-start}
+.card.out{animation:piix-out .16s steps(3) both}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@keyframes piix-in{from{transform:scale(.4);opacity:0}to{transform:none;opacity:1}}
+@keyframes piix-out{to{transform:scale(.5);opacity:0}}
+@media (prefers-reduced-motion:reduce){.card,.card.out{animation:none}}
+`;let N=null,Q=null,D=null;const ut=()=>{if(Q)return Q;N=document.createElement("div"),N.setAttribute("data-piixpal-ui",""),N.style.cssText="position:absolute;left:0;top:0;width:0;height:0;overflow:visible;z-index:calc(var(--piix-z,2147482000) + 1);margin:0;padding:0;border:0",Q=N.attachShadow({mode:"open"});const i=document.createElement("style");return i.textContent=jt,D=document.createElement("div"),D.className="sr",D.setAttribute("aria-live","polite"),Q.append(i,D),document.body.appendChild(N),Q},Et=new Set,be=(i,t)=>{Et.has(i)||(Et.add(i),ut().appendChild(Ct("style",{text:t})))},Ct=(i,t={},...e)=>{const s=document.createElement(i);if(t.cls&&(s.className=t.cls),t.text!=null&&(s.textContent=t.text),t.style&&(s.style.cssText=t.style),t.attrs)for(const n in t.attrs)s.setAttribute(n,t.attrs[n]);if(t.on)for(const n in t.on)s.addEventListener(n,t.on[n]);return s.append(...e.filter(n=>n!=null&&n!==!1)),s},ye=(i,t=3)=>{if(!F[i]&&!vt(i))return null;const e=wt(i);return e.style.width=e.width*t+"px",e.style.height=e.height*t+"px",e},ve=(i={})=>{const t=Ct("div",{cls:"card"+(i.fixed?" fixed":"")+(i.tip?" tip":"")+(i.cls?" "+i.cls:""),attrs:i.attrs});return i.width&&t.style.setProperty("--w",i.width+"px"),ut().appendChild(t),t},we=(i,t,e,{below:s=!1,gap:n=12,area:l,under:r=e}={})=>{const a=i.classList.contains("fixed"),h=N.getBoundingClientRect(),k=a?M.x:h.left+scrollX,g=a?M.y:h.top+scrollY,c=l||(a?{l:M.x,r:M.x+W(),t:M.y,b:M.y+innerHeight}:{l:scrollX,r:scrollX+W(),t:scrollY,b:scrollY+innerHeight}),o=i.offsetWidth,p=i.offsetHeight;!s&&e-p-n<c.t+4&&r+n+p<c.b?s=!0:s&&r+n+p>c.b-4&&e-p-n>c.t&&(s=!1);const d=b(t-o/2,c.l+6,Math.max(c.l+6,c.r-o-6)),_=s?r+n:e-p-n;i.classList.toggle("below",s),i.style.setProperty("--tx",Math.round(b(t-d,14,o-14))+"px"),i.style.left=Math.round(d-k)+"px",i.style.top=Math.round(_-g)+"px"},Me=(i,t,e)=>{const s=i.classList.contains("fixed"),n=N.getBoundingClientRect();i.style.left=Math.round(t-(s?M.x:n.left+scrollX))+"px",i.style.top=Math.round(e-(s?M.y:n.top+scrollY))+"px"},Ee=i=>{if(!(!i||i._closing)){if(i._closing=!0,L()){i.remove();return}i.classList.add("out"),setTimeout(()=>i.remove(),170)}},Ce=i=>{ut(),D.textContent="",setTimeout(()=>{D.textContent=i},40)},At=document.createElement("canvas").getContext("2d"),qt=(i,t)=>{At.font=t;const e=At.measureText(i);return[e.fontBoundingBoxAscent||0,e.actualBoundingBoxAscent||0]},Ae=(i,t)=>{const e=i.getBoundingClientRect(),s=[e.left,e.top,e.width,e.height,scrollX,scrollY,document.fonts.status].join();if(t.key===s)return t.v;const n=[],l=document.createTreeWalker(i,NodeFilter.SHOW_TEXT),r=document.createRange();let a=null,h,k=0;t:for(;h=l.nextNode();){const c=h.parentElement;if(!c||c.closest("piix-pal"))continue;const o=getComputedStyle(c);if(o.visibility==="hidden"||o.display==="none")continue;const p=`${o.fontStyle} ${o.fontWeight} ${o.fontSize} ${o.fontFamily}`,d=h.data;for(let _=0;_<d.length&&k<400;_++,k++){r.setStart(h,_),r.setEnd(h,_+1);const u=r.getClientRects()[0];if(!u||u.width<.5)continue;if(a===null&&(a=u.top),u.top-a>u.height*.6)break t;if(/\s/.test(d[_]))continue;const[f,m]=qt(d[_],p);n.push({l:u.left+scrollX,r:u.right+scrollX,t:u.top+scrollY+(f-m)})}}for(let c=1;c<n.length;c++)n[c].l-n[c-1].r<2&&(n[c-1].r=n[c].l);const g=n.length?{l:n[0].l,r:n[n.length-1].r,t:Math.min(...n.map(c=>c.t)),segs:n}:null;return t.key=s,t.v=g,g},Se=(i,t)=>{for(const e of i)if(t>=e.l&&t<=e.r)return e.t;return null},Re="h1,h2,h3,h4,p,li,button,.btn,img,pre,blockquote,figure,footer,nav,header,table,.card,[data-piix-land]",X={at:-1,sel:"",list:[]},Wt=/^(H[1-6]|P|LI|BLOCKQUOTE|DT|DD|FIGCAPTION|LABEL)$/,St=i=>{const t=i.getBoundingClientRect();if(t.width<=8||t.height<=2||t.bottom<-400||t.top>innerHeight+2e3)return null;if(Wt.test(i.tagName)){const e=document.createRange();e.selectNodeContents(i);const s=[...e.getClientRects()].filter(n=>n.width>1);if(s.length){const n=s[0].top,l=s.filter(a=>a.top-n<4),r=parseFloat(getComputedStyle(i).fontSize)||16;return{el:i,l:Math.min(...l.map(a=>a.left))+scrollX,r:Math.max(...l.map(a=>a.right))+scrollX,t:n+scrollY+(l[0].height-r)/2+r*.26}}}return{el:i,l:t.left+scrollX,r:t.right+scrollX,t:t.top+scrollY}},$e=(i,t)=>{const e=Math.floor(E()/16);if(X.at!==e||X.sel!==i){X.at=e,X.sel=i;let s=[];try{s=[...document.querySelectorAll(i)]}catch{}X.list=s.map(St).filter(Boolean)}if(t){const s=St(t);return s?X.list.concat(s):X.list}return X.list},Le=(i,t,{move:e,end:s})=>{const n=i.cv;try{n.setPointerCapture(t.pointerId)}catch{}const l=t.clientX,r=t.clientY,a=l+scrollX,h=r+scrollY,k=i.x-a,g=i.y-h;let c=!1,o=0,p=0,d=a,_=h,u=E();const f=v=>{const y=v.clientX+scrollX,A=v.clientY+scrollY,j=E(),z=Math.max(8,j-u);o=R(o,(y-d)/z*1e3,.5),p=R(p,(A-_)/z*1e3,.5),d=y,_=A,u=j,!c&&Math.hypot(v.clientX-l,v.clientY-r)>5&&(c=!0,i.held=!0,i.node.classList.add("held")),c&&e&&e(y+k,A+g,o,p)},m=()=>{n.removeEventListener("pointermove",f),n.removeEventListener("pointerup",m),n.removeEventListener("pointercancel",m),i.held=!1,i.node.classList.remove("held"),E()-u>90&&(o=p=0),s&&s({moved:c,vx:b(o,-2600,2600),vy:b(p,-2600,2600)})};n.addEventListener("pointermove",f),n.addEventListener("pointerup",m),n.addEventListener("pointercancel",m)},S=(()=>{const i=["..kkkkk..",".kbBbbbk.",".kbkbkbk.",".kbbbbbk.",".kbbbbbk.",".kdbbbdk.","..kkkkk.."],t={a:"..k...k..",b:"...k.k...",stand:"..k...k..",dangle:".k.....k."},e=(s,n)=>s.concat([n]);return{w:9,h:8,frames:{walkA:e(i,t.a),walkB:e(i,t.b),stand:e(i,t.stand),wave:e(Y.compose(i,[7,0,[".k"]],[7,1,["kk"]]),t.stand),held:e(Y.put(i,2,2,["bkbkb"]),t.dangle),dizzy:e(Y.put(i,2,2,["kbbbk"]),t.stand),sleep:e(Y.put(i,2,2,["bbbbb","kbbbk"].slice(0,1)),t.stand)}}})(),Rt=["#c6f432","#ff6b4a","#6b4cff","#58c8ff","#ffd23f","#ff9cc2","#25b89a","#f4f1fa"];class Dt extends HTMLElement{static get observedAttributes(){return["mode","count","text","scale"]}constructor(){super(),this.attachShadow({mode:"open"}),this._tick=this._tick.bind(this),this._agents=[],this._fx=[],this._vis=!0}connectedCallback(){this.shadowRoot.innerHTML=`<style>
+:host{display:block;position:relative;height:${+this.getAttribute("height")||420}px;touch-action:none;user-select:none}
+canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;cursor:grab}
+canvas.held{cursor:grabbing}
+</style><canvas aria-hidden="true"></canvas>`,this._cv=this.shadowRoot.querySelector("canvas"),this._g=this._cv.getContext("2d"),this.setAttribute("role","img"),this.hasAttribute("aria-label")||this.setAttribute("aria-label","A crowd of tiny pixel characters"),this._bake(),this._ro=new ResizeObserver(()=>this._resize()),this._ro.observe(this),this._io=new IntersectionObserver(t=>{this._vis=t[t.length-1].isIntersecting},{rootMargin:"100px"}),this._io.observe(this),this._cv.addEventListener("pointerdown",t=>this._down(t)),this._resize(),tt(this._tick)}disconnectedCallback(){G(this._tick),this._ro&&this._ro.disconnect(),this._io&&this._io.disconnect()}attributeChangedCallback(t){if(this._cv){if(t==="scale"){this._bake();return}(t==="text"||t==="mode")&&this._targets(),t==="count"&&this._populate()}}get mode(){const t=this.getAttribute("mode");return t==="swarm"||t==="form"?t:"crowd"}scatter(){this._agents.forEach(t=>{t.vx+=w(-300,300),t.vy+=w(-200,200),t.z=Math.max(t.z,0),t.vz=w(150,320),t.scatter=1.4})}_bake(){const t=this._s=+this.getAttribute("scale")||3;this._sprites=Rt.map(e=>{const s={k:P("#17121f"),b:P(e),B:P(ft(e,.45)),d:P(ft(e,-.22))},n={};for(const l in S.frames){const r=et(S.frames[l],s,S.w,S.h),a=document.createElement("canvas");a.width=S.w*t,a.height=S.h*t;const h=a.getContext("2d");h.imageSmoothingEnabled=!1,h.drawImage(r,0,0,a.width,a.height);const k=document.createElement("canvas");k.width=a.width,k.height=a.height;const g=k.getContext("2d");g.translate(k.width,0),g.scale(-1,1),g.drawImage(a,0,0),n[l]=[k,a]}return n})}_resize(){const t=this.getBoundingClientRect(),e=this._dpr=Math.min(devicePixelRatio||1,2);this._W=t.width,this._H=t.height,this._cv.width=Math.round(t.width*e),this._cv.height=Math.round(t.height*e),this._agents.length?this._agents.forEach(s=>{s.x=b(s.x,8,this._W-8),s.y=b(s.y,20,this._H-6)}):this._populate(),this._targets()}_new(t,e,s=0){return{x:t,y:e,z:s,vx:0,vy:0,vz:0,c:Math.random()*Rt.length|0,face:Z(.5)?1:0,state:"walk",timer:w(1,4),gx:t,gy:e,t:w(0,1),mate:null,dizzy:0,scatter:0,tx:null,ty:null}}_populate(){const t=b(+this.getAttribute("count")||(this.mode==="form"?160:70),1,600);for(;this._agents.length<t;)this._agents.push(this._new(w(10,this._W-10),w(30,this._H-8)));this._agents.length=t,this._targets()}_targets(){if(this._agents.forEach(u=>{u.tx=u.ty=null}),this.mode!=="form"||!this._W)return;const t=(this.getAttribute("text")||"HELLO").slice(0,16),e=document.createElement("canvas"),s=e.getContext("2d",{willReadFrequently:!0}),n=40,l=`900 ${n}px ${getComputedStyle(this).fontFamily||"sans-serif"}`;s.font=l;const r=Math.ceil(s.measureText(t).width)+4;e.width=r,e.height=Math.ceil(n*1.1),s.font=l,s.textBaseline="top",s.fillText(t,2,2);const a=s.getImageData(0,0,e.width,e.height).data;let h=[],k=1;const g=u=>{const f=[];for(let m=0;m<e.height;m+=u)for(let v=0;v<e.width;v+=u)a[(m*e.width+v)*4+3]>120&&f.push([v,m]);return f};for(let u=8;u>=1&&(h=g(u),k=u,!(h.length>=this._agents.length*.92));u--);const c=Math.min((this._W-40)/e.width,(this._H-50)/e.height),o=(this._W-e.width*c)/2,p=(this._H-e.height*c)/2+20,d=h.map(([u,f])=>[o+u*c,p+f*c]).sort((u,f)=>u[0]-f[0]),_=this._agents.slice().sort((u,f)=>u.x-f.x);_.forEach((u,f)=>{const m=d[Math.floor(f*d.length/_.length)];m&&f<d.length*1&&(u.tx=m[0],u.ty=m[1])})}_local(t){const e=this._cv.getBoundingClientRect();return[t.clientX-e.left,t.clientY-e.top]}_hit(t,e){const s=this._s,n=S.w*s,l=S.h*s;let r=null;for(const a of this._agents)Math.abs(t-a.x)<n/2+2&&e<a.y-a.z+2&&e>a.y-a.z-l-2&&(!r||a.y>r.y)&&(r=a);return r}_down(t){if(t.button>0)return;t.preventDefault();const[e,s]=this._local(t),n=this._hit(e,s);if(!n){if(this.mode==="form"&&this._agents.some(o=>o.tx!=null)){this.scatter();return}if(this._agents.length<600){const o=this._new(e,b(s,24,this._H-6),220);o.vz=-50,this._agents.push(o)}return}try{this._cv.setPointerCapture(t.pointerId)}catch{}n.held=!0,n.state="held",this._cv.classList.add("held");let l=e,r=s,a=E(),h=0,k=0;const g=o=>{const[p,d]=this._local(o),_=E(),u=Math.max(8,_-a);h=R(h,(p-l)/u*1e3,.5),k=R(k,(d-r)/u*1e3,.5),l=p,r=d,a=_,n.x=b(p,6,this._W-6),n.z=Math.max(20,n.y-d+S.h*this._s*.6)},c=()=>{this._cv.removeEventListener("pointermove",g),this._cv.removeEventListener("pointerup",c),this._cv.removeEventListener("pointercancel",c),this._cv.classList.remove("held"),n.held=!1,n.state="air",E()-a>90&&(h=k=0),n.vx=b(h,-900,900),n.vy=b(k*.25,-300,300),n.vz=b(-k*.6,-200,700)};this._cv.addEventListener("pointermove",g),this._cv.addEventListener("pointerup",c),this._cv.addEventListener("pointercancel",c)}_tick(t,e){if(!this._vis||!this._W)return;const s=L(),n=this._W,l=this._H,r=this._agents,a=this.mode,h=this.getBoundingClientRect(),k=x.cx-h.left,g=x.cy-h.top,c=x.seen&&k>0&&g>0&&k<n&&g<l;if(!s)for(const o of r){if(o.held)continue;if(o.t+=t,o.z>0||o.vz>0||o.state==="air"){o.vz-=1400*t,o.z+=o.vz*t,o.x+=o.vx*t,o.y+=o.vy*t,(o.x<6||o.x>n-6)&&(o.vx*=-.6,o.x=b(o.x,6,n-6)),o.y=b(o.y,24,l-4),o.z<=0&&(o.z=0,o.vz<-260?(o.vz=-o.vz*.35,this._fx.push({x:o.x,y:o.y,t:0,k:"dust"})):(o.vz=0,o.vx*=.3,o.vy*=.3,o.state="walk",o.timer=w(.5,2),(Math.hypot(o.vx,o.vy)>30||o._fell)&&(o.dizzy=1.2)));continue}o.dizzy=Math.max(0,o.dizzy-t),o.scatter=Math.max(0,o.scatter-t);let p=0,d=0,_=34;if(a==="swarm"&&c){const u=k-o.x,f=g-o.y,m=Math.hypot(u,f)||1;m>30&&(p+=u/m*90,d+=f/m*90),_=70}else if(a==="form"&&o.tx!=null&&o.scatter<=0){const u=o.tx-o.x,f=o.ty-o.y,m=Math.hypot(u,f);m>1.5?(p+=u/m*Math.min(80,m*4),d+=f/m*Math.min(80,m*4),_=60,o.state="walk"):(o.x=o.tx,o.y=o.ty,o.vx=o.vy=0,o.state=o.t%9<.4?"wave":"stand",o.face=1)}else if(o.timer-=t,o.state==="walk"){const u=o.gx-o.x,f=o.gy-o.y,m=Math.hypot(u,f);m<4||o.timer<=0?Z(.35)?(o.state=Z(.3)?"wave":"stand",o.timer=w(.8,2.5)):(o.gx=b(o.x+w(-120,120),10,n-10),o.gy=b(o.y+w(-70,70),26,l-6),o.timer=w(2,5)):(p+=u/m*40,d+=f/m*40)}else o.timer<=0&&o.state!=="five"&&(o.state="walk",o.timer=w(2,5));if(c&&a!=="swarm"){const u=o.x-k,f=o.y-g,m=Math.hypot(u,f)||1;m<56&&(p+=u/m*900/Math.max(m/14,1),d+=f/m*900/Math.max(m/14,1),o.state="walk")}if(o.state==="walk"||a==="swarm"||p||d){o.vx=R(o.vx,p,1-Math.exp(-6*t)),o.vy=R(o.vy,d,1-Math.exp(-6*t));const u=Math.hypot(o.vx,o.vy),f=_*2.2;u>f&&(o.vx*=f/u,o.vy*=f/u),o.x=b(o.x+o.vx*t,6,n-6),o.y=b(o.y+o.vy*t,24,l-4),Math.abs(o.vx)>3&&(o.face=o.vx>0?1:0)}}if(!s){const p=new Map;for(const d of r){const _=(d.x/16|0)+","+(d.y/16|0);(p.get(_)||p.set(_,[]).get(_)).push(d)}for(const d of r){if(d.held||d.z>0)continue;const _=d.x/16|0,u=d.y/16|0;for(let f=-1;f<=1;f++)for(let m=-1;m<=1;m++){const v=p.get(_+f+","+(u+m));if(v)for(const y of v){if(y===d||y.z>0)continue;const A=d.x-y.x,j=d.y-y.y,z=Math.hypot(A,j*2)||.1;z<9&&!(a==="form"&&d.tx!=null&&d.scatter<=0)&&(d.x+=A/z*.6,d.y+=j/z*.3),a==="crowd"&&z<14&&d.state==="walk"&&y.state==="walk"&&!d.mate&&!y.mate&&Z(.02)&&(d.mate=y,y.mate=d,d.state=y.state="five",d.timer=y.timer=.7,d.face=y.x>d.x?1:0,y.face=1-d.face,this._fx.push({x:(d.x+y.x)/2,y:Math.min(d.y,y.y)-S.h*this._s-4,t:0,k:"spark"}))}}}for(const d of r)d.state==="five"&&(d.timer-=t,d.timer<=0&&(d.state="walk",d.timer=w(1,3),d.mate=null,d.gx=b(d.x+(d.face?-80:80),10,n-10)))}this._render(e)}_render(t){const e=this._g,s=this._dpr,n=this._s,l=this._W,r=this._H;e.setTransform(s,0,0,s,0,0),e.clearRect(0,0,l,r),e.imageSmoothingEnabled=!1;const a=this._agents.slice().sort((h,k)=>h.y-k.y);e.fillStyle="rgba(23,18,31,.16)";for(const h of a){const k=S.w*n*(h.z>0?b(1-h.z/300,.4,1):1);e.fillRect(Math.round(h.x-k/2+n),Math.round(h.y-n/2),Math.round(k-2*n),n)}for(const h of a){const k=this._sprites[h.c];let g="stand";h.held||h.z>0?g="held":h.dizzy>0?g="dizzy":h.state==="wave"||h.state==="five"?g=Math.floor(h.t*6)%2?"wave":"stand":h.state==="walk"&&Math.hypot(h.vx,h.vy)>6&&(g=Math.floor(h.t*9)%2?"walkA":"walkB");const c=k[g][h.face],o=g.startsWith("walk")?Math.floor(h.t*9)%2*-n:0;e.drawImage(c,Math.round(h.x-c.width/2),Math.round(h.y-c.height-h.z+o))}this._fx=this._fx.filter(h=>(h.t+=1/60)<.5);for(const h of this._fx){const k=h.t/.5,g=6,c=4+k*14;e.fillStyle=h.k==="spark"?"#ffd23f":"rgba(23,18,31,.35)";for(let o=0;o<g;o++){const p=o/g*6.283+(h.k==="spark"?0:.5);e.fillRect(Math.round(h.x+Math.cos(p)*c-n/2),Math.round(h.y+Math.sin(p)*c*(h.k==="spark"?1:.4)-n/2),n,n)}}}}const I={},Ut=(i,t)=>(t.name=i,t.pupil=t.pupil||{w:1,h:1},t._cache={},I[i]=t,t),ft=(i,t)=>{const[e,s,n]=P(i),l=t<0?0:255,r=Math.abs(t),a=h=>Math.round(h+(l-h)*r).toString(16).padStart(2,"0");return"#"+a(e)+a(s)+a(n)},Gt=(i,t)=>{const e={...i.palette};if(t&&i.recolor)for(const s in i.recolor)e[s]=i.recolor[s]?ft(t,i.recolor[s]):t;return e},Kt=(i,t)=>{const e=JSON.stringify(t);if(!i._cache[e]){const s={};for(const n in t)s[n]=P(t[n]);i._cache[e]=i.frames.map(n=>et(n,s,i.w,i.h))}return i._cache[e]},it=3;class Vt extends HTMLElement{static get observedAttributes(){return["name","size","scale","hue","color","eye","render","depth"]}constructor(){super(),this.attachShadow({mode:"open"}),this._tick=this._tick.bind(this),this._down=this._down.bind(this),this._vis=!0}connectedCallback(){this._build(),this._io=new IntersectionObserver(t=>{this._vis=t[t.length-1].isIntersecting},{rootMargin:"120px"}),this._io.observe(this),this.addEventListener("pointerdown",this._down),tt(this._tick)}disconnectedCallback(){G(this._tick),this._io&&this._io.disconnect(),this.removeEventListener("pointerdown",this._down)}attributeChangedCallback(t){if(!(!this.isConnected||!this._cv)){if(t==="hue"){this._cv.style.filter=this.getAttribute("hue")?`hue-rotate(${+this.getAttribute("hue")}deg)`:"";return}this._build()}}poke(){this._down()}_on(t){return this.hasAttribute(t)||!!this._spec[t]&&!this.hasAttribute("no-"+t)}_build(){const t=this._figureName?this._figureName():this.getAttribute("name");if(t&&!I[t]){this._tries=(this._tries||0)+1,this._tries<80&&(clearTimeout(this._retry),this._retry=setTimeout(()=>this.isConnected&&this._build(),125));return}const e=this._spec=I[t]||I[Object.keys(I)[0]];if(!e)return;this._pal=Gt(e,this.getAttribute("color")),this._frames=Kt(e,this._pal);const s=+this.getAttribute("size"),n=this._s=+this.getAttribute("scale")||(s?Math.max(1,Math.round(s/e.w)):e.scale||5),l=this._mode=Qt.includes(this.getAttribute("render"))?this.getAttribute("render"):e.render||"pixel",r=e.w,a=e.h+it,h=this._depth=l==="voxel"?Math.max(1,+this.getAttribute("depth")||e.depth||3):0,k=this._pad=h*n,g=this._dpr=l==="pixel"?1:Math.min(devicePixelRatio||1,2),c=l==="pixel"?r:Math.round((r*n+k*2)*g),o=l==="pixel"?a:Math.round((a*n+k*2)*g);this.shadowRoot.innerHTML=`<style>
+:host{display:inline-block;line-height:0;vertical-align:bottom;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.w{display:block;transform-origin:50% 100%;will-change:transform}
+canvas{display:block;image-rendering:pixelated;image-rendering:crisp-edges;margin:${-it*n-k}px ${-k}px ${-k}px}
+</style><div class="w"><canvas width="${c}" height="${o}" style="width:${r*n+k*2}px;height:${a*n+k*2}px"></canvas></div>`,this._wrap=this.shadowRoot.querySelector(".w"),this._cv=this.shadowRoot.querySelector("canvas"),this.getAttribute("hue")&&(this._cv.style.filter=`hue-rotate(${+this.getAttribute("hue")}deg)`),this._out=this._cv.getContext("2d");const p=this._buf=document.createElement("canvas");p.width=r,p.height=a,this._g=p.getContext("2d",{willReadFrequently:l!=="pixel"&&l!=="voxel"}),l==="voxel"&&(this._shade=document.createElement("canvas"),this._shade.width=r,this._shade.height=a),this._key="",this._ox=0,this._oy=0,this._tilt=0,this._rx=0,this._ry=0,this._blinkEnd=0,this._nextBlink=E()+w(1200,3600),this._look={x:0,y:0,until:0},this._lastPoke=E(),this.hasAttribute("aria-label")?this.setAttribute("role","img"):this.setAttribute("aria-hidden","true")}_down(){this._hop=E(),this._happy=E()+650,this._lastPoke=E(),this.dispatchEvent(new CustomEvent("piix:poke",{bubbles:!0}))}_tick(t,e){if(!this._vis||!this._cv||!this._spec)return;const s=this._spec,n=this._s,l=L(),r=this.getBoundingClientRect(),a=r.left+r.width/2,h=r.top+r.height*.45,k=e-Math.max(x.last,this._lastPoke),g=this.hasAttribute("sleep-after")?+this.getAttribute("sleep-after"):25,c=g>0&&k>g*1e3,o=this.getAttribute("look")||"mouse",p=x.cx-a,d=x.cy-h,_=o==="mouse"&&x.seen&&k<4e3;let u=0,f=0;if(_){const $=Math.max(r.width,40)*1.4;u=b(p/$,-1,1),f=b(d/$,-1,1)}else o!=="none"&&(e>this._look.until&&(this._look={x:w(-1,1),y:w(-.7,.7),until:e+w(1200,3e3)}),u=this._look.x,f=this._look.y);c&&(u=0,f=0),e>this._nextBlink&&(this._blinkEnd=e+130,this._nextBlink=e+w(2400,6e3));const m=c?"shut":e<this._happy?"happy":e<this._blinkEnd?"shut":"open",v=s.fps||2,y=l||s.frames.length<2?0:Math.floor(e/1e3*v*(c?.4:1))%s.frames.length,A=l||this.hasAttribute("still"),j=A?0:Math.floor(e/(c?1400:760))%2,z=c&&!l?Math.floor(e/700)%3:-1,_t=s.eyes[0],se=Math.round((u+1)/2*(_t?_t.w-s.pupil.w:0)),ne=Math.round((f+1)/2*(_t?_t.h-s.pupil.h:0));this._ry+=((A?0:u)-this._ry)*.12,this._rx+=((A?0:f)-this._rx)*.12;const oe=this._mode==="voxel"?Math.round(-this._ry*4)/4:0,re=this._mode==="voxel"?Math.round((-this._rx*.8+.55)*4)/4:0,ae=[y,j,m,se,ne,z,oe,re].join();ae!==this._key&&(this._key=ae,this._draw(y,j,m,se,ne,z),this._present(oe,re));let he=0,mt=0,le=1,ce=1,de=0;if(!A){if(this._on("tilt")&&_&&!c&&(de=b(p/(innerWidth*.4),-1,1)*8),this._on("shy")&&x.seen&&!c){const $=Math.hypot(p,d)||1,nt=r.width*1.2;if($<nt){const ue=(1-$/nt)*r.width*.18;he=-p/$*ue,mt=-d/$*ue}}if(this._hop){const $=(e-this._hop)/460;if($>=1)this._hop=0;else{mt-=Math.sin(Math.PI*$)*s.h*n*.35;const nt=Math.sin(Math.PI*$*2)*.08;le=1-nt*.6,ce=1+nt}}}this._ox+=(he-this._ox)*.18,this._oy+=(mt-this._oy)*.18,this._tilt+=(de-this._tilt)*.1;const ze=this._hop?mt:this._oy,Pe=this._mode==="voxel"?`perspective(${Math.round(r.width*5)}px) rotateY(${(this._ry*24).toFixed(1)}deg) rotateX(${(-this._rx*14).toFixed(1)}deg) `:"";this._wrap.style.transform=`translate(${this._ox.toFixed(1)}px,${ze.toFixed(1)}px) ${Pe}rotate(${this._tilt.toFixed(1)}deg) scale(${le.toFixed(3)},${ce.toFixed(3)})`}_draw(t,e,s,n,l,r){const a=this._spec,h=this._g,k=it-e,g=this._pal;h.clearRect(0,0,a.w,a.h+it),h.drawImage(this._frames[t],0,k);const c=g.k||"#17121f",o=g[a.lid]||c,p=this.getAttribute("eye")||g[a.pupilKey||"k"]||c;for(const d of a.eyes){const _=d.x,u=d.y+k;if(s==="open")h.fillStyle=p,h.fillRect(_+n,u+l,a.pupil.w,a.pupil.h),a.glint&&a.pupil.w>1&&(h.fillStyle=a.glint,h.fillRect(_+n,u+l,1,1));else if(h.fillStyle=o,h.fillRect(_,u,d.w,d.h),h.fillStyle=p,s==="shut")h.fillRect(_,u+d.h-1,d.w,1);else{const f=u+Math.max(0,d.h-2);h.fillRect(_,f,d.w,1),h.fillRect(_,u+d.h-1,1,1),h.fillRect(_+d.w-1,u+d.h-1,1,1)}}if(r>=0){h.fillStyle=p;const d=a.w-4+(r>1?1:0),_=2-r;h.fillRect(d,_+0,3,1),h.fillRect(d+1,_+1,1,1),h.fillRect(d,_+2,3,1)}}_present(t,e){const s=this._out,n=this._buf,l=n.width,r=n.height,a=this._s,h=this._pad,k=this._dpr;if(this._mode==="pixel"){s.clearRect(0,0,l,r),s.drawImage(n,0,0);return}if(s.setTransform(k,0,0,k,0,0),s.clearRect(0,0,l*a+h*2,r*a+h*2),s.imageSmoothingEnabled=!1,$t[this._mode]){const d=this._g.getImageData(0,0,l,r).data;$t[this._mode](s,d,l,r,a);return}if(this._mode==="dots"){const d=this._g.getImageData(0,0,l,r).data,_=new Map,u=a*.44;for(let f=0;f<r;f++)for(let m=0;m<l;m++){const v=(f*l+m)*4;if(d[v+3]<40)continue;const y=`rgb(${d[v]},${d[v+1]},${d[v+2]})`;_.has(y)||_.set(y,[]),_.get(y).push(m,f)}_.forEach((f,m)=>{s.fillStyle=m,s.beginPath();for(let v=0;v<f.length;v+=2){const y=(f[v]+.5)*a,A=(f[v+1]+.5)*a;s.moveTo(y+u,A),s.arc(y,A,u,0,6.2832)}s.fill()});return}const g=this._shade,c=g.getContext("2d");c.clearRect(0,0,l,r),c.globalCompositeOperation="source-over",c.drawImage(n,0,0),c.globalCompositeOperation="source-atop",c.fillStyle="rgba(10,6,20,.42)",c.fillRect(0,0,l,r);const o=this._depth*2,p=a/2;for(let d=o;d>=1;d--)s.drawImage(g,h+t*d*p,h+e*d*p,l*a,r*a);s.drawImage(n,h,h,l*a,r*a)}}H.figures=I,H.figure=Ut;const Qt=["pixel","dots","voxel","halftone","dither","ascii"],pt=(i,t,e)=>(i*.299+t*.587+e*.114)/255,Jt=[0,8,2,10,12,4,14,6,3,11,1,9,15,7,13,5].map(i=>(i+.5)/16),kt=" .:-=+*#%@",$t={halftone(i,t,e,s,n){const l=n/2;for(let r=0;r<s;r++)for(let a=0;a<e;a++){const h=(r*e+a)*4;if(t[h+3]<40)continue;const k=pt(t[h],t[h+1],t[h+2]),g=l*(.32+(1-k)*.5);i.fillStyle=`rgb(${t[h]},${t[h+1]},${t[h+2]})`,i.beginPath();for(let c=0;c<4;c++){const o=a*n+(c&1)*l+l/2,p=r*n+(c>>1)*l+l/2;i.moveTo(o+g,p),i.arc(o,p,g,0,6.2832)}i.fill()}},dither(i,t,e,s,n){const l=n/4;for(let r=0;r<s;r++)for(let a=0;a<e;a++){const h=(r*e+a)*4;if(t[h+3]<40)continue;const k=pt(t[h],t[h+1],t[h+2]),g=1.12-k*.95;i.fillStyle=`rgb(${Math.round(t[h]*.82)},${Math.round(t[h+1]*.82)},${Math.round(t[h+2]*.82)})`;for(let c=0;c<16;c++){const o=a*4+(c&3)&3,p=r*4+(c>>2)&3;Jt[p*4+o]<g&&i.fillRect(a*n+(c&3)*l,r*n+(c>>2)*l,Math.ceil(l),Math.ceil(l))}}},ascii(i,t,e,s,n){i.font=`800 ${Math.round(n*1.5)}px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace`,i.textAlign="center",i.textBaseline="middle";for(let l=0;l<s;l++)for(let r=0;r<e;r++){const a=(l*e+r)*4;if(t[a+3]<40)continue;const h=pt(t[a],t[a+1],t[a+2]),k=kt[b(Math.round((1-h)*(kt.length-1))+4,2,kt.length-1)];i.fillStyle=`rgb(${t[a]},${t[a+1]},${t[a+2]})`,i.fillText(k,r*n+n/2,l*n+n/2)}}},Te={kind:"big",scale:8,render:"voxel",depth:2,tilt:!0,shy:!0,glint:"#ffffff",lid:"b",recolor:{b:0,d:-.24,B:.42}};class Zt extends HTMLElement{static get observedAttributes(){return["text","rows","cell","font","weight","color","shade","depth","gap","fit","align","intro","shape"]}constructor(){super(),this.attachShadow({mode:"open"}),this._tick=this._tick.bind(this),this._pm=this._pm.bind(this),this._pd=this._pd.bind(this),this._cells=[],this._on=!1,this._tok=0,this._waves=[]}connectedCallback(){this.shadowRoot.innerHTML=`<style>
+:host{display:block;line-height:0;position:relative}
+canvas{display:block;pointer-events:none;image-rendering:pixelated}
+</style><canvas aria-hidden="true"></canvas>`,this._cv=this.shadowRoot.querySelector("canvas"),this._g=this._cv.getContext("2d"),this.setAttribute("role","img"),this._ro=new ResizeObserver(()=>{this._cols&&this._layout()}),this._ro.observe(this),addEventListener("pointermove",this._pm,{passive:!0}),this.addEventListener("pointerdown",this._pd),this._raster()}disconnectedCallback(){this._ro&&this._ro.disconnect(),removeEventListener("pointermove",this._pm),this.removeEventListener("pointerdown",this._pd),G(this._tick),this._on=!1}attributeChangedCallback(t){this._cv&&(["text","rows","font","weight","align"].includes(t)?(clearTimeout(this._rt),this._rt=setTimeout(()=>this._raster(),40)):this._cols&&this._layout())}get text(){var t;return((t=this.getAttribute("text"))!=null?t:this.textContent).trim()}replay(){this._seedIntro(),this._wake()}get piixSettled(){return!!this._cols&&this._cells.every(t=>t.landed)}piixImpact(t,e,s=1){if(!this._cols||L())return;const n=this._cv.getBoundingClientRect();this._waves.push({x:(t-scrollX-n.left)/this._cell,y:(e-scrollY-n.top-this._head)/this._cell,r:0,max:5+5*s,amp:.5+.4*s}),this._wake()}piixSurface(t){if(!this._cols)return null;const e=this._cv.getBoundingClientRect(),s=Math.floor((t-scrollX-e.left)/this._cell),n=this._top[s];return n==null?null:e.top+scrollY+this._head+n*this._cell}async _raster(){const t=++this._tok,e=this.text.split(/\||\n/).map(f=>f.trim()).filter(Boolean);if(!e.length){this._cols=0;return}const s=+this.getAttribute("rows")||18,n=this.getAttribute("weight")||800,l=this.getAttribute("font")||getComputedStyle(this).fontFamily||"system-ui,sans-serif",r=`${n} ${s}px ${l}`;try{await document.fonts.load(r,e.join(""))}catch{}if(t!==this._tok)return;const a=document.createElement("canvas"),h=a.getContext("2d",{willReadFrequently:!0});h.font=r;const k=e.map(f=>Math.ceil(h.measureText(f).width)),g=Math.max(...k)+2,c=Math.round(s*1.02);a.width=g,a.height=c*e.length+2,h.font=r,h.fillStyle="#000",h.textBaseline="alphabetic";const o=this.getAttribute("align")||"left";e.forEach((f,m)=>{const v=o==="center"?Math.round((g-k[m])/2):o==="right"?g-k[m]-1:1;h.fillText(f,v,Math.round(m*c+s*.8)+1)});const p=h.getImageData(0,0,a.width,a.height).data,d=[];for(let f=0;f<a.height;f++)for(let m=0;m<a.width;m++)p[(f*a.width+m)*4+3]>110&&d.push({x:m,y:f,oy:0,vy:0,lift:0,lv:0,delay:0,landed:!0});const _=Math.min(...d.map(f=>f.x)),u=Math.min(...d.map(f=>f.y));for(const f of d)f.x-=_,f.y-=u;this._cols=Math.max(...d.map(f=>f.x))+1,this._rowsN=Math.max(...d.map(f=>f.y))+1,this._cells=d,this._top=[];for(const f of d)(this._top[f.x]==null||f.y<this._top[f.x])&&(this._top[f.x]=f.y);this.setAttribute("aria-label",e.join(" ")),this._layout(),this.getAttribute("intro")!=="none"&&this._seedIntro(),this._wake(),this.dispatchEvent(new CustomEvent("piix:type",{bubbles:!0}))}_layout(){let t=+this.getAttribute("cell")||8;if(this.hasAttribute("fit")){const r=this.clientWidth||this.parentElement&&this.parentElement.clientWidth||0;r&&(t=Math.max(2,Math.min(t,Math.floor(r/(this._cols+1)))))}this._cell=t,this._depth=Math.round(t*(this.getAttribute("depth")!=null?+this.getAttribute("depth"):1)*.6);const e=this.getAttribute("gap");this._gap=Math.round(t*b(e!=null?+e:.1,0,.45)),this._head=t*3;const s=this._cols*t+this._depth,n=this._rowsN*t+this._depth+this._head,l=Math.min(devicePixelRatio||1,2);this._dpr=l,this._cv.width=Math.round(s*l),this._cv.height=Math.round(n*l),this._cv.style.width=s+"px",this._cv.style.height=n+"px",this._cv.style.marginTop=-this._head+"px",this._render()}_seedIntro(){if(L())return;const t=(this._rowsN+6)*this._cell;for(const e of this._cells)e.landed=!1,e.vy=0,e.oy=-t-w(0,this._cell*8),e.delay=e.x*.012+w(0,.18)+(this._rowsN-e.y)*.004;this._t=0}_wake(){this._on||(this._on=!0,tt(this._tick))}_pm(){if(!this._cols||L())return;const t=this._cv.getBoundingClientRect(),e=this._cell*8;x.cx>t.left-e&&x.cx<t.right+e&&x.cy>t.top-e&&x.cy<t.bottom+e&&(this._hot=!0,this._wake())}_pd(t){if(!this._cols||L())return;const e=this._cv.getBoundingClientRect();this._waves.push({x:(t.clientX-e.left)/this._cell,y:(t.clientY-e.top-this._head)/this._cell,r:0,max:this._cols+20,amp:1.6}),this._wake()}_tick(t){if(!this._cols)return;const e=this._cell,s=5200;let n=!1;this._t=(this._t||0)+t;const l=this._cv.getBoundingClientRect(),r=(x.cx-l.left)/e,a=(x.cy-l.top-this._head)/e,h=7,k=this._hot&&x.seen;this._waves.forEach(c=>{c.r+=t*60}),this._waves=this._waves.filter(c=>c.r<c.max),this._waves.length&&(n=!0);let g=!1;for(const c of this._cells){if(!c.landed){if(n=!0,this._t<c.delay)continue;c.vy+=s*t,c.oy+=c.vy*t,c.oy>=0&&(c.vy>500?(c.oy=0,c.vy=-c.vy*.22):(c.oy=0,c.vy=0,c.landed=!0))}let o=0;if(k){const p=c.x+.5-r,d=c.y+.5-a,_=Math.sqrt(p*p+d*d);if(_<h){const u=1-_/h;o=u*u*e*1.4,g=!0}}for(const p of this._waves){const d=Math.hypot(c.x-p.x,c.y-p.y),_=Math.abs(d-p.r);_<2.5&&(o=Math.max(o,(1-_/2.5)*e*p.amp*Math.max(0,1-p.r/p.max)))}c.lv+=((o-c.lift)*320-c.lv*22)*t,c.lift+=c.lv*t,(Math.abs(c.lift)>.05||Math.abs(c.lv)>.5)&&(n=!0)}g||(this._hot=!1),this._render(),!n&&!this._hot&&(G(this._tick),this._on=!1)}_render(){if(!this._cols)return;const t=this._g,e=this._cell,s=this._gap,n=e-s,l=this._depth,r=this._head;t.setTransform(this._dpr,0,0,this._dpr,0,0),t.clearRect(0,0,this._cv.width,this._cv.height);const a=this.getAttribute("color")||"currentColor",h=a==="currentColor"?getComputedStyle(this).color:a,k=this.getAttribute("shade"),g=Lt[this.getAttribute("shape")]||Lt.square;if(k&&l){t.fillStyle=k,t.beginPath();for(const c of this._cells)!c.landed&&c.oy<-e||g(t,c.x*e+l,r+c.y*e+l+Math.round(Math.min(0,c.oy)),n);t.fill()}t.fillStyle=h,t.beginPath();for(const c of this._cells){const o=r+c.y*e+Math.round(c.oy-c.lift);o+n<0||g(t,c.x*e,o,n)}t.fill()}}const Lt={square:(i,t,e,s)=>i.rect(t,e,s,s),dot:(i,t,e,s)=>{const n=s*.46;i.moveTo(t+s/2+n,e+s/2),i.arc(t+s/2,e+s/2,n,0,6.2832)},round:(i,t,e,s)=>{i.roundRect?i.roundRect(t,e,s,s,s*.32):i.rect(t,e,s,s)},plus:(i,t,e,s)=>{const n=s/3;i.rect(t+n,e,n,s),i.rect(t,e+n,n,n),i.rect(t+2*n,e+n,n,n)},diamond:(i,t,e,s)=>{i.moveTo(t+s/2,e),i.lineTo(t+s,e+s/2),i.lineTo(t+s/2,e+s),i.lineTo(t,e+s/2),i.closePath()}};class te extends HTMLElement{static get observedAttributes(){return["pal","do","on","scale","hue","at","side"]}connectedCallback(){this.style.display="none",!this._mounted&&(cancelAnimationFrame(this._q),this._q=requestAnimationFrame(()=>{this._q=requestAnimationFrame(()=>this._mount())}))}disconnectedCallback(){cancelAnimationFrame(this._q),queueMicrotask(()=>{this.isConnected||this._unmount()})}attributeChangedCallback(t,e,s){if(!(e===s||!this._mounted)){if(t==="hue"){this._actor.cv.style.filter=s?`hue-rotate(${+s}deg)`:"";return}this._unmount(),this._mount()}}get actor(){return this._actor||null}get ctl(){return this._ctl||null}poke(){this._ctl&&this._ctl.poke&&this._ctl.poke()}_mount(){if(!this.isConnected||this._mounted)return;const t=(this.getAttribute("pal")||"").toLowerCase(),e=this.getAttribute("on");let s;try{s=e?[...document.querySelectorAll(e)]:[this.parentElement]}catch{s=[]}s=s.filter(o=>o&&o!==document.documentElement);const n=T[t]||!t&&T[Object.keys(T)[0]],l=n&&(V[this.getAttribute("do")]||V[n.does]);if(!n||!l||!s.length){this._tries=(this._tries||0)+1,this._tries<80?(clearTimeout(this._retry),this._retry=setTimeout(()=>this._mount(),125)):console.warn("[piixpal]",n?l?"nothing to live on":`unknown behaviour "${this.getAttribute("do")||n.does}"`:`no pal called "${t}"`,this);return}this._tries=0;const r=this._actor=new yt(n,{scale:+this.getAttribute("scale")||0,hue:this.getAttribute("hue"),fixed:this.hasAttribute("fixed-scale")});r.host=this;const a=this._ctl=r.ctl=l(r,s,this)||{};a.grab||r.node.classList.add("nograb"),this._pd=o=>{o.button>0||(o.preventDefault(),this.dispatchEvent(new CustomEvent("piix:poke",{bubbles:!0})),a.grab?a.grab(o):a.poke&&a.poke(o))},r.cv.addEventListener("pointerdown",this._pd);const h=o=>{o._wired||(o._wired=!0,o.host=this,a.grab||o.node.classList.add("nograb"),o.cv.addEventListener("pointerdown",p=>{p.button>0||(p.preventDefault(),this.dispatchEvent(new CustomEvent("piix:poke",{bubbles:!0})),a.grab?a.grab(p,o):a.poke&&a.poke(p,o))}))},k=bt(this),g=(o,p)=>{o.x=b(o.x,p.l+o.w/2,Math.max(p.l+o.w/2,p.r-o.w/2)),o.y=b(o.y,p.t+o.h,Math.max(p.t+o.h,p.b-2))};let c=!0;this._tick=(o,p)=>{if(!(c||(a.awake?a.awake():Math.abs(r.y-(scrollY+innerHeight/2))<innerHeight*1.5)||r.held))return;c=!1;const _=k&&rt(k);if(_&&!(x.x>=_.l&&x.x<=_.r&&x.y>=_.t&&x.y<=_.b)){const u=x.cx,f=x.cy;x.cx=x.cy=-1e5;try{a.tick(o,p)}finally{x.cx=u,x.cy=f}}else a.tick(o,p);if(_&&!a.boxed&&(g(r,_),a.crew))for(const u of a.crew)g(u,_);if(r.step(o),r.render(),a.crew)for(const u of a.crew)h(u),u.step(o),u.render()},tt(this._tick),this._mounted=!0,this.dispatchEvent(new CustomEvent("piix:ready",{bubbles:!0,detail:{pal:n.name}}))}_unmount(){this._mounted&&(G(this._tick),this._ctl&&this._ctl.destroy&&this._ctl.destroy(),this._ctl&&this._ctl.crew&&this._ctl.crew.forEach(t=>t.destroy()),this._actor&&(this._actor.cv.removeEventListener("pointerdown",this._pd),this._actor.destroy()),this._actor=this._ctl=null,this._mounted=!1)}}const st=(i,t)=>{customElements.get(i)||customElements.define(i,t)},J={},gt=(i,t="body",e={})=>{if(i=String(i).toLowerCase(),J[i]){const r=document.createElement(J[i]);for(const h in e)e[h]!==!1&&e[h]!=null&&h!=="_tries"&&r.setAttribute(h,e[h]===!0?"":e[h]);return((typeof t=="string"?document.querySelector(t):t)||document.body).appendChild(r),r}if(!e.type&&!T[i]&&!I[i]&&!J[i]&&(e._tries||0)<80)return setTimeout(()=>gt(i,t,{...e,_tries:(e._tries||0)+1}),125),null;e={...e},delete e._tries;const s=e.type==="sprite"||!T[i]&&!!I[i],n=typeof t=="string"?null:t,l=document.createElement(s?"piix-sprite":"piix-pal");e={...e},delete e.type,l.setAttribute(l.tagName==="PIIX-SPRITE"?"name":"pal",i);for(const r in e)e[r]!==!1&&e[r]!=null&&l.setAttribute(r,e[r]===!0?"":e[r]);if(l.tagName==="PIIX-SPRITE"){const r=n||document.querySelector(t);r&&r.appendChild(l)}else n?n.appendChild(l):(l.setAttribute("on",t),document.body.appendChild(l));return l},ee=i=>{const t=i&&i.getAttribute("data-pals");if(!t)return;const e=()=>t.split(",").map(s=>s.trim()).filter(Boolean).forEach(s=>{const[n,l=""]=s.split("?"),[r,a="body"]=n.split("@").map(k=>k.trim()),h=Object.fromEntries(new URLSearchParams(l));gt(r,a,h)});document.readyState==="complete"?e():addEventListener("load",e,{once:!0})},ie=document.currentScript,Ie=(i=ie)=>{st("piix-pal",te),st("piix-type",Zt),st("piix-sprite",Vt),st("piix-crowd",Dt),i&&!i._piix&&(i._piix=!0,ee(i))};return Object.assign(H,{add:gt,list:()=>({pals:Object.keys(T).filter(i=>i[0]!=="_"),sprites:Object.keys(I),behaviors:Object.keys(V),elements:Object.keys(J)}),clear:()=>document.querySelectorAll(["piix-pal","piix-sprite",...Object.values(J)].join()).forEach(i=>i.remove())}),H._k={reduceMQ:It,reduced:L,clamp:b,rnd:w,chance:Z,pick:fe,lerp:R,now:E,hexRGBA:P,ptr:x,ptrDist:pe,scroll:B,subs:U,raf:ot,frame:xt,sub:tt,unsub:G,rectOf:rt,docW:W,boxOf:bt,pin:zt,areaOf:ke,onScreen:ge,surfaceAt:_e,LAYER_CSS:Pt,layer:O,origin:M,getLayer:Bt,layerOrigin:at,SPRITES:T,bake:et,defineSprite:Ot,baked:Ht,ACTORS:ht,shout:me,Actor:yt,recruit:xe,BEHAVIORS:V,defineBehavior:Yt,Piixpal:H,art:Y,lastT:q,layerRoot:K,ICON_PAL:Xt,ICONS:F,DIGITS:Ft,numberIcon:vt,iconCache:lt,iconPal:Nt,bakeIcon:wt,UI_INK:C,UI_PAPER:ct,UI_FONT:dt,UI_MONO:Mt,UI_CSS:jt,uiHost:N,uiRoot:ut,uiStyles:Et,uiStyle:be,uiEl:Ct,uiIcon:ye,uiCard:ve,uiPlace:we,uiAt:Me,uiClose:Ee,uiAnnounce:Ce,uiShadow:Q,uiLive:D,measureCtx:At,glyphTop:qt,textProfile:Ae,segAt:Se,LAND:Re,platCache:X,TEXTY:Wt,surfaceOf:St,platforms:$e,drag:Le,BLIP:S,CROWD_COLORS:Rt,PiixCrowdElement:Dt,FIGURES:I,defineFigure:Ut,mixHex:ft,figurePalette:Gt,bakeFigure:Kt,HEAD:it,PiixSpriteElement:Vt,RENDERS:Qt,lum:pt,BAYER:Jt,ASCII:kt,TEXTURES:$t,BIG:Te,PiixTypeElement:Zt,CELL_SHAPES:Lt,PiixPalElement:te,define:st,ELEMENTS:J,add:gt,autoAttach:ee,SCRIPT:ie,start:Ie},H._k})().start(document.currentScript)})();</script>
+<script>/*! Piixpal bitbug v0.4.0 | MIT | https://github.com/diiviikk5/Piixpal */(()=>{"use strict";const I=document.currentScript,N=A=>{const{reduceMQ:U,reduced:h,clamp:P,rnd:d,chance:v,pick:j,lerp:L,now:C,hexRGBA:tt,ptr:B,ptrDist:V,scroll:et,subs:it,raf:st,frame:nt,sub:lt,unsub:rt,rectOf:D,docW:ct,boxOf:ft,pin:ot,areaOf:kt,onScreen:ut,surfaceAt:dt,LAYER_CSS:pt,layer:at,origin:wt,getLayer:ht,layerOrigin:yt,SPRITES:xt,bake:gt,defineSprite:W,baked:mt,ACTORS:q,shout:bt,Actor:St,recruit:Et,BEHAVIORS:It,defineBehavior:Q,Piixpal:At,art:_,lastT:Pt,layerRoot:Ct,ICON_PAL:_t,ICONS:Rt,DIGITS:Tt,numberIcon:Mt,iconCache:Ot,iconPal:Gt,bakeIcon:Lt,UI_INK:Nt,UI_PAPER:Ut,UI_FONT:vt,UI_MONO:Bt,UI_CSS:Dt,uiHost:Ht,uiRoot:Ft,uiStyles:Yt,uiStyle:jt,uiEl:Vt,uiIcon:Wt,uiCard:qt,uiPlace:Qt,uiAt:Xt,uiClose:$t,uiAnnounce:zt,uiShadow:Jt,uiLive:Kt,measureCtx:Zt,glyphTop:te,textProfile:X,segAt:$,LAND:ee,platCache:ie,TEXTY:se,surfaceOf:ne,platforms:le,drag:re,BLIP:ce,CROWD_COLORS:fe,PiixCrowdElement:oe,FIGURES:ke,defineFigure:ue,mixHex:de,figurePalette:pe,bakeFigure:ae,HEAD:we,PiixSpriteElement:he,RENDERS:ye,lum:xe,BAYER:ge,ASCII:me,TEXTURES:be,BIG:Se,PiixTypeElement:Ee,CELL_SHAPES:Ie,PiixPalElement:Ae,define:Pe,ELEMENTS:Ce,add:_e,autoAttach:Re,SCRIPT:Te,start:Me}=A;Q("crawl",(t,[p],x)=>{const g=x.getAttribute("edge")||(typeof p.piixSurface=="function"?"surface":"text"),s=t.s/3,b=30*s*(+x.getAttribute("speed")||1),m=2.5*t.s,R=34*t.s;let r=null,o="walk",y=d(2,4),l=null,H=!1,S=null,T=0;const z={},J=()=>{if(g==="surface"){const i=D(p);return{l:i.l,r:i.r,t:i.t}}if(g==="text"){const i=X(p,z);if(i)return i}const e=D(p);return{l:e.l,r:e.r,t:e.t}},a=e=>e<r.l+t.w*.3||e>r.r-t.w*.3?null:g==="surface"?p.piixSurface(e):r.segs?$(r.segs,e):r.t,k=(e,i,c,f)=>{o=e,y=i,c&&t.play(c,f)},M=(e,i,c=!1)=>{const f=Math.max(10*s,t.y-i+8*s);l={x0:t.x,y0:t.y,x1:e,y1:i,p:0,d:c?.55:P(.28+Math.abs(e-t.x)/500,.28,.6),yc:c?t.y:Math.min(t.y,i)-f*1.4},t.play("hop")},K=e=>{typeof p.piixImpact=="function"&&p.piixImpact(t.x,t.y,e)},Z=e=>{var i;for(let c=2;c<R;c+=2){const f=e+t.face*c,w=a(f);if(w!=null&&Math.abs(w-t.y)<R*1.4)return[f+t.face*t.w*.15,(i=a(f+t.face*t.w*.15))!=null?i:w]}return null},E=()=>{t.face=-t.face},O=e=>{var w;const i=t.x+t.face*e*O.dt,c=a(i);if(c!=null&&Math.abs(c-t.y)<=m){t.x=i,t.y=c;return}const f=c!=null?[i+t.face*t.w*.2,(w=a(i+t.face*t.w*.2))!=null?w:c]:Z(t.x);f&&f[1]!=null?M(f[0],f[1]):o==="scurry"?E():(E(),k("look",d(.6,1.2),"look"))};return{tick(e){var f,w,F;if(r=J(),!H){if(p.piixSettled===!1){t.node.style.visibility="hidden";return}t.node.style.visibility="";const n=x.getAttribute("at");t.x=r.l+(r.r-r.l)*(n!=null?P(+n,0,1):d(.15,.85));let u=a(t.x);for(let G=0;u==null&&G<40;G++)t.x+=t.w*.1,u=a(t.x);t.face=v(.5)?1:-1,H=!0,h()||u==null?(t.y=u!=null?u:r.t,t.play("walk")):(t.y=u-160*s,M(t.x,u,!0))}if(h()){t.y=(f=a(t.x))!=null?f:r.t,t.play("idle");return}if(O.dt=e,l){l.p=Math.min(1,l.p+e/l.d);const n=l.p,u=1-n;if(t.x=L(l.x0,l.x1,n),t.y=u*u*l.y0+2*u*n*l.yc+n*n*l.y1,t.sy=1.08,t.sx=.94,n>=1){const G=Math.max(0,l.y1-Math.min(l.y0,l.yc));l=null,t.y=(w=a(t.x))!=null?w:t.y,t.sy=.8,t.sx=1.15,t.play(o==="flip"?"flip":"walk"),K(P(G/(60*s),.3,1.4))}return}t.sx=L(t.sx,1,.25),t.sy=L(t.sy,1,.25);const i=a(t.x);switch(i==null?(t.x=P(t.x,r.l+t.w*.3,r.r-t.w*.3),t.y=(F=a(t.x))!=null?F:r.t):Math.abs(i-t.y)>m&&(t.y=i),B.seen&&V(t.x,t.y-t.h/2)<46*s+t.w*.5&&(o==="walk"||o==="idle"||o==="look"||o==="sniff")&&(k("alarm",.32,"alarm"),t.say("!",650)),y-=e,o){case"walk":if(t.play("walk",{fps:10}),O(b),C()-T>4e3){for(const n of q)if(!(n===t||n.spec!==t.spec||Math.abs(n.y-t.y)>t.h||Math.abs(n.x-t.x)>t.w*.85||(n.x-t.x)*t.face<0)){T=C(),t.say("heart",900),k("idle",.9,"idle"),setTimeout(()=>E(),700),n.ctl&&n.ctl.meet&&n.ctl.meet(t);break}}if(y<=0){const n=Math.random();n<.4?k("sniff",d(1,1.8),"sniff"):n<.75?k("look",d(1.2,2.2),"look",{reset:!0}):k("idle",d(1,2.4),"idle")}break;case"alarm":y<=0&&(t.face=(S!=null?S:B.x)>t.x?-1:1,S=null,k("scurry",d(.9,1.4)));break;case"scurry":t.play("walk",{fps:20}),O(b*3.4),y<=0&&k("walk",d(2,4));break;case"flip":t.play("flip"),y<=0&&(t.rot=0,M(t.x+t.face*4*s,t.y),k("walk",d(2,4)));break;default:y<=0&&(o==="look"&&v(.4)&&E(),k("walk",d(3,7),"walk"))}},meet(e){C()-T<1500||l||o==="flip"||(T=C(),t.face=e.x>t.x?1:-1,t.say("heart",900),k("idle",.9,"idle"),setTimeout(()=>E(),700))},hear(e,i){e!=="thud"||l||o==="flip"||o==="alarm"||o==="scurry"||(S=i.x,k("alarm",.25,"alarm"),t.say("!",600))},poke(){o==="flip"||l||(t.hush(),t.say(j(["!?","grr","!"]),900),M(t.x,t.y),k("flip",d(1.4,2)),t.play("flip"))}}}),(()=>{const t=["................","...kkkkkk.......",".kkGGggggkk.....","kGGggsggggdk....","kGgggggsggdkkkk.","kgsggggggddkhhhk","kdggggsggddkhhhk","kddddddddddkhhpk",".kkkkkkkkkkkkkk."],p={up:["...k","..k.","..k.",".k.."],twitch:["..k.","..k.",".k..",".k.."],sniff:["....","....","...k",".kk."],back:["k...",".k..",".k..",".k.."]},x={fwd:["hww","hwk"],up:["hwk","hww"],back:["hww","hkw"],shut:["hhh","hkk"],wide:["wwk","wwk"]},g={a:["..k...k...k.....",".k...k...k......"],b:["..k...k...k.....","...k...k...k...."],stand:["..k...k...k.....","..k...k...k....."],tuck:[".k.k.k.k.k......"]},s=(m,R,r)=>_.compose(t.concat(g[r]),[12,0,p[m]],[12,5,x[R]]),b=m=>_.trim(_.flipV(_.compose(t.concat(g[m]),[12,5,x.shut])));W("bitbug",{w:16,h:11,scale:3,does:"crawl",palette:{k:"#1b1226",g:"#b8f23a",G:"#efffc0",d:"#6a9c1c",s:"#3f6b10",h:"#3a2a55",w:"#ffffff",p:"#ff7aa8"},frames:{walk:[s("up","fwd","a"),s("twitch","fwd","b")],idle:[s("up","fwd","stand"),s("up","fwd","stand"),s("up","shut","stand"),s("up","fwd","stand")],look:[s("up","up","stand"),s("twitch","up","stand"),s("back","back","stand"),s("back","back","stand")],sniff:[s("sniff","fwd","stand"),s("sniff","fwd","a"),s("sniff","shut","stand"),s("twitch","fwd","stand")],alarm:[s("up","wide","stand"),s("twitch","wide","tuck")],hop:[s("up","wide","tuck")],flip:[b("a"),b("b")]},fps:{walk:10,idle:3,look:2,sniff:4,alarm:12,flip:12,hop:1}})})(),A.start(I)};if(window.Piixpal&&window.Piixpal._k)return N(window.Piixpal._k);})();</script>
+<script>/*! Piixpal moss v0.4.0 | MIT | https://github.com/diiviikk5/Piixpal */(()=>{"use strict";const h=document.currentScript,P=x=>{const{reduceMQ:_,reduced:p,clamp:I,rnd:s,chance:O,pick:T,lerp:m,now:S,hexRGBA:F,ptr:L,ptrDist:z,scroll:H,subs:G,raf:Y,frame:j,sub:W,unsub:X,rectOf:g,docW:q,boxOf:Q,pin:$,areaOf:J,onScreen:K,surfaceAt:Z,LAYER_CSS:bb,layer:eb,origin:kb,getLayer:tb,layerOrigin:rb,SPRITES:ob,bake:ib,defineSprite:M,baked:nb,ACTORS:sb,shout:ab,Actor:cb,recruit:db,BEHAVIORS:lb,defineBehavior:N,Piixpal:Rb,art:U,lastT:ub,layerRoot:fb,ICON_PAL:pb,ICONS:yb,DIGITS:vb,numberIcon:wb,iconCache:hb,iconPal:xb,bakeIcon:mb,UI_INK:Sb,UI_PAPER:Eb,UI_FONT:Pb,UI_MONO:_b,UI_CSS:Ib,uiHost:gb,uiRoot:Ab,uiStyles:Cb,uiStyle:Ob,uiEl:Tb,uiIcon:Lb,uiCard:zb,uiPlace:Mb,uiAt:Nb,uiClose:Ub,uiAnnounce:Bb,uiShadow:Db,uiLive:Vb,measureCtx:Fb,glyphTop:Hb,textProfile:B,segAt:Gb,LAND:Yb,platCache:jb,TEXTY:Wb,surfaceOf:Xb,platforms:qb,drag:Qb,BLIP:$b,CROWD_COLORS:Jb,PiixCrowdElement:Kb,FIGURES:Zb,defineFigure:be,mixHex:ee,figurePalette:ke,bakeFigure:te,HEAD:re,PiixSpriteElement:oe,RENDERS:ie,lum:ne,BAYER:se,ASCII:ae,TEXTURES:ce,BIG:de,PiixTypeElement:le,CELL_SHAPES:Re,PiixPalElement:ue,define:fe,ELEMENTS:pe,add:ye,autoAttach:ve,SCRIPT:we,start:he}=x;N("mind",(b,[R],w)=>{const y=b.s/3;let a=w.getAttribute("at")!=null?I(+w.getAttribute("at"),0,1):.85,f="read",k=s(4,8),n=0,c=[],t=null,E=0;const D=e=>b.has(e),i=(e,r,o)=>{f=e,k=r,o&&D(o)&&b.play(o,{reset:!0})},V={},A=e=>{var o;if(typeof R.piixSurface=="function"){const d=e.l+b.w/2+(e.w-b.w)*a;return{x:d,y:(o=R.piixSurface(d))!=null?o:e.t}}const r=w.getAttribute("edge")!=="box"&&B(R,V);if(r){const d=r.l+b.w/2+Math.max(0,r.r-r.l-b.w)*a,l=b.w*.3,v=r.segs.filter(u=>u.r>d-l&&u.l<d+l);return{x:d,y:v.length?Math.min(...v.map(u=>u.t)):r.t}}return{x:e.l+b.w/2+(e.w-b.w)*a,y:e.t}};return{tick(e){const r=g(R);if(t){t.p=Math.min(1,t.p+e/t.d);const l=t.p,v=1-l,u=A(r);b.x=m(t.x0,u.x,l),b.y=v*v*t.y0+2*v*l*(Math.min(t.y0,u.y)-50*y)+l*l*u.y,b.sy=1.1,b.sx=.92,l>=1&&(t=null,b.sy=.82,b.sx=1.15,t=null,i("back",1.2,"back"));return}const o=A(r);if(b.x=o.x,b.y=o.y,b.sx=m(b.sx,1,.2),b.sy=m(b.sy,1,.2),p()){b.play("read");return}k-=e,E+=e;const d=L.seen&&z(b.x,b.y-b.h/2)<110*y;switch(n=d?n+e:Math.max(0,n-e*2),f){case"read":b.play("read"),n>1.1?(i("look",1.4,"look"),b.say("...",1300),n=-2):k<=0&&(E>18&&O(.5)?(i("doze",s(5,9),"doze"),b.say("zz",0),E=0):i("flip",.5,"flip"));break;case"flip":k<=0&&i("read",s(4,9),"read");break;case"doze":d&&n>.6?(b.hush(),i("look",1,"look"),b.say("!",700),n=-2):k<=0&&(b.hush(),i("read",s(4,8),"read"));break;case"look":k<=0&&i("read",s(4,8),"read");break;case"annoyed":k<=0&&i("back",s(3,4.5),"back");break;case"back":k<=0&&(b.say("...",900),i("read",s(4,8),"read"));break}},hear(e){e!=="thud"||t||f==="annoyed"||f==="back"||S()-(this._heard||0)<2500||(this._heard=S(),b.hush(),b.say(T(["grr","vein","!?"]),900),i("annoyed",.8,"annoyed"))},poke(){if(t)return;const e=S();if(c=c.filter(r=>e-r<4e3).concat(e),b.hush(),c.length>=3){c=[],b.say("grr",900);const r=g(R),o=a;a=o>.5?s(.05,.35):s(.65,.95),b.face=a>o?1:-1,t={x0:b.x,y0:b.y,p:0,d:I(Math.abs(a-o)*r.w/700,.45,.9)},b.play("back");return}b.say(c.length===1?"!?":"vein",900),i("annoyed",.7,"annoyed")}}}),(()=>{const b=["....kkkkkkkk....","..kkvvvvvvvvkk..",".kvvVVvvvvwwvvk.","kvvVVvvvvvwwvvvk","kvwwvvvvvvvvvvvk","kvwwvvvvvwwvvvvk","kkkkkkkkkkkkkkkk"],R={read:["..kbbbbbbbbbbk..","..kbkkbbbbkkbk.."],look:["..kbbbbbbbbbbk..","..kbwkbbbbwkbk.."],cross:["..kbkbbbbbbkbk..","..kbbkbbbbkbbk.."],doze:["..kbbbbbbbbbbk..","..kbbbbbbbbbbk.."],back:["..kbbbbbbbbbbk..","..kbbbbbbbbbbk.."]},w=[".kkkkkkkkkkkkkk.","bkRRRRRRRRRRRRkb","bkRyyyyyRRRRRRkb",".kRRRRRRRRRRRRk.",".kkkkkkkkkkkkkk."],y=["..kbbbbbbbbbbk..",".kkkkkkkkkkkkkk.","bkRRRRRRRRRRRRkb","bkRyyyyyRRRRRRkb",".kkkkkkkkkkkkkk."],a=["..kbbbbbbbbbbk..","..kbbbbbbbbbbk..",".bkbbbbbbbbbbkb.","..kbbbbbbbbbbk..","..kbbbbbbbbbbk.."],f=["...kbbbbbbbbk...","..kkkk....kkkk.."],k=(c,t=w)=>b.concat(R[c],t,f),n=c=>U.put(k("read"),7,8,c?["_ww"]:["ww_"]);M("moss",{w:16,h:16,scale:3,does:"mind",palette:{k:"#1b1226",v:"#8a6bff",V:"#cbbcff",w:"#fffdf5",b:"#ffe6c4",R:"#25b89a",y:"#ffd23f"},frames:{read:[k("read"),k("read"),k("read"),k("read"),k("read"),k("read")],flip:[n(0),n(1),k("read")],look:[k("look",y)],doze:[k("doze",y)],annoyed:[k("cross",y)],back:[b.concat(R.back,a,f)]},fps:{read:1,flip:7,doze:1}})})(),x.start(h)};if(window.Piixpal&&window.Piixpal._k)return P(window.Piixpal._k);})();</script>
+<script>/*! Piixpal pip v0.4.0 | MIT | https://github.com/diiviikk5/Piixpal */(()=>{"use strict";const W=document.currentScript,U=E=>{const{reduceMQ:N,reduced:d,clamp:D,rnd:c,chance:O,pick:Y,lerp:P,now:$,hexRGBA:q,ptr:x,ptrDist:F,scroll:z,subs:J,raf:K,frame:Z,sub:ee,unsub:te,rectOf:I,docW:G,boxOf:oe,pin:ye,areaOf:ie,onScreen:se,surfaceAt:ne,LAYER_CSS:re,layer:ce,origin:le,getLayer:fe,layerOrigin:ke,SPRITES:pe,bake:ue,defineSprite:X,baked:de,ACTORS:xe,shout:ae,Actor:he,recruit:me,BEHAVIORS:we,defineBehavior:j,Piixpal:Se,art:k,lastT:We,layerRoot:Ee,ICON_PAL:Pe,ICONS:Ie,DIGITS:Ce,numberIcon:be,iconCache:_e,iconPal:Ae,bakeIcon:Re,UI_INK:Oe,UI_PAPER:ge,UI_FONT:Me,UI_MONO:Te,UI_CSS:Le,uiHost:Ue,uiRoot:Ne,uiStyles:De,uiStyle:ve,uiEl:Be,uiIcon:He,uiCard:Ye,uiPlace:Fe,uiAt:Ge,uiClose:Xe,uiAnnounce:je,uiShadow:Qe,uiLive:Ve,measureCtx:$e,glyphTop:qe,textProfile:ze,segAt:Je,LAND:Ke,platCache:Ze,TEXTY:et,surfaceOf:tt,platforms:ot,drag:yt,BLIP:it,CROWD_COLORS:st,PiixCrowdElement:nt,FIGURES:rt,defineFigure:ct,mixHex:lt,figurePalette:ft,bakeFigure:kt,HEAD:pt,PiixSpriteElement:ut,RENDERS:dt,lum:xt,BAYER:at,ASCII:ht,TEXTURES:mt,BIG:wt,PiixTypeElement:St,CELL_SHAPES:Wt,PiixPalElement:Et,define:Pt,ELEMENTS:It,add:Ct,autoAttach:bt,SCRIPT:_t,start:At}=E;j("perch",(e,h,g)=>{const i=e.s/3,a=560*i;let n=h[0],l=c(.25,.75),r="sit",C=c(2,4),p=0,u=0,b=null,_=0,M=0,T=0,m=0,v=!1;const w=(t,y)=>{const o=I(t);return{x:o.l+o.w*y,y:o.t,r:o}},A=t=>{if(!x.seen)return!1;const y=I(t),o=26*i;return x.x>y.l-o&&x.x<y.r+o&&x.y>y.t-e.h-o&&x.y<y.b+o},Q=t=>{const y=I(t);return y.w>0&&y.t>scrollY+e.h&&y.b<scrollY+innerHeight},V=()=>{const t=h.filter(f=>!A(f)),y=t.filter(Q),o=y.length?y:t.length?t:h,S=o.filter(f=>f!==n);return Y(S.length&&O(.75)?S:o)},L=()=>{r="fly",m=0,_=c(0,6.28);const t=I(n);M=D(e.x+c(-120,120)*i,60,G()-60),T=Math.max(scrollY+60,t.t-c(110,190)*i),u=-320*i,p=(x.x>e.x?-1:1)*160*i,e.play("fly")};return{tick(t){if(!v){const s=w(n,l);e.x=s.x,e.y=s.y,e.face=O(.5)?1:-1,v=!0}if(d()){const s=w(n,l);e.x=s.x,e.y=s.y,e.play("idle");return}if(r==="sit"){const s=w(n,l);if(e.x=s.x,e.y=s.y,e.rot=0,e.sx=P(e.sx,1,.2),e.sy=P(e.sy,1,.2),A(n)||F(e.x,e.y-e.h/2)<50*i){L(),O(.4)&&e.say("!",500);return}if(C-=t,e.done||e.clip==="idle"){if(C<=0){const R=Math.random();R<.35?e.play("peck",{loop:!1,reset:!0}):R<.6?e.play("look",{loop:!1,reset:!0}):R<.75?e.face=-e.face:R<.85&&e.say("note",1100),C=c(1.5,4)}e.done&&e.play("idle",{reset:!0})}return}const y=A(n);if(r==="fly"&&(_+=t*2.4,b={x:M+Math.cos(_)*70*i,y:T+Math.sin(_*2)*22*i},m=y?0:m+t,m>1.1&&(n=V(),l=c(.2,.8),r="land")),r==="land"){const s=w(n,l);b={x:s.x,y:s.y},A(n)&&(M=e.x,T=e.y-60*i,r="fly",m=0)}const o=b.x-e.x,S=b.y-e.y,f=Math.hypot(o,S)||1,B=r==="land"?Math.min(a,f*5+40):a*.7;if(p=P(p,o/f*B,1-Math.exp(-4.5*t)),u=P(u,S/f*B,1-Math.exp(-4.5*t)),e.x+=p*t,e.y+=u*t,Math.abs(p)>20&&(e.face=p>0?1:-1),e.rot=D(u/a*12,-12,12)*e.face,e.play("fly",{fps:u<-40?16:11}),r==="land"&&f<4*i){const s=w(n,l);e.x=s.x,e.y=s.y,p=u=0,e.rot=0,e.sy=.8,e.sx=1.15,r="sit",C=c(1,2.5),e.play("idle",{reset:!0})}},hear(t,y,o){t==="thud"&&r==="sit"&&o<130*i&&(L(),e.say("!",500))},poke(){r==="sit"&&(L(),e.say("!",600))}}}),(()=>{const e=["......kkkk....",".....kyyyyk...","....kyyyyyyk..","....kyyyywkk..","...kyyyyyykkoo","..kyyyyyyyyoo.","kkyyWWWyyyyk..","kyyWWWWWyyyk..",".kyyWWWyyyyk..","..kyyyyyyyk...","...kkkkkkk....","....o..o......"],h=k.put(e,8,3,["yyk"]),g=k.compose(k.shift(e,0),[11,4,["k.."]],[11,5,["koo"]],[11,6,["_oo"]]),i=k.compose(e,[8,3,["wk"]],[9,2,["k"]]),a=k.put(e,0,11,[".............."]),n=k.compose(a,[3,6,["yyy"]],[3,7,["yyyyy"]],[4,8,["yyy"]],[2,2,[".kk..","kWWk.","kWWWk",".kWWk"]]),l=k.compose(a,[3,6,["yyy"]],[3,7,["yyyyy"]],[4,8,["yyy"]],[3,9,["kWWWk"]],[4,10,["kWk",".k."]]);X("pip",{w:14,h:13,scale:3,does:"perch",palette:{k:"#1b1226",y:"#ffd23f",W:"#e89b12",w:"#ffffff",o:"#ff7a2f"},frames:{idle:[e,e,e,h,e,e],look:[i,i,e],peck:[g,e,g,e],fly:[n,l]},fps:{idle:3,look:2,peck:8,fly:12}})})(),E.start(W)};if(window.Piixpal&&window.Piixpal._k)return U(window.Piixpal._k);})();</script>
+<script>/*! Piixpal lurk v0.4.0 | MIT | https://github.com/diiviikk5/Piixpal */(()=>{"use strict";const h=document.currentScript,_=x=>{const{reduceMQ:R,reduced:l,clamp:O,rnd:t,chance:m,pick:v,lerp:N,now:T,hexRGBA:F,ptr:y,ptrDist:M,scroll:G,subs:$,raf:Y,frame:j,sub:W,unsub:X,rectOf:U,docW:Q,boxOf:V,pin:q,areaOf:z,onScreen:J,surfaceAt:K,LAYER_CSS:Z,layer:ee,origin:ue,getLayer:te,layerOrigin:ie,SPRITES:ne,bake:se,defineSprite:B,baked:ce,ACTORS:oe,shout:re,Actor:ke,recruit:de,BEHAVIORS:pe,defineBehavior:D,Piixpal:le,art:E,lastT:we,layerRoot:ae,ICON_PAL:fe,ICONS:he,DIGITS:xe,numberIcon:ye,iconCache:Se,iconPal:Pe,bakeIcon:me,UI_INK:Ee,UI_PAPER:be,UI_FONT:Ie,UI_MONO:Ae,UI_CSS:Ce,uiHost:_e,uiRoot:Re,uiStyles:Oe,uiStyle:Te,uiEl:ge,uiIcon:Le,uiCard:Ne,uiPlace:Me,uiAt:Ue,uiClose:Be,uiAnnounce:De,uiShadow:He,uiLive:ve,measureCtx:Fe,glyphTop:Ge,textProfile:$e,segAt:Ye,LAND:je,platCache:We,TEXTY:Xe,surfaceOf:Qe,platforms:Ve,drag:qe,BLIP:ze,CROWD_COLORS:Je,PiixCrowdElement:Ke,FIGURES:Ze,defineFigure:eu,mixHex:uu,figurePalette:tu,bakeFigure:iu,HEAD:nu,PiixSpriteElement:su,RENDERS:cu,lum:ou,BAYER:ru,ASCII:ku,TEXTURES:du,BIG:pu,PiixTypeElement:lu,CELL_SHAPES:wu,PiixPalElement:au,define:fu,ELEMENTS:hu,add:xu,autoAttach:yu,SCRIPT:Su,start:Pu}=x;D("peek",(e,[c],S)=>{const b=e.s/4,u=e.h;let w=S.getAttribute("at")!=null?O(+S.getAttribute("at"),.05,.95):t(.15,.85),n="hidden",p=t(.6,1.6),o=u,s=u,I=T()+t(2e3,5e3),a=0;const g={hidden:u,ears:u-3*e.s,eyes:u-7*e.s,out:0},A=95*b+e.w/2,r=(i,k)=>{var d;n=i,p=k,s=(d=g[i])!=null?d:s};e.node.style.clipPath=`inset(-400px -400px ${u}px -400px)`;const H=()=>{const i=y.x-e.x,k=y.y-(e.y-u*.6);if(!y.seen)return"c";const d=i<-40?"l":i>40?"r":"",P=k<-40?"u":k>60?"d":"",f=P==="d"?"d":P+d||"c";return e.has(f)?f:"c"};return{tick(i){const k=U(c);if(e.x=k.l+e.w/2+(k.w-e.w)*w,e.y=k.t,l()){o=g.eyes,e.oy=o,e.play("c"),e.node.style.clipPath=`inset(-400px -400px ${Math.round(o)}px -400px)`;return}const d=y.seen?M(e.x,e.y):1e9;switch(p-=i,d<A&&n!=="hidden"&&n!=="duck"&&(n==="out"&&m(.35)&&e.say("eep",600),a=.2,r("duck",t(1.4,2.6)),s=u),n){case"hidden":p<=0&&d>A*1.4&&r("ears",t(.5,1.1));break;case"ears":p<=0&&r("eyes",t(.5,1));break;case"eyes":p<=0&&r("out",t(4,9));break;case"out":p<=0&&(r("duck",t(1,3)),s=u);break;case"duck":p<=0&&d>A*1.6&&(w=O(w+(m(.5)?1:-1)*t(.2,.5),.06,.94),r("hidden",t(.3,1)));break}const P=s>o?14:3.2;o=N(o,s,1-Math.exp(-P*i)),Math.abs(o-s)<.5&&(o=s);const f=Math.round(o/e.s)*e.s;if(e.oy=f,e.node.style.clipPath=`inset(-400px -400px ${f}px -400px)`,a>0)a-=i,e.play("eep");else if(n!=="duck"){const C=T();C>I?(e.play("blink"),C>I+140&&(I=C+t(2200,5200))):e.play(H())}},hear(i){i!=="thud"||n==="hidden"||n==="duck"||(a=.3,m(.5)&&e.say("eep",600),r("duck",t(1.5,3)),s=u)},poke(){n==="hidden"||n==="duck"||(a=.35,e.say("eep",800),r("duck",t(2.5,4)),s=u)}}}),(()=>{const e=["...kk......kk...","..kpuk....kupk..","..kuuukkkkuuuk..",".kuuuuuuuuuuuuk.",".kuuwwwuuwwwuuk.",".kuuwwwuuwwwuuk.",".kuuwwwuuwwwuuk.",".kuuuuuuuuuuuuk.","khhhkuuuuuukhhhk","kkkkkkkkkkkkkkkk"],c=(u,w)=>E.compose(e,[4+u,4+w,["k"]],[9+u,4+w,["k"]]),S=E.compose(e,[4,4,["uuu","kkk","uuu"]],[9,4,["uuu","kkk","uuu"]]),b=E.compose(e,[4,4,["www","wkw","www"]],[9,4,["www","wkw","www"]],[2,3,["k"]],[13,3,["k"]]);B("lurk",{w:16,h:10,scale:4,does:"peek",palette:{k:"#1b1226",u:"#58c8ff",h:"#2f97d6",w:"#ffffff",p:"#ff9cc2"},frames:{c:[c(1,1)],l:[c(0,1)],r:[c(2,1)],u:[c(1,0)],ul:[c(0,0)],ur:[c(2,0)],d:[c(1,2)],blink:[S],eep:[b]}})})(),x.start(h)};if(window.Piixpal&&window.Piixpal._k)return _(window.Piixpal._k);})();</script>
+<script>/*! Piixpal capy v0.4.0 | MIT | https://github.com/diiviikk5/Piixpal */(()=>{"use strict";const S=document.currentScript,C=E=>{const{reduceMQ:_,reduced:b,clamp:g,rnd:f,chance:L,pick:M,lerp:P,now:I,hexRGBA:F,ptr:N,ptrDist:z,scroll:G,subs:Y,raf:j,frame:W,sub:X,unsub:q,rectOf:R,docW:Q,boxOf:V,pin:$,areaOf:J,onScreen:K,surfaceAt:Z,LAYER_CSS:ee,layer:te,origin:re,getLayer:ie,layerOrigin:ne,SPRITES:oe,bake:se,defineSprite:U,baked:ae,ACTORS:ce,shout:le,Actor:ue,recruit:fe,BEHAVIORS:de,defineBehavior:B,Piixpal:pe,art:a,lastT:he,layerRoot:ke,ICON_PAL:ye,ICONS:be,DIGITS:we,numberIcon:me,iconCache:xe,iconPal:Se,bakeIcon:Ee,UI_INK:Pe,UI_PAPER:Ie,UI_FONT:Ae,UI_MONO:Ce,UI_CSS:_e,uiHost:ge,uiRoot:Re,uiStyles:Oe,uiStyle:Te,uiEl:Le,uiIcon:Me,uiCard:Ne,uiPlace:ze,uiAt:Ue,uiClose:Be,uiAnnounce:De,uiShadow:He,uiLive:ve,measureCtx:Fe,glyphTop:Ge,textProfile:D,segAt:Ye,LAND:je,platCache:We,TEXTY:Xe,surfaceOf:qe,platforms:Qe,drag:Ve,BLIP:$e,CROWD_COLORS:Je,PiixCrowdElement:Ke,FIGURES:Ze,defineFigure:et,mixHex:tt,figurePalette:rt,bakeFigure:it,HEAD:nt,PiixSpriteElement:ot,RENDERS:st,lum:at,BAYER:ct,ASCII:lt,TEXTURES:ut,BIG:ft,PiixTypeElement:dt,CELL_SHAPES:pt,PiixPalElement:ht,define:kt,ELEMENTS:yt,add:bt,autoAttach:wt,SCRIPT:mt,start:xt}=E;B("mind",(e,[u],m)=>{const n=e.s/3;let r=m.getAttribute("at")!=null?g(+m.getAttribute("at"),0,1):.85,c="read",h=f(4,8),y=0,x=[],o=null,A=0;const H=t=>e.has(t),l=(t,i,s)=>{c=t,h=i,s&&H(s)&&e.play(s,{reset:!0})},v={},O=t=>{var s;if(typeof u.piixSurface=="function"){const d=t.l+e.w/2+(t.w-e.w)*r;return{x:d,y:(s=u.piixSurface(d))!=null?s:t.t}}const i=m.getAttribute("edge")!=="box"&&D(u,v);if(i){const d=i.l+e.w/2+Math.max(0,i.r-i.l-e.w)*r,p=e.w*.3,w=i.segs.filter(k=>k.r>d-p&&k.l<d+p);return{x:d,y:w.length?Math.min(...w.map(k=>k.t)):i.t}}return{x:t.l+e.w/2+(t.w-e.w)*r,y:t.t}};return{tick(t){const i=R(u);if(o){o.p=Math.min(1,o.p+t/o.d);const p=o.p,w=1-p,k=O(i);e.x=P(o.x0,k.x,p),e.y=w*w*o.y0+2*w*p*(Math.min(o.y0,k.y)-50*n)+p*p*k.y,e.sy=1.1,e.sx=.92,p>=1&&(o=null,e.sy=.82,e.sx=1.15,o=null,l("back",1.2,"back"));return}const s=O(i);if(e.x=s.x,e.y=s.y,e.sx=P(e.sx,1,.2),e.sy=P(e.sy,1,.2),b()){e.play("read");return}h-=t,A+=t;const d=N.seen&&z(e.x,e.y-e.h/2)<110*n;switch(y=d?y+t:Math.max(0,y-t*2),c){case"read":e.play("read"),y>1.1?(l("look",1.4,"look"),e.say("...",1300),y=-2):h<=0&&(A>18&&L(.5)?(l("doze",f(5,9),"doze"),e.say("zz",0),A=0):l("flip",.5,"flip"));break;case"flip":h<=0&&l("read",f(4,9),"read");break;case"doze":d&&y>.6?(e.hush(),l("look",1,"look"),e.say("!",700),y=-2):h<=0&&(e.hush(),l("read",f(4,8),"read"));break;case"look":h<=0&&l("read",f(4,8),"read");break;case"annoyed":h<=0&&l("back",f(3,4.5),"back");break;case"back":h<=0&&(e.say("...",900),l("read",f(4,8),"read"));break}},hear(t){t!=="thud"||o||c==="annoyed"||c==="back"||I()-(this._heard||0)<2500||(this._heard=I(),e.hush(),e.say(M(["grr","vein","!?"]),900),l("annoyed",.8,"annoyed"))},poke(){if(o)return;const t=I();if(x=x.filter(i=>t-i<4e3).concat(t),e.hush(),x.length>=3){x=[],e.say("grr",900);const i=R(u),s=r;r=s>.5?f(.05,.35):f(.65,.95),e.face=r>s?1:-1,o={x0:e.x,y0:e.y,p:0,d:g(Math.abs(r-s)*i.w/700,.45,.9)},e.play("back");return}e.say(x.length===1?"!?":"vein",900),l("annoyed",.7,"annoyed")}}}),(()=>{const e=(u="chill",m=!1)=>{let n=a.outline(a.paint(20,12,(r,c)=>a.ellipse(r,c,15,1.4,1.5,1.3)?"y":r===16&&c===0?"l":a.ellipse(r,c,8,8,7.4,3.6)?c>=10?"d":"b":a.rrect(r,c,11,3,18,9,2)?r>=17?"d":"b":a.ellipse(r,c,12,3,1,1)||c===11&&(r===4||r===6||r===11||r===13)?"d":null));return m?a.flipH(n):(u==="chill"&&(n=a.put(n,14,5,["kk"])),u==="open"&&(n=a.compose(n,[14,4,["wk"]],[14,5,["kk"]])),u==="shut"&&(n=a.put(n,14,6,["kk"])),u==="cross"&&(n=a.compose(n,[13,4,["kk"]],[14,5,["kk"]])),a.put(n,17,7,["k"]))};U("capy",{w:20,h:12,scale:3,does:"mind",palette:{k:"#17121f",b:"#b07a4a",d:"#8a5a32",y:"#ffc23f",l:"#4fc46a",w:"#ffffff"},frames:{read:[e(),e(),e(),e(),e("shut"),e()],flip:[e("shut"),e()],look:[e("open")],doze:[e("shut")],annoyed:[e("cross")],back:[e("chill",!0)]},fps:{read:1,flip:4,doze:1}})})(),E.start(S)};if(window.Piixpal&&window.Piixpal._k)return C(window.Piixpal._k);})();</script>
+<script>/*! Piixpal bumble v0.4.0 | MIT | https://github.com/diiviikk5/Piixpal */(()=>{"use strict";const h=document.currentScript,P=d=>{const{reduceMQ:I,reduced:u,clamp:x,rnd:z,chance:M,pick:B,lerp:A,now:S,hexRGBA:D,ptr:n,ptrDist:C,scroll:Y,subs:H,raf:F,frame:G,sub:X,unsub:j,rectOf:L,docW:W,boxOf:Q,pin:V,areaOf:$,onScreen:q,surfaceAt:J,LAYER_CSS:K,layer:Z,origin:ee,getLayer:te,layerOrigin:ie,SPRITES:ke,bake:ye,defineSprite:N,baked:oe,ACTORS:re,shout:ne,Actor:se,recruit:ce,BEHAVIORS:le,defineBehavior:v,Piixpal:pe,art:ue,lastT:fe,layerRoot:we,ICON_PAL:ae,ICONS:he,DIGITS:de,numberIcon:xe,iconCache:Se,iconPal:Ee,bakeIcon:me,UI_INK:Pe,UI_PAPER:Ie,UI_FONT:Ae,UI_MONO:Ce,UI_CSS:be,uiHost:_e,uiRoot:Re,uiStyles:Oe,uiStyle:Te,uiEl:ge,uiIcon:Me,uiCard:Le,uiPlace:Ne,uiAt:ve,uiClose:Ue,uiAnnounce:ze,uiShadow:Be,uiLive:De,measureCtx:Ye,glyphTop:He,textProfile:Fe,segAt:Ge,LAND:Xe,platCache:je,TEXTY:We,surfaceOf:Qe,platforms:Ve,drag:$e,BLIP:qe,CROWD_COLORS:Je,PiixCrowdElement:Ke,FIGURES:Ze,defineFigure:et,mixHex:tt,figurePalette:it,bakeFigure:kt,HEAD:yt,PiixSpriteElement:ot,RENDERS:rt,lum:nt,BAYER:st,ASCII:ct,TEXTURES:lt,BIG:pt,PiixTypeElement:ut,CELL_SHAPES:ft,PiixPalElement:wt,define:at,ELEMENTS:ht,add:dt,autoAttach:xt,SCRIPT:St,start:Et}=d;v("follow",(e,[o],E)=>{const r=e.s/3,y=E.getAttribute("at")!=null?x(+E.getAttribute("at"),0,1):.5,s=760*r;let i="home",c=0,w=0,a=0,b=-1,_=S(),R=!1;const U=()=>{var f;const t=L(o);return{x:t.l+e.w/2+(t.w-e.w)*y,y:typeof o.piixSurface=="function"&&(f=o.piixSurface(t.l+t.w*y))!=null?f:t.t}},O=(t,f,k,l,p)=>{const m=t-e.x,T=f-e.y;return c=A(c,x(m*l,-p,p),1-Math.exp(-5*k)),w=A(w,x(T*l,-p,p),1-Math.exp(-5*k)),e.x+=c*k,e.y+=w*k,Math.hypot(m,T)};return{tick(t,f){const k=U();if(R||(e.x=k.x,e.y=k.y,R=!0,e.play("sleep"),e.say("zz",0)),u()){e.x=k.x,e.y=k.y,e.play("perch");return}S()-n.last<120&&(_=S());const l=S()-_;if(i==="home"){e.x=k.x,e.y=k.y,e.rot=0,e.play(l>6e3?"sleep":"perch"),n.seen&&l<400&&C(e.x,e.y-e.h/2)<220*r&&(i="follow",e.hush(),e.say(M(.5)?"heart":"!",700),w=-200*r);return}if(i==="follow"){Math.abs(n.vx)>60&&(b=n.vx>0?-1:1);const p=n.x+b*46*r,m=n.y-18*r+Math.sin(f/160)*6*r;O(p,m,t,6,s),(l>4500||!n.seen||n.cx<-1e4)&&(i="return",e.say("zz",900))}else i==="return"&&(O(k.x,k.y-2*r,t,3.2,s*.55)<3*r&&(i="home",c=w=0,e.say("zz",0)),l<200&&C(e.x,e.y)<260*r&&(i="follow"));a>0?(a=Math.max(0,a-t/.6),e.rot=(1-a)*360*(e.face||1),e.play("happy")):(e.rot=x(c/s*18,-18,18),e.play("fly")),Math.abs(c)>25&&(e.face=c>0?1:-1)},poke(){i==="home"&&(i="follow",e.hush()),a=1,e.say("heart",800)},hear(t){t==="thud"&&i==="home"&&(i="follow",e.hush(),e.say("!",600))}}}),(()=>{const e=[".kk........kk.","kwwk......kwwk","kwwwk....kwwwk",".kwwkkkkkkwwk."],o=["..............","..............",".kkk......kkk.","kwwwkkkkkkwwwk"],E=s=>["...kyyyyyyk...","..kyY"+"yyyyyyk..".slice(0,9),...s,"..kkkkkkkkkk..","..kyyyyyyyyk..","..kkkkkkkkkk..","...kyyyyyyk...","....kkkkkk....","......kk......"],r={open:["..kywwyywwyk..","..kywkyywkyk.."],shut:["..kyyyyyyyyk..","..kykkyykkyk.."],happy:["..kykkyykkyk..","..kkyykkyyk...".slice(0,14).padEnd(14,".")]},y=(s,i="open")=>s.concat(E(r[i]));N("bumble",{w:14,h:15,scale:3,does:"follow",palette:{k:"#17121f",y:"#ffd23f",Y:"#fff2a8",w:"#e4f6ff"},frames:{fly:[y(e),y(o)],happy:[y(e,"happy"),y(o,"happy")],sleep:[y(o,"shut")],perch:[y(o),y(o),y(o),y(o,"shut")]},fps:{fly:20,happy:22,sleep:1,perch:3}})})(),d.start(h)};if(window.Piixpal&&window.Piixpal._k)return P(window.Piixpal._k);})();</script>
+<script>/*! Piixpal shel v0.4.0 | MIT | https://github.com/diiviikk5/Piixpal */(()=>{"use strict";const x=document.currentScript,P=h=>{const{reduceMQ:A,reduced:a,clamp:L,rnd:t,chance:I,pick:N,lerp:X,now:j,hexRGBA:W,ptr:B,ptrDist:U,scroll:Q,subs:V,raf:q,frame:z,sub:J,unsub:K,rectOf:C,docW:Z,boxOf:ee,pin:ke,areaOf:se,onScreen:te,surfaceAt:re,LAYER_CSS:ie,layer:ne,origin:_,getLayer:oe,layerOrigin:ce,SPRITES:ae,bake:le,defineSprite:v,baked:be,ACTORS:ue,shout:pe,Actor:de,recruit:fe,BEHAVIORS:xe,defineBehavior:D,Piixpal:he,art:y,lastT:we,layerRoot:Se,ICON_PAL:ye,ICONS:me,DIGITS:ge,numberIcon:Ee,iconCache:Pe,iconPal:Ae,bakeIcon:Ie,UI_INK:Ce,UI_PAPER:_e,UI_FONT:Oe,UI_MONO:Re,UI_CSS:Te,uiHost:Me,uiRoot:Le,uiStyles:Ne,uiStyle:Be,uiEl:Ue,uiIcon:ve,uiCard:De,uiPlace:He,uiAt:$e,uiClose:Fe,uiAnnounce:Ge,uiShadow:Ye,uiLive:Xe,measureCtx:je,glyphTop:We,textProfile:H,segAt:$,LAND:Qe,platCache:Ve,TEXTY:qe,surfaceOf:ze,platforms:Je,drag:Ke,BLIP:Ze,CROWD_COLORS:ek,PiixCrowdElement:kk,FIGURES:sk,defineFigure:tk,mixHex:rk,figurePalette:ik,bakeFigure:nk,HEAD:ok,PiixSpriteElement:ck,RENDERS:ak,lum:lk,BAYER:bk,ASCII:uk,TEXTURES:pk,BIG:dk,PiixTypeElement:fk,CELL_SHAPES:xk,PiixPalElement:hk,define:wk,ELEMENTS:Sk,add:yk,autoAttach:mk,SCRIPT:gk,start:Ek}=h;D("creep",(e,[n],b)=>{const l=e.s/3,w=9*l*(+b.getAttribute("speed")||1),u=b.getAttribute("edge")||(typeof n.piixSurface=="function"?"surface":"text"),F={};let r=null,o="walk",s=t(4,8),O=!1,p=0,m=0;const c=document.createElement("div");c.style.cssText=`position:absolute;left:0;top:0;height:${Math.max(2,Math.round(e.s*.7))}px;pointer-events:none;border-radius:2px;background:linear-gradient(90deg,rgba(150,225,255,0),rgba(150,225,255,.55) 70%,rgba(255,255,255,.85));transform-origin:100% 50%`,e.node.parentNode.insertBefore(c,e.node);const G=()=>{if(u==="surface"){const i=C(n);return{l:i.l,r:i.r,t:i.t}}if(u==="text"){const i=H(n,F);if(i)return i}const k=C(n);return{l:k.l,r:k.r,t:k.t}},g=k=>k<r.l+e.w*.35||k>r.r-e.w*.35?null:u==="surface"?n.piixSurface(k):r.segs?$(r.segs,k):r.t,d=k=>{o="hide",s=k,e.play("hide")};return{tick(k){var T;if(r=G(),!O){const f=b.getAttribute("at");e.x=r.l+(r.r-r.l)*(f!=null?L(+f,0,1):t(.2,.8)),e.y=(T=g(e.x))!=null?T:r.t,m=e.y,e.face=I(.5)?1:-1,O=!0}const i=g(e.x);if(i!=null&&(e.y=i),a()){e.play("idle"),c.style.width="0px";return}const S=B.seen&&U(e.x,e.y-e.h/2)<60*l+e.w/2;switch(s-=k,o){case"walk":{if(e.play("walk"),S){d(t(2.5,4)),e.say("sweat",700);break}const f=e.x+e.face*w*k,E=g(f);if(E==null||Math.abs(E-e.y)>e.h*.9){e.face=-e.face,p=0,o="rest",s=t(1,2),e.play("idle");break}e.x=f,e.y=E,p=Math.abs(e.y-m)>1?0:Math.min(p+w*k,170*l),m=e.y,s<=0&&(o="rest",s=t(1.5,3),e.play("idle"));break}case"rest":if(S){d(t(2.5,4));break}s<=0&&(o="walk",s=t(5,10),I(.25)&&(e.face=-e.face,p=0));break;case"hide":e.play("hide"),S&&(s=Math.max(s,1.2)),s<=0&&(o="peek",s=t(.8,1.4),e.play("peek"));break;case"peek":if(S){d(t(2,3));break}s<=0&&(o="walk",s=t(4,8));break}const R=Math.round(p),Y=e.face>0?e.x-e.w*.25-R:e.x+e.w*.25;c.style.width=R+"px",c.style.transform=`translate3d(${Math.round(Y-_.x)}px,${Math.round(e.y-2-_.y)}px,0) scaleX(${e.face>0?1:-1})`,c.style.transformOrigin=e.face>0?"100% 50%":"0 50%"},poke(){d(t(3,4.5)),e.say(N(["!","eep"]),700)},hear(k){k==="thud"&&d(t(2.5,4))},destroy(){c.remove()}}}),(()=>{const e=["...kkkkkk.......","..kSSssssk...k.k",".kSskkkkssk..b.b",".kskSsssksk..b.b",".kskskksksk.kbbk",".kskssskssk.kbbk",".kskkkkkssk.kbpk","kbkkkkkkkkkkkbbk","kbbbbbbbbbbbbbbk",".kkkkkkkkkkkkkk."],n=y.compose(e,[0,8,["kbbbbbbbbbbbbbk."]],[0,9,[".kkkkkkkkkkkkk.."]]),b=y.put(e,12,1,[".k.k",".b.b"]),l=["...kkkkkk...","..kSSssssk..",".kSskkkkssk.",".kskSsssksk.",".kskskksksk.",".kskssskssk.",".kskkkkkssk.",".kssssssssk.","..kkkkkkkk.."].map(u=>u.padEnd(16,".")),w=y.compose(l,[11,3,["..k."]],[11,4,[".kbk"]],[11,5,["kbbk"]],[11,6,["kbbk"]],[10,7,["kkkkk"]]);v("shel",{w:16,h:10,scale:3,does:"creep",palette:{k:"#17121f",S:"#ffe2bd",s:"#ef9a4b",b:"#9fe3c9",p:"#ff9cc2"},frames:{walk:[e,e,n,n],idle:[e,e,b,e],hide:[l],peek:[w]},fps:{walk:3,idle:2}})})(),h.start(x)};if(window.Piixpal&&window.Piixpal._k)return P(window.Piixpal._k);})();</script>
+<script>/*! Piixpal frog v0.4.0 | MIT | https://github.com/diiviikk5/Piixpal */(()=>{"use strict";const g=document.currentScript,I=f=>{const{reduceMQ:A,reduced:c,clamp:x,rnd:T,chance:L,pick:v,lerp:S,now:D,hexRGBA:$,ptr:o,ptrDist:j,scroll:H,subs:F,raf:Y,frame:W,sub:X,unsub:q,rectOf:C,docW:Q,boxOf:V,pin:z,areaOf:J,onScreen:K,surfaceAt:Z,LAYER_CSS:tt,layer:et,origin:_,getLayer:it,layerOrigin:ot,SPRITES:nt,bake:st,defineSprite:N,baked:rt,ACTORS:at,shout:pt,Actor:ct,recruit:lt,BEHAVIORS:kt,defineBehavior:G,Piixpal:ut,art:d,lastT:gt,layerRoot:ft,ICON_PAL:xt,ICONS:dt,DIGITS:yt,numberIcon:ht,iconCache:mt,iconPal:wt,bakeIcon:St,UI_INK:Et,UI_PAPER:bt,UI_FONT:Pt,UI_MONO:It,UI_CSS:At,uiHost:Ct,uiRoot:_t,uiStyles:Rt,uiStyle:Mt,uiEl:Ot,uiIcon:Tt,uiCard:Lt,uiPlace:Nt,uiAt:Gt,uiClose:Bt,uiAnnounce:Ut,uiShadow:vt,uiLive:Dt,measureCtx:$t,glyphTop:jt,textProfile:Ht,segAt:Ft,LAND:Yt,platCache:Wt,TEXTY:Xt,surfaceOf:qt,platforms:Qt,drag:Vt,BLIP:zt,CROWD_COLORS:Jt,PiixCrowdElement:Kt,FIGURES:Zt,defineFigure:te,mixHex:ee,figurePalette:ie,bakeFigure:oe,HEAD:ne,PiixSpriteElement:se,RENDERS:re,lum:ae,BAYER:pe,ASCII:ce,TEXTURES:le,BIG:ke,PiixTypeElement:ue,CELL_SHAPES:ge,PiixPalElement:fe,define:xe,ELEMENTS:de,add:ye,autoAttach:he,SCRIPT:me,start:we}=f;G("snap",(t,[u],y)=>{const l=t.s/4;let R=y.getAttribute("at")!=null?x(+y.getAttribute("at"),0,1):.5,e="sit",k=0,E=1,h=0,m=0,i=null,b=0;const s=document.createElement("div");s.style.cssText=`position:absolute;left:0;top:0;height:${Math.max(3,Math.round(t.s*1.2))}px;border-radius:999px;background:#ff7aa8;box-shadow:0 0 0 ${Math.max(1,t.s>>2)}px #17121f;transform-origin:0 50%;pointer-events:none;opacity:0`,t.node.parentNode.insertBefore(s,t.node);const B=150*l;return{tick(r){const n=C(u);if(i){i.p=Math.min(1,i.p+r/.45);const a=i.p,P=1-a;R=(S(i.x0,i.x1,a)-n.l-t.w/2)/Math.max(1,n.w-t.w),t.oy=-(4*a*P)*46*l,t.play("jump"),a>=1&&(i=null,t.oy=0,t.sy=.8,t.sx=1.2)}if(t.x=n.l+t.w/2+(n.w-t.w)*x(R,0,1),t.y=n.t,t.sx=S(t.sx,1,.2),t.sy=S(t.sy,1,.2),c()||i){s.style.opacity="0",i||t.play("sit");return}const p=t.x+t.face*t.w*.1,w=t.y-t.h*.45;E-=r,b-=r;const U=o.seen?Math.hypot(o.x-p,o.y-w):1e9;if(e==="sit"?(Math.abs(o.x-t.x)>6&&(t.face=o.x>t.x?1:-1),t.play(b>0?"happy":"sit"),U<B&&E<=0&&(e="aim",k=.22)):e==="aim"&&(k-=r,k<=0&&(e="out",k=0,h=o.x,m=o.y,t.play("snap"))),e==="out"||e==="back"){k+=r/.14*(e==="out"?1:-1);const a=x(k,0,1),P=Math.hypot(h-p,m-w)*a,M=Math.atan2(m-w,h-p);s.style.opacity="1",s.style.width=Math.round(P)+"px",s.style.transform=`translate3d(${Math.round(p-_.x)}px,${Math.round(w-_.y)}px,0) rotate(${M}rad)`,e==="out"&&a>=1&&(e="back",Math.hypot(o.x-h,o.y-m)<14*l&&(b=1.6,t.say("heart",900))),e==="back"&&a<=0&&(e="sit",E=1.1,s.style.opacity="0")}},poke(){if(i)return;const r=C(u),n=t.x,p=x(n+(L(.5)?1:-1)*T(60,140)*l,r.l+t.w/2,r.r-t.w/2);t.face=p>n?1:-1,i={x0:n,x1:p,p:0}},destroy(){s.remove()}}}),(()=>{const t=["..kk....kk..",".kwwk..kwwk.",".kwkkkkkwkk.".slice(0,12),"kgggggggggggk".slice(0,12),"kgGgggggggGk","kgggkkkkgggk","kgggggggggk.".padEnd(12,"."),".kgg.kk.ggk.","kkgk....kgkk"],u=d.compose(t,[2,1,["kk"]],[8,1,["kk"]]),y=d.put(t,4,5,["kppk"]),l=d.put(t,0,8,[".kk......kk."]);N("frog",{w:12,h:9,scale:4,does:"snap",palette:{k:"#17121f",g:"#7bd63a",G:"#c8f58a",w:"#ffffff",p:"#ff7aa8"},frames:{sit:[t,t,t,u],snap:[y],jump:[l],happy:[d.compose(u,[4,5,["kggk"]])]},fps:{sit:1.4}})})(),f.start(g)};if(window.Piixpal&&window.Piixpal._k)return I(window.Piixpal._k);})();</script>
+<script>
+'use strict';
+const DATA = {"title":"Nature Photography Roadmap","subtitle":"Absolute beginner to a first professional-ready portfolio | 32 weeks | About 5 hours/week | Free resources checked 23 Oct 2026","storage_id":"nature-photography-beginner-2026","reminder_time":"19:00","stages":[{"title":"Stage 1 - Camera foundations","duration":"Weeks 1-2","estimated_hours":10,"description":"Start with your current camera or capable phone. Learn basic exposure, file review, and how one control changes an image. No gear upgrade is required.","outcomes":["Make intentional exposures in common light","Explain how one setting change affected an image","Keep a short practice log"],"resources":[{"title":"R1 - Chris Bray's 10-part Photography Course Videos","provider":"Chris Bray Photography / YouTube","url":"https://chrisbrayphotography.com/courses/online/","link_label":"Open the free course","modality":"10 free videos","cost":"Free videos","duration":"10 episodes; total runtime not stated","why":"Gear-agnostic introduction to camera setup, exposure, aperture, shutter speed, ISO, composition, light, lenses, and practical shooting.","action":"Weeks 1-2: watch Episodes 1-2 and 4-7; continue Episode 3 and Episodes 8-10 in Stage 2. Test one setting change during each outing.","access_note":"Provider lists the complete ten-episode course as free; no course account or card is listed. A linked YouTube lesson was marked Public. The companion booklet, summary cards, app, tours, and workshops are separate products and are not needed.","verification_date":"2026-10-23"},{"title":"R2 - Photography Life: Photography Basics online guide","provider":"Photography Life","url":"https://photographylife.com/photography-basics","link_label":"Open the free online guide","modality":"13-chapter written guide","cost":"Free online chapters","duration":"Plan 4-6 study hours","why":"A structured, book-like beginner reference for exposure, camera modes, focus, sharpness, and composition.","action":"Read the exposure chapters in Stage 1 and carry focus, sharpness, and composition chapters into Stage 2.","access_note":"The online chapters are free and open without sign-in. The downloadable ebook is a separate paid membership benefit listed at US$5/month; it is not included.","verification_date":"2026-10-23"},{"title":"Milestone - Make a 12-image baseline contact sheet","provider":"Self-directed practice","modality":"Practice milestone","cost":"No resource fee","duration":"About 2 hours","why":"A simple baseline makes later progress visible and turns lessons into deliberate choices.","action":"Photograph one familiar subject in different light, select 12 frames, and write a short note about what you notice.","access_note":"Use existing gear and a permitted local place. No paid course or subscription is needed; data, transport, and equipment costs are outside the resource plan."}]},{"title":"Stage 2 - Focus, sharpness, composition, and light","duration":"Weeks 3-5","estimated_hours":15,"description":"Carry R1 and R2 forward; do not add another course. Practise focus, camera stability, subject movement, light, backgrounds, and framing. Phone users can use touch focus and exposure lock.","outcomes":["Choose focus deliberately and diagnose common blur","Compose a clear subject with a useful background","Compare the same place in different light"],"resources":[{"title":"Milestone - Complete a 10-frame focus and composition study","provider":"Self-directed practice","modality":"Practice milestone","cost":"No resource fee","duration":"About 3 hours","why":"A small repeated study helps separate focus, movement, light, and composition decisions.","action":"Repeat one local walk at two different times, select 10 frames, and identify one sharp image and one frame to improve.","access_note":"Use your current camera or phone and a permitted location. No paid software, course, or certificate is required."}]},{"title":"Stage 3 - Ethics and fieldcraft","duration":"Weeks 6-8","estimated_hours":15,"description":"Learn to observe before shooting. Follow local access, species, safety, and weather rules. If your presence changes an animal's behaviour, back away; never publish precise locations for vulnerable species.","outcomes":["Plan a safe, low-impact outing","Recognize when to stop or increase distance","Keep field notes without exposing sensitive locations"],"resources":[{"title":"R3 - Nature First photography principles","provider":"Nature First","url":"https://naturefirst.org/en/principles/","link_label":"Read the principles","modality":"Open ethics reference","cost":"Free to read","duration":"Plan about 30 minutes","why":"A global, nature-first framework for reducing harm and sharing locations responsibly.","action":"Turn the principles into a one-page field checklist; use the linked Leave No Trace principles for outdoor basics.","access_note":"The principles page is public; pledging or joining is optional. No account, card, paid course, or assessment is needed to read it.","verification_date":"2026-10-23"},{"title":"R4 - Audubon: Ethical Bird Photography and Videography","provider":"Audubon","url":"https://www.audubon.org/photography/awards/audubons-guide-ethical-bird-photography-and-videography","link_label":"Read Audubon's guide","modality":"Open written guide","cost":"Free to read","duration":"Plan about 30-45 minutes","why":"Bird-specific guidance on distance, stress cues, nests, baiting, playback, drones, sensitive locations, and accurate captions.","action":"Choose three rules that apply to your local birds and add them to your field checklist.","access_note":"The guide is publicly readable without a course fee or account. Some outbound links are optional; local rules still take priority.","verification_date":"2026-10-23"},{"title":"R5 - NANPA Conservation Photography Handbook","provider":"North American Nature Photography Association","url":"https://nanpa.org/wp-content/uploads/sites/48/Files/Handbooks/NANPA%20handbook%20conservation%20final.pdf","link_label":"Open the free PDF handbook","modality":"PDF handbook","cost":"Free PDF; personal use only","duration":"Plan about 1-2 hours","why":"Conservation storytelling, collaboration with scientists and practitioners, ethics, safety, and project goals.","action":"Read the project, collaboration, storytelling, ethics, and safety sections before planning the Stage 5 series.","access_note":"The direct PDF is listed by NANPA as a free handbook and opened without an account or payment. Copyright is personal-use-only; do not redistribute it. Published in 2018 with some North American examples.","verification_date":"2026-10-23"},{"title":"R6 - Backcountry Gallery: Secrets to Spotting and Approaching Wildlife","provider":"Backcountry Gallery / Steve Perry","url":"https://backcountrygallery.com/Secrets_To_Spotting_And_Approaching_Wildlife-v102.pdf","link_label":"Open the free 41-page PDF","modality":"Fieldcraft PDF","cost":"Free PDF","duration":"Plan about 1-2 hours","why":"Optional tips for spotting and patient observation, always subordinate to wildlife welfare and site rules.","action":"Use the spotting ideas from a permitted place; stop or increase distance if an animal reacts.","access_note":"Direct download opened without a sign-up; the newsletter is optional. The guide includes a liability disclaimer and is not a substitute for local safety or ethics guidance.","verification_date":"2026-10-23"},{"title":"Milestone - Use an ethical field checklist on two outings","provider":"Self-directed practice","modality":"Practice milestone","cost":"No resource fee","duration":"Two short outings","why":"Ethical decisions should be practised in the field, not only read about.","action":"Write a one-page checklist for access, weather, wildlife distance, location privacy, and stop conditions; use it twice.","access_note":"Follow current local laws and land-manager advice. Do not bait, disturb nests, or approach wildlife to overcome equipment limits."}]},{"title":"Stage 4 - Sample landscape, wildlife, and close-up photography","duration":"Weeks 9-12","estimated_hours":20,"description":"Try landscape, wildlife/bird, and close-up/macro work before choosing a first project direction. A specialty choice is not permanent.","outcomes":["Make a six-image sampler across three subject types","Compare the different timing, focus, and fieldcraft each needs","Choose a first project track or continue broadly"],"resources":[{"title":"R7 - Photography Life Landscape Photography video course","provider":"Photography Life","url":"https://photographylife.com/landscape-photography-video-course","link_label":"Open the free course and chapter list","modality":"Video course","cost":"Free course","duration":"Provider states 8+ hours; select 2-3 hours","why":"A substantial landscape sampler covering light, framing, exposure, focus, and post-processing.","action":"Select visualization, light/colour, composition, exposure, and focus chapters. Treat gear sections as optional context.","access_note":"The provider offers the complete course free; no course account or card is listed. A linked lesson checked for this review is marked Public on YouTube. Ads and regional availability may vary.","verification_date":"2026-10-23"},{"title":"R8 - BBC Earth: How to Take Stunning Wildlife Photographs","provider":"BBC Earth / YouTube","url":"https://www.youtube.com/watch?v=kdE78ImoGMQ","link_label":"Watch the public video","modality":"Wildlife case-study video","cost":"Free public video","duration":"46 minutes 37 seconds","why":"Field case studies across birds, mammals, macro, and underwater photography; learn from decisions, not gear lists.","action":"Watch once for field process; replay a segment and note subject, light, settings, ethical choices, and editing.","access_note":"BBC Earth's official YouTube page marks the video Public. No course fee, card, trial, or certificate is required. Ads and regional availability may vary.","verification_date":"2026-10-23"},{"title":"R9 - Nature TTL free nature photography tutorials","provider":"Nature TTL","url":"https://www.naturettl.com/start-here/","link_label":"Open the tutorial index","modality":"Free written tutorial library","cost":"Free tutorial articles","duration":"Choose one article per sampler","why":"Use one focused article for each landscape, wildlife, and macro trial instead of browsing the whole archive.","action":"Choose one tutorial in each category for Weeks 9-11 and make one practice image per topic.","access_note":"Selected tutorial pages opened without account or payment. Nature TTL also sells eBooks and courses; those are separate and are not included.","verification_date":"2026-10-23"},{"title":"R10 - NANPA Bird Photography Handbook","provider":"North American Nature Photography Association","url":"https://nanpa.org/wp-content/uploads/sites/48/Files/Handbooks/BirdPhotography-NANPAhandbook.pdf","link_label":"Open the free PDF handbook","modality":"PDF handbook","cost":"Free PDF; personal use only","duration":"Plan about 1-2 hours","why":"Bird behaviour, habitat, and field practice; adapt examples to the species and rules where you live.","action":"Before a bird outing, choose one behaviour to observe and one habitat/context frame to attempt from a respectful distance.","access_note":"NANPA lists the direct PDF as a free handbook; it opened without login or payment. Copyright is personal-use-only; do not redistribute it.","verification_date":"2026-10-23"},{"title":"Milestone - Complete the six-image specialty sampler","provider":"Self-directed practice","modality":"Practice milestone","cost":"No resource fee","duration":"About 4 hours","why":"Trying three subject types side by side helps you choose from experience rather than assumptions.","action":"Select two landscape, two animal/bird, and two close-up/detail images; write what you want to revisit.","access_note":"Use accessible local subjects and existing gear. Do not approach sensitive wildlife to fill a category."}]},{"title":"Stage 5 - Build a repeatable field project","duration":"Weeks 13-16","estimated_hours":20,"description":"Write a short project brief, revisit one accessible place or theme, and make a coherent story instead of relying on isolated lucky shots.","outcomes":["Plan a subject, visual question, access/ethics plan, and realistic shot list","Keep field notes and record useful context","Edit a varied 12-15 frame story"],"resources":[{"title":"Milestone - Deliver a 12-15 frame visual story","provider":"Self-directed project","modality":"Portfolio milestone","cost":"No resource fee","duration":"Weeks 13-16","why":"Returning to one subject or place builds consistency, observation, and visual storytelling.","action":"Write a brief, make several visits, keep field notes, and select a sequence with variety in scale, moment, and habitat.","access_note":"Use the ethics and fieldcraft resources from Stage 3. No new paid course or gear is required."}]},{"title":"Stage 6 - Edit, caption, back up, and deliver","duration":"Weeks 17-20","estimated_hours":20,"description":"Build a repeatable file and editing workflow. Preserve originals, edit non-destructively where possible, and describe images accurately.","outcomes":["Cull, name, and back up image files","Edit consistently and export for web or print","Deliver five edited images with accurate captions"],"resources":[{"title":"R11 - Cambridge in Colour: Digital Photo Editing Workflow","provider":"Cambridge in Colour","url":"https://www.cambridgeincolour.com/tutorials/digital-photo-editing-workflow.htm","link_label":"Read the workflow article","modality":"Written workflow reference","cost":"Free article","duration":"Plan about 30-45 minutes","why":"A software-neutral sequence for white balance, exposure, noise, lens corrections, detail, crop, resizing, and output sharpening.","action":"Use its sequence as a checklist for five images; keep edits restrained and truthful.","access_note":"The full article was retrieved as a public tutorial with no account or payment prompt observed. It is a reference article, not a certificate course.","verification_date":"2026-10-23"},{"title":"R12 - darktable free RAW workflow and user manual","provider":"darktable project","url":"https://docs.darktable.org/usermanual/5.6/en/","link_label":"Open the manual and downloads","modality":"Open-source software and manual","cost":"Free; GPL 3.0","duration":"Plan 3-5 hours on selected sections","why":"An optional desktop RAW workflow for importing, organizing, editing non-destructively, and exporting.","action":"If your OS and camera files are supported, read import, lighttable, darkroom basics, export, and backup sections; phone users can apply the same workflow in their current editor.","access_note":"The software and PDF/ePub manual are free under GPL 3.0; no account, card, subscription, or trial is listed. Check OS and hardware compatibility before installing.","verification_date":"2026-10-23"},{"title":"Milestone - Deliver five edited, captioned, backed-up images","provider":"Self-directed workflow","modality":"Delivery milestone","cost":"No resource fee","duration":"About 5 hours","why":"A complete delivery tests the whole workflow, not just the appearance of an edit.","action":"Export five images, write accurate captions and filenames, keep originals, make a second copy, and verify the files open.","access_note":"Use free software if needed, or your existing editor. Storage hardware and internet/data costs are not included."}]},{"title":"Stage 7 - Build a small, defensible portfolio","duration":"Weeks 21-26","estimated_hours":30,"description":"Select a focused theme, sequence 10-15 strong images, ask for specific critique, and publish a draft on a free platform or as a local PDF.","outcomes":["Present a coherent body of work with captions","Identify gaps in subject, light, season, or storytelling","Revise the portfolio after critique"],"resources":[{"title":"R13 - NANPA Contest Secrets handbook","provider":"North American Nature Photography Association","url":"https://nanpa.org/wp-content/uploads/sites/48/Files/Handbooks/ContestSecrets-Handbook.pdf","link_label":"Open the free PDF handbook","modality":"PDF selection and critique guide","cost":"Free PDF; personal use only","duration":"Plan about 1 hour","why":"Judge comments and selection advice can help you find technical faults and ask better critique questions.","action":"Apply its image-selection questions to your own portfolio; entering a contest is not required.","access_note":"The direct PDF is listed by NANPA as a free download and opened without login or payment. Copyright is personal-use-only; contest entry may involve a fee or rights terms.","verification_date":"2026-10-23"},{"title":"R14 - Behance optional free portfolio platform","provider":"Behance / Adobe","url":"https://help.behance.net/hc/en-us/articles/204483894-What-is-Behance","link_label":"Read about the free platform","modality":"Online portfolio platform","cost":"Basic use free; account required to publish","duration":"Plan 1-2 hours for one project","why":"An optional way to present one coherent image series with a short description and captions; a local PDF is an account-free alternative.","action":"Publish only after captions are ready and you have checked client and location terms; do not use Pro features.","access_note":"Basic participation is free with no project or media-count limit. Publishing requires an Adobe ID and email verification. The optional 7-day Pro trial auto-converts to the selected paid plan and charges the payment method unless cancelled; do not start it.","verification_date":"2026-10-23"},{"title":"Milestone - Finish a 10-15 image portfolio and request critique","provider":"Self-directed portfolio project","modality":"Portfolio milestone","cost":"No resource fee","duration":"Weeks 21-26","why":"A focused set and informed critique are stronger evidence than a large unedited feed.","action":"Sequence 10-15 images, add captions and a one-page statement, ask one trusted peer or mentor for specific feedback, then revise.","access_note":"Use a local PDF if you do not want an online account. Do not upload client work or sensitive locations without permission."}]},{"title":"Stage 8 - Rights, licensing, and professional practice","duration":"Weeks 27-30","estimated_hours":20,"description":"Learn the difference between selling a physical print and licensing image use. Compare business routes and prepare a clearly labelled learning brief, delivery checklist, and licence outline.","outcomes":["Explain assignment versus licence in plain language","Clarify use, territory, duration, exclusivity, credit, fee, and delivery","Identify five relevant organizations or publications and their submission rules"],"resources":[{"title":"R15 - WIPO CLIP Visual Arts rights and agreements","provider":"Creators Learn Intellectual Property / WIPO for Creators","url":"https://goclip.org/en/visualarts/rights-transfer-and-licensing/rights-transfer","link_label":"Start with Rights Transfer","modality":"Public rights and agreement topic pages","cost":"Free to read","duration":"Plan 30-60 minutes for selected pages","why":"Public guidance on photographic authorship, copyright, assignment versus licence, representation, and communication.","action":"Read the Photography and Rights Transfer pages, then Representation Agreement and Communication; draft a hypothetical use checklist.","access_note":"The English topic pages are public without payment, card, or trial. An account to track learning is optional. General information only; laws vary by country, so use local legal advice for real agreements.","verification_date":"2026-10-23"},{"title":"R16 - NANPA Make It Work: The Business of Nature Photography","provider":"North American Nature Photography Association","url":"https://nanpa.org/wp-content/uploads/sites/48/Files/Handbooks/MakeItWork-HandbookSeries.pdf","link_label":"Open the free PDF handbook","modality":"PDF business handbook","cost":"Free PDF; personal use only","duration":"Plan about 1-2 hours","why":"Practitioner examples of publishing, tours/workshops, prints, stock, and diversified nature-photography work.","action":"Compare two possible work routes and note the portfolio, relationships, deliverables, and ongoing work each would need.","access_note":"The direct PDF is listed by NANPA as a free handbook and opened without login or payment. Copyright is personal-use-only. It is a 2020 North American snapshot; do not use old prices or market claims as current advice.","verification_date":"2026-10-23"},{"title":"Milestone - Draft a mock client brief and usage outline","provider":"Self-directed professional-practice exercise","modality":"Business milestone","cost":"No resource fee","duration":"About 4 hours","why":"Writing down expectations helps you recognize questions to settle before an actual assignment.","action":"Create a hypothetical brief, delivery list, and licence outline; research five relevant outlets or organizations; label everything as a learning exercise, not legal advice.","access_note":"Use local professional/legal guidance for real contracts, permits, tax, or pricing. This roadmap promises no paid assignment or income."}]},{"title":"Stage 9 - Choose a measured next step","duration":"Weeks 31-32","estimated_hours":10,"description":"Review progress, choose a low-risk professional experiment, and set the next 8-12 week project. The 32-week plan is a first pass, not a promise of employment or income.","outcomes":["Show a coherent, ethical, technically sound starter portfolio","Deliver organized files and accurate captions","Choose what skill or seasonal subject to practise next"],"resources":[{"title":"Milestone - Define one next professional experiment","provider":"Self-directed planning","modality":"Next-step milestone","cost":"No resource fee","duration":"About 2 hours","why":"A small test makes progress measurable without assuming that a portfolio guarantees work.","action":"Choose one route, such as a tailored editorial pitch, a small print series, a conservation collaboration, or a portfolio review; set a next 8-12 week goal.","access_note":"Check submission rules, local law, access permissions, and any costs before acting."}]}]};
+const STORAGE_KEY = 'rll-roadmap-progress-v1:' + (DATA.storage_id || DATA.title || 'roadmap').toLowerCase().replace(/[^a-z0-9]+/g,'-');
+const RESOURCE_ITEMS = [];
+let state = loadState();
+let activeFilter = 'all';
+const reducedMotion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : {matches:false};
+const TOUR_STORAGE_KEY = 'fieldnotes-onboarding-v1';
+const PALS_STORAGE_KEY = 'fieldnotes-pals-v1';
+const PALS_COUNT = 8;
+const TOUR_STEPS = [
+  {area:'Welcome',title:'A free route from first frame to purposeful work.',copy:'Fieldnotes is a free, location-neutral route from absolute beginner toward professional-ready nature photography. Its nine stages fit about five hours a week, and you can start with the camera or phone you already own. Check each Access note for terms; the route does not promise employment or income.',target:'#hero-title',dock:'bottom-right'},
+  {area:'Field log',title:'Track real practice, not time on the page.',copy:'This panel shows completed learning cards, overall progress, your next checkpoint, today’s log, and your streak. Progress is stored in this browser. Only real roadmap checkboxes change it; the tour sample is separate.',target:'#progress-heading',dock:'bottom-right'},
+  {area:'How to use the route',title:'Read the tags and explore before choosing a specialty.',copy:'LEARN means study, FIELD is a practical checkpoint, TIME is a planning estimate, and ACCESS opens conditions to check. Try landscape, wildlife, and close-up work before specialising. Tiny pals are optional; pause them here and replay this tour any time.',target:'#guide-heading',dock:'bottom-left'},
+  {area:'Learning catalogue',title:'Search, filter, and open stages.',copy:'The catalogue contains nine stages and 25 learning cards. Search for a skill, subject, or resource; then narrow by camera and field or editing and portfolio. Try the controls now. These change the view, not your progress, and your original view returns when the tour ends.',target:'#roadmap-controls',dock:'top-right',hint:'Try the real search or filter controls now. This tour will restore your original search and filter when you finish.'},
+  {area:'Inside a stage',title:'Open a stage to see outcomes and learning cards.',copy:'Stage 1 is open as an example. A card names the resource or practice, explains why it matters, lists access conditions, and offers a next action. Real card checkboxes save progress. Use the separate tour-only sample below to rehearse safely.',target:'#resource-s0-r0',stage:1,demo:true,dock:'top-right',hint:'The checkbox below is tour-only; checking it never changes the saved roadmap, percentage, or streak.'},
+  {area:'Practice plan',title:'Turn one lesson into a repeatable field loop.',copy:'Study one technique, take that question on a short permitted outing, review a small set of frames, and note one observation. Repeat at a steady pace; sample different subjects before choosing your first project direction.',target:'#practice-heading',dock:'bottom-right'},
+  {area:'Field guardrails',title:'Good nature photography starts with care.',copy:'Give wildlife space; never bait or disturb nests. Check access, weather, safety, and local rules, and protect sensitive species locations when sharing work. The subject and place matter more than getting a frame.',target:'#guardrails-heading',dock:'top-right'},
+  {area:'Field kit',title:'Keep progress portable and reminders realistic.',copy:'Export a JSON backup to move progress between browsers; importing replaces the current checklist and dates. Reminders need permission, a secure page, and this page left open—they stop when the app closes. Nothing is sent to a server.',target:'#tools-heading',dock:'top-right',hint:'The tour will not request notification permission, export a file, or change your reminder settings.'},
+  {area:'Footer',title:'You have seen the whole route.',copy:'The footer repeats the local-safety and employment caveats. Start with the next checkpoint, work at your own pace, and replay this walkthrough from the route guide whenever you need a refresher.',target:'#footer-brand',dock:'top-right'}
+];
+let palsEnabled = readPalsPreference();
+let tourIndex = 0;
+let tourReturnFocus = null;
+let tourSnapshot = null;
+let tourHighlighted = null;
+let tourFocusElement = null;
+let tourSavedTabIndex = null;
+let tourSavedDescribedBy = null;
+
+function el(tag,className,text){
+  const node=document.createElement(tag);
+  if(className) node.className=className;
+  if(text!==undefined&&text!==null) node.textContent=String(text);
+  return node;
+}
+function safeUrl(value){
+  try{const url=new URL(value);return(url.protocol==='https:'||url.protocol==='http:')?url.href:'';}
+  catch(_){return '';}
+}
+function localDateKey(date=new Date()){
+  const y=date.getFullYear();const m=String(date.getMonth()+1).padStart(2,'0');const d=String(date.getDate()).padStart(2,'0');
+  return `${y}-${m}-${d}`;
+}
+function dateFromKey(key){const [y,m,d]=key.split('-').map(Number);return new Date(y,m-1,d,12,0,0,0);}
+function previousDay(key){const date=dateFromKey(key);date.setDate(date.getDate()-1);return localDateKey(date);}
+function loadState(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');
+    return{
+      done:saved.done&&typeof saved.done==='object'?saved.done:{},
+      activityDates:Array.isArray(saved.activityDates)?saved.activityDates.filter(value=>/^\d{4}-\d{2}-\d{2}$/.test(value)):[],
+      reminderTime:/^\d\d:\d\d$/.test(saved.reminderTime||'')?saved.reminderTime:(DATA.reminder_time||'19:00'),
+      notificationsEnabled:saved.notificationsEnabled===true,
+      lastNotificationDate:saved.lastNotificationDate||''
+    };
+  }catch(_){return{done:{},activityDates:[],reminderTime:DATA.reminder_time||'19:00',notificationsEnabled:false,lastNotificationDate:''};}
+}
+function setNotice(message,target='notification-status'){
+  const node=document.getElementById(target);
+  if(node) node.textContent=message;
+}
+function saveState(){
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}
+  catch(_){setNotice('Browser storage is unavailable. Export a backup before leaving this page.','data-status');}
+}
+function markActivity(){const today=localDateKey();if(!state.activityDates.includes(today))state.activityDates.push(today);}
+function streakLength(){
+  const dates=new Set(state.activityDates);const today=localDateKey();
+  let cursor=dates.has(today)?today:previousDay(today);let length=0;
+  while(dates.has(cursor)){length++;cursor=previousDay(cursor);}
+  return length;
+}
+function resourceKey(stageIndex,resourceIndex){return `s${stageIndex}-r${resourceIndex}`;}
+function stageKey(stageIndex){return `s${stageIndex}-complete`;}
+function allTrackableItems(){
+  const keys=[];
+  (DATA.stages||[]).forEach((stage,stageIndex)=>{
+    const resources=Array.isArray(stage.resources)?stage.resources:[];
+    if(resources.length)resources.forEach((_,resourceIndex)=>keys.push(resourceKey(stageIndex,resourceIndex)));
+    else keys.push(stageKey(stageIndex));
+  });
+  return keys;
+}
+function appendTag(parent,text,className=''){
+  if(!text)return;
+  parent.append(el('span','tag'+(className?` ${className}`:''),text));
+}
+function cleanTitle(rawTitle){
+  const title=rawTitle==null?'Learning task':String(rawTitle);
+  const match=title.match(/^(R\d+)\s*[-–:]\s*(.+)$/);
+  return{number:match?match[1]:'P',title:match?match[2]:title};
+}
+function renderResource(stage,stageIndex,resource,resourceIndex){
+  const key=resourceKey(stageIndex,resourceIndex);
+  const completion=!!state.done[key];
+  const card=el('article','resource-card'+(completion?' is-complete':''));
+  card.id=`resource-${key}`;
+  const group=stageIndex<5?'field':'portfolio';
+  const rawTitle=resource.title||'Learning task';
+  const parsed=cleanTitle(rawTitle);
+  const url=safeUrl(resource.url||resource.link||'');
+  const statusText=url?'Free resource':'Self-directed practice';
+  const searchText=[stage.title,stage.description,...(stage.outcomes||[]),rawTitle,resource.provider,resource.modality,resource.type,resource.cost,resource.duration,resource.time,resource.why,resource.action,resource.access_note,resource.verification_note,resource.link_label,statusText].join(' ').toLowerCase();
+  const top=el('div','card-top');
+  const number=el('span','number',parsed.number);number.setAttribute('aria-hidden','true');
+  const heading=el('h5');
+  if(url){
+    const titleLink=el('a','',parsed.title);titleLink.href=url;titleLink.target='_blank';titleLink.rel='noopener noreferrer';heading.append(titleLink);
+  }else heading.textContent=parsed.title;
+  const main=el('div','resource-main');main.append(heading);
+  if(resource.provider)main.append(el('p','resource-provider',resource.provider));
+  const doneLabel=el('label','done-control');
+  const checkbox=el('input');checkbox.type='checkbox';checkbox.checked=completion;checkbox.dataset.key=key;checkbox.setAttribute('aria-label',`Mark ${parsed.title} complete`);
+  const checkmark=el('span','checkmark');checkmark.setAttribute('aria-hidden','true');
+  doneLabel.append(checkbox,checkmark,el('span','',completion?'Done':'Done'));
+  top.append(number,main,doneLabel);card.append(top);
+  const status=el('p','status resource-status '+(url?'status-live':'status-caveat'),statusText);card.append(status);
+  const tags=el('div','resource-tags');
+  appendTag(tags,resource.modality||resource.type||'Practice','tag-default');
+  appendTag(tags,resource.cost||'No resource fee','tag-action');
+  appendTag(tags,resource.duration||resource.time||'');
+  if(resource.verification_date)appendTag(tags,`Checked ${resource.verification_date}`,'tag-playful');
+  card.append(tags);
+  if(resource.why)card.append(el('p','resource-why',resource.why));
+  const accessNote=resource.access_note||resource.verification_note||'';
+  if(accessNote){
+    const access=el('details','access-details');
+    access.append(el('summary','','Access and conditions'),el('p','',accessNote));card.append(access);
+  }
+  if(resource.action){
+    const borrow=el('p','borrow');borrow.append(el('strong','','Try next: '),document.createTextNode(resource.action));card.append(borrow);
+  }
+  if(url){
+    const source=el('a','source',resource.link_label||'Open resource');source.href=url;source.target='_blank';source.rel='noopener noreferrer';card.append(source);
+  }else card.append(el('p','source','Practice checkpoint · no external resource'));
+  checkbox.addEventListener('change',()=>{
+    if(checkbox.checked){state.done[key]=true;markActivity();}
+    else delete state.done[key];
+    card.classList.toggle('is-complete',checkbox.checked);
+    doneLabel.lastElementChild.textContent=checkbox.checked?'Done':'Done';
+    saveState();updateDashboard();updateStageMeters();applyFilters();
+  });
+  RESOURCE_ITEMS.push({key,title:parsed.title,stageIndex,resourceIndex,group,card,searchText});
+  return card;
+}
+function renderRoadmap(){
+  const root=document.getElementById('stage-list');
+  const previousOpen=new Set(Array.from(root.querySelectorAll('.stage[open]')).map(node=>node.id));
+  root.replaceChildren();RESOURCE_ITEMS.length=0;
+  const groupDefinitions=[
+    {key:'field',label:'A. Foundations & fieldwork'},
+    {key:'portfolio',label:'B. Editing & portfolio'}
+  ];
+  const groupNodes={};
+  groupDefinitions.forEach(definition=>{
+    const group=el('section','category-group');group.dataset.group=definition.key;
+    const category=el('div','category');category.append(el('h3','',definition.label));
+    const stack=el('div','stage-stack');group.append(category,stack);root.append(group);groupNodes[definition.key]=stack;
+  });
+  let firstIncompleteOpened=false;
+  (DATA.stages||[]).forEach((stage,stageIndex)=>{
+    const details=el('details','stage');details.id=`stage-${stageIndex+1}`;details.dataset.stage=String(stageIndex);details.dataset.group=stageIndex<5?'field':'portfolio';
+    const resources=Array.isArray(stage.resources)?stage.resources:[];
+    const keys=resources.length?resources.map((_,resourceIndex)=>resourceKey(stageIndex,resourceIndex)):[stageKey(stageIndex)];
+    if(previousOpen.has(details.id))details.open=true;
+    else if(!firstIncompleteOpened&&keys.some(key=>!state.done[key])){details.open=true;firstIncompleteOpened=true;}
+    const summary=el('summary','stage-summary');
+    const number=el('span','number',String(stageIndex+1).padStart(2,'0'));number.setAttribute('aria-hidden','true');
+    const heading=el('span','stage-heading');
+    const titleRow=el('span','stage-title',stage.title||`Stage ${stageIndex+1}`);titleRow.setAttribute('role','heading');titleRow.setAttribute('aria-level','4');
+    const meta=[stage.duration,stage.estimated_hours?`${stage.estimated_hours} practice hours`:''].filter(Boolean).join(' · ');
+    heading.append(titleRow);if(meta)heading.append(el('small','',meta));
+    const status=el('span','status stage-status status-archive','Not started');status.dataset.stageStatus=String(stageIndex);
+    const meter=el('span','stage-meter');meter.dataset.meter=String(stageIndex);
+    const meterLabel=el('span','stage-meter-label','0 / 0 complete');
+    const track=el('span','stage-meter-track');const fill=el('i');fill.setAttribute('aria-hidden','true');track.append(fill);meter.append(meterLabel,track);
+    const chevron=el('span','stage-chevron');chevron.setAttribute('aria-hidden','true');
+    summary.append(number,heading,status,meter,chevron);details.append(summary);
+    const body=el('div','stage-body');
+    if(stage.description)body.append(el('p','stage-description',stage.description));
+    if(Array.isArray(stage.outcomes)&&stage.outcomes.length){
+      const outcomes=el('ul','outcomes');stage.outcomes.forEach(outcome=>outcomes.append(el('li','',outcome)));body.append(outcomes);
+    }
+    if(resources.length){
+      const grid=el('div','resource-grid');resources.forEach((resource,resourceIndex)=>grid.append(renderResource(stage,stageIndex,resource,resourceIndex)));body.append(grid);
+    }else{
+      const label=el('label','stage-empty');const checkbox=el('input');checkbox.type='checkbox';checkbox.checked=!!state.done[stageKey(stageIndex)];checkbox.setAttribute('aria-label',`Mark ${stage.title||`stage ${stageIndex+1}`} complete`);
+      label.append(checkbox,document.createTextNode('Mark this stage complete'));body.append(label);
+      checkbox.addEventListener('change',()=>{if(checkbox.checked){state.done[stageKey(stageIndex)]=true;markActivity();}else delete state.done[stageKey(stageIndex)];saveState();updateDashboard();updateStageMeters();applyFilters();});
+    }
+    details.append(body);groupNodes[details.dataset.group].append(details);
+  });
+  updateDashboard();updateStageMeters();applyFilters();
+}
+function keysForStage(stageIndex){
+  const stage=DATA.stages[stageIndex]||{};const resources=Array.isArray(stage.resources)?stage.resources:[];
+  return resources.length?resources.map((_,resourceIndex)=>resourceKey(stageIndex,resourceIndex)):[stageKey(stageIndex)];
+}
+function stageState(stageIndex){
+  const keys=keysForStage(stageIndex);const completed=keys.filter(key=>!!state.done[key]).length;
+  if(completed===keys.length&&keys.length)return{completed,total:keys.length,label:'Complete',className:'status-live'};
+  if(completed>0)return{completed,total:keys.length,label:'In progress',className:'status-progress'};
+  const firstIncomplete=(DATA.stages||[]).findIndex((_,index)=>keysForStage(index).some(key=>!state.done[key]));
+  return{completed,total:keys.length,label:stageIndex===firstIncomplete?'Up next':'Not started',className:stageIndex===firstIncomplete?'status-caveat':'status-archive'};
+}
+function updateDashboard(){
+  const keys=allTrackableItems();const completed=keys.filter(key=>!!state.done[key]).length;
+  const percent=keys.length?Math.round(completed/keys.length*100):0;
+  document.getElementById('overall-percent').textContent=`${percent}%`;
+  document.getElementById('progress-label').textContent=`${completed} of ${keys.length} practice cards complete`;
+  const fill=document.getElementById('progress-fill');fill.style.width=`${percent}%`;fill.parentElement.setAttribute('aria-valuenow',String(percent));
+  document.getElementById('streak-count').textContent=String(streakLength());
+  const todayDone=state.activityDates.includes(localDateKey());
+  const todayStatus=document.getElementById('today-status');todayStatus.textContent=todayDone?'Logged today':'Not logged today';todayStatus.classList.toggle('is-logged',todayDone);
+  const next=RESOURCE_ITEMS.find(item=>!state.done[item.key]);
+  document.getElementById('next-step').textContent=next?`Next checkpoint: ${next.title}.`:(keys.length?'Every roadmap card is complete. Revisit a subject or shape a new project.':'Add a learning card to begin.');
+  const resume=document.getElementById('resume-next');resume.textContent=next?'Go to your next checkpoint →':'Review the full route →';
+  document.getElementById('reminder-summary').textContent=todayDone?'Your practice is logged for today. Keep exploring at a steady pace.':'Try landscape, wildlife, and close-up work before choosing a first project. Your streak updates when you complete a learning card.';
+  const countResources=keys.length;
+  document.getElementById('roadmap-count').textContent=`${(DATA.stages||[]).length} stages · ${countResources} learning cards`;
+}
+function updateStageMeters(){
+  (DATA.stages||[]).forEach((stage,stageIndex)=>{
+    const statusData=stageState(stageIndex);
+    const status=document.querySelector(`[data-stage-status="${stageIndex}"]`);
+    if(status){status.textContent=statusData.label;status.className=`status stage-status ${statusData.className}`;}
+    const meter=document.querySelector(`[data-meter="${stageIndex}"]`);if(!meter)return;
+    const label=meter.querySelector('.stage-meter-label');label.textContent=`${statusData.completed} / ${statusData.total} complete`;
+    const track=meter.querySelector('.stage-meter-track');const percent=statusData.total?Math.round(statusData.completed/statusData.total*100):0;
+    track.setAttribute('role','progressbar');track.setAttribute('aria-label',`${stage.title||`Stage ${stageIndex+1}`} progress`);track.setAttribute('aria-valuemin','0');track.setAttribute('aria-valuemax','100');track.setAttribute('aria-valuenow',String(percent));
+    track.querySelector('i').style.width=`${percent}%`;
+  });
+}
+function applyFilters(){
+  const query=(document.getElementById('roadmap-search').value||'').trim().toLowerCase();
+  const stageNodes=Array.from(document.querySelectorAll('#stage-list .stage'));
+  let visibleResources=0;let visibleStages=0;
+  stageNodes.forEach(stageNode=>{
+    const stageIndex=Number(stageNode.dataset.stage);const stageData=DATA.stages[stageIndex]||{};
+    const groupMatch=activeFilter==='all'||stageNode.dataset.group===activeFilter;
+    const statusData=stageState(stageIndex);
+    const stageText=[stageData.title,stageData.description,stageData.duration,stageData.estimated_hours,...(stageData.outcomes||[]),statusData.label].join(' ').toLowerCase();
+    const stageTextMatch=!!query&&stageText.includes(query);
+    let stageResources=0;
+    const stageItems=RESOURCE_ITEMS.filter(item=>item.stageIndex===stageIndex);
+    stageItems.forEach(item=>{
+      const completionText=state.done[item.key]?'complete done finished':'incomplete not done';
+      const matches=!query||stageTextMatch||`${item.searchText} ${completionText}`.includes(query);
+      const visible=groupMatch&&matches;item.card.hidden=!visible;
+      if(visible){visibleResources++;stageResources++;}
+    });
+    const hasNoResources=stageItems.length===0;
+    const stageVisible=groupMatch&&(!query||stageTextMatch||stageResources>0);
+    stageNode.hidden=!stageVisible;
+    if(stageVisible){visibleStages++;if(hasNoResources)visibleResources++;if(query)stageNode.open=true;}
+  });
+  document.querySelectorAll('#stage-list .category-group').forEach(group=>{group.hidden=!group.querySelector('.stage:not([hidden])');});
+  const result=document.getElementById('result-count');
+  result.textContent=query?`${visibleResources} match${visibleResources===1?'':'es'} in ${visibleStages} stage${visibleStages===1?'':'s'}`:`${visibleResources} learning cards across ${visibleStages} stages`;
+  document.getElementById('search-empty').hidden=visibleResources>0;
+  document.getElementById('search-clear').hidden=!query;
+}
+function selectFilter(filter){
+  activeFilter=['all','field','portfolio'].includes(filter)?filter:'all';
+  document.querySelectorAll('#filter-set [data-filter]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.filter===activeFilter)));
+  applyFilters();
+}
+function jumpToStage(stageIndex){
+  const index=Number(stageIndex);const target=document.getElementById(`stage-${index+1}`);if(!target)return;
+  selectFilter('all');const search=document.getElementById('roadmap-search');search.value='';applyFilters();target.open=true;
+  target.scrollIntoView({behavior:reducedMotion.matches?'auto':'smooth',block:'start'});
+  window.setTimeout(()=>{const summary=target.querySelector('summary');if(summary)summary.focus({preventScroll:true});},reducedMotion.matches?0:220);
+}
+function resumeToNext(){
+  const next=RESOURCE_ITEMS.find(item=>!state.done[item.key]);const stageIndex=next?next.stageIndex:0;
+  jumpToStage(stageIndex);
+  if(next)window.setTimeout(()=>{const card=document.getElementById(`resource-${next.key}`);if(card)card.scrollIntoView({behavior:reducedMotion.matches?'auto':'smooth',block:'center'});},reducedMotion.matches?0:320);
+}
+function setupSearchAndFilters(){
+  const search=document.getElementById('roadmap-search');
+  search.addEventListener('input',applyFilters);
+  search.addEventListener('keydown',event=>{if(event.key==='Escape'&&search.value){search.value='';applyFilters();}});
+  document.getElementById('search-clear').addEventListener('click',()=>{search.value='';applyFilters();search.focus();});
+  document.querySelectorAll('#filter-set [data-filter]').forEach(button=>button.addEventListener('click',()=>selectFilter(button.dataset.filter)));
+  document.getElementById('resume-next').addEventListener('click',resumeToNext);
+}
+function readPalsPreference(){
+  try{const saved=localStorage.getItem(PALS_STORAGE_KEY);if(saved==='on')return true;if(saved==='off')return false;}
+  catch(_){}
+  return !reducedMotion.matches;
+}
+function savePalsPreference(){try{localStorage.setItem(PALS_STORAGE_KEY,palsEnabled?'on':'off');}catch(_){}}
+function clearFieldnotesPals(scope){
+  const selector=scope?`piix-pal[data-fieldnotes-pal="${scope}"]`:'piix-pal[data-fieldnotes-pal]';
+  document.querySelectorAll(selector).forEach(pal=>pal.remove());
+}
+function addFieldnotesPal(name,target,options={},scope='site'){
+  if(!window.Piixpal||typeof window.Piixpal.add!=='function')return null;
+  try{
+    const pal=window.Piixpal.add(name,target,options);
+    if(pal){pal.setAttribute('data-fieldnotes-pal',scope);pal.setAttribute('aria-hidden','true');}
+    return pal;
+  }catch(_){return null;}
+}
+function renderSitePals(){
+  clearFieldnotesPals('site');
+  if(!palsEnabled||!window.Piixpal)return;
+  addFieldnotesPal('bitbug','#hero-title',{edge:'text',speed:.72,at:.9},'site');
+  addFieldnotesPal('lurk','#guide-heading',{at:.88},'site');
+  addFieldnotesPal('moss','#practice-heading',{at:.88},'site');
+  addFieldnotesPal('pip','#progress-heading',{at:.88},'site');
+  addFieldnotesPal('capy','#roadmap-heading',{at:.88},'site');
+  addFieldnotesPal('bumble','#guardrails-heading',{at:.82},'site');
+  addFieldnotesPal('shel','#tools-heading',{at:.87,speed:.7},'site');
+  addFieldnotesPal('frog','#footer-brand',{at:.88},'site');
+}
+function renderTourPals(){
+  clearFieldnotesPals('tour');
+  if(!palsEnabled||!window.Piixpal||document.getElementById('tour-layer').hidden)return;
+  addFieldnotesPal('moss','#tour-copy',{at:.92},'tour');
+  addFieldnotesPal('pip','#tour-step-count',{at:.9},'tour');
+}
+function updatePalsControl(){
+  const toggle=document.getElementById('pals-toggle');
+  if(!toggle)return;
+  toggle.setAttribute('aria-pressed',String(palsEnabled));
+  toggle.textContent=palsEnabled?'Pause tiny pals':'Enable tiny pals';
+  const status=document.getElementById('pals-status');
+  status.textContent=palsEnabled?`${PALS_COUNT} optional decorative pals are on; the roadmap works without them.`:reducedMotion.matches?'Pals are paused; your reduced-motion preference is respected.':'Pals are paused. Your roadmap, filters, and progress still work normally.';
+}
+function setupPals(){
+  const control=document.getElementById('pals-controls');
+  if(!window.Piixpal||typeof window.Piixpal.add!=='function'){control.hidden=true;return;}
+  control.hidden=false;
+  document.getElementById('pals-toggle').addEventListener('click',()=>{
+    palsEnabled=!palsEnabled;savePalsPreference();
+    if(palsEnabled){if(document.getElementById('tour-layer').hidden)renderSitePals();else{clearFieldnotesPals('site');renderTourPals();}}else clearFieldnotesPals();
+    updatePalsControl();
+  });
+  renderSitePals();updatePalsControl();
+}
+function tourSeen(){try{return localStorage.getItem(TOUR_STORAGE_KEY)==='seen';}catch(_){return false;}}
+function markTourSeen(reason){try{localStorage.setItem(TOUR_STORAGE_KEY,'seen');}catch(_){};return reason;}
+function captureTourView(){
+  return{
+    scrollY:window.scrollY||0,
+    search:document.getElementById('roadmap-search').value,
+    filter:activeFilter,
+    stages:Array.from(document.querySelectorAll('#stage-list .stage')).map(stage=>({id:stage.id,open:stage.open}))
+  };
+}
+function restoreTourView(){
+  if(!tourSnapshot)return;
+  const previous=tourSnapshot;tourSnapshot=null;
+  document.getElementById('roadmap-search').value=previous.search;
+  selectFilter(previous.filter);
+  previous.stages.forEach(saved=>{const stage=document.getElementById(saved.id);if(stage)stage.open=saved.open;});
+  window.scrollTo({top:previous.scrollY,behavior:'auto'});
+}
+function clearTourHighlight(){
+  if(tourHighlighted)tourHighlighted.classList.remove('tour-highlight');
+  if(tourFocusElement){
+    if(tourSavedTabIndex===null)tourFocusElement.removeAttribute('tabindex');else tourFocusElement.setAttribute('tabindex',tourSavedTabIndex);
+    if(tourSavedDescribedBy===null)tourFocusElement.removeAttribute('aria-describedby');else tourFocusElement.setAttribute('aria-describedby',tourSavedDescribedBy);
+  }
+  tourHighlighted=null;tourFocusElement=null;tourSavedTabIndex=null;tourSavedDescribedBy=null;
+}
+function setTourHighlight(target){
+  clearTourHighlight();if(!target)return null;
+  tourHighlighted=target;tourFocusElement=target;
+  tourSavedTabIndex=target.hasAttribute('tabindex')?target.getAttribute('tabindex'):null;
+  tourSavedDescribedBy=target.hasAttribute('aria-describedby')?target.getAttribute('aria-describedby'):null;
+  target.classList.add('tour-highlight');
+  if(tourSavedTabIndex===null)target.setAttribute('tabindex','-1');
+  const descriptions=new Set((tourSavedDescribedBy||'').split(/\s+/).filter(Boolean));
+  descriptions.add('tour-copy');descriptions.add('tour-hint');target.setAttribute('aria-describedby',Array.from(descriptions).join(' '));
+  return target;
+}
+function prepareTourStep(step){
+  if(!step.stage)return;
+  const search=document.getElementById('roadmap-search');search.value='';selectFilter('all');
+  const stage=document.getElementById(`stage-${step.stage}`);if(stage)stage.open=true;
+}
+function renderTourStep(){
+  const step=TOUR_STEPS[tourIndex];prepareTourStep(step);
+  document.getElementById('tour-step-count').textContent=`STEP ${String(tourIndex+1).padStart(2,'0')} / ${String(TOUR_STEPS.length).padStart(2,'0')}`;
+  document.getElementById('tour-step-area').textContent=step.area.toUpperCase();
+  document.getElementById('tour-title').textContent=step.title;
+  document.getElementById('tour-copy').textContent=step.copy;
+  document.getElementById('tour-hint').textContent=step.hint||'The highlighted area is part of the live page. Explore it, then use Next.';
+  document.getElementById('tour-announcement').textContent=`Step ${tourIndex+1} of ${TOUR_STEPS.length}, ${step.area}: ${step.title}`;
+  const progress=(tourIndex+1)/TOUR_STEPS.length*100;
+  document.getElementById('tour-progress-fill').style.width=`${progress}%`;
+  document.getElementById('tour-progress').setAttribute('aria-valuenow',String(tourIndex+1));
+  document.getElementById('tour-back').disabled=tourIndex===0;
+  document.getElementById('tour-next').textContent=tourIndex===TOUR_STEPS.length-1?'Finish tour ✓':'Next →';
+  const demo=document.getElementById('tour-demo');demo.hidden=!step.demo;
+  document.getElementById('tour-demo-check').checked=false;demo.classList.remove('is-complete');
+  document.getElementById('tour-demo-status').textContent='Tour-only demo. It does not change your actual roadmap progress.';
+  const target=setTourHighlight(document.querySelector(step.target));
+  document.getElementById('tour-panel').className=`tour-panel tour-panel-${step.dock||'bottom-right'}`;
+  if(!document.getElementById('tour-layer').hidden){
+    if(target){target.scrollIntoView({behavior:reducedMotion.matches?'auto':'smooth',block:'center'});target.focus({preventScroll:true});}
+    renderTourPals();
+  }
+}
+function finishTour(reason='skipped'){
+  const layer=document.getElementById('tour-layer');const wasOpen=!layer.hidden;
+  clearTourHighlight();layer.hidden=true;document.body.classList.remove('tour-open');clearFieldnotesPals('tour');
+  document.getElementById('tour-invite').hidden=true;markTourSeen(reason);restoreTourView();
+  if(palsEnabled)renderSitePals();
+  const restore=tourReturnFocus;tourReturnFocus=null;
+  if(wasOpen&&restore&&document.contains(restore)&&!restore.closest('[hidden]'))restore.focus();
+  else if(wasOpen)document.getElementById('tour-replay').focus();
+}
+function startTour(returnFocus){
+  if(!document.getElementById('tour-layer').hidden)return;
+  tourReturnFocus=returnFocus||document.activeElement;tourSnapshot=captureTourView();tourIndex=0;
+  clearTourHighlight();document.getElementById('tour-invite').hidden=true;
+  document.getElementById('tour-layer').hidden=false;document.body.classList.add('tour-open');clearFieldnotesPals('site');
+  renderTourStep();
+}
+function moveTour(direction){
+  const next=tourIndex+direction;
+  if(next<0)return;
+  if(next>=TOUR_STEPS.length){finishTour('completed');return;}
+  tourIndex=next;renderTourStep();
+}
+function setupOnboarding(){
+  const invite=document.getElementById('tour-invite');
+  if(!tourSeen())invite.hidden=false;
+  document.getElementById('tour-start').addEventListener('click',event=>startTour(event.currentTarget));
+  document.getElementById('tour-replay').addEventListener('click',event=>startTour(event.currentTarget));
+  document.getElementById('tour-dismiss').addEventListener('click',()=>{invite.hidden=true;markTourSeen('dismissed');});
+  document.getElementById('tour-close').addEventListener('click',()=>finishTour('skipped'));
+  document.getElementById('tour-skip').addEventListener('click',()=>finishTour('skipped'));
+  document.getElementById('tour-back').addEventListener('click',()=>moveTour(-1));
+  document.getElementById('tour-next').addEventListener('click',()=>moveTour(1));
+  document.getElementById('tour-demo-check').addEventListener('change',event=>{
+    const complete=event.currentTarget.checked;document.getElementById('tour-demo').classList.toggle('is-complete',complete);
+    document.getElementById('tour-demo-status').textContent=complete?'Nice—this demo is checked. Your real roadmap progress is unchanged.':'Tour-only demo. It does not change your actual roadmap progress.';
+  });
+  document.addEventListener('keydown',event=>{
+    if(!document.getElementById('tour-layer').hidden&&event.key==='Escape'){
+      event.preventDefault();finishTour('skipped');
+    }
+  });
+}
+function setupReminderControls(){
+
+  const time=document.getElementById('reminder-time');time.value=state.reminderTime;
+  time.addEventListener('change',()=>{state.reminderTime=time.value||'19:00';saveState();setNotice(`Reminder time saved as ${state.reminderTime}. Keep this page open for alerts.`);});
+  document.getElementById('enable-notifications').addEventListener('click',async()=>{
+    if(!('Notification'in window)){setNotice('This browser does not support system notifications. Your progress log is still available.');return;}
+    if(!window.isSecureContext){setNotice('Browser notifications need a secure HTTPS page or localhost. Your progress log is still available.');return;}
+    try{
+      const permission=await Notification.requestPermission();state.notificationsEnabled=permission==='granted';saveState();
+      if(permission==='granted'){setNotice('Browser reminders are enabled while this page stays open. They will not run after the app is closed.');checkReminder();}
+      else setNotice(`Notification permission ${permission}. Your progress log is still available.`);
+    }catch(_){setNotice('Could not request permission. Your progress log is still available.');}
+  });
+  document.getElementById('export-progress').addEventListener('click',()=>{
+    const blob=new Blob([JSON.stringify({version:1,title:DATA.title,done:state.done,activityDates:state.activityDates,reminderTime:state.reminderTime},null,2)],{type:'application/json'});
+    const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download='fieldnotes-progress.json';link.click();window.setTimeout(()=>URL.revokeObjectURL(url),1000);
+    setNotice('Progress exported to fieldnotes-progress.json.','data-status');
+  });
+  document.getElementById('import-progress').addEventListener('change',async event=>{
+    const file=event.target.files&&event.target.files[0];if(!file)return;
+    try{
+      const incoming=JSON.parse(await file.text());
+      if(!incoming||!incoming.done||typeof incoming.done!=='object'||!Array.isArray(incoming.activityDates))throw new Error('invalid');
+      const valid=new Set(allTrackableItems());
+      state.done=Object.fromEntries(Object.entries(incoming.done).filter(([key,value])=>valid.has(key)&&!!value));
+      state.activityDates=incoming.activityDates.filter(value=>/^\d{4}-\d{2}-\d{2}$/.test(value));
+      if(/^\d\d:\d\d$/.test(incoming.reminderTime||''))state.reminderTime=incoming.reminderTime;
+      saveState();renderRoadmap();time.value=state.reminderTime;setNotice('Progress imported into this browser.','data-status');
+    }catch(_){setNotice('That file is not a valid Fieldnotes progress export.','data-status');}
+    event.target.value='';
+  });
+  document.getElementById('reset-progress').addEventListener('click',()=>{
+    if(!window.confirm('Clear progress and streak history saved in this browser?'))return;
+    state={done:{},activityDates:[],reminderTime:DATA.reminder_time||'19:00',notificationsEnabled:false,lastNotificationDate:''};
+    saveState();renderRoadmap();time.value=state.reminderTime;setNotice('Progress reset in this browser.','data-status');
+  });
+}
+function checkReminder(){
+  if(!state.notificationsEnabled||!('Notification'in window)||Notification.permission!=='granted')return;
+  const now=new Date();const current=`${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;const today=localDateKey();
+  if(current>=state.reminderTime&&state.lastNotificationDate!==today&&!state.activityDates.includes(today)){
+    try{const notification=new Notification('Fieldnotes reminder',{body:'Take a few minutes to continue your nature photography practice.'});notification.onclick=()=>{window.focus();notification.close();};state.lastNotificationDate=today;saveState();}
+    catch(_){setNotice('A browser reminder could not be shown. Your progress log is still available.');}
+  }
+}
+function init(){
+  document.title=`Fieldnotes — ${DATA.title||'Nature Photography Roadmap'}`;
+  renderRoadmap();setupSearchAndFilters();setupPals();setupOnboarding();setupReminderControls();
+  if(state.notificationsEnabled&&'Notification'in window&&Notification.permission==='granted')setNotice('Browser reminders are enabled while this page stays open.');
+  checkReminder();window.setInterval(checkReminder,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkReminder();});
+}
+init();
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4f8be37084a63df',t:'MTc5Mjg0MjQwNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
