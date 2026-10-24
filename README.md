@@ -274,6 +274,23 @@ invisible while still having a bounding box — so it looked fine in a
 `npm run test:browser` now compares real pixels with the layer hidden and visible,
 which is the only check that catches this.
 
+### Where they sit, and why `at` exists
+
+`at` is the horizontal fraction of the target the pal hangs from: `.88` puts it
+near the right edge, `.5` in the middle. It is also the tool for steering a pal
+off a button or a link that happens to sit near the same spot — a pal draws on a
+canvas with `pointer-events:auto`, so one parked on a control swallows the tap.
+
+Pals are spread down the whole page, not clustered at the top. The first version
+anchored one per heading, which left a **3,845px** stretch of the stage list with
+no pal in it; the list now runs down the page with its largest gap around
+**1,480px** on a phone.
+
+Perfect placement is not possible in the collapsed stage run — every candidate
+there has a clickable summary or card link directly above it — so one pal grazes
+the top edge of a stage summary. `npm run test:browser` bounds that: no pal may
+cover a control by more than 1100px². If you move pals around, run it.
+
 ### One list, and the count comes from it
 
 `SITE_PALS` near the top of the script is the single source of truth: 14 entries,

@@ -893,20 +893,24 @@ const PALS_STORAGE_KEY = 'fieldnotes-pals-v1';
    rotation for the extra six; every target is a static, non-interactive element
    (a pal placed over a button would swallow the tap). */
 const SITE_PALS = [
+  /* `at` is the horizontal fraction of the target the pal hangs from, so it is
+     also how a pal is steered clear of a button or a link sitting near the same
+     spot. Twenty-eight values are spread down the page rather than clustered at
+     the top: the stage list alone is over 2,000px tall on a phone. */
   {pal:'bitbug',target:'#hero-title',at:.9,edge:'text',speed:.72},
   {pal:'pip',target:'#progress-heading',at:.88},
   {pal:'lurk',target:'#guide-heading',at:.88},
-  {pal:'capy',target:'#roadmap-heading',at:.88},
-  {pal:'lurk',target:'#result-count',at:.86,hue:205},
-  {pal:'moss',target:'#practice-heading',at:.88},
-  {pal:'bumble',target:'#guardrails-heading',at:.82},
-  {pal:'shel',target:'#reminders-heading',at:.87,speed:.7},
-  {pal:'shel',target:'#data-heading',at:.87,hue:120},
-  {pal:'frog',target:'#footer-brand',at:.88},
-  {pal:'moss',target:'#roadmap-count',at:.86,hue:320},
-  {pal:'capy',target:'#next-step',at:.85,hue:140},
   {pal:'bumble',target:'#reminder-summary',at:.84,hue:215},
-  {pal:'frog',target:'#notification-status',at:.84,hue:60}
+  {pal:'capy',target:'#roadmap-heading',at:.88},
+  {pal:'lurk',target:'#stage-list > .category-group:nth-child(1)',at:.86,hue:205},
+  {pal:'moss',target:'#stage-1 .resource-grid > :nth-child(1)',at:.88,hue:320},
+  {pal:'shel',target:'#stage-1 .resource-grid > :nth-child(2)',at:.65,hue:120},
+  {pal:'frog',target:'#stage-1 .resource-grid > :nth-child(3)',at:.75,hue:60},
+  {pal:'moss',target:'#stage-6',at:.88,hue:320,scale:2},
+  {pal:'shel',target:'#practice-heading',at:.88,speed:.7},
+  {pal:'bumble',target:'#guardrails-heading',at:.5,edge:'text',scale:2},
+  {pal:'capy',target:'#notification-status',at:.5,hue:140},
+  {pal:'frog',target:'#footer-brand',at:.88}
 ];
 const PALS_COUNT = SITE_PALS.length;
 const TOUR_STEPS = [
@@ -1233,11 +1237,12 @@ function addFieldnotesPal(name,target,options={},scope='site'){
 function renderSitePals(){
   clearFieldnotesPals('site');
   if(!palsEnabled||!window.Piixpal)return;
-  SITE_PALS.forEach(({pal,target,at,edge,speed,hue})=>{
+  SITE_PALS.forEach(({pal,target,at,edge,speed,hue,scale})=>{
     const options={at:at===undefined?.88:at};
     if(edge)options.edge=edge;
     if(speed)options.speed=speed;
     if(hue)options.hue=hue;
+    if(scale)options.scale=scale;
     addFieldnotesPal(pal,target,options,'site');
   });
 }

@@ -89,8 +89,13 @@ for (const [width, height] of [[320, 568], [390, 844], [768, 1024], [1440, 900]]
       const footerBottom = document.querySelector('.site-footer').getBoundingClientRect().bottom + window.scrollY;
       const before = doc.scrollHeight;
       const actor = layer.shadowRoot.querySelector('.a');
+      const original = actor.style.transform;
       actor.style.transform = `translate3d(40px, ${Math.round(footerBottom) + 120}px, 0px)`;
-      return { grew: doc.scrollHeight - before };
+      const grew = doc.scrollHeight - before;
+      // Put it back, or the checks that follow measure a page with one pal parked
+      // at the footer.
+      actor.style.transform = original;
+      return { grew };
     });
     check('a pal drifting below the footer cannot extend the page', drift.grew === 0, `${drift.grew}px`);
   }
@@ -124,6 +129,53 @@ for (const [width, height] of [[320, 568], [390, 844], [768, 1024], [1440, 900]]
       const layer = document.querySelector('div[data-piixpal]');
       layer.style.visibility = h ? 'hidden' : '';
     }, hidden);
+    /* The pals must be spread down the page, not piled at the top: the stage list
+       alone is over 2,000px tall on a phone, and a naive "one per heading" list
+       left a 3,845px empty stretch there. */
+    const spread = await page.evaluate(() => {
+      const layer = document.querySelector('div[data-piixpal]');
+      const tops = [...layer.shadowRoot.querySelectorAll('.a')]
+        .map((a) => Math.round(a.getBoundingClientRect().top + window.scrollY))
+        .sort((x, y) => x - y);
+      return {
+        tops,
+        gaps: tops.slice(1).map((t, i) => t - tops[i]),
+        page: document.documentElement.scrollHeight,
+      };
+    });
+    const largest = Math.max(...spread.gaps);
+    check(`no empty stretch longer than 2000px (largest ${largest}px)`, largest <= 2000, `${largest}px`);
+    check('a pal appears in the first screenful', spread.tops[0] < 400, `${spread.tops[0]}px`);
+    check('a pal appears near the end of the page', spread.page - spread.tops[spread.tops.length - 1] < 600,
+      `${spread.page - spread.tops[spread.tops.length - 1]}px from the end`);
+
+    /* A pal draws on a canvas with pointer-events:auto, so one parked on a button
+       or a stage summary swallows the tap. Perfect placement is impossible in the
+       collapsed stage run, where every candidate has a clickable row directly
+       above it, so this bounds the damage rather than pretending it is zero. */
+    const graze = await page.evaluate(() => {
+      const layer = document.querySelector('div[data-piixpal]');
+      const hosts = [...document.querySelectorAll('piix-pal[data-fieldnotes-pal="site"]')];
+      const controls = [...document.querySelectorAll('button,input,a,summary,select')];
+      let worst = 0; let who = '';
+      [...layer.shadowRoot.querySelectorAll('.a')].forEach((a, i) => {
+        const r = a.getBoundingClientRect();
+        for (const c of controls) {
+          const cr = c.getBoundingClientRect();
+          if (!cr.width || !cr.height) continue;
+          const ox = Math.min(r.right, cr.right) - Math.max(r.left, cr.left);
+          const oy = Math.min(r.bottom, cr.bottom) - Math.max(r.top, cr.top);
+          if (ox > 0 && oy > 0 && ox * oy > worst) {
+            worst = ox * oy;
+            who = `${hosts[i] ? hosts[i].getAttribute('on') : i} over ${c.tagName.toLowerCase()}`;
+          }
+        }
+      });
+      return { worst: Math.round(worst), who };
+    });
+    check(`no pal covers a control by more than 1100px² (worst ${graze.worst}px² ${graze.who})`,
+      graze.worst <= 1100, `${graze.worst}px² ${graze.who}`);
+
     /* Pick pals spread through the document - first, a middle one, the last -
        and scroll to each. Asserting at fixed scroll offsets would be wrong: the
        page has stretches with no pal nearby, so a zero there means nothing. */
