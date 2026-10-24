@@ -271,6 +271,11 @@ main{padding:clamp(13px,3.6vw,52px);padding-top:var(--stack-gap);border-right:4p
 .file-button input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
 .tool-status{min-height:1.5em;margin:12px 0 0!important;padding-top:10px;border-top:1px dashed var(--line);color:var(--muted)!important;font-size:.76rem!important}
 .site-footer{padding:21px clamp(20px,3.6vw,52px);border:4px solid var(--cyan);border-top:0;color:#fff;font-size:.77rem}
+/* The decorative pals live in an absolutely positioned 0x0 layer with visible
+   overflow, so a pal that drifts past the footer extends the document and leaves
+   blank space under it. Clipping the layer to a very large margin lets nothing
+   grow the page while still drawing every pal. */
+div[data-piixpal]{overflow:clip!important;overflow-clip-margin:200vmax}
 .footer-top{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px}
 .footer-brand{margin:0;color:#fff;font:900 .82rem/1.3 var(--font-mono);letter-spacing:.06em;text-transform:uppercase}
 .footer-links{display:flex;flex-wrap:wrap;gap:8px 18px}

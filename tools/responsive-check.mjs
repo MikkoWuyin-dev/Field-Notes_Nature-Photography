@@ -583,5 +583,43 @@ console.log('\nevery vertical gap between sections is the same');
   eq('only one place defines the number', (css.match(/--stack-gap\s*:/g) || []).length, 1);
 }
 
+console.log('\nnothing can grow the page past the footer');
+{
+  /* The decorative pals are positioned in document coordinates inside an
+     absolutely positioned 0x0 layer whose overflow the engine sets to visible.
+     A pal drifting past the footer then adds that pal's height to the document
+     and leaves blank space under the footer. The page clips the layer to a very
+     large margin, which hides nothing but lets nothing grow the page.
+
+     `overflow:clip` is the only value that does this: `hidden` would turn the
+     layer into a scroll container and clip the pals to a 0x0 box. */
+  const rule = rules.find((r) => r.selector === 'div[data-piixpal]' && !r.context);
+  check('the decoration layer is clipped by the page stylesheet', rule !== undefined);
+  if (rule) {
+    check('the clip wins over the engine\'s inline overflow:visible',
+      /clip\s*!important/.test(rule.decls.overflow || ''), rule.decls.overflow);
+    const margin = rule.decls['overflow-clip-margin'] || '';
+    check('the clip margin keeps every pal visible', /^[2-9]\d*vmax$/.test(margin) || /^[2-9]\d*vh$/.test(margin), margin);
+    eq('the clip is not a scroll container', /hidden|auto|scroll/.test(rule.decls.overflow || ''), false);
+  }
+  /* The tour layer is the only thing after the footer, and it is fixed, so it takes
+     no space. Anything else added there would land below the footer. Everything
+     inside the tour panel belongs to that layer, so only top-level blocks count. */
+  const afterFooter = html.slice(html.indexOf('</footer>'), html.indexOf('<script>', html.indexOf('</footer>')));
+  const topLevel = [];
+  let depth = 0;
+  for (const token of afterFooter.matchAll(/<(\/?)(section|div)\b[^>]*>/g)) {
+    const [tag, closing, name] = token;
+    // the slice starts mid-nesting, so a stray </div> must not push depth negative
+    if (closing) { depth = Math.max(0, depth - 1); continue; }
+    if (depth === 0) topLevel.push(tag);
+    depth += 1;
+    if (/\/>$/.test(tag)) depth -= 1;
+    void name;
+  }
+  check('the only top-level block after the footer is the fixed tour layer',
+    topLevel.length === 1 && /class="tour-layer"/.test(topLevel[0]), JSON.stringify(topLevel));
+}
+
 console.log(`\n${failures === 0 ? 'all checks passed' : `${failures} check(s) failed`}\n`);
 process.exit(failures === 0 ? 0 : 1);
