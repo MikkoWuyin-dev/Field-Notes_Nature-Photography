@@ -329,6 +329,11 @@ anything positioning-related: it is the only suite that can see where things
 actually land, and it caught the decorative-pal overflow that the other two
 couldn't.
 
+There is no browser in this project's CI images, so the binary has to be fetched
+through npm. [`docs/headless-chromium.md`](docs/headless-chromium.md) is the full
+recipe for getting a headless Chromium running in a sandbox that has nothing but
+npm reachable, written for the next agent who needs it.
+
 
 ```bash
 npm install     # jsdom only; nothing ships to the browser
