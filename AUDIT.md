@@ -168,6 +168,9 @@ content output, stable card IDs, deferred pals. Everything else is polish.
 **Suggested order:** F4 (delete junk) → F7 + F6 (tap targets, contrast) → F2 (stable IDs) →
 F1 (noscript/static fallback) → F8 (favicon + OG) → README → F3 (defer pals).
 
+> A plain-language version of this report, written for a non-technical reader,
+> is in [`AUDIT-PLAIN.md`](AUDIT-PLAIN.md).
+
 ---
 
 ## 6. Remediation log — 2026-10-24
