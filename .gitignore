@@ -1,0 +1,7 @@
+# Skill installs: .agents/skills is the source of truth, .claude/skills are symlinks.
+# The installer also drops a duplicate copy under agent/skills; skip it in Git.
+# Restore everything with: npx skills experimental_install
+agent/skills/
+
+# Local tooling
+node_modules/
