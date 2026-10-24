@@ -119,7 +119,7 @@ Installed: `ui-ux-pro-max`, `ui-styling`, `design`, `design-system`, `brand`,
 
 ```bash
 npm install     # jsdom only; nothing ships to the browser
-npm test        # 34 checks, ~3s
+npm test        # 40 checks, ~4s
 ```
 
 `tools/smoke-test.mjs` loads the real page in jsdom and drives the real handlers.

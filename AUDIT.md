@@ -167,3 +167,37 @@ content output, stable card IDs, deferred pals. Everything else is polish.
 
 **Suggested order:** F4 (delete junk) → F7 + F6 (tap targets, contrast) → F2 (stable IDs) →
 F1 (noscript/static fallback) → F8 (favicon + OG) → README → F3 (defer pals).
+
+---
+
+## 6. Remediation log — 2026-10-24
+
+Everything in §3 except F14 and F16 was actioned. Sections 1–5 above are kept as the
+point-in-time record; this section is the current state.
+
+| Finding | Status | What changed |
+|---|---|---|
+| F1 no-JS catalogue | **Fixed** | `tools/gen-noscript.py` renders all 9 stages / 25 cards / 16 links into a `<noscript>` block, with `--check` for drift |
+| F2 positional progress keys | **Fixed** | 34 stable slug ids in DATA; `resourceKey()`/`stageKey()` use them; `migrateDone()` translates old keys on load and on v1 import |
+| F3 decoration ahead of content | **Fixed** | 83 KB Piixpal payload is now an inert `<template>`, executed on idle (or on demand when pals are enabled) |
+| F4 Cloudflare injector | **Fixed** | Removed (938 bytes) |
+| F5 heading outline skipped a level | **Fixed** | Stage titles are real `<h4>`s; outline is now h3 → h4 → h5 with no gaps |
+| F6 two sub-AA contrast pairs | **Fixed** | `--blue-ink` (#2C55DA, 5.8:1) for text; hero lead is solid white (4.58:1) |
+| F7 38px tap targets | **Fixed** | `.done-control`, `.filter-button`, `.pals-controls button` at 44px |
+| F8 missing share metadata | **Fixed** | Inline SVG favicon, `color-scheme`, OG + Twitter tags, Course JSON-LD. `canonical`/`og:url` deliberately omitted until the domain is known |
+| F9 export omitted some state | **Accepted** | Export is a progress backup by design; documented in README |
+| F10 dead code | **Fixed** | Both `'Done':'Done'` ternaries and the two shadowed CSS declarations removed |
+| F11 storage key namespace | **Accepted** | Renaming would orphan every existing visitor's progress; left as-is and documented in README |
+| F12 unbounded activity dates | **Fixed** | `normaliseDates()` dedupes, drops impossible/future dates and prunes beyond 730 days |
+| F13 loose import validation | **Fixed** | `TIME_RE` (00:00–23:59) and real-calendar-date checks on load and import |
+| F14 single breakpoint | **Deferred** | Fluid `clamp()` layout holds at every width; container queries would restructure working CSS for no measured gain. Revisit if the card grid grows |
+| F15 no print stylesheet | **Fixed** | `@media print` (ink on white, panels flattened, printed URLs) + `beforeprint`/`afterprint` open and restore stages |
+| F16 no CSP | **Deliberately skipped** | The page needs `'unsafe-inline'` for its inline script/style, so a meta CSP buys little and risks breaking the blob-download export. Better as an HTTP header, tested, at deploy time |
+| Repo hygiene | **Partly fixed** | README, `package.json`, 40-check smoke test, `tools/`; CI and a licence decision are still open |
+
+**Metrics after remediation:** 212 KB raw / 66.3 KB gzipped (was 179 KB / 57.9 KB).
+The 6 KB gzip increase buys a readable catalogue for every visitor without
+JavaScript, and the 83 KB pals payload no longer executes before the content.
+
+**Still open:** CI wiring, a licence decision, `canonical`/`og:url` once the domain
+exists, an Open Graph image, and the `agent/skills` duplicate in the working tree.

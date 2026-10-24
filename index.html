@@ -191,9 +191,7 @@ main{padding:clamp(22px,4vw,58px);border-right:4px solid var(--cyan);border-left
 .resource-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 .resource-card{display:flex;min-width:0;min-height:360px;flex-direction:column;padding:20px;border:3px solid var(--line);background:var(--cream);box-shadow:6px 6px 0 var(--line);transition:transform .14s ease,box-shadow .14s ease}
 .resource-card:hover{transform:translate(-3px,-3px);box-shadow:10px 10px 0 var(--pink)}
-.resource-card.is-complete .done-control{color:var(--status-live-ink)}
-.resource-card.is-complete .checkmark{border-color:var(--status-live-ink);background:var(--green)}
-.card-top{display:grid;grid-template-columns:29px minmax(0,1fr) auto;align-items:start;gap:10px}
+.resource-card.is-complete .resource-card.is-complete .card-top{display:grid;grid-template-columns:29px minmax(0,1fr) auto;align-items:start;gap:10px}
 .resource-card h5{min-width:0;margin:2px 0 0;font-size:1.2rem;line-height:1.1;letter-spacing:-.045em;overflow-wrap:anywhere}
 .resource-card h5 a{text-decoration:none}
 .resource-provider{margin:6px 0 0;color:var(--muted);font:.8rem/1.4 var(--font-prose)}
@@ -295,6 +293,28 @@ main{padding:clamp(22px,4vw,58px);border-right:4px solid var(--cyan);border-left
 .nojs ul{margin:6px 0 0;padding-left:20px;font:.92rem/1.5 var(--font-prose)}
 .nojs p{margin:0 0 8px}
 .nojs p:last-child{margin-bottom:0}
+
+@media print{
+  html,body{background:#fff;color:#111}
+  body{font-size:11pt}
+  .shell{max-width:none;padding:0}
+  main{padding:0;border:0;background:#fff}
+  .hero{overflow:visible;border:2px solid #111;background:#fff;color:#111;box-shadow:none;padding:14pt}
+  .hero h1,.hero-lead{color:#111}
+  .hero-eyebrow,.hero-meta span{border:1px solid #111;background:#fff;color:#111}
+  .hero::after{display:none}
+  .panel,.resource-card,.rec,.stage,.nojs,.tool-panel{border:1px solid #111;background:#fff;box-shadow:none}
+  .tour-invite,.tour-layer,.skip-link,.filters,.pals-controls,#pals-controls,.search-clear,
+  .done-control,.tool-panel:not(:first-of-type){display:none!important}
+  .status{background:#fff;color:#111;border:1px solid #111}
+  .stage-body,.resource-grid{display:block}
+  .stage{break-inside:avoid}
+  .resource-card{break-inside:avoid;page-break-inside:avoid;margin-bottom:8pt}
+  a{text-decoration:none}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.75em;word-break:break-all;color:#333}
+  .tag{background:#fff!important;border:1px solid #111}
+  @page{margin:14mm}
+}
 </style>
 </head>
 <body>
@@ -801,6 +821,9 @@ function migrateDone(done){
 }
 const STORAGE_KEY = 'rll-roadmap-progress-v1:' + (DATA.storage_id || DATA.title || 'roadmap').toLowerCase().replace(/[^a-z0-9]+/g,'-');
 const RESOURCE_ITEMS = [];
+const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
+const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+const ACTIVITY_WINDOW_DAYS = 730;
 let state = loadState();
 let activeFilter = 'all';
 const reducedMotion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : {matches:false};
@@ -844,13 +867,30 @@ function localDateKey(date=new Date()){
 }
 function dateFromKey(key){const [y,m,d]=key.split('-').map(Number);return new Date(y,m-1,d,12,0,0,0);}
 function previousDay(key){const date=dateFromKey(key);date.setDate(date.getDate()-1);return localDateKey(date);}
+function isRealDate(key){
+  if(!DATE_RE.test(key))return false;
+  const [y,m,d]=key.split('-').map(Number);
+  const date=dateFromKey(key);
+  return date.getFullYear()===y&&date.getMonth()===m-1&&date.getDate()===d;
+}
+function normaliseDates(list){
+  const today=localDateKey();
+  const cutoff=localDateKey(new Date(Date.now()-ACTIVITY_WINDOW_DAYS*86400000));
+  const seen=new Set();
+  (Array.isArray(list)?list:[]).forEach(value=>{
+    if(typeof value!=='string'||!isRealDate(value))return;
+    if(value>today||value<cutoff)return;
+    seen.add(value);
+  });
+  return Array.from(seen).sort();
+}
 function loadState(){
   try{
     const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');
     return{
       done:migrateDone(saved.done&&typeof saved.done==='object'?saved.done:{}),
-      activityDates:Array.isArray(saved.activityDates)?saved.activityDates.filter(value=>/^\d{4}-\d{2}-\d{2}$/.test(value)):[],
-      reminderTime:/^\d\d:\d\d$/.test(saved.reminderTime||'')?saved.reminderTime:(DATA.reminder_time||'19:00'),
+      activityDates:normaliseDates(saved.activityDates),
+      reminderTime:TIME_RE.test(saved.reminderTime||'')?saved.reminderTime:(DATA.reminder_time||'19:00'),
       notificationsEnabled:saved.notificationsEnabled===true,
       lastNotificationDate:saved.lastNotificationDate||''
     };
@@ -920,7 +960,7 @@ function renderResource(stage,stageIndex,resource,resourceIndex){
   const doneLabel=el('label','done-control');
   const checkbox=el('input');checkbox.type='checkbox';checkbox.checked=completion;checkbox.dataset.key=key;checkbox.setAttribute('aria-label',`Mark ${parsed.title} complete`);
   const checkmark=el('span','checkmark');checkmark.setAttribute('aria-hidden','true');
-  doneLabel.append(checkbox,checkmark,el('span','',completion?'Done':'Done'));
+  doneLabel.append(checkbox,checkmark,el('span','','Done'));
   top.append(number,main,doneLabel);card.append(top);
   const status=el('p','status resource-status '+(url?'status-live':'status-caveat'),statusText);card.append(status);
   const tags=el('div','resource-tags');
@@ -945,7 +985,6 @@ function renderResource(stage,stageIndex,resource,resourceIndex){
     if(checkbox.checked){state.done[key]=true;markActivity();}
     else delete state.done[key];
     card.classList.toggle('is-complete',checkbox.checked);
-    doneLabel.lastElementChild.textContent=checkbox.checked?'Done':'Done';
     saveState();updateDashboard();updateStageMeters();applyFilters();
   });
   RESOURCE_ITEMS.push({key,title:parsed.title,stageIndex,resourceIndex,group,card,searchText});
@@ -1283,7 +1322,7 @@ function setupOnboarding(){
 function setupReminderControls(){
 
   const time=document.getElementById('reminder-time');time.value=state.reminderTime;
-  time.addEventListener('change',()=>{state.reminderTime=time.value||'19:00';saveState();setNotice(`Reminder time saved as ${state.reminderTime}. Keep this page open for alerts.`);});
+  time.addEventListener('change',()=>{state.reminderTime=TIME_RE.test(time.value||'')?time.value:(DATA.reminder_time||'19:00');time.value=state.reminderTime;saveState();setNotice(`Reminder time saved as ${state.reminderTime}. Keep this page open for alerts.`);});
   document.getElementById('enable-notifications').addEventListener('click',async()=>{
     if(!('Notification'in window)){setNotice('This browser does not support system notifications. Your progress log is still available.');return;}
     if(!window.isSecureContext){setNotice('Browser notifications need a secure HTTPS page or localhost. Your progress log is still available.');return;}
@@ -1311,8 +1350,8 @@ function setupReminderControls(){
         if(valid.has(next))restored[next]=true;
       });
       state.done=restored;
-      state.activityDates=incoming.activityDates.filter(value=>/^\d{4}-\d{2}-\d{2}$/.test(value));
-      if(/^\d\d:\d\d$/.test(incoming.reminderTime||''))state.reminderTime=incoming.reminderTime;
+      state.activityDates=normaliseDates(incoming.activityDates);
+      if(TIME_RE.test(incoming.reminderTime||''))state.reminderTime=incoming.reminderTime;
       saveState();renderRoadmap();time.value=state.reminderTime;setNotice('Progress imported into this browser.','data-status');
     }catch(_){setNotice('That file is not a valid Fieldnotes progress export.','data-status');}
     event.target.value='';
@@ -1336,6 +1375,16 @@ function init(){
   renderRoadmap();setupSearchAndFilters();setupPals();setupOnboarding();setupReminderControls();
   if(state.notificationsEnabled&&'Notification'in window&&Notification.permission==='granted')setNotice('Browser reminders are enabled while this page stays open.');
   checkReminder();window.setInterval(checkReminder,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkReminder();});
+  let printOpenStages=null;
+  window.addEventListener('beforeprint',()=>{
+    printOpenStages=Array.from(document.querySelectorAll('.stage[open]')).map(node=>node.id);
+    document.querySelectorAll('.stage').forEach(node=>{node.open=true;});
+  });
+  window.addEventListener('afterprint',()=>{
+    if(!printOpenStages)return;
+    document.querySelectorAll('.stage').forEach(node=>{node.open=printOpenStages.includes(node.id);});
+    printOpenStages=null;
+  });
 }
 init();
 </script>

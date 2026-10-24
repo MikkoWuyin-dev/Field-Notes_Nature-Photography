@@ -193,5 +193,40 @@ console.log('\nmigration');
   check('unknown keys are rejected on import', !('not-a-card' in stored.done));
 }
 
+// ---------------------------------------------------------------- guardrails
+console.log('\ninput validation');
+{
+  const { dom, wait } = boot();
+  await wait(500);
+  const d = dom.window.document;
+  const bogus = JSON.stringify({
+    version: 2, done: { 'chris-brays-10-part-photography-course-videos': true },
+    activityDates: ['2026-10-23', '2026-10-23', '2099-01-01', '2026-02-30', 'not-a-date'],
+    reminderTime: '99:99',
+  });
+  const input = d.getElementById('import-progress');
+  Object.defineProperty(input, 'files', { value: [new dom.window.File([bogus], 'p.json')], configurable: true });
+  input.dispatchEvent(new dom.window.Event('change', { bubbles: true }));
+  await wait(300);
+  const stored = JSON.parse(dom.window.localStorage.getItem(STORAGE_KEY));
+  eq('duplicate dates are collapsed', stored.activityDates.filter((v) => v === '2026-10-23').length, 1);
+  check('future dates are dropped', !stored.activityDates.includes('2099-01-01'));
+  check('impossible dates are dropped', !stored.activityDates.includes('2026-02-30'));
+  eq('invalid reminder time falls back to the default', d.getElementById('reminder-time').value, '19:00');
+}
+
+console.log('\nprint');
+{
+  const { dom, wait } = boot();
+  await wait(500);
+  const d = dom.window.document;
+  const wasOpen = [...d.querySelectorAll('.stage')].map((node) => node.open);
+  dom.window.dispatchEvent(new dom.window.Event('beforeprint'));
+  eq('beforeprint opens every stage', [...d.querySelectorAll('.stage')].filter((n) => !n.open).length, 0);
+  dom.window.dispatchEvent(new dom.window.Event('afterprint'));
+  eq('afterprint restores the previous view',
+    [...d.querySelectorAll('.stage')].map((node) => node.open).join(','), wasOpen.join(','));
+}
+
 console.log(`\n${failures === 0 ? 'all checks passed' : `${failures} check(s) failed`}\n`);
 process.exit(failures === 0 ? 0 : 1);
