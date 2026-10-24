@@ -484,5 +484,28 @@ console.log('\nthe guided tour never covers the section it is explaining');
     /const after = measure\(chosen\.side\)/.test(html));
 }
 
+console.log('\nthe reminder button and time field sit level');
+{
+  /* The time field has a caption above it inside the same flex item, so its label
+     box is taller than the button. Centring that box drops the field about 9px;
+     the row must align the two controls on their bottom edge instead. */
+  for (const width of [320, 390, 430, 768, 1200]) {
+    eq(`the reminder row aligns its controls on the bottom at ${width}px`,
+      resolve('.reminder-controls', width)['align-items'], 'flex-end');
+  }
+  const button = resolve('.button', 390);
+  const field = resolve('.reminder-controls input[type="time"]', 390);
+  eq('the button is 44px tall', button['min-height'], '44px');
+  eq('the time field is the same 44px tall', field['min-height'], '44px');
+  eq('the caption really does sit above the field',
+    resolve('.reminder-controls label', 390).display, 'grid');
+  eq('the caption is separated by the small gap',
+    resolve('.reminder-controls label', 390).gap, '4px');
+  /* The sibling row in the Progress file panel has no captioned field, so it must
+     keep centring rather than inherit the new alignment. */
+  eq('the progress file row still centres its controls',
+    resolve('.progress-data-controls', 390)['align-items'], 'center');
+}
+
 console.log(`\n${failures === 0 ? 'all checks passed' : `${failures} check(s) failed`}\n`);
 process.exit(failures === 0 ? 0 : 1);
