@@ -114,6 +114,28 @@ stage bodies all use a `clamp()` with a much smaller floor than before. The side
 gutter (`.shell`) is now 8px on phones and 14px on desktop, down from 12px and 22px;
 every other padding was trimmed by roughly 10%.
 
+## Vertical rhythm
+
+Every gap between stacked blocks is one value, `--stack-gap: 52px`, defined once on
+`:root`. Four things read from it:
+
+- `main`'s `padding-top` — the paper gap between the hero and the field log;
+- `.brief`'s `row-gap` — between the field log and "Read the learning cards";
+- `.field-kit-grid`'s `row-gap` — between the two cards in the Field kit;
+- `.section-block`'s `margin-top` — between every section;
+- `.tour-invite`'s bottom margin — the one-time invitation card.
+
+This used to be three different numbers. The hero's gap was `main`'s *fluid* top
+padding, so it was 13px on a 320px phone and 43px on a desktop; the stacked card
+pairs used a `clamp(12px, 3vw, 18px)` grid gap. At 390px the page ran
+**14 → 12 → 12 → 52**, which read as a cramped cluster at the top and normal
+spacing below it.
+
+Row gap only: the `column-gap` on `.brief` and `.field-kit-grid` is deliberately
+left at `clamp(12px, 3vw, 18px)`, because at ≥900px those panels sit side by side
+and a 52px horizontal gap would look wrong. If you change `--stack-gap`, run
+`npm run test:responsive` — it asserts all the gaps stay identical at every width.
+
 Text column width, before the responsive work → now:
 
 | Viewport | Before | Now | Characters per line |

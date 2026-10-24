@@ -28,6 +28,8 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Course","name":"Fieldnotes — Nature Photography Roadmap","description":"A free, location-neutral nature photography roadmap: nine stages, 25 learning cards, verified free resources, field practice and browser-local progress tracking.","url":"https://nature-photography-roadmap.vercel.app/","image":"https://nature-photography-roadmap.vercel.app/assets/og-image.png","inLanguage":"en","isAccessibleForFree":true,"provider":{"@type":"Organization","name":"Fieldnotes"},"teaches":["Camera foundations","Focus, sharpness, composition, and light","Ethics and fieldcraft","Sample landscape, wildlife, and close-up photography","Build a repeatable field project","Edit, caption, back up, and deliver","Build a small, defensible portfolio","Rights, licensing, and professional practice","Choose a measured next step"],"hasCourseInstance":{"@type":"CourseInstance","courseMode":"online","courseWorkload":"PT5H","isAccessibleForFree":true}}</script>
 <style>
 :root {
+  /* One vertical rhythm for the whole page: the same 52px the sections use. */
+  --stack-gap:52px;
   --ink:#11142B;
   --paper:#FFF8E7;
   --cream:#FFFDF6;
@@ -77,9 +79,9 @@ a:hover{color:var(--blue-ink)}
 .hero-lead{max-width:66ch;margin:0;color:#fff;font:clamp(1rem,2vw,1.27rem)/1.55 var(--font-prose)}
 .hero-meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:26px}
 .hero-meta span{min-width:0;max-width:100%;padding:6px 9px;border:2px solid rgba(255,255,255,.76);background:rgba(17,20,43,.62);font-size:.76rem;overflow-wrap:break-word}
-main{padding:clamp(13px,3.6vw,52px);border-right:4px solid var(--cyan);border-left:4px solid var(--cyan);background:var(--paper)}
+main{padding:clamp(13px,3.6vw,52px);padding-top:var(--stack-gap);border-right:4px solid var(--cyan);border-left:4px solid var(--cyan);background:var(--paper)}
 .eyebrow,.micro-label{margin:0;color:var(--muted);font-size:.77rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
-.brief{display:grid;grid-template-columns:1fr;gap:clamp(12px,3vw,18px);margin-bottom:clamp(28px,5vw,46px)}
+.brief{display:grid;grid-template-columns:1fr;gap:clamp(12px,3vw,18px);row-gap:var(--stack-gap);margin-bottom:clamp(28px,5vw,46px)}
 .panel{min-width:0;padding:clamp(13px,3.6vw,20px);border:3px solid var(--line);background:var(--cream);box-shadow:6px 6px 0 var(--line)}
 .panel h2,.panel h3{margin:0 0 10px;font-size:1rem;letter-spacing:.04em;text-transform:uppercase}
 .panel p:last-child{margin-bottom:0}
@@ -118,7 +120,7 @@ main{padding:clamp(13px,3.6vw,52px);border-right:4px solid var(--cyan);border-le
 .pals-controls{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;margin-top:12px}
 .pals-controls button{min-height:44px}
 .pals-status{margin:0;color:var(--muted);font:.72rem/1.4 var(--font-prose)}
-.tour-invite{display:grid;grid-template-columns:1fr;align-items:center;gap:14px;margin:0 0 28px;padding:clamp(13px,3.6vw,18px);border:3px solid var(--line);background:#DFE7FF;box-shadow:6px 6px 0 var(--line)}
+.tour-invite{display:grid;grid-template-columns:1fr;align-items:center;gap:14px;margin:0 0 var(--stack-gap);padding:clamp(13px,3.6vw,18px);border:3px solid var(--line);background:#DFE7FF;box-shadow:6px 6px 0 var(--line)}
 .tour-invite .eyebrow{margin-bottom:6px;color:var(--blue-ink)}
 .tour-invite h2{margin:0 0 6px;font-size:1.08rem;line-height:1.2;letter-spacing:-.025em}
 .tour-invite p:last-child{margin:0;color:var(--muted);font:.88rem/1.45 var(--font-prose)}
@@ -153,7 +155,7 @@ main{padding:clamp(13px,3.6vw,52px);border-right:4px solid var(--cyan);border-le
 .tour-skip:hover{color:var(--blue-ink)}
 .tour-announcement{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .tour-highlight{outline:4px solid var(--pink);outline-offset:6px;box-shadow:0 0 0 2px var(--cyan);border-radius:2px}
-.section-block{margin-top:52px}
+.section-block{margin-top:var(--stack-gap)}
 .section-head{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px;margin:0 0 22px;padding-bottom:16px;border-bottom:4px solid var(--ink)}
 .section-head h2{margin:0;font-size:clamp(1.55rem,3vw,2.45rem);line-height:1;letter-spacing:-.055em}
 .section-head .eyebrow{margin-bottom:9px;color:var(--blue-ink)}
@@ -253,7 +255,7 @@ main{padding:clamp(13px,3.6vw,52px);border-right:4px solid var(--cyan);border-le
 .guardrails li::before{position:absolute;top:12px;left:11px;display:grid;place-items:center;width:28px;height:28px;border:2px solid var(--line);background:var(--blue);color:#fff;content:counter(guardrails);font:900 .75rem/1 var(--font-mono)}
 .guardrails strong{display:block;margin-bottom:4px;font-family:var(--font-mono);font-size:.82rem}
 .availability-note{margin-top:16px;padding:16px;border-left:5px solid var(--blue);background:#DFE7FF;color:var(--ink);font:.88rem/1.5 var(--font-prose)}
-.field-kit-grid{display:grid;grid-template-columns:1fr;gap:clamp(12px,3vw,18px)}
+.field-kit-grid{display:grid;grid-template-columns:1fr;gap:clamp(12px,3vw,18px);row-gap:var(--stack-gap)}
 .tool-panel{box-shadow:none}
 .tool-panel h3{margin-bottom:8px}
 .tool-panel>p{margin:0 0 14px;color:var(--muted);font:.88rem/1.5 var(--font-prose)}
