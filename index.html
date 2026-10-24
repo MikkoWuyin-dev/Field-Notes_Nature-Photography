@@ -124,19 +124,21 @@ main{padding:clamp(13px,3.6vw,52px);border-right:4px solid var(--cyan);border-le
 .tour-invite p:last-child{margin:0;color:var(--muted);font:.88rem/1.45 var(--font-prose)}
 .tour-invite-actions{display:flex;flex-wrap:wrap;justify-content:flex-start;gap:8px}
 .tour-layer{position:fixed;z-index:1200;inset:0;pointer-events:none}
-.tour-panel{position:absolute;z-index:1202;left:12px;right:12px;width:auto;max-height:min(48dvh,420px);overflow:auto;padding:clamp(12px,3.6vw,20px);border:4px solid var(--cyan);background:var(--paper);color:var(--ink);box-shadow:8px 8px 0 var(--pink);pointer-events:auto}
+.tour-panel{position:absolute;z-index:1202;left:12px;right:12px;width:auto;display:flex;flex-direction:column;max-height:min(44vh,380px);max-height:min(40dvh,360px);overflow:hidden;padding:clamp(11px,3.2vw,18px);border:3px solid var(--cyan);background:var(--paper);color:var(--ink);box-shadow:5px 5px 0 var(--pink);pointer-events:auto}
+.tour-head{flex:none}
+.tour-body{display:flex;flex-direction:column;flex:1 1 auto;min-height:0;overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
 .tour-panel-top-left,.tour-panel-top-right{top:12px;bottom:auto}
 .tour-panel-bottom-left,.tour-panel-bottom-right{top:auto;bottom:12px}
-.tour-panel-bottom-left{bottom:16px;left:16px}
-.tour-panel-bottom-right{right:16px;bottom:16px}
+.tour-panel-bottom-left{bottom:12px;left:12px}
+.tour-panel-bottom-right{right:12px;bottom:12px}
 .tour-panel:focus-visible{outline:4px solid var(--blue);outline-offset:4px}
 .tour-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px}
 .tour-eyebrow{margin:0;color:var(--blue-ink);font-size:.75rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
 .tour-close{display:grid;place-items:center;flex:none;width:44px;height:44px;border:2px solid var(--line);background:var(--cream);color:var(--ink);font:900 1.2rem/1 var(--font-mono)}
 .tour-step-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px;color:var(--muted);font-size:.72rem;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
-.tour-progress-track{height:9px;margin-bottom:14px;border:2px solid var(--line);background:#fff}
+.tour-progress-track{flex:none;height:8px;margin-bottom:12px;border:2px solid var(--line);background:#fff}
 .tour-progress-fill{display:block;width:11.11%;height:100%;background:var(--blue);transition:width .18s ease}
-.tour-title{max-width:24ch;margin:0 0 9px;font-size:clamp(1.25rem,2.7vw,1.7rem);line-height:1.05;letter-spacing:-.05em}
+.tour-title{max-width:24ch;margin:0 0 8px;font-size:clamp(1.05rem,2.7vw,1.7rem);line-height:1.08;letter-spacing:-.045em}
 .tour-copy{max-width:62ch;margin:0;color:var(--ink);font:.9rem/1.5 var(--font-prose)}
 .tour-hint{margin:10px 0 0;padding-left:10px;border-left:3px solid var(--pink);color:var(--muted);font:.75rem/1.4 var(--font-prose)}
 .tour-demo{margin-top:14px;padding:12px;border:3px solid var(--line);background:var(--cream)}
@@ -145,7 +147,7 @@ main{padding:clamp(13px,3.6vw,52px);border-right:4px solid var(--cyan);border-le
 .tour-demo-status{margin:9px 0 0;color:var(--muted);font:.72rem/1.4 var(--font-prose)}
 .tour-demo.is-complete{background:var(--status-live-bg)}
 .button:disabled{opacity:.55;cursor:not-allowed}
-.tour-controls{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:14px;padding-top:12px;border-top:3px solid var(--line)}
+.tour-controls{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;flex:none;gap:10px;margin-top:10px;padding-top:10px;border-top:3px solid var(--line)}
 .tour-control-end{display:flex;flex-wrap:wrap;gap:8px}
 .tour-skip{min-height:44px;padding:8px 10px;border:0;background:transparent;color:var(--muted);font:700 .75rem/1.3 var(--font-mono);text-decoration:underline;text-underline-offset:3px}
 .tour-skip:hover{color:var(--blue-ink)}
@@ -285,7 +287,7 @@ main{padding:clamp(13px,3.6vw,52px);border-right:4px solid var(--cyan);border-le
   .filter-set{justify-content:flex-end}
   .tour-invite{grid-template-columns:minmax(0,1fr) auto;gap:18px}
   .tour-invite-actions{justify-content:flex-end}
-  .tour-panel{left:auto;right:auto;width:min(420px,calc(100vw - 32px));max-height:min(56dvh,520px);padding:22px}
+  .tour-panel{left:auto;right:auto;width:min(420px,calc(100vw - 32px));max-height:min(56dvh,520px);padding:20px;border-width:4px;box-shadow:8px 8px 0 var(--pink)}
   .tour-panel-top-left{top:16px;left:16px}
   .tour-panel-top-right{top:16px;right:16px}
   .tour-panel-bottom-left{bottom:16px;left:16px}
@@ -730,15 +732,19 @@ main{padding:clamp(13px,3.6vw,52px);border-right:4px solid var(--cyan);border-le
 </div>
 <div class="tour-layer" id="tour-layer" hidden>
   <section class="tour-panel tour-panel-bottom-right" id="tour-panel" role="dialog" aria-modal="false" aria-labelledby="tour-title" aria-describedby="tour-copy tour-hint" tabindex="-1">
-    <div class="tour-top"><p class="tour-eyebrow">FIELDNOTES / FULL SITE TOUR</p><button class="tour-close" id="tour-close" type="button" aria-label="Close tour">×</button></div>
-    <div class="tour-step-row"><span id="tour-step-count">STEP 01 / 09</span><span id="tour-step-area">START HERE</span></div>
-    <div class="tour-progress-track" id="tour-progress" role="progressbar" aria-label="Tour progress" aria-valuemin="0" aria-valuemax="9" aria-valuenow="1"><span class="tour-progress-fill" id="tour-progress-fill"></span></div>
-    <h2 class="tour-title" id="tour-title" tabindex="-1">Welcome to Fieldnotes.</h2>
-    <p class="tour-copy" id="tour-copy">A guided look at each section of the roadmap.</p>
-    <p class="tour-hint" id="tour-hint">The highlighted area belongs to the live page. Explore it, then use Next.</p>
-    <div class="tour-demo" id="tour-demo" hidden>
-      <label class="tour-demo-label" for="tour-demo-check"><input id="tour-demo-check" type="checkbox"><span>Try this tour-only sample checkbox</span></label>
-      <p class="tour-demo-status" id="tour-demo-status" role="status" aria-live="polite">Tour-only demo. It does not change your actual roadmap progress.</p>
+    <div class="tour-head">
+      <div class="tour-top"><p class="tour-eyebrow">FIELDNOTES / FULL SITE TOUR</p><button class="tour-close" id="tour-close" type="button" aria-label="Close tour">×</button></div>
+      <div class="tour-step-row"><span id="tour-step-count">STEP 01 / 09</span><span id="tour-step-area">START HERE</span></div>
+      <div class="tour-progress-track" id="tour-progress" role="progressbar" aria-label="Tour progress" aria-valuemin="0" aria-valuemax="9" aria-valuenow="1"><span class="tour-progress-fill" id="tour-progress-fill"></span></div>
+    </div>
+    <div class="tour-body" id="tour-body">
+      <h2 class="tour-title" id="tour-title" tabindex="-1">Welcome to Fieldnotes.</h2>
+      <p class="tour-copy" id="tour-copy">A guided look at each section of the roadmap.</p>
+      <p class="tour-hint" id="tour-hint">The highlighted area belongs to the live page. Explore it, then use Next.</p>
+      <div class="tour-demo" id="tour-demo" hidden>
+        <label class="tour-demo-label" for="tour-demo-check"><input id="tour-demo-check" type="checkbox"><span>Try this tour-only sample checkbox</span></label>
+        <p class="tour-demo-status" id="tour-demo-status" role="status" aria-live="polite">Tour-only demo. It does not change your actual roadmap progress.</p>
+      </div>
     </div>
     <p class="tour-announcement" id="tour-announcement" role="status" aria-live="polite"></p>
     <div class="tour-controls"><button class="tour-skip" id="tour-skip" type="button">Skip tour</button><div class="tour-control-end"><button class="button button-secondary" id="tour-back" type="button">Back</button><button class="button button-primary" id="tour-next" type="button">Next →</button></div></div>
@@ -1289,6 +1295,117 @@ function setTourHighlight(target){
   descriptions.add('tour-copy');descriptions.add('tour-hint');target.setAttribute('aria-describedby',Array.from(descriptions).join(' '));
   return target;
 }
+/* @tour-placement:start
+   Pure geometry for the guided tour. The panel is docked to an edge and the
+   section being explained is scrolled into whatever is left over. Keeping this
+   free of DOM calls means it can be checked without a browser. */
+const TOUR_EDGE = 10;
+const TOUR_GAP = 18;
+function tourPlacement(o){
+  const edge = o.edge === undefined ? TOUR_EDGE : o.edge;
+  const gap = o.gap === undefined ? TOUR_GAP : o.gap;
+  const targetTop = o.targetTop, targetHeight = o.targetHeight;
+  const panelTop = o.panelTop, panelHeight = o.panelHeight;
+  const viewportHeight = o.viewportHeight, scrollY = o.scrollY, maxScroll = o.maxScroll;
+  const panelBottom = panelTop + panelHeight;
+  let bandTop, bandBottom;
+  if (o.side === 'top') {
+    bandTop = panelBottom + gap;
+    bandBottom = viewportHeight - edge;
+  } else {
+    bandTop = edge;
+    bandBottom = panelTop - gap;
+  }
+  const bandHeight = Math.max(0, bandBottom - bandTop);
+  let desiredTop;
+  if (targetHeight <= bandHeight) {
+    desiredTop = Math.min(Math.max(targetTop, bandTop), bandBottom - targetHeight);
+  } else {
+    desiredTop = bandTop;
+  }
+  const wanted = desiredTop - targetTop;
+  const minDelta = -Math.min(scrollY, maxScroll);
+  const maxDelta = Math.max(0, maxScroll - scrollY);
+  const delta = Math.min(Math.max(wanted, minDelta), maxDelta);
+  const projectedTop = targetTop + delta;
+  const projectedBottom = projectedTop + targetHeight;
+  const contained = projectedTop >= bandTop - 0.5 && projectedBottom <= bandBottom + 0.5;
+  return {
+    side: o.side, bandTop, bandBottom, bandHeight, desiredTop,
+    delta, wanted, slack: Math.abs(wanted - delta), contained
+  };
+}
+/* @tour-placement:end */
+
+function tourViewportHeight(){
+  const vv = window.visualViewport;
+  return Math.round(vv && vv.height ? vv.height : window.innerHeight);
+}
+function tourMaxScroll(){
+  const doc = document.documentElement;
+  return Math.max(0, doc.scrollHeight - window.innerHeight);
+}
+function dockTourPanel(side, step){
+  const authored = step.dock || 'bottom-right';
+  const corner = authored.slice(-4) === 'left' ? 'left' : 'right';
+  document.getElementById('tour-panel').className = 'tour-panel tour-panel-' + side + '-' + corner;
+}
+function placeTourTarget(target, step){
+  if(!target) return;
+  const panel = document.getElementById('tour-panel');
+  if(!panel) return;
+  const wide = window.matchMedia ? window.matchMedia('(min-width:700px)').matches : true;
+  const root = document.documentElement;
+  const previousBehaviour = root.style.scrollBehavior;
+  root.style.scrollBehavior = 'auto';   /* measure, never animate */
+  const viewportHeight = tourViewportHeight();
+  const maxScroll = tourMaxScroll();
+
+  const measure = (side) => {
+    dockTourPanel(side, step);
+    const panelRect = panel.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+    return {
+      side,
+      result: tourPlacement({
+        side,
+        targetTop: targetRect.top, targetHeight: targetRect.height,
+        panelTop: panelRect.top, panelHeight: panelRect.height,
+        viewportHeight, scrollY: window.scrollY, maxScroll
+      })
+    };
+  };
+
+  let order;
+  if (wide) {
+    order = [(step.dock || 'bottom').split('-')[0]];
+  } else {
+    /* Put the panel on the side with less content, so the section gets the room.
+       Falling back to the other side covers sections pinned to a page end. */
+    const rect = target.getBoundingClientRect();
+    const absoluteTop = rect.top + window.scrollY;
+    const roomAbove = absoluteTop;
+    const roomBelow = root.scrollHeight - (absoluteTop + rect.height);
+    const first = roomBelow >= roomAbove ? 'bottom' : 'top';
+    order = [first, first === 'bottom' ? 'top' : 'bottom'];
+  }
+
+  let chosen = null;
+  for (const side of order) {
+    const candidate = measure(side);
+    if (!chosen) { chosen = candidate; continue; }
+    const better = (candidate.result.contained && !chosen.result.contained) ||
+      (candidate.result.contained === chosen.result.contained && candidate.result.slack < chosen.result.slack);
+    if (better) chosen = candidate;
+  }
+
+  dockTourPanel(chosen.side, step);
+  if (chosen.result.delta !== 0) {
+    window.scrollTo({ top: window.scrollY + chosen.result.delta, left: 0, behavior: 'instant' });
+  }
+  root.style.scrollBehavior = previousBehaviour;
+}
+
 function prepareTourStep(step){
   if(!step.stage)return;
   const search=document.getElementById('roadmap-search');search.value='';selectFilter('all');
@@ -1301,6 +1418,7 @@ function renderTourStep(){
   document.getElementById('tour-title').textContent=step.title;
   document.getElementById('tour-copy').textContent=step.copy;
   document.getElementById('tour-hint').textContent=step.hint||'The highlighted area is part of the live page. Explore it, then use Next.';
+  document.getElementById('tour-body').scrollTop=0;
   document.getElementById('tour-announcement').textContent=`Step ${tourIndex+1} of ${TOUR_STEPS.length}, ${step.area}: ${step.title}`;
   const progress=(tourIndex+1)/TOUR_STEPS.length*100;
   document.getElementById('tour-progress-fill').style.width=`${progress}%`;
@@ -1313,7 +1431,7 @@ function renderTourStep(){
   const target=setTourHighlight(document.querySelector(step.target));
   document.getElementById('tour-panel').className=`tour-panel tour-panel-${step.dock||'bottom-right'}`;
   if(!document.getElementById('tour-layer').hidden){
-    if(target){target.scrollIntoView({behavior:reducedMotion.matches?'auto':'smooth',block:'center'});target.focus({preventScroll:true});}
+    placeTourTarget(target,step);target.focus({preventScroll:true});
     renderTourPals();
   }
 }
@@ -1358,6 +1476,22 @@ function setupOnboarding(){
       event.preventDefault();finishTour('skipped');
     }
   });
+  /* The panel and the section must be re-measured whenever the visible area
+     changes: rotation, a resized window, or a phone's URL bar sliding away. */
+  let reflowQueued=false;
+  const reflowTour=()=>{
+    if(reflowQueued)return;
+    reflowQueued=true;
+    window.requestAnimationFrame(()=>{
+      reflowQueued=false;
+      if(document.getElementById('tour-layer').hidden)return;
+      const step=TOUR_STEPS[tourIndex];
+      placeTourTarget(document.querySelector(step.target),step);
+    });
+  };
+  window.addEventListener('resize',reflowTour);
+  window.addEventListener('orientationchange',reflowTour);
+  if(window.visualViewport)window.visualViewport.addEventListener('resize',reflowTour);
 }
 function setupReminderControls(){
 
