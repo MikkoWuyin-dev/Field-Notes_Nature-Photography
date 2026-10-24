@@ -1401,7 +1401,7 @@ function placeTourTarget(target, step){
 
   dockTourPanel(chosen.side, step);
   if (chosen.result.delta !== 0) {
-    window.scrollTo({ top: window.scrollY + chosen.result.delta, left: 0, behavior: 'instant' });
+    window.scrollTo(0, window.scrollY + chosen.result.delta);
   }
   root.style.scrollBehavior = previousBehaviour;
 }
