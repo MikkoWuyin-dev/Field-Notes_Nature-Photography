@@ -238,6 +238,24 @@ console.log('\nspacing is tight on phones');
   check('text gets more than 75% of a 320px screen', budget > 0.75, `${Math.round(budget * 100)}%`);
 }
 
+console.log('\nstage header corners');
+for (const width of [320, 390, 768]) {
+  const number = resolve('.stage-summary .number', width);
+  const chevron = resolve('.stage-summary .stage-chevron', width);
+  eq(`number sits at the top-left at ${width}px`,
+    `${number['grid-column']}/${number['align-self']}`, '1/start');
+  eq(`plus-minus sits at the top-right at ${width}px`,
+    `${chevron['grid-column']}/${chevron['align-self']}`, '3/start');
+}
+{
+  const number = resolve('.stage-summary .number', 1200);
+  const chevron = resolve('.stage-summary .stage-chevron', 1200);
+  eq('desktop header keeps one balanced row (number centred)',
+    `${number['grid-column']}/${number['align-self']}`, 'auto/auto');
+  eq('desktop header keeps one balanced row (plus-minus centred)',
+    `${chevron['grid-column']}/${chevron['align-self']}`, 'auto/auto');
+}
+
 console.log('\nfixed bugs stay fixed');
 check('.card-top has a standalone rule (was a doubled selector that never matched)',
   rules.some((r) => r.selector === '.card-top' && !r.context));

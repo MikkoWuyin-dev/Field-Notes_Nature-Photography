@@ -102,11 +102,11 @@ progressive enhancement. There is no desktop-first `max-width` layout rule left.
 
 | Breakpoint | What appears | Why |
 |---|---|---|
-| base (<480px) | single column everywhere; stacked stage headers; full-width Done control | 320–414px phones |
+| base (<480px) | single column everywhere; stacked stage headers (number pinned top-left, +/− pinned top-right); full-width Done control | 320–414px phones |
 | `min-width:480px` | the four-item tag key splits into two columns | it is short label/value pairs |
 | `min-width:620px` | resource cards, practice recs and guardrails go two-up; outcomes too | enough room for a 300px card |
 | `min-width:700px` | search + filter buttons on one row; tour dock returns to the corner; three-column card top | tablet |
-| `min-width:900px` | two-panel brief; 5-column stage header; cards back to a fixed 2-up grid | desktop, unchanged from before |
+| `min-width:900px` | two-panel brief; 5-column stage header with the number and +/− optically centred again; cards back to a fixed 2-up grid | desktop, unchanged from before |
 | `min-width:1000px` | outcomes go three across | wide desktop |
 
 Horizontal spacing is fluid rather than fixed: `shell`, `main`, panels, cards and
