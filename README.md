@@ -95,6 +95,47 @@ Regenerate the preview image after changing the headline copy:
 
 ---
 
+## Responsive layout
+
+Mobile-first: the base stylesheet is the phone layout, and everything wider is
+progressive enhancement. There is no desktop-first `max-width` layout rule left.
+
+| Breakpoint | What appears | Why |
+|---|---|---|
+| base (<480px) | single column everywhere; stacked stage headers; full-width Done control | 320–414px phones |
+| `min-width:480px` | the four-item tag key splits into two columns | it is short label/value pairs |
+| `min-width:620px` | resource cards, practice recs and guardrails go two-up; outcomes too | enough room for a 300px card |
+| `min-width:700px` | search + filter buttons on one row; tour dock returns to the corner; three-column card top | tablet |
+| `min-width:900px` | two-panel brief; 5-column stage header; cards back to a fixed 2-up grid | desktop, unchanged from before |
+| `min-width:1000px` | outcomes go three across | wide desktop |
+
+Horizontal spacing is fluid rather than fixed: `shell`, `main`, panels, cards and
+stage bodies all use a `clamp()` with a much smaller floor than before. At 320px the
+text column used to be 174px (≈21 characters per line); it is now 224px (≈28), and
+at 390px it goes from 244px to 290px.
+
+Rules that keep text inside its box:
+
+- every prose block uses `--font-prose`, never the monospace face;
+- `body` sets `overflow-wrap:break-word`, and long-token elements (`.tag`,
+  `.resource-card h5`, `.status`, `.category h3`, `.hero-meta span`) add
+  `max-width:100%` + `overflow-wrap:anywhere`;
+- flex/grid items that hold text can shrink — `.tag` used to be `flex:none`, which
+  is why long tags pushed past the card edge;
+- tap targets are ≥44px, including the search clear button, the access-note
+  disclosure and the source links.
+
+Run the checks:
+
+```bash
+npm run test:responsive   # 38 layout assertions, no browser required
+```
+
+It resolves the cascade at 320/390/1200px, measures the horizontal chrome budget,
+sums fixed grid tracks against the space a phone actually has, and fails if a
+`max-width` layout breakpoint, a non-shrinking text container or a sub-44px tap
+target reappears.
+
 ## Accessibility and privacy notes
 
 - Zero third-party requests: no analytics, cookies, webfonts, CDN or images. The
@@ -138,7 +179,7 @@ Installed: `ui-ux-pro-max`, `ui-styling`, `design`, `design-system`, `brand`,
 
 ```bash
 npm install     # jsdom only; nothing ships to the browser
-npm test        # 48 checks, ~5s
+npm test        # 86 checks, ~6s (48 functional + 38 layout)
 ```
 
 `tools/smoke-test.mjs` loads the real page in jsdom and drives the real handlers.
