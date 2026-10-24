@@ -354,5 +354,135 @@ console.log('\ndesktop is unchanged');
   eq('.filters returns to search + buttons in one row', at('.filters', 'grid-template-columns'), 'minmax(0,1fr) auto');
 }
 
+console.log('\nthe guided tour never covers the section it is explaining');
+{
+  /* The placement maths ships inside index.html (the app is one file), so pull
+     the marked block out and exercise it directly. No browser needed.
+
+     Crucially these checks do not trust the returned delta. They apply it to the
+     scroll position and recompute where the element would actually land, using
+     the same identity the browser uses (rect.top = absoluteTop - scrollY). An
+     inverted sign therefore fails loudly instead of agreeing with itself. */
+  const marked = html.match(/\/\* @tour-placement:start[\s\S]*?@tour-placement:end \*\//);
+  check('the tour placement block is still present in index.html', marked !== null);
+  const tourPlacement = new Function(`${marked[0]}; return tourPlacement;`)();
+
+  const panelHeight = (viewportHeight) => Math.min(viewportHeight * 0.4, 360);
+  const simulate = (options) => {
+    const viewportHeight = options.viewportHeight;
+    const mapScroll = options.maxScroll ?? Math.max(0, (options.documentHeight ?? 6000) - viewportHeight);
+    const scrollY = options.scrollY ?? 1200;
+    const height = options.panelHeight ?? panelHeight(viewportHeight);
+    const panelTop = options.side === 'top' ? 12 : viewportHeight - 12 - height;
+    const absoluteTop = options.targetTop + scrollY;
+    const result = tourPlacement({
+      side: options.side, targetTop: options.targetTop, targetHeight: options.targetHeight,
+      panelTop, panelHeight: height, viewportHeight, scrollY, maxScroll: mapScroll,
+      edge: options.edge, gap: options.gap,
+    });
+    const newScroll = Math.max(0, Math.min(mapScroll, scrollY + result.delta));
+    const finalTop = absoluteTop - newScroll;
+    return { ...result, absoluteTop, newScroll, finalTop, finalBottom: finalTop + options.targetHeight };
+  };
+  const insideBand = (s) => s.finalTop >= s.bandTop - 0.5 && s.finalBottom <= s.bandBottom + 0.5;
+
+  /* A phone, panel at the bottom, section parked dead centre (y=422 on a 390x844
+     screen). This is the reported bug. */
+  const phone = { viewportHeight: 844, side: 'bottom' };
+  const centred = simulate({ ...phone, targetTop: 422, targetHeight: 120 });
+  check('a centred section ends up clear of a bottom panel', insideBand(centred), JSON.stringify(centred));
+  check('the section rises up the screen', centred.finalTop < 422, `${centred.finalTop}`);
+  check('that means scrolling down the page', centred.delta > 0, `${centred.delta}px`);
+  eq('it lands at the first position where it fits', Math.round(centred.finalTop), 356);
+
+  /* Panel at the top: the band is below it, so the section drops down the screen. */
+  const topDocked = simulate({ viewportHeight: 844, side: 'top', targetTop: 190, targetHeight: 120 });
+  check('a section above a top panel ends up below it', insideBand(topDocked), JSON.stringify(topDocked));
+  check('the section drops down the screen', topDocked.finalTop > 190, `${topDocked.finalTop}`);
+  check('that means scrolling up the page', topDocked.delta < 0, `${topDocked.delta}px`);
+  check('it stops just under the panel gap',
+    Math.abs(topDocked.finalTop - (12 + panelHeight(844) + 18)) < 0.5, `${topDocked.finalTop}`);
+
+  /* The smallest phone we target. */
+  const small = simulate({ viewportHeight: 568, side: 'bottom', targetTop: 400, targetHeight: 96 });
+  check('a 320x568 phone also keeps the section clear', insideBand(small), JSON.stringify(small));
+
+  /* A section taller than the free band cannot fit; it must show its top. */
+  const tall = simulate({ ...phone, targetTop: 300, targetHeight: 900 });
+  check('an oversized section starts at the top of the free band', Math.abs(tall.finalTop - tall.bandTop) < 0.5,
+    `${tall.finalTop} vs ${tall.bandTop}`);
+
+  /* A page too short to scroll: only the dock side can save the section, so the
+     caller must be told the section is still covered. */
+  const shortPage = { viewportHeight: 844, targetTop: 600, targetHeight: 60, scrollY: 0, maxScroll: 0 };
+  const stuck = simulate({ ...shortPage, side: 'bottom' });
+  check('a bottom panel on an unscrollable page reports the section as covered', !insideBand(stuck),
+    JSON.stringify(stuck));
+  const flipped = simulate({ ...shortPage, side: 'top' });
+  check('flipping to the top clears the same section', insideBand(flipped), JSON.stringify(flipped));
+
+  /* Scroll limits are respected in both directions. */
+  const atTop = simulate({ ...phone, targetTop: 0, targetHeight: 60, scrollY: 0 });
+  eq('never scrolls above the top of the document', atTop.delta, 0);
+  const atEnd = simulate({ ...phone, targetTop: 900, targetHeight: 60, scrollY: 6000, maxScroll: 6000 });
+  eq('never scrolls past the end of the document', atEnd.delta, 0);
+
+  /* A section already in the clear must not be moved at all. */
+  const alreadyClear = simulate({ ...phone, targetTop: 120, targetHeight: 100 });
+  eq('a section already in the clear is left alone', alreadyClear.delta, 0);
+
+  /* Custom edge and gap are honoured. */
+  const custom = simulate({ ...phone, targetTop: 422, targetHeight: 120, edge: 4, gap: 30 });
+  check('custom edge and gap are respected', Math.abs(custom.bandBottom - (844 - 12 - panelHeight(844) - 30)) < 0.5,
+    `${custom.bandBottom}`);
+
+  /* The identity the whole fix rests on: a positive delta must move an element
+     *up* the screen. If this ever inverts, everything above is meaningless. */
+  const sanity = tourPlacement({
+    side: 'bottom', targetTop: 500, targetHeight: 100, panelTop: 494, panelHeight: 338,
+    viewportHeight: 844, scrollY: 1000, maxScroll: 5000,
+  });
+  check('a positive delta moves the element up the screen, not down', 500 - sanity.delta < 500,
+    `delta ${sanity.delta}`);
+}
+{
+  /* Panel budget on phones and the fact that the buttons cannot scroll away. */
+  for (const [viewport, height] of [[320, 568], [390, 844], [430, 932]]) {
+    const panel = resolve('.tour-panel', viewport);
+    const cap = /min\(\s*([\d.]+)dvh\s*,\s*(\d+)px\s*\)/.exec(panel['max-height'] || '');
+    check(`the panel has a dvh cap at ${viewport}px`, cap !== null, String(panel['max-height']));
+    const share = Math.min(Number(cap[1]) / 100 * height, Number(cap[2])) / height;
+    check(`the panel takes at most 42% of a ${height}px screen (${Math.round(share * 100)}%)`, share <= 0.42,
+      `${share}`);
+    eq(`the panel cannot scroll as one block at ${viewport}px`, panel.overflow, 'hidden');
+    eq(`the panel is a column at ${viewport}px`, panel['flex-direction'], 'column');
+  }
+  eq('the scrolling middle can shrink', resolve('.tour-body', 390)['min-height'], '0');
+  eq('the scrolling middle is the only scrolling part', resolve('.tour-body', 390).overflow, 'auto');
+  eq('the button row is fixed in place', resolve('.tour-controls', 390).flex, 'none');
+  eq('the header row is fixed in place', resolve('.tour-head', 390).flex, 'none');
+  for (const side of ['left', 'right']) {
+    eq(`the panel inset matches on the ${side}`, resolve(`.tour-panel-bottom-${side}`, 390)[side], '12px');
+  }
+  eq('the panel inset matches at the bottom', resolve('.tour-panel-bottom-right', 390).bottom, '12px');
+  eq('the desktop frame is restored at 1200px', resolve('.tour-panel', 1200)['border-width'], '4px');
+}
+{
+  /* The markup must keep the three zones in order, and the old blind centring
+     must be gone for good. */
+  const panelStart = html.indexOf('class="tour-panel');
+  const panel = html.slice(panelStart, html.indexOf('</section>', panelStart));
+  const order = ['tour-head', 'tour-body', 'tour-controls'].map((name) => panel.indexOf(`class="${name}"`));
+  check('the panel keeps header, body, controls in that order',
+    order.every((v, i) => v > -1 && (i === 0 || v > order[i - 1])), JSON.stringify(order));
+  check('the panel no longer scrolls the section to the centre of the screen',
+    !/scrollIntoView\(\{[^}]*block:'center'[^}]*\}\);\s*target\.focus/.test(html));
+  check('the tour calls the measured placement instead', html.includes('placeTourTarget(target,step)'));
+  check('placement re-runs when the visible area changes',
+    html.includes("window.visualViewport.addEventListener('resize',reflowTour)"));
+  check('the scroll correction is verified and topped up after the browser moves',
+    /const after = measure\(chosen\.side\)/.test(html));
+}
+
 console.log(`\n${failures === 0 ? 'all checks passed' : `${failures} check(s) failed`}\n`);
 process.exit(failures === 0 ? 0 : 1);

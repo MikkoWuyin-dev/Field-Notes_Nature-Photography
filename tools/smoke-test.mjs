@@ -35,7 +35,7 @@ function eq(name, actual, expected) {
   check(name, actual === expected, `expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`);
 }
 
-function boot({ storage } = {}) {
+function boot({ storage, layout } = {}) {
   const errors = [];
   const vc = new VirtualConsole();
   vc.on('jsdomError', (error) => errors.push(error.message.split('\n')[0]));
@@ -76,6 +76,42 @@ function boot({ storage } = {}) {
       window.HTMLCanvasElement.prototype.toDataURL = () => 'data:image/png;base64,';
       if (!window.document.fonts) window.document.fonts = { status: 'loaded', ready: Promise.resolve() };
       window.requestIdleCallback = (cb) => window.setTimeout(() => cb({ didTimeout: false }), 20);
+      if (layout) {
+        // A hand-built phone screen. jsdom has no layout engine, so the tour
+        // placement code is given the rectangles a real 390x844 render would
+        // produce, and the scrolls it asks for are recorded instead of applied.
+        Object.defineProperty(window, 'innerHeight', { configurable: true, value: layout.viewportHeight });
+        Object.defineProperty(window, 'innerWidth', { configurable: true, value: layout.viewportWidth });
+        const scroll = { y: layout.scrollY || 0 };
+        Object.defineProperty(window, 'scrollY', { configurable: true, get: () => scroll.y });
+        Object.defineProperty(window.Element.prototype, 'scrollHeight', {
+          configurable: true,
+          get() { return this === window.document.documentElement ? layout.documentHeight : 0; },
+        });
+        window.__scrolls = [];
+        window.scrollTo = (first, second) => {
+          const top = typeof first === 'object' ? first.top : second;
+          window.__scrolls.push({ top });
+          if (typeof top === 'number') scroll.y = top;
+        };
+        const panelHeight = layout.panelHeight;
+        window.Element.prototype.getBoundingClientRect = function () {
+          if (this.id === 'tour-panel') {
+            const top = String(this.className).includes('tour-panel-top') ? 12 : layout.viewportHeight - 12 - panelHeight;
+            return { top, bottom: top + panelHeight, height: panelHeight, left: 12, right: layout.viewportWidth - 12,
+              width: layout.viewportWidth - 24, x: 12, y: top };
+          }
+          if (this.id === layout.targetId) {
+            // The element lives at a fixed spot in the document; where it appears on
+            // screen is that position minus however far the page has been scrolled.
+            const height = layout.targetHeight;
+            const top = layout.targetAbsoluteTop - scroll.y;
+            return { top, bottom: top + height, height, left: 12, right: layout.viewportWidth - 12,
+              width: layout.viewportWidth - 24, x: 12, y: top };
+          }
+          return { top: 0, bottom: 0, height: 0, left: 0, right: 0, width: 0, x: 0, y: 0 };
+        };
+      }
       Object.defineProperty(window.File.prototype, 'text', {
         configurable: true,
         value() {
@@ -202,6 +238,56 @@ console.log('\nrender');
   d.dispatchEvent(new dom.window.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
   check('Escape closes the tour', d.getElementById('tour-layer').hidden);
 }
+
+// ------------------------------------------------- tour placement on a phone
+console.log('\ntour placement');
+{
+  // 390x844 phone, 338px panel (40% of the screen), page scrolled to 2000px and
+  // the section parked dead centre at y=422 - the exact spot the panel used to cover.
+  const { dom, wait } = boot({
+    layout: {
+      viewportWidth: 390, viewportHeight: 844, documentHeight: 6000, panelHeight: 338, scrollY: 2000,
+      targetId: 'hero-title', targetAbsoluteTop: 2422, targetHeight: 120,
+    },
+  });
+  await wait(400);
+  const w = dom.window, d = w.document;
+  d.getElementById('tour-replay').dispatchEvent(new w.Event('click', { bubbles: true }));
+  const panel = d.getElementById('tour-panel');
+  check('the panel docks on the side with the free space', panel.className.includes('tour-panel-bottom'),
+    panel.className);
+  eq('the section is scrolled clear of the panel', w.__scrolls.length, 1);
+  const moved = w.__scrolls[0].top;
+  eq('the page is scrolled down to bring the section up the screen', moved, 2066);
+  const bandBottom = 844 - 12 - 338 - 18;
+  const landedTop = 2422 - w.scrollY;
+  check('the section now sits above the panel gap', landedTop >= 10 && landedTop + 120 <= bandBottom + 0.5,
+    `top ${landedTop}, bottom ${landedTop + 120}, band bottom ${bandBottom}`);
+  eq('the panel keeps its header, body and controls', d.querySelectorAll('.tour-panel .tour-body').length, 1);
+  eq('the buttons live outside the scrolling area', d.querySelectorAll('.tour-body #tour-next').length, 0);
+  eq('the next button is still inside the panel', d.querySelectorAll('.tour-panel #tour-next').length, 1);
+  eq('the scrolling area holds the explanation', d.querySelectorAll('.tour-body .tour-copy').length, 1);
+  d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+}
+{
+  // Near the bottom of the page, the free space is above the section, so the panel
+  // must move to the top rather than fight the section for the bottom.
+  const { dom, wait } = boot({
+    layout: {
+      viewportWidth: 390, viewportHeight: 844, documentHeight: 6000, panelHeight: 338, scrollY: 5000,
+      targetId: 'hero-title', targetAbsoluteTop: 5700, targetHeight: 120,
+    },
+  });
+  await wait(400);
+  const w = dom.window, d = w.document;
+  d.getElementById('tour-replay').dispatchEvent(new w.Event('click', { bubbles: true }));
+  const panel = d.getElementById('tour-panel');
+  check('a section near the page end moves the panel to the top', panel.className.includes('tour-panel-top'),
+    panel.className);
+  eq('an already-clear section is not scrolled', w.__scrolls.length, 0);
+  d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+}
+
 
 // ---------------------------------------------------------------- migration
 console.log('\nmigration');
