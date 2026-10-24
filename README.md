@@ -95,6 +95,91 @@ Regenerate the preview image after changing the headline copy:
 
 ---
 
+## Responsive layout
+
+Mobile-first: the base stylesheet is the phone layout, and everything wider is
+progressive enhancement. There is no desktop-first `max-width` layout rule left.
+
+| Breakpoint | What appears | Why |
+|---|---|---|
+| base (<480px) | single column everywhere; stacked stage headers (number pinned top-left, +/− pinned top-right); full-width Done control | 320–414px phones |
+| `min-width:480px` | the four-item tag key splits into two columns | it is short label/value pairs |
+| `min-width:620px` | resource cards, practice recs and guardrails go two-up; outcomes too | enough room for a 300px card |
+| `min-width:700px` | search + filter buttons on one row; tour dock returns to the corner; three-column card top | tablet |
+| `min-width:900px` | two-panel brief; 5-column stage header with the number and +/− optically centred again; cards back to a fixed 2-up grid | desktop, unchanged from before |
+| `min-width:1000px` | outcomes go three across | wide desktop |
+
+Horizontal spacing is fluid rather than fixed: `shell`, `main`, panels, cards and
+stage bodies all use a `clamp()` with a much smaller floor than before. The side
+gutter (`.shell`) is now 8px on phones and 14px on desktop, down from 12px and 22px;
+every other padding was trimmed by roughly 10%.
+
+Text column width, before the responsive work → now:
+
+| Viewport | Before | Now | Characters per line |
+|---|---|---|---|
+| 320px | 174px | **238px** | 21 → 29 |
+| 390px | 244px | 303px | 30 → 37 |
+| 430px | 275px | 335px | 34 → 41 |
+| 768px | 543px | 631px | 67 → 78 |
+
+That is a 37% wider text column at 320px compared with the original layout.
+
+Rules that keep text inside its box:
+
+- every prose block uses `--font-prose`, never the monospace face;
+- `body` sets `overflow-wrap:break-word`;
+- short labels (`.tag`, `.status`, `.hero-meta span`, `.category h3`) use
+  `overflow-wrap:break-word` plus `max-width:100%`. **Not `anywhere`** — that value
+  also shrinks an element's intrinsic minimum width, which lets a flex parent
+  squeeze a one-word chip until the word splits in half (`LEA/RN`). `break-word`
+  only breaks a word that genuinely cannot fit on its own line, while still
+  wrapping multi-word tags at their spaces;
+- only text that is expected to contain unbreakable tokens (`.resource-card h5`
+  titles, the result-count line, the no-JS block) uses `anywhere`;
+- `.tag-key .tag` is `flex:none` so the four single-word key chips (LEARN, FIELD,
+  TIME, ACCESS) never get squeezed by the label beside them, while tags inside a
+  card can still shrink and wrap;
+- tap targets are ≥44px, including the search clear button, the access-note
+  disclosure and the source links. The Done control is the one exception to the
+  box height: it is a compact ~32px box with an invisible `::after` adding 6px on
+  every side, so it looks tight but still gives a 44px touch target;
+- each learning card ends with a `.card-foot` row: the resource link on the left,
+  the Done control on the right.
+
+Run the checks:
+
+```bash
+npm run test:responsive   # 47 layout assertions, no browser required
+```
+
+It resolves the cascade at 320/390/1200px, measures the horizontal chrome budget,
+sums fixed grid tracks against the space a phone actually has, and fails if a
+`max-width` layout breakpoint, a non-shrinking text container, a mid-word-breaking
+short label, an oversized gutter or a sub-44px tap target reappears.
+
+## The hero decoration
+
+The banded square in the bottom-right of the hero is `.hero::after`, and it must
+always read as the deepest layer there. The rule is layered deliberately:
+
+- `.hero` sets `isolation:isolate`, forming its own stacking context;
+- `.hero::after` sits at `z-index:0` and `pointer-events:none`;
+- `.hero-inner` (all the text) sits at `z-index:1`.
+
+Because the grid is anchored to the corner at a fixed size, the risk is never that
+it climbs *over* the text — it is that it slides *underneath* the translucent
+`.hero-meta` chips, which then look as though the decoration is in front. Two
+guards prevent that:
+
+- the grid scales with the viewport (`clamp(118px,30vw,190px)`) and fades out
+  toward the text with a `mask-image`, so the part nearest the copy disappears;
+- the chips are more opaque (62% instead of 26%) so nothing shows through them.
+
+If you change the hero padding, headline size or chip styling, re-run
+`npm run test:responsive` — it asserts the layer order, the mask, the phone size
+cap and the chip opacity.
+
 ## Accessibility and privacy notes
 
 - Zero third-party requests: no analytics, cookies, webfonts, CDN or images. The
@@ -138,7 +223,7 @@ Installed: `ui-ux-pro-max`, `ui-styling`, `design`, `design-system`, `brand`,
 
 ```bash
 npm install     # jsdom only; nothing ships to the browser
-npm test        # 48 checks, ~5s
+npm test        # 95 checks, ~9s (48 functional + 47 layout)
 ```
 
 `tools/smoke-test.mjs` loads the real page in jsdom and drives the real handlers.

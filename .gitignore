@@ -5,3 +5,6 @@ agent/skills/
 
 # Local tooling
 node_modules/
+
+# Local responsive preview harness (working artefact, not part of the site)
+.preview/

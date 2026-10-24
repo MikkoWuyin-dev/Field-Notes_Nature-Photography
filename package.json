@@ -2,12 +2,13 @@
   "name": "fieldnotes-nature-photography",
   "version": "1.0.0",
   "private": true,
-  "description": "Fieldnotes — a free, location-neutral nature photography roadmap in one static HTML file",
+  "description": "Fieldnotes \u2014 a free, location-neutral nature photography roadmap in one static HTML file",
   "scripts": {
-    "test": "node tools/smoke-test.mjs",
+    "test": "node tools/smoke-test.mjs && node tools/responsive-check.mjs",
     "noscript": "python3 tools/gen-noscript.py",
     "noscript:check": "python3 tools/gen-noscript.py --check",
-    "serve": "python3 -m http.server 8000"
+    "serve": "python3 -m http.server 8000",
+    "test:responsive": "node tools/responsive-check.mjs"
   },
   "devDependencies": {
     "jsdom": "^24.1.3"
